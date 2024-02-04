@@ -54,6 +54,11 @@
             "styles": [
               "src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/styles/tokens"
+              ]
+            },
             "scripts": [],
             "server": "src/main.server.ts",
             "prerender": true,

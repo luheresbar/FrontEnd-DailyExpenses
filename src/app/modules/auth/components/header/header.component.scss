@@ -1,11 +1,22 @@
+@import "_spacing";
 
-
-.auth__header {
+.auth__header{
+  padding-block: 1.6rem;
   display: flex;
   justify-content: center;
-  
-  .auth__logo {
-  width: 10.4rem;
+  position: relative;
 
+  .auth__logo{
+    width: 22.4rem;
   }
+}
+
+@media (min-width: $breakpoint-medium) {
+  .auth__header{
+
+    .auth__logo{
+      width: 24rem;
+    }
+  }
+
 }

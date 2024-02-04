@@ -1,43 +1,134 @@
+@import "_spacing";
+@import "_colors";
+
 .login {
   width: 100vw;
   height: 100vh;
+  background-color: $white;
+
+  .login__card--main {
+    width: 100%;
+    margin: auto;
+
+    .login__interactive {
+      .login__form {
+      }
+
+      .hr {
+      }
+
+      .login__redirec {
+        login__link--recovery {
+        }
+        .login__span {
+        }
+        .login__link--register {
+        }
+      }
+    }
+  }
 }
 
-// .login {
-//   width: 100vw;
-//   height: 100vh;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
+@media (min-width: $breakpoint-small) {
+  .login {
+    background-color: $very-light-gray;
+    width: 7/12;
+  
+    .login__card--main {
+  
+      .login__interactive {
+        .login__form {
+        }
+  
+        .hr {
+        }
+  
+        .login__redirec {
+          login__link--recovery {
+          }
+          .login__span {
+          }
+          .login__link--register {
+          }
+        }
+      }
+    }
+  }
 
-//   .login__card--main {
-//     width: 58.33%;
-//     margin-inline: auto;
-//     margin: 10px;
-//     border: 1px solid black;
+}
 
-//     .login__interactive {
+@media (min-width: $breakpoint-medium) {
+  .login {
+  
+    .login__card--main {
+    width: 6/12;
+  
+      .login__interactive {
 
-//       .login__form {
+        .login__form {
+        }
+  
+        .hr {
+        }
+  
+        .login__redirec {
+          login__link--recovery {
+          }
+          .login__span {
+          }
+          .login__link--register {
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: $breakpoint-large) {
+  .login {
+  
+    .login__card--main {
+    width: 4/12;
+      
+      .login__interactive {
+        .login__form {
+        }
+  
+        .hr {
+        }
+  
+        .login__redirec {
+          login__link--recovery {
+          }
+          .login__span {
+          }
+          .login__link--register {
+          }
+        }
+      }
+    }
+  }
+}
 
-//       }
-
-//       .hr {
-
-//       }
-
-//       .login__redirect {
-
-//         .login__link--recovery {
-
-//         }
-
-//         .login__link--register {
-
-//         }
-
-//       }
-//     }
-
-//   }
-// }
+@media (min-width: $breakpoint-extra-large) {
+  .login {
+  
+    .login__card--main {
+  
+      .login__interactive {
+        .login__form {
+        }
+        .hr {
+        }
+  
+        .login__redirec {
+          login__link--recovery {
+          }
+          .login__span {
+          }
+          .login__link--register {
+          }
+        }
+      }
+    }
+  }
+}

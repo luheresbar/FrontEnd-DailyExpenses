@@ -1,8 +1,9 @@
-@import "../../../../../styles/tokens/spacing";
+@import "_spacing";
 
 .auth--brackground {
   width: 100%;
   height: 100%;
+  position: absolute;
 
   .auth__img {
     display: none;
