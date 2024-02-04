@@ -11,6 +11,10 @@
     margin: auto;
 
     .login__interactive {
+      background-color: $white;
+      border-radius: 0.4rem;
+      padding: 1.6rem;
+
       .login__form {
       }
 
@@ -32,9 +36,9 @@
 @media (min-width: $breakpoint-small) {
   .login {
     background-color: $very-light-gray;
-    width: 7/12;
   
     .login__card--main {
+      width: 60%;
   
       .login__interactive {
         .login__form {
@@ -61,9 +65,10 @@
   .login {
   
     .login__card--main {
-    width: 6/12;
+      width: 50%;
   
       .login__interactive {
+        padding-inline: 3.6rem;
 
         .login__form {
         }
@@ -87,7 +92,7 @@
   .login {
   
     .login__card--main {
-    width: 4/12;
+      width: 35%;
       
       .login__interactive {
         .login__form {
