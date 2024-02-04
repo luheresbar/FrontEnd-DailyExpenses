@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+@import './styles/tokens/reset';
+@import './styles/tokens/typography';
+
+
+body {
+  font-family: $font-family;
+  width: 100vw;
+  height: 100vh;
+}
+
