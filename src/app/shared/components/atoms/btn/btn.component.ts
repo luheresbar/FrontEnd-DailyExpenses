@@ -10,6 +10,6 @@ import { Component, Input } from '@angular/core';
 })
 export class BtnComponent {
 
-  @Input() class: 'btn-basic' | 'btn-primary' | 'btn-secondary' | 'btn-danger' = 'btn-basic';
+  @Input() color: 'btn-basic' | 'btn-primary' | 'btn-secondary' | 'btn-danger' = 'btn-basic';
 
 }

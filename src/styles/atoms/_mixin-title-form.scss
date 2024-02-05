@@ -1,8 +1,16 @@
 @import "/tokens/_colors";
 @import "/tokens/_typography";
+@import "/tokens/_spacing";
+
 
 @mixin format-title-form {
   text-align: center;
+  font-size: $font-size-medium;
   font-weight: $font-weight-bold;
   color: $dark;
+
+  @media only screen and (min-width: $breakpoint-large) {
+    font-size: $font-size-large;
+  }
+
 }
