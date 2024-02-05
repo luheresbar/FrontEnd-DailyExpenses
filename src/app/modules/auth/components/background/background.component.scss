@@ -1,4 +1,5 @@
 @import "/tokens/_spacing";
+@import "/tokens/_colors";
 
 .auth--brackground {
   width: 100%;
@@ -7,6 +8,7 @@
 
   .auth__img {
     display: none;
+    transition: width 0.3s ease;
   }
 
   .auth__img--left {
@@ -22,37 +24,35 @@
 }
 
 @media (min-width: $breakpoint-small) {
-  .auth--brackground {
-    .auth__img {
-      display: block;
-      width: 20.8rem;
-    }
-  }
+
 }
 
 @media (min-width: $breakpoint-medium) {
   .auth--brackground {
+    background-color: $very-light-gray;
     .auth__img {
       display: block;
-      width: 22.4rem;
+      width: 25%;
+      max-width: 26rem;
+      // width: 18rem;
     }
   }
 }
 
-@media (min-width: $breakpoint-large) {
-  .auth--brackground {
-    .auth__img {
-      display: block;
-      width: 24rem;
-    }
-  }
-}
+// @media (min-width: $breakpoint-large) {
+//   .auth--brackground {
+//     .auth__img {
+//       display: block;
+//       width: 22rem;
+//     }
+//   }
+// }
 
-@media (min-width: $breakpoint-extra-large) {
-  .auth--brackground {
-    .auth__img {
-      display: block;
-      width: 26rem;
-    }
-  }
-}
+// @media (min-width: $breakpoint-extra-large) {
+//   .auth--brackground {
+//     .auth__img {
+//       display: block;
+//       width: 26rem;
+//     }
+//   }
+// }

@@ -4,19 +4,20 @@
 @import "/atoms/_mixin-link-redirection";
 
 .login {
+  display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: $white;
-
+  
   .login__card--main {
     width: 100%;
-    height: 100%;
-    margin: auto;
+    height: 90%;
     position: relative;
+    margin: auto;
+    border-radius: 0.8rem;
     width: 30.2rem;
+    background-color: $white;
 
     .login__interactive {
-      background-color: $white;
       border-radius: 0.8rem;
       padding: 0.5rem;
 
@@ -77,17 +78,16 @@
 
     }
     .login__register {
-      
       display: flex;
       justify-content: center;
+      align-items: end;
       width: 100%;
+      height: 20%;
       gap: 1rem;
-      bottom: 3rem;
-      position: absolute;
+      top: 10rem;
       .register__text-question{
         font-size: $font-size-small;
         font-weight: $font-weight-light;
-
         text-decoration: none;
       }
       .link__redirect {
@@ -98,11 +98,18 @@
   }
 }
 
-@media (min-width: $breakpoint-small) {
+@media (min-width: $breakpoint-medium) {
   .login {
-    background-color: $very-light-gray;
+    .login__card--main {
+      width: 38.2rem;
+      padding: 3.2rem 4rem;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
+
+      .login__register {
+        height: 10%;
+        
+      }
+    }
   }
 }
 
-@media (min-width: $breakpoint-extra-large) {
-}
