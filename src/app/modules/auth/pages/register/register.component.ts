@@ -5,12 +5,12 @@ import { SocialMediaComponent } from '../../components/social-media/social-media
 import { FooterComponent } from '../../components/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { AuthContainerComponent } from '../../components/auth-container/auth-container.component';
-import { LoginFormComponent } from '../../components/login-form/login-form.component';
+import { RegisterFormComponent } from '../../components/register-form/register-form.component';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, BackgroundComponent, HeaderComponent, SocialMediaComponent, FooterComponent, AuthContainerComponent, LoginFormComponent],
+  imports: [CommonModule, BackgroundComponent, HeaderComponent, SocialMediaComponent, FooterComponent, AuthContainerComponent, RegisterFormComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })

@@ -23,7 +23,7 @@
     font-size: $font-size-between;
     font-weight: $font-weight-medium;
     color: $text-color-gray;
-    margin-block-end: 1.5rem;
+    margin-block-end: 0.8rem;
   }
   .login__cards--social-media{
     display: flex;
@@ -43,6 +43,7 @@
         object-fit: cover;
       }
       &:hover {
+        cursor: pointer;
         border: 0.1rem solid $primary-action;
         background-color: $very-light-gray;
       }

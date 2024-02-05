@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { BtnComponent } from '../../../../shared/components/atoms/btn/btn.component';
 import { CommonModule } from '@angular/common';
-import { faPen, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
