@@ -1,5 +1,7 @@
 @import "/tokens/_spacing";
 @import "/tokens/_colors";
+@import "/tokens/_typography";
+@import "/atoms/_mixin-link-redirection";
 
 .login {
   width: 100vw;
@@ -8,30 +10,90 @@
 
   .login__card--main {
     width: 100%;
+    height: 100%;
     margin: auto;
     position: relative;
-    max-width: 40rem;
+    width: 30.2rem;
 
     .login__interactive {
       background-color: $white;
       border-radius: 0.8rem;
-      padding: 1.6rem;
+      padding: 0.5rem;
 
       .login__form {
         margin-block-end: 1.6rem;
       }
 
-      .hr {
+      .login__recovery {
+        display: flex;
+        justify-content: center;
+        margin-block-end: 1rem;
+        .link__redirect {
+          @include format-text-link-redirection;
+        }
       }
 
-      .login__redirec {
-        login__link--recovery {
+      .login__line--division {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 0.4rem;
+        .line {
+          flex: 1;
+          height: 0.05rem;
+          background-color: $dark;
         }
-        .login__span {
-        }
-        .login__link--register {
+        .login__line--text {
+          padding: 0 1rem;
+          font-size: $font-size-small;
         }
       }
+
+      .login__social-media{
+        margin-block-start: 3rem;
+        .login__social-media--text{
+          text-align: center;
+          font-size: $font-size-between;
+          font-weight: $font-weight-medium;
+          color: $text-color-gray;
+          margin-block-end: 1.5rem;
+        }
+        .login__cards--social-media{
+          display: flex;
+          justify-content: center;
+          justify-items: center;
+          align-items: center;
+          gap: 2rem;
+          .card--social-media{
+
+            .login__img--social-media {
+              width: 3rem;
+            }
+          }
+
+        }
+
+      }
+
+    }
+    .login__register {
+      
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      gap: 1rem;
+      bottom: 3rem;
+      position: absolute;
+      .register__text-question{
+        font-size: $font-size-small;
+        font-weight: $font-weight-light;
+
+        text-decoration: none;
+      }
+      .link__redirect {
+        @include format-text-link-redirection;
+      }
+      
     }
   }
 }
@@ -39,104 +101,8 @@
 @media (min-width: $breakpoint-small) {
   .login {
     background-color: $very-light-gray;
-  
-    .login__card--main {
-      width: 60%;
-  
-      .login__interactive {
-        .login__form {
-        }
-  
-        .hr {
-        }
-  
-        .login__redirec {
-          login__link--recovery {
-          }
-          .login__span {
-          }
-          .login__link--register {
-          }
-        }
-      }
-    }
-  }
-
-}
-
-@media (min-width: $breakpoint-medium) {
-  .login {
-  
-    .login__card--main {
-      width: 50%;
-  
-      .login__interactive {
-        padding-inline: 3.6rem;
-
-        .login__form {
-        }
-  
-        .hr {
-        }
-  
-        .login__redirec {
-          login__link--recovery {
-          }
-          .login__span {
-          }
-          .login__link--register {
-          }
-        }
-      }
-    }
-  }
-}
-@media (min-width: $breakpoint-large) {
-  .login {
-  
-    .login__card--main {
-      width: 35%;
-      
-      .login__interactive {
-        .login__form {
-        }
-  
-        .hr {
-        }
-  
-        .login__redirec {
-          login__link--recovery {
-          }
-          .login__span {
-          }
-          .login__link--register {
-          }
-        }
-      }
-    }
   }
 }
 
 @media (min-width: $breakpoint-extra-large) {
-  .login {
-  
-    .login__card--main {
-  
-      .login__interactive {
-        .login__form {
-        }
-        .hr {
-        }
-  
-        .login__redirec {
-          login__link--recovery {
-          }
-          .login__span {
-          }
-          .login__link--register {
-          }
-        }
-      }
-    }
-  }
 }

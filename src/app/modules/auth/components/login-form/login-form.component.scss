@@ -2,7 +2,7 @@
 @import "/tokens/_typography";
 @import "/atoms/_mixin-input-text";
 @import "/atoms/_mixin-label-form";
-@import "/atoms/_mixin-title-form";
+@import "/atoms/_mixin-title";
 
 .form__login--title {
   @include format-title-form;
