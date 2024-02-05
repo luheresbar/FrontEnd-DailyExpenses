@@ -1,0 +1,18 @@
+@import "/tokens/_colors";
+@import "/tokens/_typography";
+
+@mixin format-input-text {
+  background-color: $text-input-field;
+  border-radius: 0.8rem;
+  border: 0.1rem solid $text-input-border;
+  height: 3.2rem;
+  padding: 0.6rem 1rem;
+  font-size: $font-size-medium;
+  color: $dark;
+
+  &:focus {
+    outline: none;
+    border-color: $text-input-border-active;
+    background-color: $white;
+  }
+}

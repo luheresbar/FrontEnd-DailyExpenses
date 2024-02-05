@@ -56,7 +56,7 @@
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "src/styles/tokens"
+                "src/styles"
               ]
             },
             "scripts": [],

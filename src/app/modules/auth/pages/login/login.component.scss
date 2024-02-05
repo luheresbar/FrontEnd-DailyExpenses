@@ -1,5 +1,5 @@
-@import "_spacing";
-@import "_colors";
+@import "/tokens/_spacing";
+@import "/tokens/_colors";
 
 .login {
   width: 100vw;
@@ -9,13 +9,15 @@
   .login__card--main {
     width: 100%;
     margin: auto;
+    position: relative;
 
     .login__interactive {
       background-color: $white;
-      border-radius: 0.4rem;
+      border-radius: 0.8rem;
       padding: 1.6rem;
 
       .login__form {
+        margin-block-end: 1.6rem;
       }
 
       .hr {
