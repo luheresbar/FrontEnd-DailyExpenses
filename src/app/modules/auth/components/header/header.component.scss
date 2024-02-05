@@ -1,13 +1,13 @@
 @import "/tokens/_spacing";
 
 .auth__header{
-  padding-block: 0rem;
+  padding-block-start: 1.5rem;
   display: flex;
   justify-content: center;
   position: relative;
 
   .auth__logo{
-    width: 15rem;
+    width: 8rem;
   }
   
 }

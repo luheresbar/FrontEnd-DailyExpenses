@@ -6,7 +6,7 @@
 @mixin format-title-form {
   text-align: center;
   font-size: $font-size-medium;
-  font-weight: $font-weight-bold;
+  font-weight: $font-weight-medium;
   color: $dark;
 
   @media only screen and (min-width: $breakpoint-large) {
