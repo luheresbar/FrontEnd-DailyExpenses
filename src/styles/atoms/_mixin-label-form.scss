@@ -1,0 +1,9 @@
+
+@import "/tokens/_colors";
+@import "/tokens/_typography";
+
+@mixin format-label-form {
+  font-size: $font-size-small;
+  margin-block-end: 0.4rem;
+}
+

@@ -1,0 +1,8 @@
+@import "/tokens/_colors";
+@import "/tokens/_typography";
+
+@mixin format-title-form {
+  text-align: center;
+  font-weight: $font-weight-bold;
+  color: $dark;
+}

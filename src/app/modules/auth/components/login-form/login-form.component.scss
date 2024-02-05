@@ -1,11 +1,11 @@
 @import "/tokens/_colors";
 @import "/tokens/_typography";
 @import "/atoms/_mixin-input-text";
+@import "/atoms/_mixin-label-form";
+@import "/atoms/_mixin-title-form";
 
 .form__login--title {
-  text-align: center;
-  font-weight: $font-weight-bold;
-  color: $dark;
+  @include format-title-form;
 }
 
 .form__login {
@@ -17,8 +17,7 @@
   }
 
   .form__label {
-    font-size: $font-size-small;
-    margin-block-end: 0.4rem;
+    @include format-label-form;
   }
 
   .form__email {

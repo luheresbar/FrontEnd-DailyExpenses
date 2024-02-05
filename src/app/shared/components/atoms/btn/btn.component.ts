@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-btn',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './btn.component.html',
-  styleUrl: './btn.component.scss'
+  styleUrl: '../../../../../styles/atoms/_button.scss'
 })
 export class BtnComponent {
+
+  @Input() class: 'btn-basic' | 'btn-primary' | 'btn-secondary' | 'btn-danger' = 'btn-basic';
 
 }

@@ -8,6 +8,7 @@
   height: 3.2rem;
   padding: 0.6rem 1rem;
   font-size: $font-size-medium;
+  font-weight: $font-weight-light;
   color: $dark;
 
   &:focus {
@@ -15,4 +16,5 @@
     border-color: $text-input-border-active;
     background-color: $white;
   }
+  
 }
