@@ -1,0 +1,17 @@
+<!-- auth-container.component.html -->
+<div class="auth">
+  <app-background></app-background>
+  <div class="auth__card--main">
+    <app-header></app-header>
+    <div class="auth__interactive">
+      <div class="auth__form">
+        <ng-content></ng-content>
+      </div>
+      <app-social-media><ng-content select=".social-media-content"></ng-content></app-social-media>
+    </div>
+    <div class="auth__register">
+      <ng-content select=".register-content"></ng-content>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</div>

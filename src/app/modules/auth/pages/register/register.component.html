@@ -1,1 +1,10 @@
-<p>register works!</p>
+<app-auth-container>
+  <app-login-form></app-login-form>
+  <ng-container class="social-media-content">
+    Social Media Signup
+  </ng-container>
+  <ng-container class="register-content">
+    <p class="register__text-question">Don't have an account?</p>
+    <a routerLink="/register" class="link__redirect">Sign Up</a>
+  </ng-container>
+</app-auth-container>

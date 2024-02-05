@@ -22,7 +22,11 @@
         type="password"
         id="password"
       />
-      <button class="btn-show-password" (click)="showPassword = !showPassword" type="button">
+      <button
+        class="btn-show-password"
+        (click)="showPassword = !showPassword"
+        type="button"
+      >
         <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
       </button>
     </div>
@@ -41,3 +45,6 @@
     <app-btn color="btn-primary">Log In</app-btn>
   </div>
 </form>
+<div class="login__recovery">
+  <a routerLink="/forgot-password" class="link__redirect">Forgot password?</a>
+</div>

@@ -1,0 +1,53 @@
+@import "/tokens/_colors";
+@import "/tokens/_typography";
+@import "/atoms/_mixin-line-horizontal";
+
+.login__line--division {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 0.4rem;
+  .line-horizontal {
+    @include line-horizontal;
+  }
+  .login__line--text {
+    padding: 0 0.5rem;
+    font-size: $font-size-small;
+  }
+}
+
+.login__social-media{
+  margin-block-start: 1rem;
+  .login__social-media--text{
+    text-align: center;
+    font-size: $font-size-between;
+    font-weight: $font-weight-medium;
+    color: $text-color-gray;
+    margin-block-end: 1.5rem;
+  }
+  .login__cards--social-media{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    gap: 2rem;
+    .card--social-media{
+      display: grid;
+      place-content: center;
+      width: 4.5rem;
+      height: 4.5rem;
+      padding: 0.5rem;
+      border: 0.1rem solid $white;
+      border-radius: 0.8rem;
+      .login__img--social-media {
+        width: 3rem;
+        object-fit: cover;
+      }
+      &:hover {
+        border: 0.1rem solid $primary-action;
+        background-color: $very-light-gray;
+      }
+    }
+
+  }
+
+}

@@ -1,37 +1,10 @@
-<div class="login">
-  <app-background></app-background>
-  <div class="login__card--main">
-    <app-header></app-header>
-    <div class="login__interactive">
-      <div class="login__form">
-        <app-login-form></app-login-form>
-      </div>
-      <div class="login__recovery">
-        <a routerLink="/forgot-password" class="link__redirect"
-          >Forgot password?</a
-        >
-      </div>
-      <div class="login__line--division">
-        <div class="line-horizontal"></div>
-        <p class="login__line--text">or</p>
-        <div class="line-horizontal"></div>
-      </div>
-      <div class="login__social-media">
-        <p class="login__social-media--text">Social Media Log In</p>
-        <div class="login__cards--social-media">
-          <div class="card--social-media">
-            <img class="login__img--social-media" src="/assets/icons/icon-google.png" alt="">
-          </div>
-          <div class="card--social-media">
-            <img class="login__img--social-media" src="/assets/icons/icon-facebook.png" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="login__register">
-      <p class="register__text-question">Don't have an account?</p>
-      <a routerLink="/register" class="link__redirect">Sing Up</a>
-    </div>
-    <app-footer></app-footer>
-  </div>
-</div>
+<app-auth-container>
+  <app-login-form></app-login-form>
+  <ng-container class="social-media-content">
+    Social Media Signup
+  </ng-container>
+  <ng-container class="register-content">
+    <p class="register__text-question">Don't have an account?</p>
+    <a routerLink="/register" class="link__redirect">Sign Up</a>
+  </ng-container>
+</app-auth-container>

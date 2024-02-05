@@ -3,6 +3,7 @@
 @import "/atoms/_mixin-input-text";
 @import "/atoms/_mixin-label-form";
 @import "/atoms/_mixin-title";
+@import "/atoms/_mixin-link-redirection";
 
 .form__login--title {
   @include format-title-form;
@@ -55,5 +56,13 @@
 
   .form__btn{
     margin-block-start: 2.5rem;
+  }
+}
+.login__recovery {
+  display: flex;
+  justify-content: center;
+  margin-block-start: 2rem;
+  .link__redirect {
+    @include format-text-link-redirection;
   }
 }

@@ -1,0 +1,14 @@
+@import "/tokens/_spacing";
+@import "/tokens/_colors";
+@import "/tokens/_typography";
+@import "/atoms/_mixin-link-redirection";
+@import "/atoms/_mixin-line-horizontal";
+
+
+.register__text-question {
+  font-size: $font-size-small;
+  font-weight: $font-weight-light;
+}
+.link__redirect {
+  @include format-text-link-redirection;
+}
