@@ -1,0 +1,7 @@
+@import "/tokens/_colors";
+
+@mixin line-horizontal {
+  flex: 1;
+  height: 0.05rem;
+  background-color: $gray-light;
+}

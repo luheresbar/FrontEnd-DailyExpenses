@@ -2,15 +2,21 @@
 @import "/tokens/_colors";
 @import "/tokens/_typography";
 @import "/atoms/_mixin-link-redirection";
+@import "/atoms/_mixin-line-horizontal";
 
 .login {
   display: flex;
+
   width: 100vw;
   height: 100vh;
   
   .login__card--main {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
     width: 100%;
-    height: 95%;
+    height: 85%;
     position: relative;
     margin: auto;
     border-radius: 0.8rem;
@@ -39,10 +45,8 @@
         justify-content: center;
         align-items: center;
         padding: 0 0.4rem;
-        .line {
-          flex: 1;
-          height: 0.05rem;
-          background-color: $dark;
+        .line-horizontal {
+          @include line-horizontal;
         }
         .login__line--text {
           padding: 0 0.5rem;
@@ -51,7 +55,7 @@
       }
 
       .login__social-media{
-        margin-block-start: 3rem;
+        margin-block-start: 1rem;
         .login__social-media--text{
           text-align: center;
           font-size: $font-size-between;
@@ -92,12 +96,11 @@
       justify-content: center;
       align-items: end;
       width: 100%;
-      height: 15%;
+      height: 10%;
       gap: 1rem;
       .register__text-question{
         font-size: $font-size-small;
         font-weight: $font-weight-light;
-        text-decoration: none;
       }
       .link__redirect {
         @include format-text-link-redirection;
@@ -111,11 +114,11 @@
   .login {
     .login__card--main {
       width: 38.2rem;
-      padding: 3.2rem 4rem;
+      padding: 2rem 4rem;
       box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px;
 
       .login__register {
-        height: 8%;
+        height: 5%;
         
       }
     }

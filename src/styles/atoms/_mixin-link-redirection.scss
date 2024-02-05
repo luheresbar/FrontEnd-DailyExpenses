@@ -5,6 +5,7 @@
   color: $text-color-primary;
   font-size: $font-size-small;
   font-weight: $font-weight-medium;
+  text-decoration: none;
   &:hover {
     cursor: pointer;
     text-decoration: underline;

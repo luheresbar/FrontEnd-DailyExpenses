@@ -1,13 +1,16 @@
-.hr {
-  margin-block-start: 4rem;
+@import "/tokens/_colors";
+@import "/atoms/_mixin-link-redirection";
+@import "/atoms/_mixin-line-horizontal";
 
+.line-horizontal {
+  margin-block: 1rem;
+  @include line-horizontal;
 }
-.auth__footer {
-  display: flex;
-  justify-content: center;
 
-  .footer__img {
-    width: 12.8rem;
-    margin-block-start: 1.6rem;
+.auth__footer {
+  text-align: center;
+
+  .link__redirection{
+    @include format-text-link-redirection;
   }
 }
