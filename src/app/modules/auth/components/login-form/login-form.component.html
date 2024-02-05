@@ -1,11 +1,9 @@
-<h1 class="form__login--title">
-  Log in to Daily Expenses
-</h1>
+<h1 class="form__login--title">Log in to Daily Expenses</h1>
 <form class="form__login" action="">
-  <div >
+  <div>
     <div class="form__email">
       <label class="form__label" for="email">Email</label>
-      <input class="input--text input__email" type="email" id="email">
+      <input class="input--text input__email" type="email" id="email" />
     </div>
     <!-- <div>
       <p class="form__validation-message">
@@ -19,9 +17,13 @@
   <div>
     <div class="form__password">
       <label class="form__label" for="password">Password</label>
-      <input class="input--text input__password" type="password" id="password">
-      <button class="btn-show-password">
-        fa-icon
+      <input
+        class="input--text input__password"
+        type="password"
+        id="password"
+      />
+      <button class="btn-show-password" (click)="showPassword = !showPassword" type="button">
+        <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
       </button>
     </div>
     <!-- <div>
@@ -36,6 +38,6 @@
   </div>
 
   <div>
-    app-btn
+    <app-btn></app-btn>
   </div>
 </form>

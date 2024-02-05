@@ -36,10 +36,21 @@
     display: flex;
     flex-direction: column;
     margin-block-start: 1.2rem;
+    position: relative;
     .input__password {
     }
 
     .btn-show-password {
+      display: grid;
+      place-content: center;
+      width: 3rem;
+      padding: 0.7rem;
+      position: absolute;
+      right: 0.6rem;
+      bottom: 0rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
     }
   }
 }

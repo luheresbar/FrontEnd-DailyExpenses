@@ -8,7 +8,13 @@ import { FooterComponent } from '../../components/footer/footer.component';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, BackgroundComponent, HeaderComponent, LoginFormComponent, FooterComponent],
+  imports: [
+    CommonModule, 
+    BackgroundComponent, 
+    HeaderComponent, 
+    LoginFormComponent, 
+    FooterComponent,
+  ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
