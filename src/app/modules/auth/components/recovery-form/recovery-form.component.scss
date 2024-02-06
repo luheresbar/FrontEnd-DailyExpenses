@@ -1,0 +1,54 @@
+@import "/tokens/_colors";
+@import "/tokens/_typography";
+@import "/atoms/_mixin-input-text";
+@import "/atoms/_mixin-label-form";
+@import "/atoms/_mixin-title";
+@import "/atoms/_mixin-link-redirection";
+
+.form__recovery--title {
+  @include format-title-form;
+}
+
+.form__recovery {
+  .form__validation-message {
+  }
+  .input--text {
+    @include format-input-text;
+  }
+
+  .form__label {
+    @include format-label-form;
+  }
+
+  .form__email {
+    display: flex;
+    flex-direction: column;
+    margin-block-start: 1.2rem;
+  }
+
+  .form__password {
+    display: flex;
+    flex-direction: column;
+    margin-block-start: 1.2rem;
+    position: relative;
+    .input__password {
+    }
+
+    .btn-show-password {
+      display: grid;
+      place-content: center;
+      width: 3rem;
+      padding: 0.7rem;
+      position: absolute;
+      right: 0.6rem;
+      bottom: 0rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  .form__btn {
+    margin-block-start: 2rem;
+  }
+}

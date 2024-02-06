@@ -18,5 +18,6 @@ export class RecoveryFormComponent {
   faEyeSlash = faEyeSlash;
   
   showPassword: boolean = false;
+  showPasswordConfirm: boolean = false;
 
 }

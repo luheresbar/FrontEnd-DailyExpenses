@@ -1,4 +1,7 @@
 <app-auth-container [showSocialMedia]="showSocialMedia">
-  
   <app-recovery-form></app-recovery-form>
+  <ng-container class="login-register-content">
+    <p class="return-login__text-question">Return to</p>
+    <a routerLink="/register" class="link__redirect">Log In</a>
+  </ng-container>
 </app-auth-container>

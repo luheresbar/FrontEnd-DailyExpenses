@@ -1,80 +1,59 @@
-<h1 class="">Set your new password</h1>
-<form  novalidate class="">
+<h1 class="form__recovery--title">Set your new password</h1>
+<form class="form__recovery" action="">
   <div>
-    <div class="">
+    <div class="form__password">
+      <label class="form__label" for="password">New password</label>
       <input
-        formControlName="newPassword"
-        placeholder="Enter new password"
-        [type]="showPassword ? 'text' : 'password'"
-        class=""
+        class="input--text"
+        type="password"
+        id="password"
       />
       <button
-        type="button"
-        class=""
+        class="btn-show-password"
         (click)="showPassword = !showPassword"
+        type="button"
       >
         <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
       </button>
     </div>
-    <!-- <div
-      *ngIf="form.controls.newPassword.touched && form.controls.newPassword.invalid"
-    >
-      <p
-        *ngIf="form.controls.newPassword.hasError('required')"
-        class=""
-      >
+    <!-- <div>
+      <p class="form__validation-message">
         This field is mandatory
       </p>
-      <p
-        *ngIf="form.controls.newPassword.hasError('minlength')"
-        class=""
-      >
+   <span>// TODO (Configurar validaciones de nivel se seguridad de contraseña)</span>
+      <p class="form__validation-message">
         This field should be greater than 6 characters
       </p>
     </div> -->
   </div>
   <div>
-    <div class="">
+    <div class="form__password">
+      <label class="form__label" for="password">Confrim password</label>
       <input
-        formControlName="confirmPassword"
-        placeholder="Confirm new password"
+        class="input--text"
         type="password"
-        class=""
+        id="password"
       />
-    </div>
-    <!-- <div
-      *ngIf="
-        form.controls.confirmPassword.touched &&
-        form.controls.confirmPassword.invalid
-      "
-    >
-      <p
-        *ngIf="form.controls.confirmPassword.hasError('required')"
-        class=""
+      <button
+        class="btn-show-password"
+        (click)="showPasswordConfirm = !showPasswordConfirm"
+        type="button"
       >
+        <fa-icon [icon]="showPasswordConfirm ? faEye : faEyeSlash"></fa-icon>
+      </button>
+    </div>
+    <!-- <div>
+      <p class="form__validation-message">
         This field is mandatory
       </p>
-      <p
-        *ngIf="form.controls.confirmPassword.hasError('minlength')"
-        class=""
-      >
+   <span>// TODO (Configurar validaciones de nivel se seguridad de contraseña)</span>
+      <p class="form__validation-message">
         This field should be greater than 6 characters
       </p>
     </div> -->
   </div>
-  <!-- <div *ngIf="form.controls.confirmPassword.touched">
-    <p
-      *ngIf="form.hasError('mismatch')"
-      class=""
-    >
-      The password are not the same
-    </p>
-  </div> -->
-  <div>
-    <app-btn
-      typeBtn="submit"
-      
-      >Recovery</app-btn
-    >
+
+  <div class="form__btn">
+    <app-btn color="btn-primary">Recovery</app-btn>
   </div>
 </form>
