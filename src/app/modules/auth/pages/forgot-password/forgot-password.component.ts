@@ -14,6 +14,5 @@ import { ForgotPasswordFormComponent } from '../../components/forgot-password-fo
 export class ForgotPasswordComponent {
 
   showSocialMedia: boolean = false;
-  showAuthLoginregister: boolean = false;
 
 }
