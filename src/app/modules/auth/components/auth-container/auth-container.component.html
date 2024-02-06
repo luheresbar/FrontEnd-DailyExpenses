@@ -1,21 +1,27 @@
 <!-- auth-container.component.html -->
 <div class="auth">
   <app-background></app-background>
-  <div class="auth__card--main">
-    <app-header></app-header>
-    <div class="auth__interactive">
-      <div class="auth__form">
-        <ng-content></ng-content>
+  <div class="auth__main">
+    <div class="auth__card--main">
+      <app-header></app-header>
+      <div class="auth__interactive">
+        <div class="auth__form">
+          <ng-content></ng-content>
+        </div>
+        <ng-container *ngIf="showSocialMedia">
+          <app-social-media
+            ><ng-content select=".social-media-content"></ng-content
+          ></app-social-media>
+        </ng-container>
       </div>
-      <ng-container *ngIf="showSocialMedia">
-        <app-social-media><ng-content select=".social-media-content"></ng-content></app-social-media>
-      </ng-container>
+      <div class="footer">
+        <ng-container>
+          <div *ngIf="showAuthLoginregister" class="auth__login-register">
+            <ng-content select=".login-register-content"></ng-content>
+          </div>
+        </ng-container>
+        <app-footer></app-footer>
+      </div>
     </div>
-    <ng-container>
-      <div *ngIf="showAuthLoginregister" class="auth__login-register">
-        <ng-content select=".login-register-content"></ng-content>
-      </div>
-    </ng-container>
-    <app-footer></app-footer>
   </div>
 </div>
