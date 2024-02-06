@@ -1,9 +1,55 @@
-<h1 class="form__login--title">Sign Up to Daily Expenses</h1>
-<form class="form__login" action="">
+<ng-container *ngIf="!showRegister">
+  <h1 class="form__register--title">Sign Up to Daily Expenses</h1>
+  <form
+    novalidate
+    class="form__register"
+  >
+    <div>
+      <div class="form__email">
+      <label class="form__label" for="email">Email</label>
+        <input
+          formControlName=""
+          placeholder=""
+          type="email"
+          name="email"
+          class="input--text"
+        />
+      </div>
+      <div
+        *ngIf="
+        "
+      >
+        <p
+          *ngIf="
+          "
+          class=""
+        >
+          This field is mandatory
+        </p>
+        <p
+          *ngIf="
+          "
+          class=""
+        >
+          This field should be a email
+        </p>
+      </div>
+    </div>
+    <div class="form__btn">
+      <app-btn color="btn-primary" >Continue</app-btn
+      >
+    </div>
+  </form>
+</ng-container>
+
+<ng-container *ngIf="showRegister">
+
+  <h1 class="form__register--title">Sign Up to Daily Expenses</h1>
+  <form class="form__register" action="">
   <div>
     <div class="form__name">
       <label class="form__label" for="name">Name</label>
-      <input class="input--text input__name" type="text" id="name" />
+      <input class="input--text" type="text" id="name" />
     </div>
     <!-- <div>
       <p class="form__validation-message">
@@ -32,7 +78,7 @@
     <div class="form__password">
       <label class="form__label" for="password">Password</label>
       <input
-        class="input--text input__password"
+        class="input--text"
         type="password"
         id="password"
       />
@@ -59,3 +105,5 @@
     <app-btn color="btn-primary">Sing Up</app-btn>
   </div>
 </form>
+
+  </ng-container>

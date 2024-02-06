@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BackgroundComponent } from '../background/background.component';
 import { HeaderComponent } from '../header/header.component';
 import { SocialMediaComponent } from '../social-media/social-media.component';
@@ -14,5 +14,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './auth-container.component.scss'
 })
 export class AuthContainerComponent {
+  @Input() showSocialMedia: boolean = true;
+  @Input() showAuthLoginregister: boolean = true;
 
 }

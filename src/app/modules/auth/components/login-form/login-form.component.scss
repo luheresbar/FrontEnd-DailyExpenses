@@ -10,7 +10,7 @@
 }
 
 .form__login {
-  //clases generales:
+
   .form__validation-message {
   }
   .input--text {
@@ -25,11 +25,7 @@
     display: flex;
     flex-direction: column;
     margin-block-start: 1.2rem;
-    .form__label {
-    }
 
-    .input__email {
-    }
   }
 
   .form__password {
@@ -55,13 +51,13 @@
   }
 
   .form__btn{
-    margin-block-start: 2.5rem;
+    margin-block-start: 2rem;
   }
 }
 .login__recovery {
   display: flex;
   justify-content: center;
-  margin-block-start: 2rem;
+  margin-block-start: 1rem;
   .link__redirect {
     @include format-text-link-redirection;
   }

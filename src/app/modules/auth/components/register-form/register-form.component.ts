@@ -17,6 +17,7 @@ export class RegisterFormComponent {
   faEye = faEye;
   faEyeSlash = faEyeSlash;
 
+  showRegister = false;
   showPassword = false;
 
 

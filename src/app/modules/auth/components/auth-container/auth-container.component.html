@@ -7,11 +7,15 @@
       <div class="auth__form">
         <ng-content></ng-content>
       </div>
-      <app-social-media><ng-content select=".social-media-content"></ng-content></app-social-media>
+      <ng-container *ngIf="showSocialMedia">
+        <app-social-media><ng-content select=".social-media-content"></ng-content></app-social-media>
+      </ng-container>
     </div>
-    <div class="auth__login-register">
-      <ng-content select=".login-register-content"></ng-content>
-    </div>
+    <ng-container>
+      <div *ngIf="showAuthLoginregister" class="auth__login-register">
+        <ng-content select=".login-register-content"></ng-content>
+      </div>
+    </ng-container>
     <app-footer></app-footer>
   </div>
 </div>
