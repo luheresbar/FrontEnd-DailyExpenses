@@ -23,7 +23,7 @@ export const routes: Routes = [
     component: ForgotPasswordComponent
   },
   {
-    path: 'transaction-summary',
+    path: '',
     component: TransactionSummaryComponent
   }
 
