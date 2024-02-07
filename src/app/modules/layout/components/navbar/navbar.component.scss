@@ -50,3 +50,14 @@
     color: $text-color-primary;
   }
 }
+
+.navbar__item.active {
+  background-color: $primary-action;
+  .navbar__text {
+    color: $white;
+  }
+}
+
+.navbar__home.navbar__home--image.active {
+  background-image: url('/assets/icons/home-hover.png');
+}

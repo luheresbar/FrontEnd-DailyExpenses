@@ -9,4 +9,12 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  activeButton: string = '';
+
+  constructor() {}
+
+  setActiveButton(button: string) {
+    this.activeButton = button;
+  }
+
 }
