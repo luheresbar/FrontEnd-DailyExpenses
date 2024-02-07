@@ -1,12 +1,12 @@
 <div class="navbar">
-  <div class="navbar__home navbar__home--image" (click)="setActiveButton('home')" [class.active]="activeButton === 'home'"></div>
-  <div class="navbar__item navbar__reports" (click)="setActiveButton('reports')" [class.active]="activeButton === 'reports'">
+  <div class="navbar__home" (click)="setActiveButton('home')" [class.active]="activeButton === 'home'"></div>
+  <div class="navbar__item" (click)="setActiveButton('reports')" [class.active]="activeButton === 'reports'">
     <p class="navbar__text">Reports</p>
   </div>
-  <div class="navbar__item navbar__categories" (click)="setActiveButton('categories')" [class.active]="activeButton === 'categories'">
+  <div class="navbar__item" (click)="setActiveButton('categories')" [class.active]="activeButton === 'categories'">
     <p class="navbar__text">Categories</p>
   </div>
-  <div class="navbar__item navbar__accounts" (click)="setActiveButton('accounts')" [class.active]="activeButton === 'accounts'">
+  <div class="navbar__item" (click)="setActiveButton('accounts')" [class.active]="activeButton === 'accounts'">
     <p class="navbar__text">Accounts</p>
   </div>
 </div>

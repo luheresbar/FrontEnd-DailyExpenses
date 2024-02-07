@@ -1,0 +1,16 @@
+<div class="transaction-filter">
+  <div class="filter__item filter__item--all" (click)="setActiveButton('all')" [class.active]="activeButton === 'all'">
+    <p class="filter__text">All</p>
+  </div>
+  <div class="filter__item" (click)="setActiveButton('expenses')" [class.active]="activeButton === 'expenses'">
+    <p class="filter__text">Expenses</p>
+    <p class="filter__text filter__text--expense">$500.000</p>
+  </div>
+  <div class="filter__item" (click)="setActiveButton('incomes')" [class.active]="activeButton === 'incomes'">
+    <p class="filter__text">Incomes</p>
+    <p class="filter__text filter__text--income">$500.000</p>
+  </div>
+  <div class="filter__item" (click)="setActiveButton('transfers')" [class.active]="activeButton === 'transfers'">
+    <p class="filter__text">Transfers</p>
+  </div>
+</div>

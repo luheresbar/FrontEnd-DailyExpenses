@@ -1,7 +1,7 @@
 @import "/tokens/_typography";
 @import "/tokens/_colors";
 
-.navbar {
+.transaction-filter {
   display: flex;
   background-color: white;
   height: 6rem;
@@ -10,7 +10,7 @@
   align-items: center;
   min-width: 30rem;
 
-  .navbar__item {
+  .filter__item {
     display: grid;
     place-content: center;
     height: 80%;
@@ -19,36 +19,30 @@
     border: 0.1rem solid $primary-action;
     cursor: pointer;
 
-    .navbar__text {
+    .filter__text {
       text-align: center;
       font-size: $font-size-between;
       font-weight: $font-weight-bold;
-      color: $text-color-primary;
+      color: $text-color-dark;
+
+      &.filter__text--expense {
+        color: $text-color-red;
+      }
+
+      &.filter__text--income {
+        color: $text-color-green;
+      }
     }
 
     &:hover, &.active {
-      background-color: $primary-action;
-      .navbar__text {
-        color: $white;
+      background-color: $gray-light;
+      .filter__text {
+
       }
     }
   }
 
-  .navbar__home {
-    display: grid;
-    place-content: center;
+  .filter__item.filter__item--all {
     width: 4rem;
-    height: 80%;
-    background-image: url('/assets/icons/home.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    border: 0.15rem solid $primary-action;
-    border-radius: 50%;
-    cursor: pointer;
-
-    &:hover, &.active {
-      background-image: url('/assets/icons/home-hover.png');
-    }
   }
-
 }
