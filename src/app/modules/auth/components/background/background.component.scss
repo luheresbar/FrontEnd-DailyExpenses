@@ -29,12 +29,11 @@
 
 @media (min-width: $breakpoint-medium) {
   .auth--brackground {
-    background-color: $very-light-gray;
+    background-color: $white;
     .auth__img {
       display: block;
       width: 25%;
       max-width: 26rem;
-      // width: 18rem;
     }
   }
 }
