@@ -4,8 +4,9 @@
 .navbar {
   display: flex;
   background-color: white;
-  height: 6rem;
-  padding: 0.5rem;
+  height: 5rem;
+  padding: 1rem 0.5rem 0 0.5rem;
+
   justify-content: space-evenly;
   align-items: center;
   min-width: 30rem;
@@ -13,7 +14,7 @@
   .navbar__item {
     display: grid;
     place-content: center;
-    height: 80%;
+    height: 100%;
     width: 26%;
     border-radius: 0.8rem;
     border: 0.1rem solid $primary-action;
@@ -38,7 +39,7 @@
     display: grid;
     place-content: center;
     width: 4rem;
-    height: 80%;
+    height: 100%;
     background-image: url('/assets/icons/home.png');
     background-size: cover;
     background-repeat: no-repeat;

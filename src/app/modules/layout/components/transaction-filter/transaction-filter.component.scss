@@ -4,8 +4,8 @@
 .transaction-filter {
   display: flex;
   background-color: white;
-  height: 6rem;
-  padding: 0.5rem;
+  height: 4.5rem;
+  padding: 0 0.5rem;
   justify-content: space-evenly;
   align-items: center;
   min-width: 30rem;
@@ -13,7 +13,7 @@
   .filter__item {
     display: grid;
     place-content: center;
-    height: 80%;
+    height: 90%;
     width: 26%;
     border-radius: 0.8rem;
     border: 0.1rem solid $primary-action;

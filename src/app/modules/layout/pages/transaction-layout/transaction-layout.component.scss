@@ -1,0 +1,28 @@
+@import "/tokens/_colors";
+
+.transaction-layout {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  gap: 0.5rem;
+  height: 100%;
+  
+.headerbar {
+  grid-row: 1;
+}
+
+.date-filter {
+  grid-row: 2;
+}
+.transaction-filter {
+  grid-row: 3;
+  box-shadow: 0px 3px 5px rgba($text-input-border-active, 0.5);
+  padding-block-end: 0.5rem;
+}
+.transaction-content {
+  grid-row: 4;
+  padding: 0 1.2rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 6rem); 
+}
+
+}

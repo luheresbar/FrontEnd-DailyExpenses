@@ -5,7 +5,7 @@
 .headerbar {
   display: flex;
   justify-content: space-evenly;
-  position: relative;
+  // position: relative;
 
   .headerbar__logo,
   .headerbar__search,
@@ -16,7 +16,7 @@
   }
 
   .headerbar__logo {
-    position: relative;
+    // position: relative;
     bottom: 0.7rem;
     width: 4.5rem;
     .logo--img {
