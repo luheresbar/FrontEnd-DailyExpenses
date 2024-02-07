@@ -1,0 +1,59 @@
+@import "/tokens/_typography";
+@import "/tokens/_colors";
+@import "/atoms/_mixin-input-text";
+
+.headerbar {
+  display: flex;
+  justify-content: space-evenly;
+  position: relative;
+
+  .headerbar__logo,
+  .headerbar__search,
+  .headerbar__user-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .headerbar__logo {
+    position: relative;
+    bottom: 0.7rem;
+    width: 4.5rem;
+    .logo--img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+  .headerbar__search {
+    width: 60%;
+    position: relative;
+
+    .input--search {
+      @include format-input-text;
+      width: 100%;
+    }
+    .faMagnifyingGlass {
+      position: absolute;
+      right: 1rem;
+      display: grid;
+      place-content: center;
+      .faMagnifyingGlass--img {
+        width: 2rem;
+      }
+    }
+  }
+  .headerbar__user-profile {
+    padding: 0.3rem;
+    border: 0.2rem solid transparent;
+    cursor: pointer;
+
+    .user--icon {
+      width: 3.5rem;
+    }
+
+    &:hover, &.active {
+      border: 0.2rem solid $primary-action;
+      border-radius: 50%;
+    }
+  }
+}

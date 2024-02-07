@@ -4,7 +4,7 @@
 
 .filter-date {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   
   .date__arrow {
     display: grid;
@@ -28,6 +28,7 @@
     .input--date {
       @include format-input-text;
       font-weight: $font-weight-bold;
+      border: 0.1rem solid $primary-action;
     }
   }
 

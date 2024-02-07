@@ -5,11 +5,15 @@ import { NavbarComponent } from '../../../layout/components/navbar/navbar.compon
 import { TransactionFilterComponent } from '../../../layout/components/transaction-filter/transaction-filter.component';
 import { TransactionDetailComponent } from '../../components/transaction-detail/transaction-detail.component';
 import { DateFilterComponent } from '../../../layout/components/date-filter/date-filter.component';
+import { HeaderbarComponent } from '../../../layout/components/headerbar/headerbar.component';
 
 @Component({
   selector: 'app-transaction-summary',
   standalone: true,
-  imports: [CommonModule, AuthContainerComponent, NavbarComponent, TransactionFilterComponent, TransactionDetailComponent, DateFilterComponent],
+  imports: [
+    CommonModule, AuthContainerComponent, NavbarComponent, TransactionFilterComponent, TransactionDetailComponent, DateFilterComponent,
+    HeaderbarComponent
+  ],
   templateUrl: './transaction-summary.component.html',
   styleUrl: './transaction-summary.component.scss'
 })
