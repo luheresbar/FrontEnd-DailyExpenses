@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faWallet } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +13,8 @@ import { faWallet } from '@fortawesome/free-solid-svg-icons';
 })
 export class TransactionDetailComponent {
 
-  faWallet = faWallet;
+  @Input() color: 'income' | 'expense' | 'transfer'  = 'income'; 
+
+
 
 }

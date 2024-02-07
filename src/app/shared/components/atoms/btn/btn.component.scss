@@ -1,10 +1,1 @@
-@import "/tokens/_colors";
-@import "/tokens/_typography";
-@import "/atoms/_mixin-button";
-
-
-.primary {
-@include button;
-
-}
-
+@import '/atoms/_button'

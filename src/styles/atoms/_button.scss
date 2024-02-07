@@ -1,7 +1,9 @@
 @import "/tokens/_colors";
 @import "/tokens/_typography";
 
-.btn-basic {
+.btn-basic,
+.btn-primary,
+.btn-secondary {
   width: 100%;
   cursor: pointer;
   border: none;
@@ -14,36 +16,18 @@
   &:hover {
     background-color: $very-light-gray;
   }
-  &:hover {
-    background-color: $very-light-gray;
-  }
 }
 
 .btn-primary {
-  @extend .btn-basic;
   background-color: $primary-action;
-  border: none;
   color: $white;
 
   &:hover {
     background-color: $primary-action-hover;
   }
-  &:hover {
-    background-color: $primary-action-focus;
-  }
 }
 
 .btn-secondary {
-  @extend .btn-basic;
   background-color: $white;
-  border: 0.1rem solid $primary-action;
   color: $primary-action;
-  
-
-  &:hover {
-    background-color: $primary-action-hover;
-  }
-  &:hover {
-    background-color: $primary-action-focus;
-  }
 }

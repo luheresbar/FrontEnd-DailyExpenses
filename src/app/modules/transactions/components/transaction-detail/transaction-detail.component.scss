@@ -1,45 +1,60 @@
 @import "/tokens/_colors";
 @import "/tokens/_typography";
 
-.transfer-detail {
-  background-color: $negative;
-  border: 0.1rem solid $negative;
-  border-radius: 0.8rem;
-  padding: 0.6rem 1rem;
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
-
-  .transfer__info--left,
-  .transfer__info--right {
+@mixin format-transaction-detail($bg-color) {
+  .transfer-detail {
+    background-color: $transfer-detail;
+    border: 0.2rem solid $transfer-detail;
+    border-radius: 0.8rem;
+    padding: 0.6rem 1rem;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    .transfer__description {
-      font-size: $font-size-medium;
-      text-align: start;
+    justify-content: space-between;
+    cursor: pointer;
+  
+    .transfer__info--left,
+    .transfer__info--right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+  
+      .transfer__description {
+        font-size: $font-size-medium;
+        text-align: start;
+      }
+  
+      .transfer__date {
+        font-size: $font-size-small;
+        text-align: start;
+        padding-inline-start: 1rem;
+      }
+  
+      .transfer__amount,
+      .transfer__category {
+        font-size: $font-size-medium;
+        text-align: end;
+      }
+  
+      .transfer__category,
+      .transfer__date {
+        font-size: $font-size-small;
+      }
     }
-
-    .transfer__date {
-      font-size: $font-size-small;
-      text-align: start;
-      padding-inline-start: 1rem;
+  
+    &:hover {
+      background-color: rgba($transfer-detail, 0.7);
     }
-
-    .transfer__amount,
-    .transfer__category {
-      font-size: $font-size-medium;
-      text-align: end;
-    }
-
-    .transfer__category,
-    .transfer__date {
-      font-size: $font-size-small;
-    }
-  }
-
-  &:hover {
-    background-color: rgba($negative, 0.7);
   }
 }
+
+.income {
+  @include format-transaction-detail($income-detail);
+}
+
+.expense {
+  @include format-transaction-detail($expense-detail);
+}
+
+.transfer {
+  @include format-transaction-detail($transfer-detail);
+}
+

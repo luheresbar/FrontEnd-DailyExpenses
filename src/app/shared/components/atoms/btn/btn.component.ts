@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './btn.component.html',
-  styleUrl: '../../../../../styles/atoms/_button.scss'
+  styleUrl: './btn.component.scss'
 })
 export class BtnComponent {
 
