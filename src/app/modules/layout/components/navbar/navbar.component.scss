@@ -1,0 +1,52 @@
+@import "/tokens/_typography";
+@import "/tokens/_colors";
+
+.navbar {
+  display: flex;
+  background-color: white;
+  height: 6rem;
+  padding: 0.5rem;
+  justify-content: space-around;
+  align-items: center;
+
+  .navbar__item {
+    display: grid;
+    place-content: center;
+    height: 80%;
+    width: 26%;
+    border-radius: 0.8rem;
+    border: 0.1rem solid $primary-action;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $primary-action;
+      .navbar__text {
+        color: $white;
+      }
+    }
+  }
+
+  .navbar__home {
+    display: grid;
+    place-content: center;
+    width: 4rem;
+    height: 80%;
+    background-image: url('/assets/icons/home.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: 0.15rem solid $primary-action;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &:hover {
+      background-image: url('/assets/icons/home-hover.png');
+    }
+  }
+
+  .navbar__text {
+    text-align: center;
+    font-size: $font-size-between;
+    font-weight: $font-weight-bold;
+    color: $text-color-primary;
+  }
+}
