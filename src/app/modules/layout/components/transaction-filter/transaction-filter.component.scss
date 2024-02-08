@@ -1,5 +1,6 @@
 @import "/tokens/_typography";
 @import "/tokens/_colors";
+@import "/tokens/_spacing";
 
 .transaction-filter {
   display: flex;
@@ -34,15 +35,54 @@
       }
     }
 
-    &:hover, &.active {
+    &:hover,
+    &.active {
       background-color: $gray-light;
       .filter__text {
-
       }
     }
   }
 
   .filter__item.filter__item--all {
     width: 4rem;
+  }
+}
+
+@media (min-width: $breakpoint-medium) {
+  .transaction-filter {
+    flex-direction: column;
+    align-items: start;
+    height: auto;
+    gap: 1rem;
+    .filter__item {
+      align-items: start;
+      justify-content: start;
+      border: none;
+      .filter__text {
+        text-align: center;
+        font-size: $font-size-between;
+        font-weight: $font-weight-bold;
+        color: $text-color-dark;
+
+        &.filter__text--expense {
+          color: $text-color-red;
+        }
+
+        &.filter__text--income {
+          color: $text-color-green;
+        }
+      }
+
+      &:hover,
+      &.active {
+        background-color: $gray-light;
+        .filter__text {
+        }
+      }
+    }
+
+    .filter__item.filter__item--all {
+      width: 4rem;
+    }
   }
 }
