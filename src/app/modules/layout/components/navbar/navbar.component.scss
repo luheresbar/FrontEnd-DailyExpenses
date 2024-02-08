@@ -3,63 +3,76 @@
 @import "/tokens/_spacing";
 
 .navbar {
-  display: flex;
   background-color: white;
   height: 5rem;
   padding: 1rem 0.5rem 0 0.5rem;
 
-  justify-content: space-evenly;
-  align-items: center;
   min-width: 30rem;
 
   .navbar__logo {
     display: none;
   }
 
-  .navbar__item {
-    display: grid;
-    place-content: center;
+  .navbar__sections {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
     height: 100%;
-    width: 26%;
-    border-radius: 0.8rem;
-    border: 0.1rem solid $primary-action;
-    cursor: pointer;
+    width: 100%;
 
-    .navbar__text {
-      text-align: center;
-      font-size: $font-size-between;
-      font-weight: $font-weight-bold;
-      color: $text-color-primary;
+    .navbar__item {
+      display: grid;
+      place-content: center;
+      width: 26%;
+      height: 100%;
+      border-radius: 0.8rem;
+      border: 0.1rem solid $primary-action;
+      cursor: pointer;
+
+      .navbar__text {
+        text-align: center;
+        font-size: $font-size-between;
+        font-weight: $font-weight-bold;
+        color: $text-color-primary;
+      }
+
+      &:hover,
+      &.active {
+        background-color: $primary-action;
+        .navbar__text {
+          color: $white;
+        }
+      }
     }
 
-    &:hover,
-    &.active {
-      background-color: $primary-action;
-      .navbar__text {
-        color: $white;
+    .navbar__item.navbar__item--transactions {
+      display: none;
+    }
+
+    .navbar__home {
+      display: grid;
+      place-content: center;
+      width: 4rem;
+      height: 100%;
+      background-image: url("/assets/icons/home.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      border: 0.15rem solid $primary-action;
+      border-radius: 50%;
+      cursor: pointer;
+
+      &:hover,
+      &.active {
+        background-image: url("/assets/icons/home-hover.png");
       }
     }
   }
 
-  .navbar__home {
-    display: grid;
-    place-content: center;
-    width: 4rem;
-    height: 100%;
-    background-image: url("/assets/icons/home.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    border: 0.15rem solid $primary-action;
-    border-radius: 50%;
-    cursor: pointer;
-
-    &:hover,
-    &.active {
-      background-image: url("/assets/icons/home-hover.png");
-    }
+  .navbar-search-input {
+    display: none;
   }
 
-  .navbar-search-input{
+  .navbar__notification {
     display: none;
   }
 
@@ -70,24 +83,84 @@
 
 @media (min-width: $breakpoint-medium) {
   .navbar {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
     background-color: $text-input-border-active;
     padding: 1rem 0.5rem 1rem 0.5rem;
     height: 7rem;
+
     .navbar__logo {
+      grid-column: 1/2;
+      justify-self: center;
       width: 4.5rem;
       display: block;
-    }
-    .navbar__home {
-      display: none;
+      cursor: pointer;
     }
 
-  .navbar-search-input{
-    display: block;
-  }
+    .navbar__sections {
+      grid-column: 2/7;
+      gap: 0.5rem;
 
-    .navbar__avatar {
-      display: block;
-      width: 4.5rem;
+      .navbar__item {
+        background-color: $text-input-border-active;
+        border: 0.1rem solid $primary-action;
+
+        .navbar__text {
+          color: $text-color-dark;
+        }
+
+        &:hover,
+        &.active {
+          background-color: $primary-action;
+          .navbar__text {
+            color: $white;
+          }
+        }
+      }
+
+      .navbar__home {
+        display: none;
+      }
+      
+      .navbar__item.navbar__item--transactions {
+        display: grid;
+      }
     }
+
+      .navbar-search-input {
+        grid-column: 8/11;
+        width: 90%;
+        display: block;
+        align-self: center;
+        justify-self: center;
+      }
+
+      .navbar__notification {
+        grid-column: 11/12;
+        display: grid;
+        justify-self: end;
+        align-self: center;
+        padding: 0.5rem;
+        border: 0.1rem solid transparent;
+
+        .navbar__bell {
+          background-color: transparent;
+          border: none;
+          color: $text-color-gray;
+          font-size: 2rem;
+        }
+        &:hover {
+          border: 0.1rem solid red;
+          border-radius: 50%;
+        }
+      }
+
+      .navbar__avatar {
+        grid-column: 12/13;
+        display: block;
+        width: 4.5rem;
+        align-self: center;
+        justify-self: center;
+      }
   }
 }
