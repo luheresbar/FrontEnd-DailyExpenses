@@ -1,12 +1,21 @@
 @import "/tokens/_colors";
+@import "/tokens/_typography";
 @import "/tokens/_spacing";
 
 .transaction-layout {
   display: grid;
   grid-template-rows: auto auto auto 1fr;
-  grid-template-columns: subgrid;
+  grid-template-columns: repeat(12, 1fr);
   height: 100%;
   width: 100%;
+
+  
+  .headerbar,
+  .date-filter,
+  .transaction-filter {
+    width: 100%;
+    justify-self: center;
+  }
 
   .headerbar {
     grid-area: 1 / 1 / 2 / 13;
@@ -23,29 +32,41 @@
   .transaction-content {
     grid-area: 4 / 1 / 5 / 13;
     height: 100%;
+    width: 100%;
+    justify-self: center;
     padding: 0 1.2rem;
     overflow-y: auto;
-    max-height: calc(100vh - 6rem);
   }
 }
 
 @media (min-width: $breakpoint-medium) {
   .transaction-layout {
-    grid-template-columns: subgrid;
-    grid-template-rows: 1fr;
+    grid-template-rows: repeat(12, 1fr);
 
     .headerbar,
     .date-filter {
       display: none;
     }
+    .filters-title {
+      grid-area: 2 / 2 / 3 / 4;
+      align-self: center;
+      font-size: $font-size-large;
+    }
 
     .transaction-filter {
-      grid-area: 1 / 2 / 2 / 3;
+      grid-area: 3 / 2 / 12 / 4;
+      box-shadow: none;
+
+      .filter__subtitle {
+        font-size: $font-size-between;
+        margin-block-end: 1.5rem;
+      }
 
     }
 
     .transaction-content {
-      grid-area: 1 / 5 / 2 / 13;
+      grid-area: 2 / 5 / 12 / 12;
+
     }
   }
 }
