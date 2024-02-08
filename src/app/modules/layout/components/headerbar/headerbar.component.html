@@ -1,15 +1,11 @@
-
 <div class="headerbar">
   <div class="headerbar__logo">
-    <img class="logo--img" src="/assets/logos/logo-main.png" alt="">
+    <app-logo></app-logo>
   </div>
   <div class="headerbar__search">
-    <input class="input--search" type="text" value="Search">
-    <div class="faMagnifyingGlass">
-      <img class="faMagnifyingGlass--img" src="/assets/icons/magnifying-glass.png" alt="">
-    </div>
+    <app-search-input class="input"></app-search-input>
   </div>
-  <div class="headerbar__user-profile" (click)="userProfileActive = !userProfileActive" [class.active]="userProfileActive === true">
-    <img class="user--icon" src="/assets/icons/user.png" alt="">
+  <div class="headerbar__avatar">
+    <app-avatar></app-avatar>
   </div>
 </div>

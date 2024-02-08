@@ -1,0 +1,22 @@
+@import "/tokens/_colors";
+@import "/atoms/_mixin-input-text";
+
+.input-search {
+  position: relative;
+  .input {
+    @include format-input-text;
+    width: 100%;
+  }
+  .faMagnifyingGlass {
+    position: absolute;
+    top: 50%;
+    right: 1rem;
+    transform: translateY(-50%);
+    display: grid;
+    place-content: center;
+
+    .faMagnifyingGlass--img {
+      width: 2rem;
+    }
+  }
+}

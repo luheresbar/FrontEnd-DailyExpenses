@@ -1,5 +1,6 @@
 @import "/tokens/_typography";
 @import "/tokens/_colors";
+@import "/tokens/_spacing";
 
 .navbar {
   display: flex;
@@ -27,7 +28,8 @@
       color: $text-color-primary;
     }
 
-    &:hover, &.active {
+    &:hover,
+    &.active {
       background-color: $primary-action;
       .navbar__text {
         color: $white;
@@ -40,16 +42,24 @@
     place-content: center;
     width: 4rem;
     height: 100%;
-    background-image: url('/assets/icons/home.png');
+    background-image: url("/assets/icons/home.png");
     background-size: cover;
     background-repeat: no-repeat;
     border: 0.15rem solid $primary-action;
     border-radius: 50%;
     cursor: pointer;
 
-    &:hover, &.active {
-      background-image: url('/assets/icons/home-hover.png');
+    &:hover,
+    &.active {
+      background-image: url("/assets/icons/home-hover.png");
     }
   }
+}
 
+@media (min-width: $breakpoint-medium) {
+  .navbar {
+    .navbar__home {
+      display: none;
+    }
+  }
 }
