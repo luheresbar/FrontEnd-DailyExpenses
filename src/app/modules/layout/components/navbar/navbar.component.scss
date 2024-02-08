@@ -12,6 +12,10 @@
   align-items: center;
   min-width: 30rem;
 
+  .navbar__logo {
+    display: none;
+  }
+
   .navbar__item {
     display: grid;
     place-content: center;
@@ -54,12 +58,36 @@
       background-image: url("/assets/icons/home-hover.png");
     }
   }
+
+  .navbar-search-input{
+    display: none;
+  }
+
+  .navbar__avatar {
+    display: none;
+  }
 }
 
 @media (min-width: $breakpoint-medium) {
   .navbar {
+    background-color: $text-input-border-active;
+    padding: 1rem 0.5rem 1rem 0.5rem;
+    height: 7rem;
+    .navbar__logo {
+      width: 4.5rem;
+      display: block;
+    }
     .navbar__home {
       display: none;
+    }
+
+  .navbar-search-input{
+    display: block;
+  }
+
+    .navbar__avatar {
+      display: block;
+      width: 4.5rem;
     }
   }
 }

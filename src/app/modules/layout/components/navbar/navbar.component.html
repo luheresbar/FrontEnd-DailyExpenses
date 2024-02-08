@@ -1,4 +1,7 @@
 <div class="navbar">
+  <div class="navbar__logo">
+    <app-logo></app-logo>
+  </div>
   <div class="navbar__home" (click)="setActiveButton('home')" [class.active]="activeButton === 'home'"></div>
   <div class="navbar__item" (click)="setActiveButton('reports')" [class.active]="activeButton === 'reports'">
     <p class="navbar__text">Reports</p>
@@ -8,5 +11,11 @@
   </div>
   <div class="navbar__item" (click)="setActiveButton('accounts')" [class.active]="activeButton === 'accounts'">
     <p class="navbar__text">Accounts</p>
+  </div>
+  <div class="navbar-search-input">
+    <app-search-input></app-search-input>
+  </div>
+  <div class="navbar__avatar">
+    <app-avatar></app-avatar>
   </div>
 </div>

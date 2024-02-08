@@ -1,4 +1,5 @@
 @import "/tokens/_colors";
+@import "/tokens/_spacing";
 
 .transaction-layout {
   display: grid;
@@ -25,4 +26,11 @@
   max-height: calc(100vh - 6rem); 
 }
 
+}
+
+@media (min-width: $breakpoint-medium) {
+ .headerbar, .date-filter {
+  display: none;
+ }
+ 
 }
