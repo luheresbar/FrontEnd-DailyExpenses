@@ -1,11 +1,12 @@
 @import "/tokens/_typography";
 @import "/tokens/_colors";
+@import "/tokens/_spacing";
 @import "/atoms/_mixin-input-text";
 
 .filter-date {
   display: flex;
   justify-content: space-evenly;
-  
+
   .date__arrow {
     display: grid;
     place-content: center;
@@ -31,5 +32,12 @@
       border: 0.1rem solid $primary-action;
     }
   }
+}
 
+@media (min-width: $breakpoint-medium) {
+  .filter-date {
+    .date__arrow {
+      display: none;
+    }
+  }
 }

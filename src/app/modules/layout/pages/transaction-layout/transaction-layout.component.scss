@@ -9,7 +9,6 @@
   height: 100%;
   width: 100%;
 
-  
   .headerbar,
   .date-filter,
   .transaction-filter {
@@ -43,30 +42,39 @@
   .transaction-layout {
     grid-template-rows: repeat(12, 1fr);
 
-    .headerbar,
-    .date-filter {
+    .headerbar {
       display: none;
-    }
-    .filters-title {
-      grid-area: 2 / 2 / 3 / 4;
-      align-self: center;
-      font-size: $font-size-large;
     }
 
     .transaction-filter {
-      grid-area: 3 / 2 / 12 / 4;
+      grid-area: 2 / 3 / 6 / 4;
       box-shadow: none;
 
       .filter__subtitle {
-        font-size: $font-size-between;
+        font-size: $font-size-medium;
         margin-block-end: 1.5rem;
       }
+    }
 
+    .account-filter {
+      grid-area: 6 / 3 / 12 / 4;
+
+      .filter__subtitle {
+        font-size: $font-size-medium;
+        margin-block-end: 1.5rem;
+      }
+    }
+
+    .date-filter {
+      grid-area: 1 / 5 / 3 / 12;
+      justify-self: enter;
+      align-self: center;
     }
 
     .transaction-content {
-      grid-area: 2 / 5 / 12 / 12;
-
+      grid-area: 3 / 5 / 12 / 11;
+      max-width: 55rem;
+      justify-self: center;
     }
   }
 }
