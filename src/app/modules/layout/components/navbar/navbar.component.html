@@ -26,6 +26,10 @@
     </button>
   </div>
   <div class="navbar__avatar">
-    <app-avatar></app-avatar>
+    <div class="navbar__avatar--component">
+      <app-avatar></app-avatar>
+    </div>
+    <p class="navbar__username" *ngIf="showAditionalContent">Luis Hernando Espinosa Barrera</p>
+    <p class="navbar__user--email" *ngIf="showAditionalContent">luheresbar_gmail.com</p>
   </div>
 </div>
