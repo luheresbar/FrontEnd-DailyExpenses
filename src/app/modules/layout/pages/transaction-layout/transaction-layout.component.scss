@@ -48,6 +48,10 @@
 @media (min-width: $breakpoint-medium) {
   .transaction-layout {
     grid-template-rows: repeat(12, 1fr);
+    background-color: $white;
+    border-radius: 0.8rem;
+    height: 100%;
+    width: 100%;
 
     .headerbar {
       display: none;

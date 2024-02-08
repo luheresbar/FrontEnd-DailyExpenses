@@ -1,6 +1,9 @@
 <div class="navbar">
   <div class="navbar__logo">
-    <app-logo></app-logo>
+    <div class="navbar__logo--component">
+      <app-logo></app-logo>
+    </div>
+    <p class="navbar__logo--name" *ngIf="showAditionalContent">Daily Expenses</p>
   </div>
   <div class="navbar__sections">
     <div class="navbar__home" (click)="setActiveButton('home')" [class.active]="activeButton === 'home'"></div>
