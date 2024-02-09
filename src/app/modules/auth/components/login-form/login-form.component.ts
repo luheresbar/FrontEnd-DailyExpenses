@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, Router, RouterLinkWithHref } from '@angular/router';
 
 import { BtnComponent } from '@shared/components/atoms/btn/btn.component';
 import { faEye, faEyeSlash, faL } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RequestStatus } from '@models/request-status.model';
-import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@services/auth.service';
 import { FormValidationMessageComponent } from '@shared/components/atoms/form-validation-message/form-validation-message.component';
 
@@ -19,6 +19,7 @@ import { FormValidationMessageComponent } from '@shared/components/atoms/form-va
     FontAwesomeModule,
     ReactiveFormsModule,
     FormValidationMessageComponent,
+    RouterLinkWithHref,
   ],
   templateUrl: './login-form.component.html',
   styleUrl: './login-form.component.scss',

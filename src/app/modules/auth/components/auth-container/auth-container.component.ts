@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, input } from '@angular/core';
 import { BackgroundComponent } from '../background/background.component';
 import { HeaderComponent } from '../header/header.component';
 import { SocialMediaComponent } from '../social-media/social-media.component';
