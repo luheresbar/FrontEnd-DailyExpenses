@@ -10,8 +10,7 @@
 }
 
 .form__recovery {
-  .form__validation-message {
-  }
+
   .input--text {
     @include format-input-text;
   }

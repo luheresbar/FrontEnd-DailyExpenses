@@ -25,16 +25,17 @@ export class ForgotPasswordFormComponent {
   status: RequestStatus = 'init';
   emailSent = false;
   unregisteresUser: boolean = false;
+  btnText: string = 'Send Recovery Link';
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService
   ) {}
 
-
   sendLink() {
     if (this.form.valid) {
       this.status = 'loading';
+      this.btnText = 'Sending Recovery Link';
       const { email } = this.form.getRawValue();
 
       // Verificar si el correo electrónico está disponible
@@ -50,17 +51,20 @@ export class ForgotPasswordFormComponent {
               },
               error: () => {
                 this.status = 'failed';
+                this.btnText = 'Send Recovery Link';
               },
             });
           } else {
             // El correo electrónico no está registrado
             this.status = 'failed';
             this.unregisteresUser = true;
+            this.btnText = 'Send Recovery Link';
             console.log('El correo electrónico no está registrado');
           }
         },
         error: (availabilityError) => {
           this.status = 'failed';
+          this.btnText = 'Send Recovery Link';
           console.log(availabilityError);
         },
       });

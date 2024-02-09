@@ -26,6 +26,7 @@ import { RegisterUserDTO } from '@models/user.model';
   styleUrl: './register-form.component.scss',
 })
 export class RegisterFormComponent {
+
   formUser = this.formBuilder.nonNullable.group({
     email: ['', [Validators.email, Validators.required]],
   });
@@ -51,7 +52,7 @@ export class RegisterFormComponent {
 
   showRegister = false;
   showPassword = false;
-  showConfirmPassword = false;
+  // showConfirmPassword = false;
   status: RequestStatus = 'init';
   statusUser: RequestStatus = 'init';
 
