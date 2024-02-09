@@ -35,13 +35,11 @@
     justify-self: center;
     padding: 0 1.2rem;
     overflow-y: auto;
-  }
 
-  .transaction-filter {
-    display: none;
-  }
-  .account-filter {
-    display: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
 
@@ -58,8 +56,14 @@
     }
 
     .transaction-filter {
-      grid-area: 2 / 3 / 6 / 4;
+      grid-area: 3 / 2 / 8 / 5;
       box-shadow: none;
+      border: 0.1rem solid rgb(192, 192, 192);
+      border-radius: 0.8rem;
+      padding: 2rem;
+      width: 100%;
+      justify-self: center;
+      align-self: center;
 
       .filter__subtitle {
         font-size: $font-size-medium;
@@ -68,24 +72,67 @@
     }
 
     .account-filter {
-      grid-area: 6 / 3 / 12 / 4;
+      grid-area: 8 / 2 / 12 / 5;
+      border: 0.1rem solid rgb(192, 192, 192);
+      border-radius: 0.8rem;
+      padding: 2rem;
+      width: 100%;
+      height: 100%;
+      justify-self: center;
+      align-self: center;
 
       .filter__subtitle {
         font-size: $font-size-medium;
         margin-block-end: 1.5rem;
       }
+      .account-filter--wrapper {
+        overflow-y: auto;
+        height: 83%;
+        border-radius: 0.8rem;
+
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
+
+        .account-filter--component {
+        }
+      }
     }
 
     .date-filter {
-      grid-area: 1 / 3 / 3 / 11;
-      justify-self: enter;
+      grid-area: 1 / 2 / 3 / 5;
+      justify-self: start;
       align-self: center;
+      width: 100%;
+    }
+
+    .transaction__search {
+      grid-area: 1 / 1 / 3 / 13;
+      height: 50%;
+      width: 95%;
+      background-color: $text-input-border-active;
+      border-radius: 0.8rem;
+      align-self: center;
+      justify-self: center;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      .transaction__search--input {
+        grid-area: 1 / 6 / 3 / 12;
+        align-self: center;
+        justify-self: center;
+        width: 60%;
+      }
     }
 
     .transaction-content {
-      grid-area: 3 / 3 / 12 / 11;
+      grid-area: 3 / 6 / 13 / 12;
       max-width: 55rem;
+      height: 95%;
       justify-self: center;
+      border-radius: 0.8rem;
+      border: 0.1rem solid $primary-action;
+      padding: 0 3rem;
     }
   }
 }

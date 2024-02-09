@@ -2,18 +2,25 @@
   <div class="headerbar">
     <app-headerbar></app-headerbar>
   </div>
+  <div class="transaction__search" *ngIf="showAditionalContent">
+    <div class="transaction__search--input">
+      <app-search-input></app-search-input>
+    </div>
+  </div>
   <div class="date-filter">
     <app-date-filter></app-date-filter>
   </div>
   <div class="transaction-filter">
-    <h3 class="filter__subtitle">Transactions</h3>
+    <h3 class="filter__subtitle" *ngIf="showAditionalContent">Transactions</h3>
     <app-transaction-filter></app-transaction-filter>
   </div>
-  <div class="account-filter">
+  <div class="account-filter" *ngIf="showAditionalContent">
     <h3 class="filter__subtitle">Accounts</h3>
-    <p class="filter__subtitle">All</p>
-    <p class="filter__subtitle">Cash</p>
-    <p class="filter__subtitle">Bank</p>
+    <div class="account-filter--wrapper">
+      <div class="account-filter--component">
+        <app-account-filter></app-account-filter>
+      </div>
+    </div>
   </div>
   <div class="transaction-content">
     <ng-content></ng-content>

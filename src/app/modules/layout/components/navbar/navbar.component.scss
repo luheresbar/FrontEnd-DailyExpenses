@@ -194,7 +194,13 @@
           }
         }
       }
-
+      .navbar__footer {
+        grid-area: 12 / 1 / 13 / 2;
+        width: 100%;
+        align-self: end;
+        padding-block-end: 1rem;
+        color: $white;
+      }
 
   }
 }
