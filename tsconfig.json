@@ -24,12 +24,12 @@
       "dom"
     ],
     "paths": {
-      "@models/*": [ "./src/app/models/*" ],
+      "@models/*": [ "./src/app/core/models/*" ],
       "@shared/*": [ "./src/app/modules/shared/*" ],
       "@auth/*": [ "./src/app/modules/auth/*" ],
       "@environments/*": [ "./src/environments/*" ],
-      "@guards/*": [ "./src/app/guards/*" ],
-      "@interceptors/*": [ "./src/app/interceptors/*" ],
+      "@guards/*": [ "./src/app/core/guards/*" ],
+      "@interceptors/*": [ "./src/app/core/interceptors/*" ],
       "@services/*": [ "./src/app/core/services/*" ],
       "@utils/*": [ "./src/app/utils/*" ],
       "@styles/*": [ "./src/styles/*" ]

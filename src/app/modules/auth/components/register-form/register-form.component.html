@@ -1,15 +1,17 @@
 <ng-container *ngIf="!showRegister">
   <h1 class="form__register--title">Sign Up to Daily Expenses</h1>
   <form
-    novalidate
     class="form__register"
+    [formGroup]="formUser"
+    novalidate
+    (ngSubmit)="validateUser()"
   >
     <div>
       <div class="form__email">
-      <label class="form__label" for="email">Email</label>
+        <label class="form__label" for="email">Email</label>
         <input
-          formControlName=""
-          placeholder=""
+          formControlName="email"
+          placeholder="Enter your email"
           type="email"
           name="email"
           class="input--text"
@@ -17,41 +19,33 @@
       </div>
       <div
         *ngIf="
+          formUser.controls.email.touched && formUser.controls.email.invalid
         "
       >
-        <p
-          *ngIf="
-          "
-          class=""
+        <app-form-validation-message
+          *ngIf="formUser.controls.email.hasError('required')"
+          >This field is mandatory</app-form-validation-message
         >
-          This field is mandatory
-        </p>
-        <p
-          *ngIf="
-          "
-          class=""
-        >
+        <p *ngIf="formUser.controls.email.hasError('email')" class="">
           This field should be a email
         </p>
       </div>
     </div>
     <div class="form__btn">
-      <app-btn color="btn-primary" >Continue</app-btn
-      >
+      <app-btn typeBtn="submit" color="btn-primary">Continue</app-btn>
     </div>
   </form>
 </ng-container>
 
 <ng-container *ngIf="showRegister">
-
   <h1 class="form__register--title">Sign Up to Daily Expenses</h1>
   <form class="form__register" action="">
-  <div>
-    <div class="form__name">
-      <label class="form__label" for="name">Name</label>
-      <input class="input--text" type="text" id="name" />
-    </div>
-    <!-- <div>
+    <div>
+      <div class="form__name">
+        <label class="form__label" for="name">Name</label>
+        <input class="input--text" type="text" id="name" />
+      </div>
+      <!-- <div>
       <p class="form__validation-message">
         This field is mandatory
       </p>
@@ -59,13 +53,13 @@
         This field should be a email
       </p>
     </div> -->
-  </div>
-  <div>
-    <div class="form__email">
-      <label class="form__label" for="email">Email</label>
-      <input class="input--text input__email" type="email" id="email" />
     </div>
-    <!-- <div>
+    <div>
+      <div class="form__email">
+        <label class="form__label" for="email">Email</label>
+        <input class="input--text input__email" type="email" id="email" />
+      </div>
+      <!-- <div>
       <p class="form__validation-message">
         This field is mandatory
       </p>
@@ -73,24 +67,20 @@
         This field should be a email
       </p>
     </div> -->
-  </div>
-  <div>
-    <div class="form__password">
-      <label class="form__label" for="password">Password</label>
-      <input
-        class="input--text"
-        type="password"
-        id="password"
-      />
-      <button
-        class="btn-show-password"
-        (click)="showPassword = !showPassword"
-        type="button"
-      >
-        <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
-      </button>
     </div>
-    <!-- <div>
+    <div>
+      <div class="form__password">
+        <label class="form__label" for="password">Password</label>
+        <input class="input--text" type="password" id="password" />
+        <button
+          class="btn-show-password"
+          (click)="showPassword = !showPassword"
+          type="button"
+        >
+          <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
+        </button>
+      </div>
+      <!-- <div>
       <p class="form__validation-message">
         This field is mandatory
       </p>
@@ -99,11 +89,10 @@
         This field should be greater than 6 characters
       </p>
     </div> -->
-  </div>
+    </div>
 
-  <div class="form__btn">
-    <app-btn color="btn-primary">Sing Up</app-btn>
-  </div>
-</form>
-
-  </ng-container>
+    <div class="form__btn">
+      <app-btn color="btn-primary">Sing Up</app-btn>
+    </div>
+  </form>
+</ng-container>

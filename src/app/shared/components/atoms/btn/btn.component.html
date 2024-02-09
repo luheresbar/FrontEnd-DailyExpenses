@@ -1,3 +1,13 @@
-<button [ngClass]="color">
+<button
+[type]="typeBtn"
+[disabled]="disabled || loading"
+[ngClass]="color"
+(click)="onClick()"
+>  <fa-icon
+*ngIf="loading"
+class="mr-2"
+[icon]="faSpinner"
+[pulse]="true"
+></fa-icon>
   <ng-Content></ng-Content>
 </button>
