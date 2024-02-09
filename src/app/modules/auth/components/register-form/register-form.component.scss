@@ -13,8 +13,6 @@
 
 .form__register {
   //clases generales:
-  .form__validation-message {
-  }
   .input--text {
     @include format-input-text;
   }
@@ -69,9 +67,6 @@
     gap: 0.5rem;
     .input-check {
       align-self: start;
-    }
-    .input-check-text {
-
     }
   }
 

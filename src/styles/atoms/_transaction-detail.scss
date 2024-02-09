@@ -38,6 +38,10 @@
       .transfer__date {
         font-size: $font-size-small;
       }
+
+     .transfer__category {
+      margin-inline-end: 0.5rem;
+     }
     }
   
     &:hover {

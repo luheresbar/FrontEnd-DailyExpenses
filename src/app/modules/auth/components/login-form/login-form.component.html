@@ -1,25 +1,42 @@
 <h1 class="form__login--title">Log in to Daily Expenses</h1>
-<form class="form__login" action="">
+<form class="form__login" [formGroup]="form" novalidate (ngSubmit)="doLogin()">
   <div>
     <div class="form__email">
       <label class="form__label" for="email">Email</label>
-      <input class="input--text" type="email" id="email" />
+      <input
+        class="input--text"
+        formControlName="email"
+        placeholder="Enter email"
+        type="email"
+        id="email"
+      />
     </div>
-    <!-- <div>
-      <p class="form__validation-message">
+    <div *ngIf="form.controls.email.touched && form.controls.email.invalid">
+      <app-form-validation-message
+        *ngIf="form.controls.email.hasError('required')"
+      >
         This field is mandatory
-      </p>
-      <p class="form__validation-message">
+      </app-form-validation-message>
+      <app-form-validation-message
+        *ngIf="form.controls.email.hasError('email')"
+      >
         This field should be a email
-      </p>
-    </div> -->
+      </app-form-validation-message>
+    </div>
+    <div *ngIf="status === 'failed'">
+      <app-form-validation-message *ngIf="unregisteresUser === true">
+        Unregistered email
+      </app-form-validation-message>
+    </div>
   </div>
   <div>
     <div class="form__password">
       <label class="form__label" for="password">Password</label>
       <input
         class="input--text"
-        type="password"
+        formControlName="password"
+        placeholder="Enter password"
+        [type]="showPassword ? 'text' : 'password'"
         id="password"
       />
       <button
@@ -30,19 +47,33 @@
         <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
       </button>
     </div>
-    <!-- <div>
-      <p class="form__validation-message">
+    <div
+      *ngIf="form.controls.password.touched && form.controls.password.invalid"
+    >
+      <app-form-validation-message
+        *ngIf="form.controls.password.hasError('required')"
+      >
         This field is mandatory
-      </p>
-   <span>// TODO (Configurar validaciones de nivel se seguridad de contraseña)</span>
-      <p class="form__validation-message">
-        This field should be greater than 6 characters
-      </p>
-    </div> -->
+      </app-form-validation-message>
+      <!-- <span>// TODO (Configurar validaciones de nivel se seguridad de contraseña)</span> -->
+    </div>
+  </div>
+  <div *ngIf="status === 'failed'">
+    <app-form-validation-message>
+      Credentials are invalid
+    </app-form-validation-message>
+    <app-form-validation-message *ngIf="invalidPassword === true">
+      Invalid password
+    </app-form-validation-message>
   </div>
 
   <div class="form__btn">
-    <app-btn color="btn-primary">Log In</app-btn>
+    <app-btn
+      typeBtn="submit"
+      color="btn-primary"
+      [loading]="status === 'loading'"
+      >Log In</app-btn
+    >
   </div>
 </form>
 <div class="login__recovery">

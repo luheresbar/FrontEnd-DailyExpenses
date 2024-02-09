@@ -15,7 +15,13 @@ import { RegisterUserDTO } from '@models/user.model';
 @Component({
   selector: 'app-register-form',
   standalone: true,
-  imports: [CommonModule, BtnComponent, FontAwesomeModule, ReactiveFormsModule, FormValidationMessageComponent],
+  imports: [
+    CommonModule,
+    BtnComponent,
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    FormValidationMessageComponent,
+  ],
   templateUrl: './register-form.component.html',
   styleUrl: './register-form.component.scss',
 })
@@ -55,7 +61,8 @@ export class RegisterFormComponent {
     private authService: AuthService
   ) {}
 
-  doRegister() {  //TODO (es necesario que segun los errores que se envien del backend, se mueste un mensaje apropiado al usuario, ejm si el correo ya existe, entonces indicarlo)
+  doRegister() {
+    //TODO (es necesario que segun los errores que se envien del backend, se mueste un mensaje apropiado al usuario, ejm si el correo ya existe, entonces indicarlo)
     if (this.form.valid) {
       this.status = 'loading';
       const { name, email, password } = this.form.getRawValue();
@@ -64,8 +71,7 @@ export class RegisterFormComponent {
         email: email,
         password: password,
       };
-      this.authService.registerAndLogin(dto)
-      .subscribe({
+      this.authService.registerAndLogin(dto).subscribe({
         next: () => {
           this.status = 'success';
           this.router.navigate(['']);

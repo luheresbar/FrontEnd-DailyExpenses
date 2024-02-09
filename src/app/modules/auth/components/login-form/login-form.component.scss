@@ -11,8 +11,6 @@
 
 .form__login {
 
-  .form__validation-message {
-  }
   .input--text {
     @include format-input-text;
   }
