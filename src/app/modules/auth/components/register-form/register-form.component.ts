@@ -10,6 +10,7 @@ import { AuthService } from '@services/auth.service';
 import { Router } from '@angular/router';
 import { CustomValidators } from '@utils/validators';
 import { FormValidationMessageComponent } from '../../../../shared/components/atoms/form-validation-message/form-validation-message.component';
+import { RegisterUserDTO } from '@models/user.model';
 
 @Component({
   selector: 'app-register-form',
@@ -28,7 +29,7 @@ export class RegisterFormComponent {
       name: ['', [Validators.required]],
       email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.minLength(6), Validators.required]],
-      confirmPassword: ['', [Validators.required]],
+      // confirmPassword: ['', [Validators.required]],
       termsAndConditions: [false, [Validators.requiredTrue]],
     },
     {
@@ -44,6 +45,8 @@ export class RegisterFormComponent {
 
   showRegister = false;
   showPassword = false;
+  showConfirmPassword = false;
+  status: RequestStatus = 'init';
   statusUser: RequestStatus = 'init';
 
   constructor(
@@ -51,6 +54,31 @@ export class RegisterFormComponent {
     private router: Router,
     private authService: AuthService
   ) {}
+
+  doRegister() {  //TODO (es necesario que segun los errores que se envien del backend, se mueste un mensaje apropiado al usuario, ejm si el correo ya existe, entonces indicarlo)
+    if (this.form.valid) {
+      this.status = 'loading';
+      const { name, email, password } = this.form.getRawValue();
+      const dto: RegisterUserDTO = {
+        username: name,
+        email: email,
+        password: password,
+      };
+      this.authService.registerAndLogin(dto)
+      .subscribe({
+        next: () => {
+          this.status = 'success';
+          this.router.navigate(['']);
+        },
+        error: (error) => {
+          this.status = 'failed';
+          console.log(error);
+        },
+      });
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
 
   validateUser() {
     if (this.formUser.valid) {

@@ -24,11 +24,15 @@
       >
         <app-form-validation-message
           *ngIf="formUser.controls.email.hasError('required')"
-          >This field is mandatory</app-form-validation-message
         >
-        <p *ngIf="formUser.controls.email.hasError('email')" class="">
+          This field is mandatory
+        </app-form-validation-message>
+        <app-form-validation-message
+          *ngIf="formUser.controls.email.hasError('email')"
+          class=""
+        >
           This field should be a email
-        </p>
+        </app-form-validation-message>
       </div>
     </div>
     <div class="form__btn">
@@ -39,39 +43,70 @@
 
 <ng-container *ngIf="showRegister">
   <h1 class="form__register--title">Sign Up to Daily Expenses</h1>
-  <form class="form__register" action="">
+  <form
+    class="form__register"
+    [formGroup]="form"
+    novalidate
+    (ngSubmit)="doRegister()"
+  >
     <div>
       <div class="form__name">
         <label class="form__label" for="name">Name</label>
-        <input class="input--text" type="text" id="name" />
+        <input
+          class="input--text"
+          formControlName="name"
+          placeholder="Enter name"
+          type="text"
+          name="name"
+          id="name"
+        />
       </div>
-      <!-- <div>
-      <p class="form__validation-message">
-        This field is mandatory
-      </p>
-      <p class="form__validation-message">
-        This field should be a email
-      </p>
-    </div> -->
+      <div *ngIf="form.controls.name.touched && form.controls.name.invalid">
+        <app-form-validation-message
+          class="form__validation-message"
+          *ngIf="form.controls.name.hasError('required')"
+        >
+          This field is mandatory
+        </app-form-validation-message>
+      </div>
     </div>
     <div>
       <div class="form__email">
         <label class="form__label" for="email">Email</label>
-        <input class="input--text input__email" type="email" id="email" />
+        <input
+          class="input--text input__email"
+          formControlName="email"
+          placeholder="Enter email"
+          type="email"
+          name="email"
+          id="email"
+        />
       </div>
-      <!-- <div>
-      <p class="form__validation-message">
-        This field is mandatory
-      </p>
-      <p class="form__validation-message">
-        This field should be a email
-      </p>
-    </div> -->
+      <div *ngIf="form.controls.email.touched && form.controls.email.invalid">
+        <app-form-validation-message
+          class="form__validation-message"
+          *ngIf="form.controls.email.hasError('required')"
+        >
+          This field is mandatory
+        </app-form-validation-message>
+        <app-form-validation-message
+          class="form__validation-message"
+          *ngIf="form.controls.email.hasError('email')"
+        >
+          This field should be a email
+        </app-form-validation-message>
+      </div>
     </div>
     <div>
       <div class="form__password">
         <label class="form__label" for="password">Password</label>
-        <input class="input--text" type="password" id="password" />
+        <input
+          class="input--text"
+          formControlName="password"
+          placeholder="Enter password"
+          [type]="showPassword ? 'text' : 'password'"
+          id="password"
+        />
         <button
           class="btn-show-password"
           (click)="showPassword = !showPassword"
@@ -80,19 +115,91 @@
           <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
         </button>
       </div>
-      <!-- <div>
-      <p class="form__validation-message">
-        This field is mandatory
-      </p>
-   <span>// TODO (Configurar validaciones de nivel se seguridad de contraseña)</span>
-      <p class="form__validation-message">
-        This field should be greater than 6 characters
-      </p>
-    </div> -->
+      <div
+        *ngIf="form.controls.password.touched && form.controls.password.invalid"
+      >
+        <app-form-validation-message
+          class="form__validation-message"
+          *ngIf="form.controls.password.hasError('required')"
+        >
+          This field is mandatory
+        </app-form-validation-message>
+        <!-- <span>// TODO (Configurar validaciones de nivel se seguridad de contraseña)</span> -->
+        <app-form-validation-message
+          class="form__validation-message"
+          *ngIf="form.controls.password.hasError('minlength')"
+        >
+          This field should be greater than 6 characters
+        </app-form-validation-message>
+      </div>
     </div>
+    <!-- <div>
+      <div class="form__password">
+        <label class="form__label" for="confirmPassword">Password</label>
+        <input
+          class="input--text"
+          formControlName="confirmPassword"
+          placeholder="Confirm password"
+          [type]="showConfirmPassword ? 'text' : 'password'"
+          id="confirmPassword"
+        />
+        <button
+          class="btn-show-password"
+          (click)="showConfirmPassword = !showConfirmPassword"
+          type="button"
+        >
+          <fa-icon [icon]="showConfirmPassword ? faEye : faEyeSlash"></fa-icon>
+        </button>
+      </div>
 
+      <div
+        *ngIf="
+          form.controls.confirmPassword.touched &&
+          form.controls.confirmPassword.invalid
+        "
+      >
+        <app-form-validation-message
+          *ngIf="form.controls.confirmPassword.hasError('required')"
+        >
+          This field is mandatory
+        </app-form-validation-message>
+        <app-form-validation-message
+          *ngIf="form.controls.confirmPassword.hasError('minlength')"
+        >
+          This field should be greater than 6 characters
+        </app-form-validation-message>
+      </div>
+    </div>
+    <div *ngIf="form.controls.confirmPassword.touched">
+      <app-form-validation-message *ngIf="form.hasError('mismatch')">
+        The password are not the same
+      </app-form-validation-message>
+    </div> -->
+    <div> 
+      <div class="accept-terms">
+        <input
+          class="input-check"
+          formControlName="termsAndConditions"
+          type="checkbox"
+        />
+        <!-- //TODO (configurar autorizacion para registrarae solo si está marcada la aceptacion de terminos y condiciones) -->
+        <span class="input-check"
+          >I have read and agree to the website terms and conditions.</span
+        >
+      </div>
+      <div *ngIf="form.controls.termsAndConditions.touched && form.controls.termsAndConditions.invalid">
+        <app-form-validation-message *ngIf="form.controls.termsAndConditions.hasError('required')">
+          You must accept the terms and conditions to proceed
+        </app-form-validation-message>
+      </div>
+    </div>
     <div class="form__btn">
-      <app-btn color="btn-primary">Sing Up</app-btn>
+      <app-btn
+        typeBtn="submit"
+        color="btn-primary"
+        [loading]="status === 'loading'"
+        >Sing Up</app-btn
+      >
     </div>
   </form>
 </ng-container>

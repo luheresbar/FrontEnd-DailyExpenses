@@ -2,7 +2,7 @@
   <div class="headerbar">
     <app-headerbar></app-headerbar>
   </div>
-  <div class="transaction__search" *ngIf="showAditionalContent">
+  <div class="transaction__search">
     <div class="transaction__search--input">
       <app-search-input></app-search-input>
     </div>
@@ -11,10 +11,10 @@
     <app-date-filter></app-date-filter>
   </div>
   <div class="transaction-filter">
-    <h3 class="filter__subtitle" *ngIf="showAditionalContent">Transactions</h3>
+    <h3 class="filter__subtitle">Transactions</h3>
     <app-transaction-filter></app-transaction-filter>
   </div>
-  <div class="account-filter" *ngIf="showAditionalContent">
+  <div class="account-filter">
     <h3 class="filter__subtitle">Accounts</h3>
     <div class="account-filter--wrapper">
       <div>

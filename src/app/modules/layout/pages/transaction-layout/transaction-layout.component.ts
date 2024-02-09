@@ -16,13 +16,13 @@ import { AccountFilterComponent } from '../../components/account-filter/account-
 })
 export class TransactionLayoutComponent {
 
-  showAditionalContent: boolean = true;
+  // showAditionalContent: boolean = true;
 
   constructor() {}
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event: Event) {
-    this.showAditionalContent = (event.target as Window).innerWidth > 768;
-  }
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event: Event) {
+  //   this.showAditionalContent = (event.target as Window).innerWidth > 768;
+  // }
 
 }
