@@ -1,0 +1,16 @@
+@import "/tokens/_colors";
+@import "/tokens/_spacing";
+
+.horizontal-line {
+  margin-block: 1rem;
+  flex: 1;
+  height: 0.05rem;
+  background-color: $gray-light;
+}
+
+@media (min-width: $breakpoint-medium) {
+  .horizontal-line {
+    margin-block: 1rem;
+    // background-color: $white;
+  }
+}

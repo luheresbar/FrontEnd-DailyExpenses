@@ -1,12 +1,7 @@
 @import "/tokens/_colors";
 @import "/tokens/_spacing";
 @import "/atoms/_mixin-link-redirection";
-@import "/atoms/_mixin-line-horizontal";
 
-.line-horizontal {
-  margin-block: 1rem;
-  @include line-horizontal;
-}
 
 .auth__footer {
   text-align: center;
@@ -17,11 +12,6 @@
 }
 
 @media (min-width: $breakpoint-medium) {
-  .line-horizontal {
-    margin-block: 1rem;
-    @include line-horizontal;
-    // background-color: $white;
-  }
   
   .auth__footer {
     text-align: center;

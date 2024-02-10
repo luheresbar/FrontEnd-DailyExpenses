@@ -1,1 +1,50 @@
-@import '/atoms/_button';
+@import "/tokens/_colors";
+@import "/tokens/_typography";
+
+.btn-basic,
+.btn-primary,
+.btn-secondary,
+.btn-logout {
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  border: 0.1rem solid $secondary-action;
+  border-radius: 0.8rem;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-medium;
+  height: 3.2rem;
+
+  .spiner {
+    margin-inline-end: 0.8rem;
+  }
+
+  &:hover {
+    background-color: $very-light-gray;
+  }
+}
+
+.btn-primary {
+  background-color: $primary-action;
+  color: $white;
+
+  &:hover {
+    background-color: $primary-action-hover;
+  }
+}
+
+.btn-secondary {
+  background-color: $white;
+  color: $primary-action;
+}
+
+.btn-logout {
+  background-color: $white;
+  color: $text-color-red;
+  border: 0.1rem solid $warning-action;
+
+  &:hover {
+    background-color: $warning-action;
+    color: $white;
+    border: 0.1rem solid $warning-action;
+  }
+}

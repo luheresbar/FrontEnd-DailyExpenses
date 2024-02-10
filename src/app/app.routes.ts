@@ -7,6 +7,7 @@ import { TransactionSummaryComponent } from './modules/transactions/pages/transa
 import { LayoutMainComponent } from './modules/layout/layout-main/layout-main.component';
 import { authGuard } from '@guards/auth.guard';
 import { redirectGuard } from '@guards/redirect.guard';
+import { UserProfileComponent } from './modules/user-profile/user-profile.component';
 
 export const routes: Routes = [
   {
@@ -16,29 +17,33 @@ export const routes: Routes = [
       {
         path: '',
         // canActivate: [ authGuard ],
-        component: TransactionSummaryComponent
-      }
-    ]
+        component: TransactionSummaryComponent,
+      },
+    ],
+  },
+  {
+    path: 'user-profile',
+    // canActivate: [ authGuard ],
+    component: UserProfileComponent,
   },
   {
     path: 'auth/login',
-    canActivate: [ redirectGuard ], // TODO (Por medio de programacion modular configurar paths)
-    component: LoginComponent
+    // canActivate: [redirectGuard], // TODO (Por medio de programacion modular configurar paths)
+    component: LoginComponent,
   },
   {
     path: 'auth/register',
     // canActivate: [ redirectGuard ],
-    component: RegisterComponent
+    component: RegisterComponent,
   },
   {
     path: 'auth/recovery',
     // canActivate: [ redirectGuard ],
-    component: RecoveryComponent
+    component: RecoveryComponent,
   },
   {
     path: 'auth/forgot-password',
     // canActivate: [ redirectGuard ],
-    component: ForgotPasswordComponent
+    component: ForgotPasswordComponent,
   },
-
 ];

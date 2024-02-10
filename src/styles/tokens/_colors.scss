@@ -22,7 +22,6 @@ $text-input-border: rgba(209, 213, 219, 1);
 $text-input-border-active: rgba(81,154,249, 1);
 
 // Text Colors
-
 $text-color-dark: #232830;
 $text-color-gray: #6e6e6e;
 $text-color-primary: #0559D3;  
@@ -30,11 +29,13 @@ $text-color-red: #ff2a2a;
 $text-color-green: #019601; 
 
 // Action Colors
-$primary-action: #0559D3;   // Primary buttons
+$primary-action: #0559D3;
 $primary-action-hover: #2481FC;
 $primary-action-focus: #2481FC;
+$secondary-action: #8F97A2;
 
-$secondary-action: #8F97A2; // Secondary buttons
+$warning-action: #ff2a2a;
+
 
 // State transaction Colors
 $income-detail: #bfffe1;
