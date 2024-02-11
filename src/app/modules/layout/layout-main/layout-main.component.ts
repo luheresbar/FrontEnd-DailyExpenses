@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { RouterOutlet } from '@angular/router';
+import { UserService } from '@services/user.service';
 
 @Component({
   selector: 'app-layout-main',
@@ -10,7 +11,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './layout-main.component.scss'
 })
 export class LayoutMainComponent {
-
-
 
 }

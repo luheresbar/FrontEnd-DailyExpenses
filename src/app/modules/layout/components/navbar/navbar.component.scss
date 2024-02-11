@@ -6,7 +6,7 @@
   background-color: white;
   height: 5rem;
   padding: 1rem 0.5rem 0 0.5rem;
-  
+
   .navbar__logo {
     display: none;
   }
@@ -78,6 +78,10 @@
   .navbar__avatar {
     display: none;
   }
+
+  .navbar__footer {
+    display: none;
+  }
 }
 
 @media (min-width: $breakpoint-medium) {
@@ -136,7 +140,7 @@
       grid-area: 5 / 1 / 9 / 2;
       flex-direction: column;
       justify-content: start;
-      
+
       .navbar__item {
         background-color: $text-input-border-active;
         border: 0.1rem solid $primary-action;
@@ -159,48 +163,47 @@
       .navbar__home {
         display: none;
       }
-      
+
       .navbar__item.navbar__item--transactions {
         display: grid;
       }
     }
 
-      .navbar-search-input {
+    .navbar-search-input {
+      display: none;
+      width: 100%;
+      align-self: center;
+      justify-self: center;
+    }
+
+    .navbar__notification {
+      display: grid;
+      justify-self: end;
+      align-self: center;
+      padding: 0.5rem;
+      border: 0.1rem solid transparent;
+
+      .navbar__bell {
         display: none;
-        width: 100%;
-        align-self: center;
-        justify-self: center;
+        background-color: transparent;
+        border: none;
+        color: $text-color-gray;
+        font-size: 2rem;
       }
-
-      .navbar__notification {
-        display: grid;
-        justify-self: end;
-        align-self: center;
-        padding: 0.5rem;
-        border: 0.1rem solid transparent;
-
+      &:hover {
+        border: 0.1rem solid $white;
+        border-radius: 50%;
         .navbar__bell {
-          display: none;
-          background-color: transparent;
-          border: none;
-          color: $text-color-gray;
-          font-size: 2rem;
-        }
-        &:hover {
-          border: 0.1rem solid $white;
-          border-radius: 50%;
-          .navbar__bell {
-            color: $white;
-          }
+          color: $white;
         }
       }
-      .navbar__footer {
-        grid-area: 12 / 1 / 13 / 2;
-        width: 100%;
-        align-self: end;
-        padding-block-end: 1rem;
-        color: $white;
-      }
-
+    }
+    .navbar__footer {
+      grid-area: 12 / 1 / 13 / 2;
+      width: 100%;
+      align-self: end;
+      padding-block-end: 1rem;
+      color: $white;
+    }
   }
 }

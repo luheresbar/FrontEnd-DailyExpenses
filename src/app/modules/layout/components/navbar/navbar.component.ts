@@ -7,22 +7,39 @@ import { SearchInputComponent } from '../../../../shared/components/atoms/search
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBell, faL } from '@fortawesome/free-solid-svg-icons';
 import { FooterComponent } from '../../../auth/components/footer/footer.component';
-
+import { AuthService } from '@services/auth.service';
+import { UserService } from '@services/user.service';
+import { UserResponse } from '@models/user.model';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, LogoComponent, AvatarComponent, SearchInputComponent, FontAwesomeModule, FooterComponent],
+  imports: [
+    CommonModule,
+    LogoComponent,
+    AvatarComponent,
+    SearchInputComponent,
+    FontAwesomeModule,
+    FooterComponent,
+  ],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
+  user$: UserResponse | null = null;
 
   activeButton: string = 'transactions';
   faBell = faBell;
   showAditionalContent: boolean = true;
 
-  constructor() {}
+  constructor(
+    private authService: AuthService,
+    private usersService: UserService
+  ) {}
+
+  ngOnInit() {
+    this.usersService.user$.subscribe((user) => (this.user$ = user));
+  }
 
   setActiveButton(button: string) {
     this.activeButton = button;
@@ -32,5 +49,4 @@ export class NavbarComponent {
   onResize(event: Event) {
     this.showAditionalContent = (event.target as Window).innerWidth > 768;
   }
-
 }

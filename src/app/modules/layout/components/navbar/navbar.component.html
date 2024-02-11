@@ -32,8 +32,8 @@
     <div class="navbar__avatar--component">
       <app-avatar></app-avatar>
     </div>
-    <p class="navbar__username" *ngIf="showAditionalContent">Luis Hernando Espinosa Barrera</p>
-    <p class="navbar__user--email" *ngIf="showAditionalContent">luheresbar_gmail.com</p>
+    <p class="navbar__username" *ngIf="showAditionalContent"> {{ user$?.username }} </p>
+    <p class="navbar__user--email" *ngIf="showAditionalContent"> {{ user$?.email }} </p>
   </div>
   <div class="navbar__footer" *ngIf="showAditionalContent">
     <app-footer></app-footer>

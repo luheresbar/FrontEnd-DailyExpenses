@@ -48,7 +48,7 @@
         class="input--text"
         formControlName="confirmPassword"
         placeholder="Confirm new password"
-        type="password"
+        [type]="showConfirmPassword ? 'text' : 'password'"
         id="password"
       />
       <button
