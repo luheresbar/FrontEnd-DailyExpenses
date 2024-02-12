@@ -8,7 +8,9 @@
       <p class="transfer__amount"> {{ transaction.amount }} </p>
       <div class="transfer__accounts">
         <p class="transfer__account"> {{ transaction.sourceAccountName }} </p>
-        <fa-icon [icon]="faArrowRight" class="icon" *ngIf="transaction.type == 'transfer' "></fa-icon>
+        <div class="icon" *ngIf="transaction.type == 'transfer' ">
+          <fa-icon class="icon__arrow" [icon]="faArrowRight"></fa-icon>
+        </div>
         <p class="transfer__account" *ngIf="transaction.type == 'transfer' "> {{ transaction.destinationAccountName }} </p>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <div class="user-profile">
-  <div routerLink="/" role="button" class="user__out">
+  <div routerLink="/transactions" role="button" class="user__out">
       <fa-icon [icon]="faArrowLeft" class="icon"></fa-icon>
   </div>
   <div class="user__edit">
@@ -12,8 +12,10 @@
     <p class="user__name"> {{ user$?.username }} </p>
     <p class="user__email"> {{ user$?.email }} </p>
   </div>
-  <app-horizontal-line class="app-horizontal-line"></app-horizontal-line>
-  <div class="user__btn--logout">
-    <app-btn color="btn-logout" (click)="logout()">Log out</app-btn>
+  <div class="user__logout">
+    <app-horizontal-line class="app-horizontal-line"></app-horizontal-line>
+    <div class="user__logout--btn">
+      <app-btn color="btn-logout" (click)="logout()">Log out</app-btn>
+    </div>
   </div>
 </div>

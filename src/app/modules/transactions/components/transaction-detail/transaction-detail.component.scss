@@ -44,7 +44,13 @@
       }
 
       .icon {
+        display: grid;
+        place-content: center;
         margin-inline-start: 0.5rem;
+        .icon__arrow {
+          margin-block-start: 0.1rem;
+          align-self: end;
+        }
       }
     }
 

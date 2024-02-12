@@ -8,6 +8,7 @@ import { LayoutMainComponent } from './modules/layout/layout-main/layout-main.co
 import { authGuard } from '@guards/auth.guard';
 import { redirectGuard } from '@guards/redirect.guard';
 import { UserProfileComponent } from './modules/user-profile/user-profile.component';
+import { ExpenseSummaryComponent } from './modules/transactions/pages/expense-summary/expense-summary.component';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,11 @@ export const routes: Routes = [
         path: 'transactions',
         canActivate: [ authGuard ],
         component: TransactionSummaryComponent,
+      },
+      {
+        path: 'expenses',
+        canActivate: [ authGuard ],
+        component: ExpenseSummaryComponent,
       },
     ],
   },

@@ -51,17 +51,21 @@
       font-size: $font-size-large;
     }
   }
-  .app-horizontal-line {
+
+  .user__logout {
     grid-area: 6 / 1 / 7 / 4;
-    justify-self: center;
-    margin-block-start: 2%;
-    width: 90%;
-  }
-  .user__btn--logout {
-    grid-area: 6 / 1 / 7 / 4;
-    justify-self: center;
-    align-self: center;
-    width: 30rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    .app-horizontal-line{
+    width: 95%;
+    }
+    .user__logout--btn {
+      width: 30rem;
+    }
   }
 
   &::before {

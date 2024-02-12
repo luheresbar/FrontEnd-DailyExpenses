@@ -11,7 +11,7 @@ import { BehaviorSubject, tap } from 'rxjs';
 export class TransactionService {
 
   private apiUrl = `${environment.API_URL}/api`;
-  user$ = new BehaviorSubject<TransactionDetail[] | null>(null);
+  transactions$ = new BehaviorSubject<TransactionDetail[]>([]);
 
 
   constructor(
@@ -22,7 +22,7 @@ export class TransactionService {
     return this.http.get<TransactionDetail[]>(`${this.apiUrl}/transactions`, { context: checkToken() })
     .pipe(
       tap(transactions => {
-        this.user$.next(transactions)
+        this.transactions$.next(transactions)
         console.log(transactions);
         
       })
