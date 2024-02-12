@@ -9,6 +9,8 @@ import { authGuard } from '@guards/auth.guard';
 import { redirectGuard } from '@guards/redirect.guard';
 import { UserProfileComponent } from './modules/user-profile/user-profile.component';
 import { ExpenseSummaryComponent } from './modules/transactions/pages/expense-summary/expense-summary.component';
+import { IncomeSummaryComponent } from './modules/transactions/pages/income-summary/income-summary.component';
+import { TransferSummaryComponent } from './modules/transactions/pages/transfer-summary/transfer-summary.component';
 
 export const routes: Routes = [
   {
@@ -24,6 +26,16 @@ export const routes: Routes = [
         path: 'expenses',
         canActivate: [ authGuard ],
         component: ExpenseSummaryComponent,
+      },
+      {
+        path: 'incomes',
+        canActivate: [ authGuard ],
+        component: IncomeSummaryComponent,
+      },
+      {
+        path: 'transfers',
+        canActivate: [ authGuard ],
+        component: TransferSummaryComponent,
       },
     ],
   },

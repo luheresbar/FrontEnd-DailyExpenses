@@ -23,7 +23,7 @@ export class ExpenseSummaryComponent {
 
   ngOnInit() {
     this.expenseService.getExpenses().subscribe(expenses => {
-      this.expenses = expenses.expenses;
+      this.expenses = expenses.transactionDetails;
     });
   }
 

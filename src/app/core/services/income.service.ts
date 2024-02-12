@@ -1,36 +1,36 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
+import { SummaryTransaction, TransactionDetail } from '@models/transaction-detail.model';
 import { BehaviorSubject, tap } from 'rxjs';
 import { AccountService } from './account.service';
 import { checkToken } from '@interceptors/token.interceptor';
-import { SummaryTransaction, TransactionDetail } from '@models/transaction-detail.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ExpenseService {
+export class IncomeService {
 
   private apiUrl = `${environment.API_URL}/api`;
-  expenses$ = new BehaviorSubject<TransactionDetail[]>([]);
-  totalExpense$ = new BehaviorSubject<number | null>(null);
+  incomes$ = new BehaviorSubject<TransactionDetail[]>([]);
+  totalIncomes$ = new BehaviorSubject<number | null>(null);
 
   constructor(
     private http: HttpClient,
     private accountservice: AccountService,
   ) {}
 
-  getExpenses(account_name?: string) {
-    const url = new URL(`${this.apiUrl}/expenses`)
+  getIncomes(account_name?: string) {
+    const url = new URL(`${this.apiUrl}/incomes`)
     if (account_name) {
       url.searchParams.set('account_name', account_name);
     }
     return this.http
     .get<SummaryTransaction>(url.toString(), { context: checkToken() })
     .pipe(
-      tap((expenses) => {
-        this.expenses$.next(expenses.transactionDetails);
-        this.totalExpense$.next(expenses.totalTransactions);
+      tap((incomes) => {
+        this.incomes$.next(incomes.transactionDetails);
+        this.totalIncomes$.next(incomes.totalTransactions);
       })
     );
     

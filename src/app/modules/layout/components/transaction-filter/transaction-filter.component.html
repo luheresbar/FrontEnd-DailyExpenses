@@ -1,16 +1,40 @@
 <div class="transaction-filter">
-  <div class="filter__item filter__item--all" role="button" routerLink="/transactions" (click)="setActiveButton('all')" [class.active]="activeButton === 'all'">
+  <div
+    class="filter__item filter__item--all"
+    role="button"
+    routerLink="/transactions"
+    (click)="setActiveButton('all')"
+    [class.active]="activeButton === 'all'"
+  >
     <p class="filter__text">All</p>
   </div>
-  <div class="filter__item" role="button" routerLink="/expenses" (click)="setActiveButton('expenses')" [class.active]="activeButton === 'expenses'">
+  <div
+    class="filter__item"
+    role="button"
+    routerLink="/expenses"
+    (click)="setActiveButton('expenses')"
+    [class.active]="activeButton === 'expenses'"
+  >
     <p class="filter__text">Expenses</p>
     <p class="filter__text filter__text--expense">$500.000</p>
   </div>
-  <div class="filter__item" role="button" routerLink="/incomes" (click)="setActiveButton('incomes')" [class.active]="activeButton === 'incomes'">
+  <div
+    class="filter__item"
+    role="button"
+    routerLink="/incomes"
+    (click)="setActiveButton('incomes')"
+    [class.active]="activeButton === 'incomes'"
+  >
     <p class="filter__text">Incomes</p>
     <p class="filter__text filter__text--income">$500.000</p>
   </div>
-  <div class="filter__item" role="button" routerLink="/transfers" (click)="setActiveButton('transfers')" [class.active]="activeButton === 'transfers'">
+  <div
+    class="filter__item"
+    role="button"
+    routerLink="/transfers"
+    (click)="setActiveButton('transfers')"
+    [class.active]="activeButton === 'transfers'"
+  >
     <p class="filter__text">Transfers</p>
   </div>
 </div>

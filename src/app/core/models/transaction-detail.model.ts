@@ -8,7 +8,7 @@ export interface TransactionDetail {
   destinationAccountName: string;
 }
 
-export interface SummaryExpenses {
-  expenses: TransactionDetail[],
-  totalExpense: number
+export interface SummaryTransaction {
+  transactionDetails: TransactionDetail[],
+  totalTransactions: number
 }
