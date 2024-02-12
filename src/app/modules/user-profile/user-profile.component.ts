@@ -30,15 +30,16 @@ export class UserProfileComponent {
     private router: Router,
     private usersService: UserService
   ) {}
-
+  
+  ngOnInit() {
+    this.usersService.user$.subscribe((user) => (this.user$ = user));
+  }
+  
   logout() {
     this.authService.logout();
     this.router.navigate(['/auth/login'])
   }
 
 
-  ngOnInit() {
-    this.usersService.user$.subscribe((user) => (this.user$ = user));
-  }
 
 }

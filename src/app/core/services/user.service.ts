@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
-import { RegisterUserDTO, User, UserResponse } from '@models/user.model';
+import { User, UserResponse } from '@models/user.model';
 import { BehaviorSubject, tap } from 'rxjs';
 import { TokenService } from './token.service';
+import { checkToken } from '@interceptors/token.interceptor';
 
 @Injectable({
   providedIn: 'root'
@@ -25,12 +26,9 @@ export class UserService {
   }
 
   getProfile() {
-    const token = this.tokenService.getToken(); // se utilizó antes de inplementar el tokenInterceptor
-    return this.http.get<UserResponse>(`${this.apiUrl}/users/user`, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
+    // const token = this.tokenService.getToken(); // se utilizó antes de inplementar el tokenInterceptor
+    // {headers:{Authorization:`Bearer ${token}`}
+    return this.http.get<UserResponse>(`${this.apiUrl}/users/user`, { context: checkToken() })
     .pipe(
       tap(user => {
         this.user$.next(user)

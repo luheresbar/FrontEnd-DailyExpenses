@@ -16,34 +16,34 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        // canActivate: [ authGuard ],
+        canActivate: [ authGuard ],
         component: TransactionSummaryComponent,
       },
     ],
   },
   {
     path: 'user-profile',
-    // canActivate: [ authGuard ],
+    canActivate: [ authGuard ],
     component: UserProfileComponent,
   },
   {
     path: 'auth/login',
-    // canActivate: [redirectGuard], // TODO (Por medio de programacion modular configurar paths)
+    canActivate: [redirectGuard], // TODO (Por medio de programacion modular configurar paths)
     component: LoginComponent,
   },
   {
     path: 'auth/register',
-    // canActivate: [ redirectGuard ],
+    canActivate: [ redirectGuard ],
     component: RegisterComponent,
   },
   {
     path: 'auth/recovery',
-    // canActivate: [ redirectGuard ],
+    canActivate: [ redirectGuard ],
     component: RecoveryComponent,
   },
   {
     path: 'auth/forgot-password',
-    // canActivate: [ redirectGuard ],
+    canActivate: [ redirectGuard ],
     component: ForgotPasswordComponent,
   },
 ];

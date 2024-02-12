@@ -8,8 +8,19 @@ import { UserService } from '@services/user.service';
   standalone: true,
   imports: [NavbarComponent, RouterOutlet],
   templateUrl: './layout-main.component.html',
-  styleUrl: './layout-main.component.scss'
+  styleUrl: './layout-main.component.scss',
 })
 export class LayoutMainComponent {
+
+
+  constructor(
+    private userService: UserService,
+  ) {}
+  
+    ngOnInit() {
+      this.userService.getProfile().subscribe(profile => {
+        console.log('solicitud layout main');
+      });
+    }
 
 }

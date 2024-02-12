@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { UserService } from '@services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -11,19 +10,5 @@ import { UserService } from '@services/user.service';
 })
 export class AppComponent {
   title = 'FrontEnd-DailyExpenses';
-
-  constructor(
-    private usersService: UserService,
-
-    ) {}
-
-  ngOnInit() {
-    this.usersService.getProfile()
-    .subscribe(res => {
-      console.log(res);
-    });
-
-  }
-
 
 }
