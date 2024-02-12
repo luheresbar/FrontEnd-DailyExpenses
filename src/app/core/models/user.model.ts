@@ -1,4 +1,4 @@
-import { roleDto } from "./roleDto.model";
+import { RoleDto } from "./roleDto.model";
 
 export interface User {
   userId: number;
@@ -6,7 +6,7 @@ export interface User {
   password: string;
   email: string;
   registerDate: string;
-  roles: roleDto[];
+  roles: RoleDto[];
 }
 
 export interface UserResponse extends Omit<User, 'password'> {}

@@ -1,12 +1,16 @@
-<div [ngClass]="color">
+<div [ngClass]="getTransactionTypeClass()">
   <div class="transfer-detail">
     <div class="transfer__info--left">
-      <p class="transfer__description">Cat food mirringo</p>
-      <p class="transfer__date">Thu, 25</p>
+      <p class="transfer__description"> {{ transaction.description }} </p>
+      <p class="transfer__date"> {{ transaction.date }} </p>
     </div>
     <div class="transfer__info--right">
-      <p class="transfer__amount">- $25.000</p>
-      <p class="transfer__category">Cash</p>
+      <p class="transfer__amount"> {{ transaction.amount }} </p>
+      <div class="transfer__accounts">
+        <p class="transfer__account"> {{ transaction.sourceAccountName }} </p>
+        <fa-icon [icon]="faArrowRight" class="icon" *ngIf="transaction.type == 'transfer' "></fa-icon>
+        <p class="transfer__account" *ngIf="transaction.type == 'transfer' "> {{ transaction.destinationAccountName }} </p>
+      </div>
     </div>
   </div>
 </div>

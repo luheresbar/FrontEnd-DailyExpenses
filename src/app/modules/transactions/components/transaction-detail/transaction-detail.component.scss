@@ -10,40 +10,44 @@
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-  
+
     .transfer__info--left,
     .transfer__info--right {
       display: flex;
       flex-direction: column;
       justify-content: center;
-  
+
       .transfer__description {
         font-size: $font-size-medium;
         text-align: start;
       }
-  
+
       .transfer__date {
         font-size: $font-size-small;
         text-align: start;
         padding-inline-start: 1rem;
       }
-  
-      .transfer__amount,
-      .transfer__category {
+
+      .transfer__amount {
         font-size: $font-size-medium;
         text-align: end;
       }
-  
-      .transfer__category,
-      .transfer__date {
-        font-size: $font-size-small;
+
+      .transfer__accounts {
+        display: flex;
+        justify-content: end;
+        padding-inline-end: 0.5rem;
+        .transfer__account {
+          font-size: $font-size-small;
+          margin-inline-start: 0.5rem;
+        }
       }
 
-     .transfer__category {
-      margin-inline-end: 0.5rem;
-     }
+      .icon {
+        margin-inline-start: 0.5rem;
+      }
     }
-  
+
     &:hover {
       background-color: rgba($bg-color, 0.7);
     }
@@ -61,4 +65,3 @@
 .transfer {
   @include format-transaction-detail($transfer-detail);
 }
-

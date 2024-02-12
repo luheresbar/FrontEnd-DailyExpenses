@@ -1,44 +1,9 @@
 <app-transaction-layout>
   <div class="transaction-sumary">
-    <app-transaction-detail color="expense" ></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail color="expense"></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail color="expense"></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail color="transfer"></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
-    <app-transaction-detail></app-transaction-detail>
+    <div *ngFor="let transaction of transactions">
+      <app-transaction-detail [transaction]="transaction"></app-transaction-detail>
+      <!-- //TODO (Implementar virtual scroll CDK) -->
+    </div>
+
   </div>
 </app-transaction-layout>

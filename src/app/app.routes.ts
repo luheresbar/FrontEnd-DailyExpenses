@@ -15,7 +15,7 @@ export const routes: Routes = [
     component: LayoutMainComponent,
     children: [
       {
-        path: '',
+        path: 'transactions',
         canActivate: [ authGuard ],
         component: TransactionSummaryComponent,
       },
