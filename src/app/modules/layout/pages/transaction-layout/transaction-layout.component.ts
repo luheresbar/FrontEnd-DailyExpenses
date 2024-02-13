@@ -10,6 +10,7 @@ import { AccountFilterComponent } from '../../components/account-filter/account-
 import { TransactionSummaryComponent } from '../../../transactions/pages/transaction-summary/transaction-summary.component';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FloatingButtonComponent } from '@shared/components/atoms/floating-button/floating-button.component';
 
 
 @Component({
@@ -24,7 +25,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     SearchInputComponent, 
     AccountFilterComponent,
     TransactionSummaryComponent,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FloatingButtonComponent
   ],
   templateUrl: './transaction-layout.component.html',
   styleUrl: './transaction-layout.component.scss'

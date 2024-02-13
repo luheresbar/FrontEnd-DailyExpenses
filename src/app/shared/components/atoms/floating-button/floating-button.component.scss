@@ -1,0 +1,16 @@
+
+@import "/tokens/_colors";
+@import "/tokens/_typography";
+
+.button--circular {
+  display: grid;
+  place-content: center;
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+  background-color: red;
+  font-size: $font-size-extra-large;
+  cursor: pointer;
+  border: none;
+
+}
