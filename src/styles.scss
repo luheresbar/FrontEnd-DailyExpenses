@@ -8,3 +8,7 @@ body {
   height: 100vh;
 }
 
+// Linea requerida para dialogs y demas
+@import '@angular/cdk/overlay-prebuilt.css';
+
+

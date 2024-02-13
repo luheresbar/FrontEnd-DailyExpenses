@@ -4,7 +4,8 @@
 .btn-basic,
 .btn-primary,
 .btn-secondary,
-.btn-logout {
+.btn-logout,
+.btn-floating-menu {
   width: 100%;
   cursor: pointer;
   border: none;
@@ -47,4 +48,11 @@
     color: $white;
     border: 0.1rem solid $warning-action;
   }
+}
+
+.btn-floating-menu {
+  background-color: transparent;
+  border: none;
+  height: 4rem;
+
 }

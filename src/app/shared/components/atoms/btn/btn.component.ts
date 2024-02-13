@@ -15,7 +15,7 @@ export class BtnComponent {
   @Input() disabled = false;
   @Input() loading = false;
   @Input() typeBtn: 'reset' | 'submit' | 'button' = 'button';
-  @Input() color: 'btn-basic' | 'btn-primary' | 'btn-secondary' | 'btn-logout' | 'btn-danger' = 'btn-basic';
+  @Input() color: 'btn-basic' | 'btn-primary' | 'btn-secondary' | 'btn-logout' | 'btn-danger' | 'btn-floating-menu'= 'btn-basic';
 
   faSpinner = faSpinner;
 

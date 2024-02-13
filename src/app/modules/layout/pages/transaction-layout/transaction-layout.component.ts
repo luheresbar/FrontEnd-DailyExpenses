@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 import { HeaderbarComponent } from '../../components/headerbar/headerbar.component';
 import { DateFilterComponent } from '../../components/date-filter/date-filter.component';
@@ -11,32 +12,33 @@ import { TransactionSummaryComponent } from '../../../transactions/pages/transac
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FloatingButtonComponent } from '@shared/components/atoms/floating-button/floating-button.component';
-
+import { FloatingMenuComponent } from '@shared/components/floating-menu/floating-menu.component';
 
 @Component({
   selector: 'app-transaction-layout',
   standalone: true,
   imports: [
-    CommonModule, 
-    HeaderbarComponent, 
-    DateFilterComponent, 
-    TransactionFilterComponent, 
-    NavbarComponent, 
-    SearchInputComponent, 
+    CommonModule,
+    HeaderbarComponent,
+    DateFilterComponent,
+    TransactionFilterComponent,
+    NavbarComponent,
+    SearchInputComponent,
     AccountFilterComponent,
     TransactionSummaryComponent,
     FontAwesomeModule,
-    FloatingButtonComponent
+    FloatingButtonComponent,
+    OverlayModule,
+    FloatingMenuComponent,
   ],
   templateUrl: './transaction-layout.component.html',
-  styleUrl: './transaction-layout.component.scss'
+  styleUrl: './transaction-layout.component.scss',
 })
 export class TransactionLayoutComponent {
-
   faPlus = faPlus;
+  isOpenOverlayFloatingMenu = false;
 
-
-  constructor() {}
-
+  constructor(
+  ) {}
 
 }

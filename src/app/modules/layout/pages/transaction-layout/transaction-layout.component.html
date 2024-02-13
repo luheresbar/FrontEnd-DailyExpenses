@@ -26,6 +26,26 @@
     <ng-content></ng-content>
   </div>
   <div class="transaction__floating-button">
-    <app-floating-button></app-floating-button>
+    <app-floating-button
+      (click)="isOpenOverlayFloatingMenu = !isOpenOverlayFloatingMenu"
+      cdkOverlayOrigin
+      #OverlayFloatingMenu="cdkOverlayOrigin"
+      type="button"
+      aria-expanded="false"
+      aria-haspopup="true"
+    ></app-floating-button>
   </div>
 </div>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="OverlayFloatingMenu"
+  [cdkConnectedOverlayOpen]="isOpenOverlayFloatingMenu"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  (backdropClick)="isOpenOverlayFloatingMenu = false"
+  (detach)="isOpenOverlayFloatingMenu = false"
+>
+<div>
+  <app-floating-menu></app-floating-menu>
+</div>
+</ng-template>
