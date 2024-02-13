@@ -44,7 +44,29 @@
     &::-webkit-scrollbar {
       display: none;
     }
+
   }
+
+  .transaction__floating-button {
+    grid-area: 4 / 9 / 5 / 13;
+    align-self: end;
+    justify-self: end;
+    margin-block-end: 2rem;
+    margin-inline-end: 2rem;
+    .button--circular {
+      display: grid;
+      place-content: center;
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      background-color: red;
+      font-size: $font-size-extra-large;
+      cursor: pointer;
+      border: none;
+
+    }
+  }
+
   .account-filter {
     display: none;
   }
