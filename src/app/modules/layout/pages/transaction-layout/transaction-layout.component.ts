@@ -6,11 +6,21 @@ import { TransactionFilterComponent } from '../../components/transaction-filter/
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { SearchInputComponent } from '../../../../shared/components/atoms/search-input/search-input.component';
 import { AccountFilterComponent } from '../../components/account-filter/account-filter.component';
+import { TransactionSummaryComponent } from '../../../transactions/pages/transaction-summary/transaction-summary.component';
 
 @Component({
   selector: 'app-transaction-layout',
   standalone: true,
-  imports: [CommonModule, HeaderbarComponent, DateFilterComponent, TransactionFilterComponent, NavbarComponent, SearchInputComponent, AccountFilterComponent],
+  imports: [
+    CommonModule, 
+    HeaderbarComponent, 
+    DateFilterComponent, 
+    TransactionFilterComponent, 
+    NavbarComponent, 
+    SearchInputComponent, 
+    AccountFilterComponent,
+    TransactionSummaryComponent
+  ],
   templateUrl: './transaction-layout.component.html',
   styleUrl: './transaction-layout.component.scss'
 })
