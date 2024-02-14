@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-// import { DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -18,13 +18,13 @@ import { FormValidationMessageComponent } from '@shared/components/atoms/form-va
     ReactiveFormsModule,
     FormValidationMessageComponent,
     BtnComponent,
-    // DatePipe
+    DatePipe
   ],
   templateUrl: './transaction-form.component.html',
   styleUrl: './transaction-form.component.scss',
 })
 export class TransactionFormComponent {
-  currentDate = new Date().toISOString();
+  currentDate = new Date().toISOString().split('T')[0];
   statusCreateRegister: RequestStatus = 'init';
 
   form = this.formBuilder.nonNullable.group({
@@ -48,7 +48,6 @@ export class TransactionFormComponent {
     // private categoryServices: CategoryService,
     private expenseService: ExpenseService,
     private router: Router,
-    // private datePipe: DatePipe,
 
   ) {}
 
@@ -58,15 +57,28 @@ export class TransactionFormComponent {
 
       const { description, amount, sourceAccount, category, date } =
         this.form.getRawValue();
+        
+        let formattedDate: string | null = '';
 
-        // const formattedDate = this.datePipe.transform(date, 'yyyy-MM-ddTHH:mm:ss.SSSSSS');
+        const dateNow = new Date();
+        if (date === this.currentDate ) {
+          formattedDate = new DatePipe('en-US').transform(
+            dateNow,
+            'yyyy-MM-ddTHH:mm:ss.SSS'
+          );
+        } else {
+          formattedDate = new DatePipe('en-US').transform(
+            date,
+            'yyyy-MM-ddTHH:mm:ss.SSS'
+          );
+        }
 
       const expenseValue = parseFloat(amount);
 
       const expenseDto: ExpenseDto = {
         expense: expenseValue,
         description: description,
-        expenseDate: date,
+        expenseDate: formattedDate,
         accountName: sourceAccount,
         categoryName: category,
       };
