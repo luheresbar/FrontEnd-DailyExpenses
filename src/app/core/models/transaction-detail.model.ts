@@ -1,4 +1,5 @@
 export interface TransactionDetail {
+  id: number;
   type: string;
   description: string;
   date: string;
@@ -11,4 +12,12 @@ export interface TransactionDetail {
 export interface SummaryTransaction {
   transactionDetails: TransactionDetail[],
   totalTransactions: number
+}
+
+export interface ExpenseDto {
+  expense: number;
+  description: string;
+  expenseDate: string | null;
+  accountName: string;
+  categoryName: string;
 }

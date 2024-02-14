@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
 
 import { HeaderbarComponent } from '../../components/headerbar/headerbar.component';
@@ -13,6 +13,8 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FloatingButtonComponent } from '@shared/components/atoms/floating-button/floating-button.component';
 import { FloatingMenuComponent } from '@shared/components/floating-menu/floating-menu.component';
+import { OverlayService } from '@services/overlay.service';
+import { DialogNewRegisterComponent } from '@shared/components/dialog-new-register/dialog-new-register.component';
 
 @Component({
   selector: 'app-transaction-layout',
@@ -30,15 +32,28 @@ import { FloatingMenuComponent } from '@shared/components/floating-menu/floating
     FloatingButtonComponent,
     OverlayModule,
     FloatingMenuComponent,
+    DialogNewRegisterComponent
   ],
   templateUrl: './transaction-layout.component.html',
   styleUrl: './transaction-layout.component.scss',
 })
 export class TransactionLayoutComponent {
   faPlus = faPlus;
-  isOpenOverlayFloatingMenu = false;
+  isOpenOverlayFloatingMenu$: boolean = false;
+
+  fromChild(event: string) {
+    
+  }
+
 
   constructor(
+    private overlayService: OverlayService,
   ) {}
+
+  ngOnInit() {
+    this.overlayService.isOpenOverlayFloatingMenu$.subscribe(value => {
+      this.isOpenOverlayFloatingMenu$ == value
+    })
+  }
 
 }

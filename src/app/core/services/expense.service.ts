@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { AccountService } from './account.service';
 import { checkToken } from '@interceptors/token.interceptor';
-import { SummaryTransaction, TransactionDetail } from '@models/transaction-detail.model';
+import { ExpenseDto, SummaryTransaction, TransactionDetail } from '@models/transaction-detail.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +33,16 @@ export class ExpenseService {
         this.totalExpense$.next(expenses.totalTransactions);
       })
     );
-    
+  }
+
+  createExpense(expense: ExpenseDto) {
+    return this.http
+      .post<TransactionDetail>(`${this.apiUrl}/expenses/create`, expense, {
+        context: checkToken(),
+      })
+      .pipe(
+        switchMap(() => this.getExpenses()),
+        // switchMap(() => this.accountservice.getAccounts())
+      );
   }
 }

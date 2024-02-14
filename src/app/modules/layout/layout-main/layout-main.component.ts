@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavbarComponent } from '../components/navbar/navbar.component';
 import { RouterOutlet } from '@angular/router';
 import { UserService } from '@services/user.service';
-import { TransactionService } from '@services/transaction.service';
 
 @Component({
   selector: 'app-layout-main',

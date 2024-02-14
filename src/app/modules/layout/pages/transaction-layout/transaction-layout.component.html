@@ -27,7 +27,7 @@
   </div>
   <div class="transaction__floating-button">
     <app-floating-button
-      (click)="isOpenOverlayFloatingMenu = !isOpenOverlayFloatingMenu"
+      (click)="isOpenOverlayFloatingMenu$ = !isOpenOverlayFloatingMenu$"
       cdkOverlayOrigin
       #OverlayFloatingMenu="cdkOverlayOrigin"
       type="button"
@@ -40,12 +40,13 @@
 <ng-template
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="OverlayFloatingMenu"
-  [cdkConnectedOverlayOpen]="isOpenOverlayFloatingMenu"
+  [cdkConnectedOverlayOpen]="isOpenOverlayFloatingMenu$"
   [cdkConnectedOverlayHasBackdrop]="true"
-  (backdropClick)="isOpenOverlayFloatingMenu = false"
-  (detach)="isOpenOverlayFloatingMenu = false"
+  (backdropClick)="isOpenOverlayFloatingMenu$ = false"
+  (detach)="isOpenOverlayFloatingMenu$ = false"
 >
 <div>
   <app-floating-menu></app-floating-menu>
 </div>
 </ng-template>
+

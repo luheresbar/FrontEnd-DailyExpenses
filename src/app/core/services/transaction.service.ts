@@ -23,8 +23,6 @@ export class TransactionService {
     .pipe(
       tap(transactions => {
         this.transactions$.next(transactions)
-        console.log(transactions);
-        
       })
     )
   }

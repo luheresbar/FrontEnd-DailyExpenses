@@ -1,0 +1,112 @@
+<div class="transaction-form">
+  <h1 class="form__register--title">New Transaction Register</h1>
+  <form
+    class="form__transaction"
+    [formGroup]="form"
+    novalidate
+    (ngSubmit)="createNewRegiste()"
+  >
+    
+    <div>
+      <div class="form__amount">
+        <label class="form__label" for="amount">Amount</label>
+        <input
+          class="input--text"
+          formControlName="amount"
+          placeholder="Enter amount"
+          type="number"
+          name="amount"
+          id="amount"
+        />
+      </div>
+      <div *ngIf="form.controls.amount.touched && form.controls.amount.invalid">
+        <app-form-validation-message
+          class="form__validation-message"
+          *ngIf="form.controls.amount.hasError('required')"
+        >
+          This field is mandatory
+        </app-form-validation-message>
+      </div>
+    </div>
+
+    <div>
+      <div class="form__source-account">
+        <label class="form__label" for="source-account">Source account name</label>
+        <input
+          class="input--text"
+          formControlName="sourceAccount"
+          placeholder="Enter source account"
+          type="text"
+          name="source-account"
+          id="source-account"
+        />
+      </div>
+    </div>
+
+    <div>
+      <div class="form__destination-account">
+        <label class="form__label" for="destination-account">Destination account name</label>
+        <input
+          class="input--text"
+          formControlName="destinationAccount"
+          placeholder="Enter destination account"
+          type="text"
+          name="destination-account"
+          id="destination-account"
+        />
+      </div>
+    </div>
+
+    <div>
+      <div class="form__category">
+        <label class="form__label" for="category">Category</label>
+        <input
+          class="input--text"
+          formControlName="category"
+          placeholder="Enter category"
+          type="text"
+          name="category"
+          id="category"
+        />
+      </div>
+    </div>
+
+    <div>
+      <div class="form__description">
+        <label class="form__label" for="description">Description</label>
+        <input
+          class="input--text"
+          formControlName="description"
+          placeholder="Enter description"
+          type="text"
+          name="description"
+          id="description"
+        />
+      </div>
+    </div>
+
+    <div>
+      <div class="form__date">
+        <label class="form__label" for="date">Date</label>
+        <input
+          class="input--text"
+          formControlName="date"
+          placeholder="Enter date"
+          type="date"
+          name="date"
+          id="date"
+        />
+      </div>
+    </div>
+
+    
+    <div class="form__btn">
+      <app-btn
+        typeBtn="submit"
+        color="btn-primary"
+        [loading]="status === 'loading'"
+        >Create</app-btn
+      >
+    </div>
+  </form>
+</div>
