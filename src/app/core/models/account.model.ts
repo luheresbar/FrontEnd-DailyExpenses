@@ -5,10 +5,10 @@ export interface Account {
   available: boolean
 }
 
-export interface SummaryAccounts {
+export interface SummaryAccountsDto {
   accounts: Account[],
   totalAvailableMoney: number
 }
 
 
-export interface AccountDTO extends Omit<Account, 'userId' | 'availableMoney' | 'available'> {}
+// export interface AccountDTO extends Omit<Account, 'userId' | 'availableMoney' | 'available'> {}
