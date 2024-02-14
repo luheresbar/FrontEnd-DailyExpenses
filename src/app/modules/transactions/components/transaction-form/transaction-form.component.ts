@@ -68,8 +68,11 @@ export class TransactionFormComponent {
     private expenseService: ExpenseService,
     private expenseCategoryService: ExpenseCategoryService,
     private accountService: AccountService,
-    private router: Router
-  ) {}
+    private router: Router,
+    // private datePipe: DatePipe
+  ) {
+    // this.currentDate = this.datePipe.transform(this.now, 'yyyy-MM-dd'); TODO(optimizar la gestion de la fecha)
+  }
 
   ngOnInit() {
     this.expenseCategoryService.categories$.subscribe((categories) => {
@@ -86,6 +89,7 @@ export class TransactionFormComponent {
 
       this.getOthersExpenseCategory();
       this.getChashAccount();
+
     } else {
       this.fillForm();
       this.disableForm();
@@ -146,10 +150,12 @@ export class TransactionFormComponent {
   fillForm() {
     this.form.controls.type.setValue(this.transactionDetail.type);
     let amountValue = this.transactionDetail.amount.toString();
+
     this.form.controls.amount.setValue(amountValue);
     this.form.controls.sourceAccount.setValue(
       this.transactionDetail.sourceAccountName
     );
+
     this.form.controls.destinationAccount.setValue(
       this.transactionDetail.destinationAccountName
     );
@@ -199,19 +205,16 @@ export class TransactionFormComponent {
     this.editMode = false;
   }
 
-  getOthersExpenseCategory() {
+  extractOthersExpenseCategory() {
     if (this.expenseCategories$ && this.expenseCategories$.length > 0) {
       const othersCategoryIndex = this.expenseCategories$.findIndex(
         (category) => category.categoryName === 'Others'
       );
 
       if (othersCategoryIndex !== -1) {
+        //Crear objeto OthersExpenseCategory
         this.othersExpenseCategory =
           this.expenseCategories$[othersCategoryIndex];
-        //Asignar por defecto categoría Others al form
-        this.form.controls.category.setValue(
-          this.othersExpenseCategory.categoryName
-        );
         // Crear un nuevo arreglo que excluya el objeto con categoryName igual a "Others"
         this.expenseCategories$ = this.expenseCategories$.filter(
           (category, index) => index !== othersCategoryIndex
@@ -223,26 +226,50 @@ export class TransactionFormComponent {
       }
     }
   }
-  getChashAccount() {
+
+  assignCategoryToForm() {
+    if (
+      this.othersExpenseCategory) {
+      this.form.controls.category.setValue(
+        this.othersExpenseCategory.categoryName
+      );
+    }
+  }
+
+  getOthersExpenseCategory() {
+    this.extractOthersExpenseCategory();
+    this.assignCategoryToForm();
+  }
+
+  extractCashAccount() {
     if (this.accounts$ && this.accounts$.length > 0) {
       const cashAccountIndex = this.accounts$.findIndex(
         (account) => account.accountName === 'Cash'
       );
+
       if (cashAccountIndex !== -1) {
+        // Asignar objeto cashAccount
         this.cashAccount = this.accounts$[cashAccountIndex];
-        //Asignar por defecto account Cash al form
-        this.form.controls.sourceAccount.setValue(
-          this.cashAccount.accountName
-        );
-        // Crear un nuevo arreglo que excluya el objeto con categoryName igual a "Others"
+        // Asignar por defecto account Cash al form
+        this.form.controls.sourceAccount.setValue(this.cashAccount.accountName);
+        // Crear un nuevo arreglo que excluya el objeto con accountName igual a "Cash"
         this.accounts$ = this.accounts$.filter(
-          (category, index) => index !== cashAccountIndex
+          (_, index) => index !== cashAccountIndex
         );
       } else {
-        console.log(
-          "No category was found with categoryName equal to 'Others'."
-        );
+        console.log("No account was found with accountName equal to 'Cash'.");
       }
     }
+  }
+
+  assignCashAccountToForm() {
+    if (this.cashAccount) {
+      this.form.controls.sourceAccount.setValue(this.cashAccount.accountName);
+    }
+  }
+
+  getChashAccount() {
+    this.extractCashAccount();
+    this.assignCashAccountToForm();
   }
 }

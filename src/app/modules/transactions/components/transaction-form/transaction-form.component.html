@@ -40,15 +40,21 @@
           name="sourceAccount"
           id="sourceAccount"
           formControlName="sourceAccount"
-
         >
-        <option selected >
-          {{ cashAccount.accountName }}
-        </option>
-        <option *ngFor="let account of accounts$">
-          {{ account.accountName }}
-        </option>
-      </select>
+          <option selected *ngIf="this.transactionDetail.date === ''">
+            {{ cashAccount.accountName }}
+          </option>
+          <option
+            *ngFor="let account of accounts$"
+            [ngValue]="account.accountName"
+            [selected]="transactionDetail.date === ''
+            ? account.accountName === 'Cash'
+            : account.accountName === transactionDetail.sourceAccountName
+            "
+          >
+            {{ account.accountName }}
+          </option>
+        </select>
       </div>
     </div>
 
@@ -58,15 +64,15 @@
           >Destination account</label
         >
         <select
-        class="input--text"
-        name="sourceAccount"
-        id="sourceAccount"
-        formControlName="destinationAccount"
-      >
-      <option *ngFor="let account of accounts$">
-        {{ account.accountName }}
-      </option>
-    </select>
+          class="input--text"
+          name="sourceAccount"
+          id="sourceAccount"
+          formControlName="destinationAccount"
+        >
+          <option *ngFor="let account of accounts$">
+            {{ account.accountName }}
+          </option>
+        </select>
       </div>
     </div>
 
@@ -79,13 +85,21 @@
           id="category"
           formControlName="category"
         >
-        <option selected >
-          {{ othersExpenseCategory.categoryName }}
-        </option>
-        <option *ngFor="let category of expenseCategories$">
-          {{ category.categoryName }}
-        </option>
-      </select>
+          <option selected *ngIf="transactionDetail.date === ''">
+            {{ othersExpenseCategory.categoryName }}
+          </option>
+          <option
+            *ngFor="let category of expenseCategories$"
+            [ngValue]="category.categoryName"
+            [selected]="
+              transactionDetail.date === ''
+                ? category.categoryName === 'Others'
+                : category.categoryName === transactionDetail.category
+            "
+          >
+            {{ category.categoryName }}
+          </option>
+        </select>
       </div>
     </div>
 
