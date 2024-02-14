@@ -37,9 +37,7 @@ export class TransactionFormComponent {
   editMode: boolean = false;
   createMode: boolean = true;
   expenseCategories$: Category[] | null = null;
-  othersExpenseCategory!: Category;
   accounts$: Account[] | null = null;
-  cashAccount!: Account;
 
   //Date
   now = new Date();
@@ -68,9 +66,9 @@ export class TransactionFormComponent {
     private expenseService: ExpenseService,
     private expenseCategoryService: ExpenseCategoryService,
     private accountService: AccountService,
-    private router: Router,
-    // private datePipe: DatePipe
-  ) {
+    private router: Router
+  ) // private datePipe: DatePipe
+  {
     // this.currentDate = this.datePipe.transform(this.now, 'yyyy-MM-dd'); TODO(optimizar la gestion de la fecha)
   }
 
@@ -86,10 +84,7 @@ export class TransactionFormComponent {
       this.viewMode = false;
       this.createMode = true;
       this.editMode = false;
-
-      this.getOthersExpenseCategory();
-      this.getChashAccount();
-
+      this.fillFormDefault()
     } else {
       this.fillForm();
       this.disableForm();
@@ -145,6 +140,11 @@ export class TransactionFormComponent {
     } else {
       this.form.markAllAsTouched();
     }
+  }
+
+  fillFormDefault() {
+    this.form.controls.sourceAccount.setValue('Cash');
+    this.form.controls.category.setValue('Others');
   }
 
   fillForm() {
@@ -203,73 +203,5 @@ export class TransactionFormComponent {
     this.viewMode = true;
     this.createMode = false;
     this.editMode = false;
-  }
-
-  extractOthersExpenseCategory() {
-    if (this.expenseCategories$ && this.expenseCategories$.length > 0) {
-      const othersCategoryIndex = this.expenseCategories$.findIndex(
-        (category) => category.categoryName === 'Others'
-      );
-
-      if (othersCategoryIndex !== -1) {
-        //Crear objeto OthersExpenseCategory
-        this.othersExpenseCategory =
-          this.expenseCategories$[othersCategoryIndex];
-        // Crear un nuevo arreglo que excluya el objeto con categoryName igual a "Others"
-        this.expenseCategories$ = this.expenseCategories$.filter(
-          (category, index) => index !== othersCategoryIndex
-        );
-      } else {
-        console.log(
-          "No category was found with categoryName equal to 'Others'."
-        );
-      }
-    }
-  }
-
-  assignCategoryToForm() {
-    if (
-      this.othersExpenseCategory) {
-      this.form.controls.category.setValue(
-        this.othersExpenseCategory.categoryName
-      );
-    }
-  }
-
-  getOthersExpenseCategory() {
-    this.extractOthersExpenseCategory();
-    this.assignCategoryToForm();
-  }
-
-  extractCashAccount() {
-    if (this.accounts$ && this.accounts$.length > 0) {
-      const cashAccountIndex = this.accounts$.findIndex(
-        (account) => account.accountName === 'Cash'
-      );
-
-      if (cashAccountIndex !== -1) {
-        // Asignar objeto cashAccount
-        this.cashAccount = this.accounts$[cashAccountIndex];
-        // Asignar por defecto account Cash al form
-        this.form.controls.sourceAccount.setValue(this.cashAccount.accountName);
-        // Crear un nuevo arreglo que excluya el objeto con accountName igual a "Cash"
-        this.accounts$ = this.accounts$.filter(
-          (_, index) => index !== cashAccountIndex
-        );
-      } else {
-        console.log("No account was found with accountName equal to 'Cash'.");
-      }
-    }
-  }
-
-  assignCashAccountToForm() {
-    if (this.cashAccount) {
-      this.form.controls.sourceAccount.setValue(this.cashAccount.accountName);
-    }
-  }
-
-  getChashAccount() {
-    this.extractCashAccount();
-    this.assignCashAccountToForm();
   }
 }

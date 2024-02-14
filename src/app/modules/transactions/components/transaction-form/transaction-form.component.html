@@ -41,9 +41,6 @@
           id="sourceAccount"
           formControlName="sourceAccount"
         >
-          <option selected *ngIf="this.transactionDetail.date === ''">
-            {{ cashAccount.accountName }}
-          </option>
           <option
             *ngFor="let account of accounts$"
             [ngValue]="account.accountName"
@@ -85,9 +82,6 @@
           id="category"
           formControlName="category"
         >
-          <option selected *ngIf="transactionDetail.date === ''">
-            {{ othersExpenseCategory.categoryName }}
-          </option>
           <option
             *ngFor="let category of expenseCategories$"
             [ngValue]="category.categoryName"
