@@ -1,4 +1,4 @@
-import { Component, Output } from '@angular/core';
+import { Component, Output, signal } from '@angular/core';
 import {DialogModule, Dialog} from '@angular/cdk/dialog';
 
 import { BtnComponent } from '../atoms/btn/btn.component';
@@ -15,6 +15,8 @@ import { OverlayService } from '@services/overlay.service';
 })
 export class FloatingMenuComponent {
 
+  transactionType = '';
+
   constructor(
     private dialog: Dialog,
     private overlayService: OverlayService,
@@ -26,10 +28,22 @@ export class FloatingMenuComponent {
       width: '100%',
       height: '100vh',
       autoFocus: false,
-      data: {},
+      data: {
+        type: this.transactionType,
+        id: 0,
+        description: '',
+        date: '',
+        amount: 0,
+        category: '',
+        sourceAccountName: '',
+        destinationAccountName: '',
+      },
     });
   }
 
+  assingTransactionType(type: string) {
+    this.transactionType = type;
+  }
 
 
 }

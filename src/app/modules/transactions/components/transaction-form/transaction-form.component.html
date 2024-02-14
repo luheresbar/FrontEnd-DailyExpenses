@@ -6,7 +6,6 @@
     novalidate
     (ngSubmit)="createNewRegiste()"
   >
-    
     <div>
       <div class="form__amount">
         <label class="form__label" for="amount">Amount</label>
@@ -31,11 +30,21 @@
 
     <div>
       <div class="form__source-account">
-        <label class="form__label" for="sourceAccount">Source account name</label>
+        <label class="form__label" for="sourceAccount">
+          {{
+            transactionDetail.type != "transfer"
+              ? "Account"
+              : "Source account"
+          }}
+        </label>
         <input
           class="input--text"
           formControlName="sourceAccount"
-          placeholder="Enter source account"
+          placeholder="{{
+            transactionDetail.type != 'transfer'
+              ? 'Enter Account'
+              : 'Enter source account'
+          }}"
           type="text"
           name="source-account"
           id="source-account"
@@ -43,9 +52,11 @@
       </div>
     </div>
 
-    <div>
+    <div *ngIf="transactionDetail.type === 'transfer'">
       <div class="form__destination-account">
-        <label class="form__label" for="destination-account">Destination account name</label>
+        <label class="form__label" for="destination-account"
+          >Destination account</label
+        >
         <input
           class="input--text"
           formControlName="destinationAccount"
@@ -99,13 +110,31 @@
       </div>
     </div>
 
-    
-    <div class="form__btn">
+    <div class="form__btn" *ngIf="createMode">
       <app-btn
         typeBtn="submit"
         color="btn-primary"
         [loading]="statusCreateRegister === 'loading'"
         >Create</app-btn
+      >
+    </div>
+
+    <div class="form__btn" *ngIf="editMode">
+      <app-btn
+        typeBtn="submit"
+        color="btn-primary"
+        [loading]="statusCreateRegister === 'loading'"
+        >Save</app-btn
+      >
+    </div>
+
+    <div class="form__btn" *ngIf="viewMode">
+      <app-btn
+        typeBtn="button"
+        color="btn-secondary"
+        (click)="enableForm()"
+        [loading]="statusCreateRegister === 'loading'"
+        >Edit</app-btn
       >
     </div>
   </form>

@@ -1,5 +1,5 @@
 <div [ngClass]="getTransactionTypeClass()">
-  <div class="transfer-detail">
+  <div class="transfer-detail" (click)="openDialogViewTransaction()">
     <div class="transfer__info--left">
       <p class="transfer__description"> {{ transaction.description }} </p>
       <p class="transfer__date"> {{ transaction.date }} </p>
