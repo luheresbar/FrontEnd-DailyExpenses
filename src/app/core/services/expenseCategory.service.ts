@@ -18,7 +18,7 @@ export class ExpenseCategoryService {
 
   ) { }
 
-  getCategories() {
+  getExpenseCategories() {
       return this.http.get<Category[]>(`${this.apiUrl}/expense-categories`,  { context: checkToken() })
       .pipe(
         tap(categories => {

@@ -12,6 +12,8 @@ import {
 import { ExpenseService } from '@services/expense.service';
 import { BtnComponent } from '@shared/components/atoms/btn/btn.component';
 import { FormValidationMessageComponent } from '@shared/components/atoms/form-validation-message/form-validation-message.component';
+import { ExpenseCategoryService } from '@services/expenseCategory.service';
+import { AccountService } from '@services/account.service';
 
 @Component({
   selector: 'app-transaction-form',
@@ -58,10 +60,22 @@ export class TransactionFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private expenseService: ExpenseService,
-    private router: Router
-  ) {}
+    private expenseCategoryService: ExpenseCategoryService,
+    private accountService: AccountService,
+    private router: Router,
+
+  ) {
+
+  }
 
   ngOnInit() {
+    this.expenseCategoryService.categories$.subscribe(categories => {
+      console.log(categories);
+    })
+    this.accountService.accounts$.subscribe(accounts => {
+      console.log(accounts);
+    })
+
     if (this.transactionDetail.date === "") {
       this.viewMode = false;
       this.createMode = true;
