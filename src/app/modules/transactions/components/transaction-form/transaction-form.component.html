@@ -32,23 +32,21 @@
       <div class="form__source-account">
         <label class="form__label" for="sourceAccount">
           {{
-            transactionDetail.type != "transfer"
-              ? "Account"
-              : "Source account"
+            transactionDetail.type != "transfer" ? "Account" : "Source account"
           }}
         </label>
-        <input
+        <select
           class="input--text"
-          formControlName="sourceAccount"
-          placeholder="{{
-            transactionDetail.type != 'transfer'
-              ? 'Enter Account'
-              : 'Enter source account'
-          }}"
-          type="text"
-          name="source-account"
-          id="source-account"
-        />
+          name="sourceAccount"
+          id="sourceAccount"
+        >
+        <option>
+          {{ cashAccount.accountName }}
+        </option>
+        <option *ngFor="let account of accounts$">
+          {{ account.accountName }}
+        </option>
+      </select>
       </div>
     </div>
 
@@ -57,28 +55,33 @@
         <label class="form__label" for="destination-account"
           >Destination account</label
         >
-        <input
-          class="input--text"
-          formControlName="destinationAccount"
-          placeholder="Enter destination account"
-          type="text"
-          name="destination-account"
-          id="destination-account"
-        />
+        <select
+        class="input--text"
+        name="sourceAccount"
+        id="sourceAccount"
+      >
+      <option *ngFor="let account of accounts$">
+        {{ account.accountName }}
+      </option>
+    </select>
       </div>
     </div>
 
     <div>
       <div class="form__category">
         <label class="form__label" for="category">Category</label>
-        <input
+        <select
           class="input--text"
-          formControlName="category"
-          placeholder="Enter category"
-          type="text"
-          name="category"
-          id="category"
-        />
+          name="sourceAccount"
+          id="sourceAccount"
+        >
+        <option>
+          {{ othersExpenseCategory.categoryName }}
+        </option>
+        <option *ngFor="let category of expenseCategories$">
+          {{ category.categoryName }}
+        </option>
+      </select>
       </div>
     </div>
 

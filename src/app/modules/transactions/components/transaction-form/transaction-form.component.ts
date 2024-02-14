@@ -14,6 +14,9 @@ import { BtnComponent } from '@shared/components/atoms/btn/btn.component';
 import { FormValidationMessageComponent } from '@shared/components/atoms/form-validation-message/form-validation-message.component';
 import { ExpenseCategoryService } from '@services/expenseCategory.service';
 import { AccountService } from '@services/account.service';
+import { Category } from '@models/category.model';
+import { Account } from '@models/account.model';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-transaction-form',
@@ -34,6 +37,10 @@ export class TransactionFormComponent {
   viewMode: boolean = false;
   editMode: boolean = false;
   createMode: boolean = true;
+  expenseCategories$: Category[] | null = null;
+  othersExpenseCategory!: Category;
+  accounts$: Account[] | null = null;
+  cashAccount!: Account;
 
   //Date
   now = new Date();
@@ -62,27 +69,28 @@ export class TransactionFormComponent {
     private expenseService: ExpenseService,
     private expenseCategoryService: ExpenseCategoryService,
     private accountService: AccountService,
-    private router: Router,
-
-  ) {
-
-  }
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.expenseCategoryService.categories$.subscribe(categories => {
-      console.log(categories);
-    })
-    this.accountService.accounts$.subscribe(accounts => {
-      console.log(accounts);
-    })
+    this.expenseCategoryService.categories$.subscribe((categories) => {
+      this.expenseCategories$ = categories;
+    });
+    this.accountService.accounts$.subscribe((accounts) => {
+      this.accounts$ = accounts;
+    });
 
-    if (this.transactionDetail.date === "") {
+    if (this.transactionDetail.date === '') {
       this.viewMode = false;
       this.createMode = true;
       this.editMode = false;
+
+      this.getOthersExpenseCategory();
+      this.getChashAccount();
+      
     } else {
       this.fillForm();
-      this.disableForm(); 
+      this.disableForm();
     }
   }
 
@@ -191,5 +199,64 @@ export class TransactionFormComponent {
     this.editMode = false;
   }
 
+  getOthersExpenseCategory() {
+    if (this.expenseCategories$ && this.expenseCategories$.length > 0) {
+      const othersCategoryIndex = this.expenseCategories$.findIndex(
+        (category) => category.categoryName === 'Others'
+      );
 
+      if (othersCategoryIndex !== -1) {
+        this.othersExpenseCategory = this.expenseCategories$[othersCategoryIndex];
+        // Crear un nuevo arreglo que excluya el objeto con categoryName igual a "Others"
+        this.expenseCategories$ = this.expenseCategories$.filter(
+          (category, index) => index !== othersCategoryIndex
+        );
+      } else {
+        console.log(
+          "No category was found with categoryName equal to 'Others'."
+        );
+      }
+    }
+
+  }
+  getChashAccount() {
+    if (this.accounts$ && this.accounts$.length > 0) {
+      const cashAccountIndex = this.accounts$.findIndex(
+        (account) => account.accountName === 'Cash'
+      );
+      if (cashAccountIndex !== -1) {
+        this.cashAccount = this.accounts$[cashAccountIndex];
+        // Crear un nuevo arreglo que excluya el objeto con categoryName igual a "Others"
+        this.accounts$ = this.accounts$.filter(
+          (category, index) => index !== cashAccountIndex
+        );
+      } else {
+        console.log(
+          "No category was found with categoryName equal to 'Others'."
+        );
+      }
+    }
+  }
+
+  // fillDefaultForm() {
+  //   if (this.expenseCategories$ && this.expenseCategories$.length === 0) {
+  //     const othersCategoryIndex = this.expenseCategories$.findIndex(
+  //       (category) => category.categoryName === 'Others'
+  //     );
+  //     if (othersCategoryIndex !== -1) {
+  //       const othersCategory = this.expenseCategories$[othersCategoryIndex];
+  //       // Crear un nuevo arreglo que excluya el objeto con categoryName igual a "Others"
+  //       this.expenseCategories$ = this.expenseCategories$.filter(
+  //         (category, index) => index !== othersCategoryIndex
+  //       );
+
+  //       console.log(othersCategory); // Objeto extraído con categoryName igual a "Others"
+  //       console.log(this.expenseCategories$); // Arreglo categories$ sin el objeto eliminado
+  //     } else {
+  //       console.log(
+  //         "No category was found with categoryName equal to 'Others'."
+  //       );
+  //     }
+  //   }
+  // }
 }
