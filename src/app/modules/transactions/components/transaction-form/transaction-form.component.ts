@@ -24,7 +24,13 @@ import { FormValidationMessageComponent } from '@shared/components/atoms/form-va
   styleUrl: './transaction-form.component.scss',
 })
 export class TransactionFormComponent {
-  currentDate = new Date().toISOString().split('T')[0];
+
+  now = new Date();
+  year = this.now.getFullYear();
+  month = String(this.now.getMonth() + 1).padStart(2, '0');
+  day = String(this.now.getDate()).padStart(2, '0');
+  currentDate = `${this.year}-${this.month}-${this.day}`;
+  
   statusCreateRegister: RequestStatus = 'init';
 
   form = this.formBuilder.nonNullable.group({
@@ -44,12 +50,13 @@ export class TransactionFormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    // private accountService: AccountService,
-    // private categoryServices: CategoryService,
     private expenseService: ExpenseService,
     private router: Router,
 
-  ) {}
+  ) {
+    console.log(this.currentDate);
+
+  }
 
   createNewRegiste() {
     if (this.form.valid) {
