@@ -16,7 +16,6 @@ import { ExpenseCategoryService } from '@services/expenseCategory.service';
 import { AccountService } from '@services/account.service';
 import { Category } from '@models/category.model';
 import { Account } from '@models/account.model';
-import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-transaction-form',
@@ -87,7 +86,6 @@ export class TransactionFormComponent {
 
       this.getOthersExpenseCategory();
       this.getChashAccount();
-      
     } else {
       this.fillForm();
       this.disableForm();
@@ -125,6 +123,8 @@ export class TransactionFormComponent {
         accountName: sourceAccount,
         categoryName: category,
       };
+
+      console.log(expenseDto);
 
       this.expenseService.createExpense(expenseDto).subscribe({
         next: () => {
@@ -206,7 +206,12 @@ export class TransactionFormComponent {
       );
 
       if (othersCategoryIndex !== -1) {
-        this.othersExpenseCategory = this.expenseCategories$[othersCategoryIndex];
+        this.othersExpenseCategory =
+          this.expenseCategories$[othersCategoryIndex];
+        //Asignar por defecto categoría Others al form
+        this.form.controls.category.setValue(
+          this.othersExpenseCategory.categoryName
+        );
         // Crear un nuevo arreglo que excluya el objeto con categoryName igual a "Others"
         this.expenseCategories$ = this.expenseCategories$.filter(
           (category, index) => index !== othersCategoryIndex
@@ -217,7 +222,6 @@ export class TransactionFormComponent {
         );
       }
     }
-
   }
   getChashAccount() {
     if (this.accounts$ && this.accounts$.length > 0) {
@@ -226,6 +230,10 @@ export class TransactionFormComponent {
       );
       if (cashAccountIndex !== -1) {
         this.cashAccount = this.accounts$[cashAccountIndex];
+        //Asignar por defecto account Cash al form
+        this.form.controls.sourceAccount.setValue(
+          this.cashAccount.accountName
+        );
         // Crear un nuevo arreglo que excluya el objeto con categoryName igual a "Others"
         this.accounts$ = this.accounts$.filter(
           (category, index) => index !== cashAccountIndex
@@ -237,26 +245,4 @@ export class TransactionFormComponent {
       }
     }
   }
-
-  // fillDefaultForm() {
-  //   if (this.expenseCategories$ && this.expenseCategories$.length === 0) {
-  //     const othersCategoryIndex = this.expenseCategories$.findIndex(
-  //       (category) => category.categoryName === 'Others'
-  //     );
-  //     if (othersCategoryIndex !== -1) {
-  //       const othersCategory = this.expenseCategories$[othersCategoryIndex];
-  //       // Crear un nuevo arreglo que excluya el objeto con categoryName igual a "Others"
-  //       this.expenseCategories$ = this.expenseCategories$.filter(
-  //         (category, index) => index !== othersCategoryIndex
-  //       );
-
-  //       console.log(othersCategory); // Objeto extraído con categoryName igual a "Others"
-  //       console.log(this.expenseCategories$); // Arreglo categories$ sin el objeto eliminado
-  //     } else {
-  //       console.log(
-  //         "No category was found with categoryName equal to 'Others'."
-  //       );
-  //     }
-  //   }
-  // }
 }

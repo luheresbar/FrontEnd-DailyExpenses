@@ -39,8 +39,10 @@
           class="input--text"
           name="sourceAccount"
           id="sourceAccount"
+          formControlName="sourceAccount"
+
         >
-        <option>
+        <option selected >
           {{ cashAccount.accountName }}
         </option>
         <option *ngFor="let account of accounts$">
@@ -59,6 +61,7 @@
         class="input--text"
         name="sourceAccount"
         id="sourceAccount"
+        formControlName="destinationAccount"
       >
       <option *ngFor="let account of accounts$">
         {{ account.accountName }}
@@ -72,10 +75,11 @@
         <label class="form__label" for="category">Category</label>
         <select
           class="input--text"
-          name="sourceAccount"
-          id="sourceAccount"
+          name="category"
+          id="category"
+          formControlName="category"
         >
-        <option>
+        <option selected >
           {{ othersExpenseCategory.categoryName }}
         </option>
         <option *ngFor="let category of expenseCategories$">
