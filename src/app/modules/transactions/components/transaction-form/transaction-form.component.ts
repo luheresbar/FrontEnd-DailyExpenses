@@ -5,7 +5,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { RequestStatus } from '@models/request-status.model';
-import { TransactionDetail } from '@models/transaction-detail.model';
+import { TransactionDetail, stateTransaction } from '@models/transaction-detail.model';
 import { ExpenseService } from '@services/expense.service';
 import { BtnComponent } from '@shared/components/atoms/btn/btn.component';
 import { FormValidationMessageComponent } from '@shared/components/atoms/form-validation-message/form-validation-message.component';
@@ -31,9 +31,10 @@ export class TransactionFormComponent {
   @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
   @Input() transactionDetail!: TransactionDetail;
   statusCreateRegister: RequestStatus = 'init';
-  viewMode: boolean = false;
-  editMode: boolean = false;
-  createMode: boolean = true;
+  stateTransaction: stateTransaction = 'create'
+  // viewMode: boolean = false;
+  // editMode: boolean = false;
+  // createMode: boolean = true;
   expenseCategories$: Category[] | null = null;
   accounts$: Account[] | null = null;
 
@@ -78,9 +79,7 @@ export class TransactionFormComponent {
     });
 
     if (this.transactionDetail.date === '') {
-      this.viewMode = false;
-      this.createMode = true;
-      this.editMode = false;
+      this.stateTransaction = 'create';
       this.fillFormDefault();
     } else {
       this.fillForm();
@@ -132,8 +131,6 @@ export class TransactionFormComponent {
         this.expenseService.createExpense(transactionDto).subscribe({
           next: () => {
             this.statusCreateRegister = 'success';
-            console.log('nueo registro creado');
-            
             this.closeFormDialog();
             // this.expensesComponent.
             // this.router.navigate(['/expenses']);
@@ -149,6 +146,7 @@ export class TransactionFormComponent {
         this.expenseService.updateExpense(transactionDto).subscribe({
           next: () => {
             this.statusCreateRegister = 'success';
+            this.closeFormDialog();
             // this.newExpenseDialog.close();
             // this.expensesComponent.
             // this.router.navigate(['/expenses']);
@@ -211,9 +209,7 @@ export class TransactionFormComponent {
     this.form.controls.description.enable();
     this.form.controls.date.enable();
 
-    this.viewMode = false;
-    this.editMode = true;
-    this.createMode = false;
+    this.stateTransaction = 'edit';
   }
 
   disableForm() {
@@ -224,12 +220,15 @@ export class TransactionFormComponent {
     this.form.controls.description.disable();
     this.form.controls.date.disable();
 
-    this.viewMode = true;
-    this.createMode = false;
-    this.editMode = false;
+    this.stateTransaction = 'view';
   }
 
   closeFormDialog() {
     this.closeDialog.emit();
   }
+
+  capitalizeFirstLetter(word: string): string {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
 }

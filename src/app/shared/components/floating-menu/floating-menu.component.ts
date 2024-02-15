@@ -45,6 +45,10 @@ export class FloatingMenuComponent {
     this.transactionType = type;
   }
 
+  // closeOverlay() {
+  //   this.overlayService.closeOverlayFloatingMenu();
+  // }
+
 
 }
 

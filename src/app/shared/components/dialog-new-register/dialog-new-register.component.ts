@@ -30,7 +30,7 @@ export class DialogNewRegisterComponent {
     }
     close() {
       this.dialogRef.close();
-      this.overlayService.changeStateOverlayFloatingMenu();
+      this.overlayService.closeOverlayFloatingMenu();
     }
 
     onCloseDialog() {

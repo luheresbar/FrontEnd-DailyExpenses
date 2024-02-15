@@ -1,5 +1,5 @@
 <div class="transaction-form">
-  <h1 class="form__register--title">New Transaction Register</h1>
+  <h1 class="form__register--title" > {{ capitalizeFirstLetter(stateTransaction) }}  {{ capitalizeFirstLetter(transactionDetail.type) }} </h1>
   <form
     class="form__transaction"
     [formGroup]="form"
@@ -66,6 +66,7 @@
           id="sourceAccount"
           formControlName="destinationAccount"
         >
+        <!-- <span>//TODO(Verificar que la cuanta de origen y al de destino no sean las mismas)</span> -->
           <option *ngFor="let account of accounts$">
             {{ account.accountName }}
           </option>
@@ -125,7 +126,7 @@
       </div>
     </div>
 
-    <div class="form__btn" *ngIf="createMode">
+    <div class="form__btn" *ngIf="stateTransaction === 'create'">
       <app-btn
         typeBtn="submit"
         color="btn-primary"
@@ -134,7 +135,7 @@
       >
     </div>
 
-    <div class="form__btn" *ngIf="editMode">
+    <div class="form__btn" *ngIf="stateTransaction === 'edit'">
       <app-btn
         typeBtn="submit"
         color="btn-primary"
@@ -143,7 +144,7 @@
       >
     </div>
 
-    <div class="form__btn" *ngIf="viewMode">
+    <div class="form__btn" *ngIf="stateTransaction === 'view'">
       <app-btn
         typeBtn="button"
         color="btn-secondary"

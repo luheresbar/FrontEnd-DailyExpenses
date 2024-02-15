@@ -1,12 +1,24 @@
 <div class="overlay-floating-menu">
-    <p class="floating-menu__title">New Register</p>
+  <p class="floating-menu__title">New Register</p>
   <div class="floating-menu__btn">
-    <app-btn color="btn-floating-menu">Transfer</app-btn>
+    <app-btn
+      (click)="assingTransactionType('transfer'); openDialog()"
+      color="btn-floating-menu"
+      >Transfer</app-btn
+    >
   </div>
   <div class="floating-menu__btn">
-    <app-btn color="btn-floating-menu">Income</app-btn>
+    <app-btn
+      (click)="assingTransactionType('income'); openDialog()"
+      color="btn-floating-menu"
+      >Income</app-btn
+    >
   </div>
   <div class="floating-menu__btn">
-    <app-btn (click)="assingTransactionType('expense'); openDialog()"  color="btn-floating-menu">Expense</app-btn>
+    <app-btn
+      (click)="assingTransactionType('expense'); openDialog()"
+      color="btn-floating-menu"
+      >Expense</app-btn
+    >
   </div>
 </div>

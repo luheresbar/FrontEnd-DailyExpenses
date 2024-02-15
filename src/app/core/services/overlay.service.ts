@@ -11,5 +11,8 @@ export class OverlayService {
   changeStateOverlayFloatingMenu() { 
     this.isOpenOverlayFloatingMenu$.next(!this.isOpenOverlayFloatingMenu$.value);
   }
+  closeOverlayFloatingMenu() { 
+    this.isOpenOverlayFloatingMenu$.next(false);
+  }
  
 }
