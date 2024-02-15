@@ -14,7 +14,7 @@ import { ExpenseService } from '@services/expense.service';
 })
 export class ExpenseSummaryComponent {
 
-  expenses: TransactionDetail[] = [];
+  expenses$: TransactionDetail[] = [];
 
   constructor(
     private expenseService: ExpenseService,
@@ -22,8 +22,9 @@ export class ExpenseSummaryComponent {
   ) {}
 
   ngOnInit() {
-    this.expenseService.getExpenses().subscribe(expenses => {
-      this.expenses = expenses.transactionDetails;
+    this.expenseService.getExpenses().subscribe();
+    this.expenseService.expenses$.subscribe(expenses => {
+      this.expenses$ = expenses;
     });
   }
 

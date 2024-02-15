@@ -1,6 +1,6 @@
 <app-transaction-layout>
   <div class="transaction-sumary">
-    <div *ngFor="let transaction of transactions">
+    <div *ngFor="let transaction of transactions$">
       <app-transaction-detail [transaction]="transaction"></app-transaction-detail>
       <!-- //TODO (Implementar virtual scroll CDK) -->
     </div>

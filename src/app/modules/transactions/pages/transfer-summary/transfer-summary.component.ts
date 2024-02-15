@@ -14,15 +14,16 @@ import { TransferService } from '@services/transfer.service';
 })
 export class TransferSummaryComponent {
 
-  transfers: TransactionDetail[] = [];
+  transfers$: TransactionDetail[] = [];
 
   constructor(
     private transferService: TransferService,
   ) {}
 
   ngOnInit() {
-    this.transferService.getTransfers().subscribe(transfers => {
-      this.transfers = transfers.transactionDetails;
+    this.transferService.getTransfers().subscribe();
+    this.transferService.transfers$.subscribe(transfers => {
+      this.transfers$ = transfers;
     });
   }
 }

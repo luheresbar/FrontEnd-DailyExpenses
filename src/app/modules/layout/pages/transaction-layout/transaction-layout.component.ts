@@ -15,6 +15,7 @@ import { FloatingButtonComponent } from '@shared/components/atoms/floating-butto
 import { FloatingMenuComponent } from '@shared/components/floating-menu/floating-menu.component';
 import { OverlayService } from '@services/overlay.service';
 import { DialogNewRegisterComponent } from '@shared/components/dialog-new-register/dialog-new-register.component';
+import { TransactionService } from '@services/transaction.service';
 
 @Component({
   selector: 'app-transaction-layout',
@@ -47,13 +48,11 @@ export class TransactionLayoutComponent {
 
 
   constructor(
-    private overlayService: OverlayService,
+
   ) {}
 
   ngOnInit() {
-    this.overlayService.isOpenOverlayFloatingMenu$.subscribe(value => {
-      this.isOpenOverlayFloatingMenu$ == value
-    })
+
   }
 
 }

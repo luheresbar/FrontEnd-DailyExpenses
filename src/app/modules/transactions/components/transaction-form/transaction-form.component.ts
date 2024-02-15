@@ -5,10 +5,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { RequestStatus } from '@models/request-status.model';
-import {
-  ExpenseDto,
-  TransactionDetail,
-} from '@models/transaction-detail.model';
+import { TransactionDetail } from '@models/transaction-detail.model';
 import { ExpenseService } from '@services/expense.service';
 import { BtnComponent } from '@shared/components/atoms/btn/btn.component';
 import { FormValidationMessageComponent } from '@shared/components/atoms/form-validation-message/form-validation-message.component';
@@ -16,6 +13,7 @@ import { ExpenseCategoryService } from '@services/expenseCategory.service';
 import { AccountService } from '@services/account.service';
 import { Category } from '@models/category.model';
 import { Account } from '@models/account.model';
+import { ExpenseDto } from '@models/expense.model';
 
 @Component({
   selector: 'app-transaction-form',
@@ -66,9 +64,8 @@ export class TransactionFormComponent {
     private expenseService: ExpenseService,
     private expenseCategoryService: ExpenseCategoryService,
     private accountService: AccountService,
-    private router: Router
-  ) // private datePipe: DatePipe
-  {
+    private router: Router // private datePipe: DatePipe
+  ) {
     // this.currentDate = this.datePipe.transform(this.now, 'yyyy-MM-dd'); TODO(optimizar la gestion de la fecha)
   }
 
@@ -84,7 +81,7 @@ export class TransactionFormComponent {
       this.viewMode = false;
       this.createMode = true;
       this.editMode = false;
-      this.fillFormDefault()
+      this.fillFormDefault();
     } else {
       this.fillForm();
       this.disableForm();
@@ -95,7 +92,7 @@ export class TransactionFormComponent {
     if (this.form.valid) {
       this.statusCreateRegister = 'loading';
 
-      const { description, amount, sourceAccount, category, date } =
+      const { description, amount, sourceAccount, category, date, destinationAccount } =
         this.form.getRawValue();
 
       let formattedDate: string | null = '';
@@ -115,28 +112,45 @@ export class TransactionFormComponent {
 
       const expenseValue = parseFloat(amount);
 
-      const expenseDto: ExpenseDto = {
-        expense: expenseValue,
+      const transactionDto: TransactionDetail = {
+        type: this.transactionDetail.type,
+        id: this.transactionDetail.id,
+        amount: expenseValue,
         description: description,
-        expenseDate: formattedDate,
-        accountName: sourceAccount,
-        categoryName: category,
+        date: formattedDate,
+        sourceAccountName: sourceAccount,
+        category: category,
+        destinationAccountName: destinationAccount,
       };
-
-      console.log(expenseDto);
-
-      this.expenseService.createExpense(expenseDto).subscribe({
-        next: () => {
-          this.statusCreateRegister = 'success';
-          // this.newExpenseDialog.close();
-          // this.expensesComponent.
-          this.router.navigate(['/expenses']);
-        },
-        error: (error) => {
-          this.statusCreateRegister = 'failed';
-          console.log(error);
-        },
-      });
+      if (this.transactionDetail.date === '') {
+        this.expenseService.createExpense(transactionDto).subscribe({
+          next: () => {
+            this.statusCreateRegister = 'success';
+            // this.newExpenseDialog.close();
+            // this.expensesComponent.
+            // this.router.navigate(['/expenses']);
+          },
+          error: (error) => {
+            this.statusCreateRegister = 'failed';
+            console.log(error);
+          },
+        });
+      } else if (this.transactionDetail.date !== '') {
+        console.log(transactionDto);
+        
+        this.expenseService.updateExpense(transactionDto).subscribe({
+          next: () => {
+            this.statusCreateRegister = 'success';
+            // this.newExpenseDialog.close();
+            // this.expensesComponent.
+            // this.router.navigate(['/expenses']);
+          },
+          error: (error) => {
+            this.statusCreateRegister = 'failed';
+            console.log(error);
+          },
+        });
+      }
     } else {
       this.form.markAllAsTouched();
     }
@@ -148,10 +162,10 @@ export class TransactionFormComponent {
   }
 
   fillForm() {
-    this.form.controls.type.setValue(this.transactionDetail.type);
+    
     let amountValue = this.transactionDetail.amount.toString();
-
     this.form.controls.amount.setValue(amountValue);
+
     this.form.controls.sourceAccount.setValue(
       this.transactionDetail.sourceAccountName
     );
@@ -163,20 +177,22 @@ export class TransactionFormComponent {
     this.form.controls.description.setValue(this.transactionDetail.description);
 
     //Date
-    const dateReceived: string = this.transactionDetail.date;
-    const date: Date = new Date(dateReceived);
-
-    const year: number = date.getFullYear();
-    const month: number = date.getMonth() + 1; // Los meses comienzan desde 0, por lo que se suma 1
-    const day: number = date.getDate();
-
-    // Formatear el mes y el día a dos dígitos si es necesario
-    const formattedMonth: string = month < 10 ? '0' + month : month.toString();
-    const formattedDay: string = day < 10 ? '0' + day : day.toString();
-
-    const formattedDate: string = `${year}-${formattedMonth}-${formattedDay}`;
-
-    this.form.controls.date.setValue(formattedDate);
+    if(this.transactionDetail.date != null) {
+      const dateReceived: string = this.transactionDetail.date;
+      const date: Date = new Date(dateReceived);
+      
+      const year: number = date.getFullYear();
+      const month: number = date.getMonth() + 1; // Los meses comienzan desde 0, por lo que se suma 1
+      const day: number = date.getDate();
+      
+      // Formatear el mes y el día a dos dígitos si es necesario
+      const formattedMonth: string = month < 10 ? '0' + month : month.toString();
+      const formattedDay: string = day < 10 ? '0' + day : day.toString();
+      
+      const formattedDate: string = `${year}-${formattedMonth}-${formattedDay}`;
+      
+      this.form.controls.date.setValue(formattedDate);
+    }
   }
 
   enableForm() {

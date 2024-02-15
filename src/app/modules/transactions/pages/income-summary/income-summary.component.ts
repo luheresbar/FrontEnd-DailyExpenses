@@ -14,7 +14,7 @@ import { TransactionDetailComponent } from '../../components/transaction-detail/
 })
 export class IncomeSummaryComponent {
 
-  incomes: TransactionDetail[] = [];
+  incomes$: TransactionDetail[] = [];
 
   constructor(
     private incomeService: IncomeService,
@@ -22,8 +22,9 @@ export class IncomeSummaryComponent {
   ) {}
 
   ngOnInit() {
-    this.incomeService.getIncomes().subscribe(incomes => {
-      this.incomes = incomes.transactionDetails;
+    this.incomeService.getIncomes().subscribe();
+    this.incomeService.incomes$.subscribe(incomes => {
+      this.incomes$ = incomes;
     });
   }
 

@@ -17,15 +17,17 @@ import { TransactionDetail } from '@models/transaction-detail.model';
 })
 export class TransactionSummaryComponent {
 
-  transactions: TransactionDetail[] = [];
+  transactions$: TransactionDetail[] = [];
 
   constructor(
     private transactionService: TransactionService,
   ) {}
-
+  
   ngOnInit() {
-    this.transactionService.getAll().subscribe(transactions => {
-      this.transactions = transactions;
+    this.transactionService.getAll().subscribe();
+    
+    this.transactionService.transactions$.subscribe(transactions => {
+      this.transactions$ = transactions;
     });
   }
 

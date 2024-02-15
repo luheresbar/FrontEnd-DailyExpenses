@@ -2,7 +2,7 @@ export interface TransactionDetail {
   type: string;
   id: number;
   description: string;
-  date: string;
+  date: string | null;
   amount: number;
   category: string;
   sourceAccountName: string;
@@ -12,12 +12,4 @@ export interface TransactionDetail {
 export interface SummaryTransaction {
   transactionDetails: TransactionDetail[],
   totalTransactions: number
-}
-
-export interface ExpenseDto {
-  expense: number;
-  description: string;
-  expenseDate: string | null;
-  accountName: string;
-  categoryName: string;
 }
