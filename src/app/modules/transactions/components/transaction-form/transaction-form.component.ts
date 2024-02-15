@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -13,7 +13,6 @@ import { ExpenseCategoryService } from '@services/expenseCategory.service';
 import { AccountService } from '@services/account.service';
 import { Category } from '@models/category.model';
 import { Account } from '@models/account.model';
-import { ExpenseDto } from '@models/expense.model';
 
 @Component({
   selector: 'app-transaction-form',
@@ -29,6 +28,7 @@ import { ExpenseDto } from '@models/expense.model';
   styleUrl: './transaction-form.component.scss',
 })
 export class TransactionFormComponent {
+  @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
   @Input() transactionDetail!: TransactionDetail;
   statusCreateRegister: RequestStatus = 'init';
   viewMode: boolean = false;
@@ -92,8 +92,14 @@ export class TransactionFormComponent {
     if (this.form.valid) {
       this.statusCreateRegister = 'loading';
 
-      const { description, amount, sourceAccount, category, date, destinationAccount } =
-        this.form.getRawValue();
+      const {
+        description,
+        amount,
+        sourceAccount,
+        category,
+        date,
+        destinationAccount,
+      } = this.form.getRawValue();
 
       let formattedDate: string | null = '';
 
@@ -126,7 +132,9 @@ export class TransactionFormComponent {
         this.expenseService.createExpense(transactionDto).subscribe({
           next: () => {
             this.statusCreateRegister = 'success';
-            // this.newExpenseDialog.close();
+            console.log('nueo registro creado');
+            
+            this.closeFormDialog();
             // this.expensesComponent.
             // this.router.navigate(['/expenses']);
           },
@@ -137,7 +145,7 @@ export class TransactionFormComponent {
         });
       } else if (this.transactionDetail.date !== '') {
         console.log(transactionDto);
-        
+
         this.expenseService.updateExpense(transactionDto).subscribe({
           next: () => {
             this.statusCreateRegister = 'success';
@@ -162,7 +170,6 @@ export class TransactionFormComponent {
   }
 
   fillForm() {
-    
     let amountValue = this.transactionDetail.amount.toString();
     this.form.controls.amount.setValue(amountValue);
 
@@ -177,20 +184,21 @@ export class TransactionFormComponent {
     this.form.controls.description.setValue(this.transactionDetail.description);
 
     //Date
-    if(this.transactionDetail.date != null) {
+    if (this.transactionDetail.date != null) {
       const dateReceived: string = this.transactionDetail.date;
       const date: Date = new Date(dateReceived);
-      
+
       const year: number = date.getFullYear();
       const month: number = date.getMonth() + 1; // Los meses comienzan desde 0, por lo que se suma 1
       const day: number = date.getDate();
-      
+
       // Formatear el mes y el día a dos dígitos si es necesario
-      const formattedMonth: string = month < 10 ? '0' + month : month.toString();
+      const formattedMonth: string =
+        month < 10 ? '0' + month : month.toString();
       const formattedDay: string = day < 10 ? '0' + day : day.toString();
-      
+
       const formattedDate: string = `${year}-${formattedMonth}-${formattedDay}`;
-      
+
       this.form.controls.date.setValue(formattedDate);
     }
   }
@@ -219,5 +227,9 @@ export class TransactionFormComponent {
     this.viewMode = true;
     this.createMode = false;
     this.editMode = false;
+  }
+
+  closeFormDialog() {
+    this.closeDialog.emit();
   }
 }

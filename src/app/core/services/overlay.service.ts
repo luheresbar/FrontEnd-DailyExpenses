@@ -8,10 +8,8 @@ export class OverlayService {
 
   isOpenOverlayFloatingMenu$ = new BehaviorSubject<boolean>(false);
 
-  constructor() { }
-
-  toggleOverlay(value: boolean) {
-    this.isOpenOverlayFloatingMenu$.next(value);
+  changeStateOverlayFloatingMenu() { 
+    this.isOpenOverlayFloatingMenu$.next(!this.isOpenOverlayFloatingMenu$.value);
   }
-
+ 
 }

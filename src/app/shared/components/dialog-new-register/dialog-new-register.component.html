@@ -2,5 +2,5 @@
   <div (click)="close()" role="button" class="user__out">
     <fa-icon [icon]="faArrowLeft" class="icon"></fa-icon>
 </div>
-  <app-transaction-form [transactionDetail]="transactionDetail"></app-transaction-form>
+  <app-transaction-form [transactionDetail]="transactionDetail" (closeDialog)="onCloseDialog()"></app-transaction-form>
 </div>

@@ -16,6 +16,7 @@ import { FloatingMenuComponent } from '@shared/components/floating-menu/floating
 import { OverlayService } from '@services/overlay.service';
 import { DialogNewRegisterComponent } from '@shared/components/dialog-new-register/dialog-new-register.component';
 import { TransactionService } from '@services/transaction.service';
+import { __values } from 'tslib';
 
 @Component({
   selector: 'app-transaction-layout',
@@ -40,19 +41,21 @@ import { TransactionService } from '@services/transaction.service';
 })
 export class TransactionLayoutComponent {
   faPlus = faPlus;
-  isOpenOverlayFloatingMenu$: boolean = false;
-
-  fromChild(event: string) {
-    
-  }
-
+  isOpenOverlayFloatingMenu$!: boolean;
 
   constructor(
-
+    private overlayService: OverlayService,
   ) {}
 
   ngOnInit() {
-
+    this.overlayService.isOpenOverlayFloatingMenu$.subscribe(value => {
+      this.isOpenOverlayFloatingMenu$ = value;
+    });
   }
+
+  changeStateOverlayFloatingMenu() {
+    this.overlayService.changeStateOverlayFloatingMenu();
+  }
+  
 
 }

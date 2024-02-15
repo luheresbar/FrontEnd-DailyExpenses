@@ -27,7 +27,7 @@
   </div>
   <div class="transaction__floating-button">
     <app-floating-button
-      (click)="isOpenOverlayFloatingMenu$ = !isOpenOverlayFloatingMenu$"
+      (click)="changeStateOverlayFloatingMenu()"
       cdkOverlayOrigin
       #OverlayFloatingMenu="cdkOverlayOrigin"
       type="button"

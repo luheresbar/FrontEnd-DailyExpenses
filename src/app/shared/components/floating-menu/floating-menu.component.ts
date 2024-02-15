@@ -3,13 +3,13 @@ import {DialogModule, Dialog} from '@angular/cdk/dialog';
 
 import { BtnComponent } from '../atoms/btn/btn.component';
 import { DialogNewRegisterComponent } from '../dialog-new-register/dialog-new-register.component';
-import { EventEmitter } from 'stream';
 import { OverlayService } from '@services/overlay.service';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-floating-menu',
   standalone: true,
-  imports: [BtnComponent, DialogModule, DialogNewRegisterComponent],
+  imports: [BtnComponent, DialogModule, DialogNewRegisterComponent, OverlayModule],
   templateUrl: './floating-menu.component.html',
   styleUrl: './floating-menu.component.scss'
 })
