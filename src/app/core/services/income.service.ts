@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { SummaryTransaction, TransactionDetail } from '@models/transaction-detail.model';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { AccountService } from './account.service';
 import { checkToken } from '@interceptors/token.interceptor';
+import { TransactionService } from './transaction.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class IncomeService {
   constructor(
     private http: HttpClient,
     private accountservice: AccountService,
+    private transactionService: TransactionService,
   ) {}
 
   getIncomes(account_name?: string) {
@@ -32,7 +34,42 @@ export class IncomeService {
         this.incomes$.next(incomes.transactionDetails);
         this.totalIncomes$.next(incomes.totalTransactions);
       })
-    );
-    
+    ); 
   }
+
+  createIncome(income: TransactionDetail) {
+    return this.http
+      .post<TransactionDetail>(`${this.apiUrl}/incomes/create`, income, {
+        context: checkToken(),
+      })
+      .pipe(
+        switchMap(() => this.getIncomes()),
+        switchMap(() => this.transactionService.getAll()),
+        switchMap(() => this.accountservice.getAccounts())
+      );
+  }
+
+  updateIncome(income: TransactionDetail) {
+    return this.http
+      .put<TransactionDetail>(`${this.apiUrl}/incomes/update`, income, {
+        context: checkToken(),
+      })
+      .pipe(
+        switchMap(() => this.getIncomes()),
+        switchMap(() => this.transactionService.getAll()),
+        switchMap(() => this.accountservice.getAccounts())
+      );
+  }
+
+  deleteincome(incomeId: number) {
+    return this.http
+      .delete(`${this.apiUrl}/incomes/delete/${incomeId}`, {
+        context: checkToken(),
+      })
+      .pipe(
+        switchMap(() => this.getIncomes()),
+        switchMap(() => this.accountservice.getAccounts())
+      );
+  }
+
 }

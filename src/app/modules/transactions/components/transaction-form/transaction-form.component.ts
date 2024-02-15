@@ -5,7 +5,10 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { RequestStatus } from '@models/request-status.model';
-import { TransactionDetail, stateTransaction } from '@models/transaction-detail.model';
+import {
+  TransactionDetail,
+  stateTransaction,
+} from '@models/transaction-detail.model';
 import { ExpenseService } from '@services/expense.service';
 import { BtnComponent } from '@shared/components/atoms/btn/btn.component';
 import { FormValidationMessageComponent } from '@shared/components/atoms/form-validation-message/form-validation-message.component';
@@ -13,6 +16,7 @@ import { ExpenseCategoryService } from '@services/expenseCategory.service';
 import { AccountService } from '@services/account.service';
 import { Category } from '@models/category.model';
 import { Account } from '@models/account.model';
+import { IncomeService } from '@services/income.service';
 
 @Component({
   selector: 'app-transaction-form',
@@ -31,10 +35,7 @@ export class TransactionFormComponent {
   @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
   @Input() transactionDetail!: TransactionDetail;
   statusCreateRegister: RequestStatus = 'init';
-  stateTransaction: stateTransaction = 'create'
-  // viewMode: boolean = false;
-  // editMode: boolean = false;
-  // createMode: boolean = true;
+  stateTransaction: stateTransaction = 'create';
   expenseCategories$: Category[] | null = null;
   accounts$: Account[] | null = null;
 
@@ -65,7 +66,7 @@ export class TransactionFormComponent {
     private expenseService: ExpenseService,
     private expenseCategoryService: ExpenseCategoryService,
     private accountService: AccountService,
-    private router: Router // private datePipe: DatePipe
+    private incomeService: IncomeService,
   ) {
     // this.currentDate = this.datePipe.transform(this.now, 'yyyy-MM-dd'); TODO(optimizar la gestion de la fecha)
   }
@@ -127,35 +128,101 @@ export class TransactionFormComponent {
         category: category,
         destinationAccountName: destinationAccount,
       };
-      if (this.transactionDetail.date === '') {
-        this.expenseService.createExpense(transactionDto).subscribe({
-          next: () => {
-            this.statusCreateRegister = 'success';
-            this.closeFormDialog();
-            // this.expensesComponent.
-            // this.router.navigate(['/expenses']);
-          },
-          error: (error) => {
-            this.statusCreateRegister = 'failed';
-            console.log(error);
-          },
-        });
-      } else if (this.transactionDetail.date !== '') {
-        console.log(transactionDto);
+      if (this.transactionDetail.type === 'expense') {
+        if (this.transactionDetail.date === '') {
+          this.expenseService.createExpense(transactionDto).subscribe({
+            next: () => {
+              this.statusCreateRegister = 'success';
+              this.closeFormDialog();
+              // this.expensesComponent.
+              // this.router.navigate(['/expenses']);
+            },
+            error: (error) => {
+              this.statusCreateRegister = 'failed';
+              console.log(error);
+            },
+          });
+        } else if (this.transactionDetail.date !== '') {
+          console.log(transactionDto);
 
-        this.expenseService.updateExpense(transactionDto).subscribe({
-          next: () => {
-            this.statusCreateRegister = 'success';
-            this.closeFormDialog();
-            // this.newExpenseDialog.close();
-            // this.expensesComponent.
-            // this.router.navigate(['/expenses']);
-          },
-          error: (error) => {
-            this.statusCreateRegister = 'failed';
-            console.log(error);
-          },
-        });
+          this.expenseService.updateExpense(transactionDto).subscribe({
+            next: () => {
+              this.statusCreateRegister = 'success';
+              this.closeFormDialog();
+              // this.newExpenseDialog.close();
+              // this.expensesComponent.
+              // this.router.navigate(['/expenses']);
+            },
+            error: (error) => {
+              this.statusCreateRegister = 'failed';
+              console.log(error);
+            },
+          });
+        }
+      } else if (this.transactionDetail.type === 'income') {
+        if (this.transactionDetail.date === '') {
+          console.log(transactionDto);
+
+          this.incomeService.createIncome(transactionDto).subscribe({
+            next: () => {
+              this.statusCreateRegister = 'success';
+              this.closeFormDialog();
+              // this.expensesComponent.
+              // this.router.navigate(['/expenses']);
+            },
+            error: (error) => {
+              this.statusCreateRegister = 'failed';
+              console.log(error);
+            },
+          });
+        } else if (this.transactionDetail.date !== '') {
+          console.log(transactionDto);
+
+          this.incomeService.updateIncome(transactionDto).subscribe({
+            next: () => {
+              this.statusCreateRegister = 'success';
+              this.closeFormDialog();
+              // this.newExpenseDialog.close();
+              // this.expensesComponent.
+              // this.router.navigate(['/expenses']);
+            },
+            error: (error) => {
+              this.statusCreateRegister = 'failed';
+              console.log(error);
+            },
+          });
+        }
+      } else if (this.transactionDetail.type === 'transfer') {
+        if (this.transactionDetail.date === '') {
+          this.expenseService.createExpense(transactionDto).subscribe({
+            next: () => {
+              this.statusCreateRegister = 'success';
+              this.closeFormDialog();
+              // this.expensesComponent.
+              // this.router.navigate(['/expenses']);
+            },
+            error: (error) => {
+              this.statusCreateRegister = 'failed';
+              console.log(error);
+            },
+          });
+        } else if (this.transactionDetail.date !== '') {
+          console.log(transactionDto);
+
+          this.expenseService.updateExpense(transactionDto).subscribe({
+            next: () => {
+              this.statusCreateRegister = 'success';
+              this.closeFormDialog();
+              // this.newExpenseDialog.close();
+              // this.expensesComponent.
+              // this.router.navigate(['/expenses']);
+            },
+            error: (error) => {
+              this.statusCreateRegister = 'failed';
+              console.log(error);
+            },
+          });
+        }
       }
     } else {
       this.form.markAllAsTouched();
@@ -230,5 +297,4 @@ export class TransactionFormComponent {
   capitalizeFirstLetter(word: string): string {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
-
 }
