@@ -15,7 +15,7 @@ export class ExpenseService {
 
   private apiUrl = `${environment.API_URL}/api`;
   expenses$ = new BehaviorSubject<TransactionDetail[]>([]);
-  totalExpense$ = new BehaviorSubject<number | null>(null);
+  totalExpenses$ = new BehaviorSubject<number | null>(null);
 
   constructor(
     private http: HttpClient,
@@ -33,7 +33,7 @@ export class ExpenseService {
     .pipe(
       tap((expenses) => {
         this.expenses$.next(expenses.transactionDetails);
-        this.totalExpense$.next(expenses.totalTransactions);
+        this.totalExpenses$.next(expenses.totalTransactions);
       })
     );
   }

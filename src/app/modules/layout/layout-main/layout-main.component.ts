@@ -5,6 +5,8 @@ import { UserService } from '@services/user.service';
 import { ExpenseCategoryService } from '@services/expense-category.service';
 import { AccountService } from '@services/account.service';
 import { IncomeCategoryService } from '@services/income-category.service';
+import { ExpenseService } from '@services/expense.service';
+import { IncomeService } from '@services/income.service';
 
 @Component({
   selector: 'app-layout-main',
@@ -21,6 +23,8 @@ export class LayoutMainComponent {
     private expenseCategoryService: ExpenseCategoryService,
     private incomeCategoryService: IncomeCategoryService,
     private accountService: AccountService,
+    private expenseService: ExpenseService,
+    private incomeService: IncomeService,
   ) {}
   
     ngOnInit() {
@@ -28,6 +32,8 @@ export class LayoutMainComponent {
       this.expenseCategoryService.getExpenseCategories().subscribe();
       this.incomeCategoryService.getExpenseCategories().subscribe();
       this.accountService.getAccounts().subscribe();
+      this.expenseService.getExpenses().subscribe();
+      this.incomeService.getIncomes().subscribe();
     }
 
 }
