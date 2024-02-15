@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { SummaryTransaction, TransactionDetail } from '@models/transaction-detail.model';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { AccountService } from './account.service';
 import { checkToken } from '@interceptors/token.interceptor';
+import { TransactionService } from './transaction.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class TransferService {
   constructor(
     private http: HttpClient,
     private accountservice: AccountService,
+    private transactionService: TransactionService,
   ) {}
 
   getTransfers(account_name?: string) {
@@ -30,7 +32,43 @@ export class TransferService {
       tap((transfers) => {
         this.transfers$.next(transfers.transactionDetails);
       })
-    );
-    
+    )
   }
+
+  createTransfer(transfer: TransactionDetail) {
+    return this.http
+      .post<TransactionDetail>(`${this.apiUrl}/transfers/create`, transfer, {
+        context: checkToken(),
+      })
+      .pipe(
+        switchMap(() => this.getTransfers()),
+        switchMap(() => this.transactionService.getAll()),
+        switchMap(() => this.accountservice.getAccounts())
+      );
+  }
+
+  updateTransfer(transfer: TransactionDetail) {
+    return this.http
+      .put<TransactionDetail>(`${this.apiUrl}/transfers/update`, transfer, {
+        context: checkToken(),
+      })
+      .pipe(
+        switchMap(() => this.getTransfers()),
+        switchMap(() => this.transactionService.getAll()),
+        switchMap(() => this.accountservice.getAccounts())
+      );
+  }
+
+  deletetransfer(transferId: number) {
+    return this.http
+      .delete(`${this.apiUrl}/transfers/delete/${transferId}`, {
+        context: checkToken(),
+      })
+      .pipe(
+        switchMap(() => this.getTransfers()),
+        switchMap(() => this.accountservice.getAccounts())
+      );
+  }
+
+
 }

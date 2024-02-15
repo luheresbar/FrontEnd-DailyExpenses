@@ -17,6 +17,7 @@ import { AccountService } from '@services/account.service';
 import { Category } from '@models/category.model';
 import { Account } from '@models/account.model';
 import { IncomeService } from '@services/income.service';
+import { TransferService } from '@services/transfer.service';
 
 @Component({
   selector: 'app-transaction-form',
@@ -67,6 +68,7 @@ export class TransactionFormComponent {
     private expenseCategoryService: ExpenseCategoryService,
     private accountService: AccountService,
     private incomeService: IncomeService,
+    private transferService: TransferService,
   ) {
     // this.currentDate = this.datePipe.transform(this.now, 'yyyy-MM-dd'); TODO(optimizar la gestion de la fecha)
   }
@@ -193,8 +195,10 @@ export class TransactionFormComponent {
           });
         }
       } else if (this.transactionDetail.type === 'transfer') {
+        console.log(transactionDto);
+
         if (this.transactionDetail.date === '') {
-          this.expenseService.createExpense(transactionDto).subscribe({
+          this.transferService.createTransfer(transactionDto).subscribe({
             next: () => {
               this.statusCreateRegister = 'success';
               this.closeFormDialog();
@@ -207,9 +211,8 @@ export class TransactionFormComponent {
             },
           });
         } else if (this.transactionDetail.date !== '') {
-          console.log(transactionDto);
 
-          this.expenseService.updateExpense(transactionDto).subscribe({
+          this.transferService.updateTransfer(transactionDto).subscribe({
             next: () => {
               this.statusCreateRegister = 'success';
               this.closeFormDialog();
@@ -230,8 +233,10 @@ export class TransactionFormComponent {
   }
 
   fillFormDefault() {
-    this.form.controls.sourceAccount.setValue('Cash');
-    this.form.controls.category.setValue('Others');
+    if(this.transactionDetail.type !== 'transfer') {
+      this.form.controls.sourceAccount.setValue('Cash');
+      this.form.controls.category.setValue('Others');
+    }
   }
 
   fillForm() {
