@@ -20,7 +20,7 @@
           name="amount"
           id="amount"
         />
-      </div>    
+      </div>
       <div *ngIf="form.controls.amount.touched && form.controls.amount.invalid">
         <app-form-validation-message
           class="form__validation-message"
@@ -44,12 +44,13 @@
           id="source-account"
           formControlName="sourceAccount"
         >
-        <!-- <span>//TODO (Configurar un option de selected accoun por defecto)</span> -->
+          <!-- <span>//TODO (Configurar un option de selected accoun por defecto)</span> -->
           <option
             *ngFor="let account of accounts$"
             [value]="account.accountName"
             [selected]="
-              transactionDetail.date === '' && transactionDetail.type !== 'transfer'
+              transactionDetail.id === null &&
+              transactionDetail.type !== 'transfer'
                 ? account.accountName === 'Cash'
                 : account.accountName === transactionDetail.sourceAccountName
             "
@@ -66,13 +67,13 @@
           >Destination account</label
         >
         <select
-        class="input--text"
-        name="destination-account"
-        id="destination-account"
-        formControlName="destinationAccount"
+          class="input--text"
+          name="destination-account"
+          id="destination-account"
+          formControlName="destinationAccount"
         >
-        <!-- <span>//TODO(Verificar que la cuanta de origen y al de destino no sean las mismas)</span> -->
-        <!-- <span>//TODO (Configurar un option de selected accoun por defecto)</span> -->
+          <!-- <span>//TODO(Verificar que la cuanta de origen y al de destino no sean las mismas)</span> -->
+          <!-- <span>//TODO (Configurar un option de selected accoun por defecto)</span> -->
           <option
             *ngFor="let account of accounts$"
             [value]="account.accountName"
@@ -80,6 +81,15 @@
             {{ account.accountName }}
           </option>
         </select>
+      </div>
+      <div *ngIf="form.controls.sourceAccount.touched">
+        <app-form-validation-message
+          class="form__validation-message"
+          *ngIf="form.hasError('sameAccount')"
+          class="font-medium text-red-500 text-xs mt-1 ml-1"
+        >
+          The accounts are the same
+        </app-form-validation-message>
       </div>
     </div>
 
@@ -91,12 +101,12 @@
           name="category"
           id="category"
           formControlName="category"
-        >        
+        >
           <option
-            *ngFor="let category of expenseCategories$"
+            *ngFor="let category of categories$"
             [value]="category.categoryName"
             [selected]="
-              transactionDetail.date === ''
+              transactionDetail.id === null
                 ? category.categoryName === 'Others'
                 : category.categoryName === transactionDetail.category
             "

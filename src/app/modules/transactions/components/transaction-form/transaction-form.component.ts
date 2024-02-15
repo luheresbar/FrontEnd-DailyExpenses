@@ -19,6 +19,7 @@ import { Account } from '@models/account.model';
 import { IncomeService } from '@services/income.service';
 import { TransferService } from '@services/transfer.service';
 import { IncomeCategoryService } from '@services/income-category.service';
+import { CustomValidators } from '@utils/validators';
 
 @Component({
   selector: 'app-transaction-form',
@@ -38,8 +39,7 @@ export class TransactionFormComponent {
   @Input() transactionDetail!: TransactionDetail;
   statusCreateRegister: RequestStatus = 'init';
   stateTransaction: stateTransaction = 'create';
-  expenseCategories$: Category[] | null = null;
-  incomeCategories$: Category[] | null = null;
+  categories$: Category[] | null = null;
   accounts$: Account[] | null = null;
 
   formattedTransactionDetailDate: string = '';
@@ -58,6 +58,11 @@ export class TransactionFormComponent {
     category: [''],
     description: [''],
     date: [this.currentDate],
+  },
+  {
+    validators: [
+      CustomValidators.DifferentAccountsValidator('sourceAccount', 'destinationAccount'),
+    ],
   });
 
   showRegister = false;
@@ -78,22 +83,27 @@ export class TransactionFormComponent {
   }
 
   ngOnInit() {
-    this.expenseCategoryService.categories$.subscribe((categories) => {
-      this.expenseCategories$ = categories;
-    });
-    this.incomeCategoryService.categories$.subscribe((categories) => {
-      this.incomeCategories$ = categories;
-    });
+    if (this.transactionDetail.type === 'expense') {
+      this.expenseCategoryService.categories$.subscribe((categories) => {
+        this.categories$ = categories;
+      });
+    } else if (this.transactionDetail.type === 'income') {
+      this.incomeCategoryService.categories$.subscribe((categories) => {
+        this.categories$ = categories;
+      });
+    }
     this.accountService.accounts$.subscribe((accounts) => {
       this.accounts$ = accounts;
     });
 
-    if (this.transactionDetail.date === '') {
+    if (this.transactionDetail.id === null) {
       this.stateTransaction = 'create';
       this.fillFormDefault();
     } else {
       this.fillForm();
       this.disableForm();
+      console.log(this.transactionDetail);
+      
     }
   }
 
@@ -112,7 +122,7 @@ export class TransactionFormComponent {
 
       let formattedDate: string | null = '';
 
-      if (this.transactionDetail.date === '' || this.formattedTransactionDetailDate !== date) {
+      if (this.transactionDetail.id === null || this.formattedTransactionDetailDate !== date) {
         if (date === this.currentDate) {
           formattedDate = new DatePipe('en-US').transform(
             this.now,
@@ -141,7 +151,7 @@ export class TransactionFormComponent {
         destinationAccountName: destinationAccount,
       };
       if (this.transactionDetail.type === 'expense') {
-        if (this.transactionDetail.date === '') {
+        if (this.transactionDetail.id === null) {
           this.expenseService.createExpense(transactionDto).subscribe({
             next: () => {
               this.statusCreateRegister = 'success';
@@ -172,7 +182,7 @@ export class TransactionFormComponent {
           });
         }
       } else if (this.transactionDetail.type === 'income') {
-        if (this.transactionDetail.date === '') {
+        if (this.transactionDetail.id === null) {
           console.log(transactionDto);
 
           this.incomeService.createIncome(transactionDto).subscribe({
@@ -207,7 +217,7 @@ export class TransactionFormComponent {
       } else if (this.transactionDetail.type === 'transfer') {
         console.log(transactionDto);
 
-        if (this.transactionDetail.date === '') {
+        if (this.transactionDetail.id === null) {
           this.transferService.createTransfer(transactionDto).subscribe({
             next: () => {
               this.statusCreateRegister = 'success';

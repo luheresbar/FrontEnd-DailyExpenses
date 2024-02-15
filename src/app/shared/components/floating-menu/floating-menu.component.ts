@@ -30,7 +30,7 @@ export class FloatingMenuComponent {
       autoFocus: false,
       data: {
         type: this.transactionType,
-        id: 0,
+        id: null,
         description: '',
         date: '',
         amount: 0,

@@ -69,7 +69,8 @@ export class ExpenseService {
       })
       .pipe(
         switchMap(() => this.getExpenses()),
-        switchMap(() => this.accountservice.getAccounts())
+        switchMap(() => this.accountservice.getAccounts()),
+        switchMap(() => this.transactionService.getAll())
       );
   }
 }

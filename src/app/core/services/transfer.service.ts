@@ -59,14 +59,15 @@ export class TransferService {
       );
   }
 
-  deletetransfer(transferId: number) {
+  deleteTransfer(transferId: number) {
     return this.http
       .delete(`${this.apiUrl}/transfers/delete/${transferId}`, {
         context: checkToken(),
       })
       .pipe(
         switchMap(() => this.getTransfers()),
-        switchMap(() => this.accountservice.getAccounts())
+        switchMap(() => this.accountservice.getAccounts()),
+        switchMap(() => this.transactionService.getAll())
       );
   }
 

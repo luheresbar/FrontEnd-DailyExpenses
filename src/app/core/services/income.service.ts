@@ -61,14 +61,15 @@ export class IncomeService {
       );
   }
 
-  deleteincome(incomeId: number) {
+  deleteIncome(incomeId: number) {
     return this.http
       .delete(`${this.apiUrl}/incomes/delete/${incomeId}`, {
         context: checkToken(),
       })
       .pipe(
         switchMap(() => this.getIncomes()),
-        switchMap(() => this.accountservice.getAccounts())
+        switchMap(() => this.accountservice.getAccounts()),
+        switchMap(() => this.transactionService.getAll())
       );
   }
 
