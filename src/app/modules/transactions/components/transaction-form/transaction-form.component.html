@@ -1,5 +1,8 @@
 <div class="transaction-form">
-  <h1 class="form__register--title" > {{ capitalizeFirstLetter(stateTransaction) }}  {{ capitalizeFirstLetter(transactionDetail.type) }} </h1>
+  <h1 class="form__register--title">
+    {{ capitalizeFirstLetter(stateTransaction) }}
+    {{ capitalizeFirstLetter(transactionDetail.type) }}
+  </h1>
   <form
     class="form__transaction"
     [formGroup]="form"
@@ -17,7 +20,7 @@
           name="amount"
           id="amount"
         />
-      </div>
+      </div>    
       <div *ngIf="form.controls.amount.touched && form.controls.amount.invalid">
         <app-form-validation-message
           class="form__validation-message"
@@ -30,23 +33,25 @@
 
     <div>
       <div class="form__source-account">
-        <label class="form__label" for="sourceAccount">
+        <label class="form__label" for="source-account">
           {{
             transactionDetail.type != "transfer" ? "Account" : "Source account"
           }}
         </label>
         <select
           class="input--text"
-          name="sourceAccount"
-          id="sourceAccount"
+          name="source-account"
+          id="source-account"
           formControlName="sourceAccount"
         >
+        <!-- <span>//TODO (Configurar un option de selected accoun por defecto)</span> -->
           <option
             *ngFor="let account of accounts$"
-            [ngValue]="account.accountName"
-            [selected]="transactionDetail.date === ''
-            ? account.accountName === 'Cash'
-            : account.accountName === transactionDetail.sourceAccountName
+            [value]="account.accountName"
+            [selected]="
+              transactionDetail.date === '' && transactionDetail.type !== 'transfer'
+                ? account.accountName === 'Cash'
+                : account.accountName === transactionDetail.sourceAccountName
             "
           >
             {{ account.accountName }}
@@ -61,20 +66,24 @@
           >Destination account</label
         >
         <select
-          class="input--text"
-          name="sourceAccount"
-          id="sourceAccount"
-          formControlName="destinationAccount"
+        class="input--text"
+        name="destination-account"
+        id="destination-account"
+        formControlName="destinationAccount"
         >
         <!-- <span>//TODO(Verificar que la cuanta de origen y al de destino no sean las mismas)</span> -->
-          <option *ngFor="let account of accounts$">
+        <!-- <span>//TODO (Configurar un option de selected accoun por defecto)</span> -->
+          <option
+            *ngFor="let account of accounts$"
+            [value]="account.accountName"
+          >
             {{ account.accountName }}
           </option>
         </select>
       </div>
     </div>
 
-    <div>
+    <div *ngIf="transactionDetail.type !== 'transfer'">
       <div class="form__category">
         <label class="form__label" for="category">Category</label>
         <select
@@ -82,10 +91,10 @@
           name="category"
           id="category"
           formControlName="category"
-        >
+        >        
           <option
             *ngFor="let category of expenseCategories$"
-            [ngValue]="category.categoryName"
+            [value]="category.categoryName"
             [selected]="
               transactionDetail.date === ''
                 ? category.categoryName === 'Others'

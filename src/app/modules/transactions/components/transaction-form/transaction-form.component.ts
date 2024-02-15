@@ -12,12 +12,13 @@ import {
 import { ExpenseService } from '@services/expense.service';
 import { BtnComponent } from '@shared/components/atoms/btn/btn.component';
 import { FormValidationMessageComponent } from '@shared/components/atoms/form-validation-message/form-validation-message.component';
-import { ExpenseCategoryService } from '@services/expenseCategory.service';
+import { ExpenseCategoryService } from '@services/expense-category.service';
 import { AccountService } from '@services/account.service';
 import { Category } from '@models/category.model';
 import { Account } from '@models/account.model';
 import { IncomeService } from '@services/income.service';
 import { TransferService } from '@services/transfer.service';
+import { IncomeCategoryService } from '@services/income-category.service';
 
 @Component({
   selector: 'app-transaction-form',
@@ -38,8 +39,10 @@ export class TransactionFormComponent {
   statusCreateRegister: RequestStatus = 'init';
   stateTransaction: stateTransaction = 'create';
   expenseCategories$: Category[] | null = null;
+  incomeCategories$: Category[] | null = null;
   accounts$: Account[] | null = null;
 
+  formattedTransactionDetailDate: string = '';
   //Date
   now = new Date();
   year = this.now.getFullYear();
@@ -66,9 +69,10 @@ export class TransactionFormComponent {
     private formBuilder: FormBuilder,
     private expenseService: ExpenseService,
     private expenseCategoryService: ExpenseCategoryService,
+    private incomeCategoryService: IncomeCategoryService,
     private accountService: AccountService,
     private incomeService: IncomeService,
-    private transferService: TransferService,
+    private transferService: TransferService
   ) {
     // this.currentDate = this.datePipe.transform(this.now, 'yyyy-MM-dd'); TODO(optimizar la gestion de la fecha)
   }
@@ -76,6 +80,9 @@ export class TransactionFormComponent {
   ngOnInit() {
     this.expenseCategoryService.categories$.subscribe((categories) => {
       this.expenseCategories$ = categories;
+    });
+    this.incomeCategoryService.categories$.subscribe((categories) => {
+      this.incomeCategories$ = categories;
     });
     this.accountService.accounts$.subscribe((accounts) => {
       this.accounts$ = accounts;
@@ -105,19 +112,22 @@ export class TransactionFormComponent {
 
       let formattedDate: string | null = '';
 
-      const dateNow = new Date();
-      if (date === this.currentDate) {
-        formattedDate = new DatePipe('en-US').transform(
-          dateNow,
-          'yyyy-MM-ddTHH:mm:ss.SSS'
-        );
-      } else {
-        formattedDate = new DatePipe('en-US').transform(
-          date,
-          'yyyy-MM-ddTHH:mm:ss.SSS'
-        );
+      if (this.transactionDetail.date === '' || this.formattedTransactionDetailDate !== date) {
+        if (date === this.currentDate) {
+          formattedDate = new DatePipe('en-US').transform(
+            this.now,
+            'yyyy-MM-ddTHH:mm:ss.SSS'
+          );
+          
+        } else {
+          formattedDate = new DatePipe('en-US').transform(
+            date,
+            'yyyy-MM-ddTHH:mm:ss.SSS'
+            );
+        }
+      } else if (this.formattedTransactionDetailDate === date) {
+        formattedDate = this.transactionDetail.date;
       }
-
       const expenseValue = parseFloat(amount);
 
       const transactionDto: TransactionDetail = {
@@ -211,7 +221,6 @@ export class TransactionFormComponent {
             },
           });
         } else if (this.transactionDetail.date !== '') {
-
           this.transferService.updateTransfer(transactionDto).subscribe({
             next: () => {
               this.statusCreateRegister = 'success';
@@ -233,7 +242,7 @@ export class TransactionFormComponent {
   }
 
   fillFormDefault() {
-    if(this.transactionDetail.type !== 'transfer') {
+    if (this.transactionDetail.type !== 'transfer') {
       this.form.controls.sourceAccount.setValue('Cash');
       this.form.controls.category.setValue('Others');
     }
@@ -246,7 +255,7 @@ export class TransactionFormComponent {
     this.form.controls.sourceAccount.setValue(
       this.transactionDetail.sourceAccountName
     );
-
+    //TODO(configurar verificacion de cuentas deben ser diferentes source and destination)
     this.form.controls.destinationAccount.setValue(
       this.transactionDetail.destinationAccountName
     );
@@ -267,9 +276,9 @@ export class TransactionFormComponent {
         month < 10 ? '0' + month : month.toString();
       const formattedDay: string = day < 10 ? '0' + day : day.toString();
 
-      const formattedDate: string = `${year}-${formattedMonth}-${formattedDay}`;
+      this.formattedTransactionDetailDate = `${year}-${formattedMonth}-${formattedDay}`;
 
-      this.form.controls.date.setValue(formattedDate);
+      this.form.controls.date.setValue(this.formattedTransactionDetailDate);
     }
   }
 
