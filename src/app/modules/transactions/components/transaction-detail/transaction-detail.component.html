@@ -2,7 +2,7 @@
   <div class="transfer-detail" (click)="openDialogViewTransaction()">
     <div class="transfer__info--left">
       <p class="transfer__description"> {{ transaction.description }} </p>
-      <p class="transfer__date"> {{ transaction.date }} </p>
+      <p class="transfer__date"> {{ formattedTransactionDate }} </p>
     </div>
     <div class="transfer__info--right">
       <p class="transfer__amount"> {{ transaction.amount }} </p>

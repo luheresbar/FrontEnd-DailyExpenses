@@ -10,6 +10,7 @@ import { FooterComponent } from '../../../auth/components/footer/footer.componen
 import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
 import { UserResponse } from '@models/user.model';
+import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -21,6 +22,7 @@ import { UserResponse } from '@models/user.model';
     SearchInputComponent,
     FontAwesomeModule,
     FooterComponent,
+    RouterLinkWithHref
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',

@@ -45,10 +45,10 @@ export class TransactionFormComponent {
   formattedTransactionDetailDate: string = '';
   //Date
   now = new Date();
-  year = this.now.getFullYear();
-  month = String(this.now.getMonth() + 1).padStart(2, '0');
-  day = String(this.now.getDate()).padStart(2, '0');
-  currentDate = `${this.year}-${this.month}-${this.day}`;
+  currentDate = new DatePipe('en-US').transform(
+    this.now,
+    'yyyy-MM-dd'
+  );
 
   form = this.formBuilder.nonNullable.group({
     type: [''],
@@ -102,8 +102,6 @@ export class TransactionFormComponent {
     } else {
       this.fillForm();
       this.disableForm();
-      console.log(this.transactionDetail);
-      
     }
   }
 
@@ -165,7 +163,6 @@ export class TransactionFormComponent {
             },
           });
         } else if (this.transactionDetail.date !== '') {
-          console.log(transactionDto);
 
           this.expenseService.updateExpense(transactionDto).subscribe({
             next: () => {
@@ -183,7 +180,6 @@ export class TransactionFormComponent {
         }
       } else if (this.transactionDetail.type === 'income') {
         if (this.transactionDetail.id === null) {
-          console.log(transactionDto);
 
           this.incomeService.createIncome(transactionDto).subscribe({
             next: () => {
@@ -198,7 +194,6 @@ export class TransactionFormComponent {
             },
           });
         } else if (this.transactionDetail.date !== '') {
-          console.log(transactionDto);
 
           this.incomeService.updateIncome(transactionDto).subscribe({
             next: () => {
@@ -215,7 +210,6 @@ export class TransactionFormComponent {
           });
         }
       } else if (this.transactionDetail.type === 'transfer') {
-        console.log(transactionDto);
 
         if (this.transactionDetail.id === null) {
           this.transferService.createTransfer(transactionDto).subscribe({

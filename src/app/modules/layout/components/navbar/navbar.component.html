@@ -6,7 +6,7 @@
     <p class="navbar__logo--name" *ngIf="showAditionalContent">Daily Expenses</p>
   </div>
   <div class="navbar__sections">
-    <div class="navbar__home" (click)="setActiveButton('transactions')" [class.active]="activeButton === 'transactions'"></div>
+    <div class="navbar__home" role="button" routerLink="/transactions" (click)="setActiveButton('transactions')" [class.active]="activeButton === 'transactions'"></div>
     <div class="navbar__item navbar__item--transactions" (click)="setActiveButton('transactions')" [class.active]="activeButton === 'transactions'">
       <p class="navbar__text">Transactions</p>
     </div>
