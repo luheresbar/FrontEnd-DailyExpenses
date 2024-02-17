@@ -25,7 +25,26 @@ export class FloatingMenuComponent {
     private overlayService: OverlayService,
   ) {}
 
-  openDialog() {
+  openDialogTransaction() {
+    this.dialog.open(DialogNewRegisterComponent, {
+      minWidth: '300px',
+      width: '100%',
+      height: '100vh',
+      autoFocus: false,
+      data: {
+        type: this.transactionType,
+        id: null,
+        description: '',
+        date: '',
+        amount: 0,
+        category: '',
+        sourceAccountName: '',
+        destinationAccountName: '',
+      },
+    });
+  }
+
+  openDialogAccount() {
     this.dialog.open(DialogNewRegisterComponent, {
       minWidth: '300px',
       width: '100%',

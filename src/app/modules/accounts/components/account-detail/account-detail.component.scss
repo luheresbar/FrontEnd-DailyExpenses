@@ -2,10 +2,10 @@
 @import "/tokens/_typography";
 
 
-@mixin format-account-detail($bg-color) {
+.enabled {
   .account-detail {
-    background-color: $bg-color;
-    border: 0.2rem solid $bg-color;
+    background-color: $hospital-green;
+    border: 0.2rem solid $hospital-green;
     border-radius: 0.8rem;
     padding: 0.6rem 1rem;
     display: flex;
@@ -45,16 +45,28 @@
       }
     }
     &:hover {
-      background-color: rgba($bg-color, 0.7);
+      background-color: rgba($hospital-green, 0.7);
     }
   }
 }
 
-.enabled {
-  @include format-account-detail($hospital-green);
-}
-
 .disabled {
-  @include format-account-detail($gray-light);
+  .account-detail {
+    background-color: $gray-light;
+    border: 0.2rem solid $gray-light;
+    border-radius: 0.8rem;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+
+    .account__name {
+      .account__neme--text {
+        font-size: $font-size-medium;
+        text-align: start;
+      }
+    }
+    &:hover {
+      background-color: rgba($gray-light, 0.7);
+    }
+  }
 }
 

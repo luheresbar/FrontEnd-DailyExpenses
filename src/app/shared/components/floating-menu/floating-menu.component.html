@@ -1,33 +1,35 @@
+<!--* Transaction section floating menu -->
 <div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'transactions' ">
   <p class="floating-menu__title">New Register</p>
   <div class="floating-menu__btn">
     <app-btn
-      (click)="assingTransactionType('transfer'); openDialog()"
+      (click)="assingTransactionType('transfer'); openDialogTransaction()"
       color="btn-floating-menu"
       >Transfer</app-btn
     >
   </div>
   <div class="floating-menu__btn">
     <app-btn
-      (click)="assingTransactionType('income'); openDialog()"
+      (click)="assingTransactionType('income'); openDialogTransaction()"
       color="btn-floating-menu"
       >Income</app-btn
     >
   </div>
   <div class="floating-menu__btn">
     <app-btn
-      (click)="assingTransactionType('expense'); openDialog()"
+      (click)="assingTransactionType('expense'); openDialogTransaction()"
       color="btn-floating-menu"
       >Expense</app-btn
     >
   </div>
 </div>
 
+<!--* Account section floating menu -->
 <div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'accounts' ">
   <p class="floating-menu__title">New Account</p>
   <div class="floating-menu__btn">
     <app-btn
-      (click)="assingTransactionType('transfer'); openDialog()"
+      (click)="assingTransactionType(''); openDialogAccount()"
       color="btn-floating-menu"
       >Create</app-btn
     >
