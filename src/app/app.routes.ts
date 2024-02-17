@@ -12,6 +12,7 @@ import { ExpenseSummaryComponent } from './modules/transactions/pages/expense-su
 import { IncomeSummaryComponent } from './modules/transactions/pages/income-summary/income-summary.component';
 import { TransferSummaryComponent } from './modules/transactions/pages/transfer-summary/transfer-summary.component';
 import { DialogNewRegisterComponent } from '@shared/components/dialog-new-register/dialog-new-register.component';
+import { AccountSummaryComponent } from './modules/accounts/pages/account-summary/account-summary.component';
 
 export const routes: Routes = [
   {
@@ -37,6 +38,11 @@ export const routes: Routes = [
         path: 'transfers',
         canActivate: [ authGuard ],
         component: TransferSummaryComponent,
+      },
+      {
+        path: 'accounts',
+        canActivate: [ authGuard ],
+        component: AccountSummaryComponent,
       },
     ],
   },

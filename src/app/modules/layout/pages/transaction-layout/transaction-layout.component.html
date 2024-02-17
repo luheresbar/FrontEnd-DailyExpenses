@@ -7,13 +7,17 @@
       <app-search-input></app-search-input>
     </div>
   </div>
-  <div class="date-filter">
-    <app-date-filter></app-date-filter>
-  </div>
-  <div class="transaction-filter">
-    <h3 class="filter__subtitle">Transactions</h3>
-    <app-transaction-filter></app-transaction-filter>
-  </div>
+  <ng-container *ngIf="showDateFilter">
+    <div class="date-filter">
+      <app-date-filter></app-date-filter>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="showTransactionFilter">
+    <div class="transaction-filter">
+      <h3 class="filter__subtitle">Transactions</h3>
+      <app-transaction-filter></app-transaction-filter>
+    </div>
+  </ng-container>
   <div class="account-filter">
     <h3 class="filter__subtitle">Accounts</h3>
     <div class="account-filter--wrapper">
@@ -42,11 +46,10 @@
   [cdkConnectedOverlayOrigin]="OverlayFloatingMenu"
   [cdkConnectedOverlayOpen]="isOpenOverlayFloatingMenu$"
   [cdkConnectedOverlayHasBackdrop]="true"
-  (backdropClick)="isOpenOverlayFloatingMenu$ = false"
+  (backdropClick)="changeStateOverlayFloatingMenu()"
   (detach)="isOpenOverlayFloatingMenu$ = false"
 >
-<div>
-  <app-floating-menu></app-floating-menu>
-</div>
+  <div>
+    <app-floating-menu></app-floating-menu>
+  </div>
 </ng-template>
-

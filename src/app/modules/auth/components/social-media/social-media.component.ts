@@ -10,4 +10,6 @@ import { HorizontalLineComponent } from '@shared/components/atoms/horizontal-lin
 })
 export class SocialMediaComponent {
 
+  
+
 }

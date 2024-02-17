@@ -3,20 +3,43 @@
     <div class="navbar__logo--component">
       <app-logo></app-logo>
     </div>
-    <p class="navbar__logo--name" *ngIf="showAditionalContent">Daily Expenses</p>
+    <p class="navbar__logo--name" *ngIf="showAditionalContent">
+      Daily Expenses
+    </p>
   </div>
   <div class="navbar__sections">
-    <div class="navbar__home" role="button" routerLink="/transactions" (click)="setActiveButton('transactions')" [class.active]="activeButton === 'transactions'"></div>
-    <div class="navbar__item navbar__item--transactions" (click)="setActiveButton('transactions')" [class.active]="activeButton === 'transactions'">
+    <div
+      class="navbar__home"
+      role="button"
+      routerLink="/transactions"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    ></div>
+    <div class="navbar__item navbar__item--transactions">
       <p class="navbar__text">Transactions</p>
     </div>
-    <div class="navbar__item" (click)="setActiveButton('reports')" [class.active]="activeButton === 'reports'">
+    <div
+      routerLink="/reports"
+      routerLinkActive="active"
+      class="navbar__item"
+      role="button"
+    >
       <p class="navbar__text">Reports</p>
     </div>
-    <div class="navbar__item" (click)="setActiveButton('categories')" [class.active]="activeButton === 'categories'">
+    <div
+      routerLink="/categories"
+      routerLinkActive="active"
+      class="navbar__item"
+      role="button"
+    >
       <p class="navbar__text">Categories</p>
     </div>
-    <div class="navbar__item" (click)="setActiveButton('accounts')" [class.active]="activeButton === 'accounts'">
+    <div
+      class="navbar__item"
+      role="button"
+      routerLink="/accounts"
+      routerLinkActive="active"
+    >
       <p class="navbar__text">Accounts</p>
     </div>
   </div>
@@ -32,8 +55,12 @@
     <div class="navbar__avatar--component">
       <app-avatar></app-avatar>
     </div>
-    <p class="navbar__username" *ngIf="showAditionalContent"> {{ user$?.username }} </p>
-    <p class="navbar__user--email" *ngIf="showAditionalContent"> {{ user$?.email }} </p>
+    <p class="navbar__username" *ngIf="showAditionalContent">
+      {{ user$?.username }}
+    </p>
+    <p class="navbar__user--email" *ngIf="showAditionalContent">
+      {{ user$?.email }}
+    </p>
   </div>
   <div class="navbar__footer" *ngIf="showAditionalContent">
     <app-footer></app-footer>

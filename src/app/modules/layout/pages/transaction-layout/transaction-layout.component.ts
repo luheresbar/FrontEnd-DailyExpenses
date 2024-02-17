@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
 
 import { HeaderbarComponent } from '../../components/headerbar/headerbar.component';
@@ -40,6 +40,10 @@ import { __values } from 'tslib';
   styleUrl: './transaction-layout.component.scss',
 })
 export class TransactionLayoutComponent {
+
+  @Input() showTransactionFilter: boolean = true;
+  @Input() showDateFilter: boolean = true;
+
   faPlus = faPlus;
   isOpenOverlayFloatingMenu$!: boolean;
 
