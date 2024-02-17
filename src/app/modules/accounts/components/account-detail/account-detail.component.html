@@ -3,10 +3,10 @@
     <p class="account__neme--text">Cash</p>
     <button
       class="btn-show-pamount"
-      (click)="showAmount = !showAmount"
+      (click)="showAmount$ = !showAmount$"
       type="button"
     >
-      <fa-icon [icon]="showAmount ? faEye : faEyeSlash"></fa-icon>
+      <fa-icon [icon]="showAmount$ ? faEye : faEyeSlash"></fa-icon>
     </button>
   </div>
   <app-horizontal-line></app-horizontal-line>
@@ -15,7 +15,7 @@
       <p class="account__balance">Balance</p>
     </div>
     <div class="account__info--right">
-      @if (showAmount) {
+      @if (showAmount$) {
         <p class="account__amount">$1000000</p>
       } @else {
         <p class="account__amount">$***</p>

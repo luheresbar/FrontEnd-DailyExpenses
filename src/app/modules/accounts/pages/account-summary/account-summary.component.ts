@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AccountDetailComponent } from '../../components/account-detail/account-detail.component';
 import { AccountLayoutComponent } from '../../../layout/pages/account-layout/account-layout.component';
 
@@ -19,5 +19,7 @@ export class AccountSummaryComponent {
   showTransactionFilter: boolean = false;
   showDateFilter: boolean = false;
   showTotalBalance: boolean = true;
+
+
 
 }

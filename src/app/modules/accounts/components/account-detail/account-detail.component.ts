@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { faEye, faEyeSlash, faL } from '@fortawesome/free-solid-svg-icons';
+import { Account } from '@models/account.model';
+import { ShowAmountService } from '@services/show-amount.service';
 import { HorizontalLineComponent } from '@shared/components/atoms/horizontal-line/horizontal-line.component';
 
 @Component({
@@ -18,36 +20,38 @@ import { HorizontalLineComponent } from '@shared/components/atoms/horizontal-lin
 })
 export class AccountDetailComponent {
 
-  showAmount: boolean = false;
+  @Input() transaction!: Account;
+  showAmount$: boolean = false;
+
   faEye = faEye;
   faEyeSlash = faEyeSlash;
 
-  // @Input() accounts!: TransactionDetail;
-  // faArrowRight = faArrowRight;
-  formattedTransactionDate: string | null = '';
 
   constructor(
     // private dialog: Dialog,
+    private showAmountServise: ShowAmountService,
 
     ) {
   }
-  
-  // ngOnInit() {
-  //   this.formatDate();
-  // }
 
-  // getTransactionTypeClass(): string {
-  //   switch (this.transaction.type) {
-  //     case 'income':
-  //       return 'income';
-  //     case 'expense':
-  //       return 'expense';
-  //     case 'transfer':
-  //       return 'transfer';
-  //     default:
-  //       return '';
-  //   }
-  // }
+  ngOnInit() {
+    this.showAmountServise.isAmountVisible$.subscribe(value => {
+      this.showAmount$ = value;
+    })
+  }
+
+  changeVisibilityStatus() {
+    this.showAmountServise.changeVisibilityStatus();
+  }
+
+  getTransactionTypeClass(): string {
+    if (this.transaction.available) {
+        return 'available';
+      } else {
+        return 'disabled';
+    }
+  }
+
 
   // openDialogViewTransaction() {
   //   this.dialog.open(DialogNewRegisterComponent, {
@@ -66,18 +70,6 @@ export class AccountDetailComponent {
   //       destinationAccountName: this.transaction.destinationAccountName,
   //     },
   //   });
-  // }
-
-  // formatDate() {
-  //   if (this.transaction.date != null) {
-
-  //     const dateReceived: string = this.transaction.date;
-  //     const date: Date = new Date(dateReceived);
-
-  //     this.formattedTransactionDate = new DatePipe('en-US').transform(
-  //       date,'EEE, dd'
-  //     );
-  //   }
   // }
 
 }
