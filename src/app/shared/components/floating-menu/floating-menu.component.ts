@@ -1,19 +1,22 @@
-import { Component, Output, signal } from '@angular/core';
+import { Component, Input, Output, signal } from '@angular/core';
 import {DialogModule, Dialog} from '@angular/cdk/dialog';
 
 import { BtnComponent } from '../atoms/btn/btn.component';
 import { DialogNewRegisterComponent } from '../dialog-new-register/dialog-new-register.component';
 import { OverlayService } from '@services/overlay.service';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-floating-menu',
   standalone: true,
-  imports: [BtnComponent, DialogModule, DialogNewRegisterComponent, OverlayModule],
+  imports: [CommonModule, BtnComponent, DialogModule, DialogNewRegisterComponent, OverlayModule],
   templateUrl: './floating-menu.component.html',
   styleUrl: './floating-menu.component.scss'
 })
 export class FloatingMenuComponent {
+
+  @Input() typeFloatingMenu: string = '';
 
   transactionType = '';
 
@@ -44,6 +47,8 @@ export class FloatingMenuComponent {
   assingTransactionType(type: string) {
     this.transactionType = type;
   }
+
+
 
   // closeOverlay() {
   //   this.overlayService.closeOverlayFloatingMenu();

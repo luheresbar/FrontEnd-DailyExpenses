@@ -1,4 +1,4 @@
-<div class="overlay-floating-menu">
+<div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'transactions' ">
   <p class="floating-menu__title">New Register</p>
   <div class="floating-menu__btn">
     <app-btn
@@ -22,3 +22,17 @@
     >
   </div>
 </div>
+
+<div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'accounts' ">
+  <p class="floating-menu__title">New Account</p>
+  <div class="floating-menu__btn">
+    <app-btn
+      (click)="assingTransactionType('transfer'); openDialog()"
+      color="btn-floating-menu"
+      >Create</app-btn
+    >
+  </div>
+</div>
+
+
+

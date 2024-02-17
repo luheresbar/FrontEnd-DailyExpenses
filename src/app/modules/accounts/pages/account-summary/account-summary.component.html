@@ -1,19 +1,25 @@
 <app-account-layout>
   <div class="account-container">
-    <h3 class="subtitle">Available</h3>
-
-    <div class="account-summary">
-      @for (enabledAccount of enabledAccounts$; track $index) {
-      <app-account-detail [accountDetail]="enabledAccount"></app-account-detail>
-      }
+    <div class="enabledAccounts" *ngIf="enabledAccounts$.length > 0">
+      <h3 class="subtitle">Available</h3>
+      <div class="account-summary">
+        @for (enabledAccount of enabledAccounts$; track $index) {
+        <app-account-detail
+          [accountDetail]="enabledAccount"
+        ></app-account-detail>
+        }
+      </div>
     </div>
-
-    <h3 class="subtitle">Disabled</h3>
-    <div class="account-summary">
-      @for (enabledAccount of disabledAccounts$; track $index) {
-      <app-account-detail [accountDetail]="enabledAccount"></app-account-detail>
-      }
+    <div class="disabledAccounts" *ngIf="disabledAccounts$.length > 0">
+      <h3 class="subtitle">Disabled</h3>
+      <div class="account-summary">
+        @for (enabledAccount of disabledAccounts$; track $index) {
+        <app-account-detail
+          [accountDetail]="enabledAccount"
+        ></app-account-detail>
+        }
+      </div>
     </div>
+    <div class="overhang"></div>
   </div>
-  <div class="overhang"></div>
 </app-account-layout>

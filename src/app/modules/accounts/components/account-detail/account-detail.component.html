@@ -6,12 +6,13 @@
         class="btn-show-pamount"
         (click)="showAmount$ = !showAmount$"
         type="button"
+        *ngIf="accountDetail.available === true"
       >
         <fa-icon [icon]="showAmount$ ? faEye : faEyeSlash"></fa-icon>
       </button>
     </div>
-    <app-horizontal-line></app-horizontal-line>
-    <div class="account__description">
+    <app-horizontal-line *ngIf="accountDetail.available === true"></app-horizontal-line>
+    <div class="account__description" *ngIf="accountDetail.available === true">
       <div class="account__info--left">
         <p class="account__balance">Balance</p>
       </div>

@@ -41,6 +41,7 @@ export class TransactionLayoutComponent {
 
   faPlus = faPlus;
   isOpenOverlayFloatingMenu$!: boolean;
+  typeFloatingMenu: string = 'transactions';
 
   constructor(
     private overlayService: OverlayService,

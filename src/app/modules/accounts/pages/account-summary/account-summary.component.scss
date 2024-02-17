@@ -2,14 +2,17 @@
 @import "/tokens/_typography";
 
 .account-container {
-  .subtitle {
-    font-size: $font-size-medium;
-  }
-  .account-summary {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-block: 1rem;
+  .enabledAccounts,
+  .disabledAccounts {
+    .subtitle {
+      font-size: $font-size-medium;
+    }
+    .account-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-block: 1rem;
+    }
   }
 }
 .overhang {

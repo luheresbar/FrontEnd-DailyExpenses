@@ -31,6 +31,8 @@ export class AccountLayoutComponent {
 
   @Input() showTransactionFilter: boolean = true;
   @Input() showDateFilter: boolean = true;
+  typeFloatingMenu: string = 'accounts';
+
 
   faPlus = faPlus;
   isOpenOverlayFloatingMenu$!: boolean;

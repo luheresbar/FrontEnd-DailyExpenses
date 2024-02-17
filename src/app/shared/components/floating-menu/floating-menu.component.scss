@@ -4,12 +4,12 @@
 .overlay-floating-menu {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   width: 20rem;
-  height: 30rem;
+  gap: 2rem;
   background-color: $text-input-border-active;
   border-radius: 0.8rem;
-  padding: 1rem;
+  padding: 3rem 1rem 2rem 1rem;
   margin-block-end: 1.5rem;
   .floating-menu__title {
     text-align: center;
