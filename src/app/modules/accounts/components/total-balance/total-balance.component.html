@@ -13,7 +13,7 @@
     <app-horizontal-line></app-horizontal-line>
     <div class="balance__amount">
       @if (showAmount$) {
-      <p class="available-money">$1500000</p>
+      <p class="available-money"> {{ availableTotalMoney$ }} </p>
       } @else {
       <p class="available-money">$***</p>
       }

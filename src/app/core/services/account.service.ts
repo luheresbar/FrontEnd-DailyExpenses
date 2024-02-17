@@ -12,7 +12,8 @@ export class AccountService {
 
   private apiUrl = `${environment.API_URL}/api`;
   money$ = new BehaviorSubject<number | null>(null);
-  accounts$ = new BehaviorSubject<Account[]>([]);
+  enabledAccounts$ = new BehaviorSubject<Account[]>([]);
+  disabledAccounts$ = new BehaviorSubject<Account[]>([]);
 
   constructor(
     private http: HttpClient,
@@ -31,7 +32,8 @@ export class AccountService {
     return this.http.get<SummaryAccountsDto>(`${this.apiUrl}/accounts`, { context: checkToken() })
     .pipe(
       tap(accounts => {
-        this.accounts$.next(accounts.accounts);
+        this.enabledAccounts$.next(accounts.enabledAccounts);
+        this.disabledAccounts$.next(accounts.disabledAccounts);
         this.money$.next(accounts.totalAvailableMoney);
       })
     )

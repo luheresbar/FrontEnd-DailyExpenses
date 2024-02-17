@@ -92,7 +92,7 @@ export class TransactionFormComponent {
         this.categories$ = categories;
       });
     }
-    this.accountService.accounts$.subscribe((accounts) => {
+    this.accountService.enabledAccounts$.subscribe((accounts) => {
       this.accounts$ = accounts;
     });
 

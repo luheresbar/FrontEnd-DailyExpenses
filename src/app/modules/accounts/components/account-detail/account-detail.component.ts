@@ -20,7 +20,7 @@ import { HorizontalLineComponent } from '@shared/components/atoms/horizontal-lin
 })
 export class AccountDetailComponent {
 
-  @Input() transaction!: Account;
+  @Input() accountDetail!: Account;
   showAmount$: boolean = false;
 
   faEye = faEye;
@@ -45,8 +45,8 @@ export class AccountDetailComponent {
   }
 
   getTransactionTypeClass(): string {
-    if (this.transaction.available) {
-        return 'available';
+    if (this.accountDetail.available) {
+        return 'enabled';
       } else {
         return 'disabled';
     }

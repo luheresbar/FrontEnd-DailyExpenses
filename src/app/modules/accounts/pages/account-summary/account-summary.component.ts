@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { AccountDetailComponent } from '../../components/account-detail/account-detail.component';
 import { AccountLayoutComponent } from '../../../layout/pages/account-layout/account-layout.component';
+import { Account } from '@models/account.model';
+import { AccountService } from '@services/account.service';
 
 @Component({
   selector: 'app-account-summary',
@@ -21,5 +23,20 @@ export class AccountSummaryComponent {
   showTotalBalance: boolean = true;
 
 
+  enabledAccounts$: Account[] = [];
+  disabledAccounts$: Account[] = [];
+
+  constructor(
+    private accountService: AccountService,
+  ) {}
+
+  ngOnInit() {
+    this.accountService.enabledAccounts$.subscribe( accounts => {
+      this.enabledAccounts$ = accounts;
+    });
+    this.accountService.disabledAccounts$.subscribe( accounts => {
+      this.disabledAccounts$ = accounts;
+    });
+  }
 
 }

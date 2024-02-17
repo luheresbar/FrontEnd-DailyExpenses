@@ -1,48 +1,60 @@
 @import "/tokens/_colors";
 @import "/tokens/_typography";
 
-.account-detail {
-  background-color: $hospital-green;
-  border: 0.2rem solid $hospital-green;
-  border-radius: 0.8rem;
-  padding: 0.6rem 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  cursor: pointer;
 
-  .account__name {
+@mixin format-account-detail($bg-color) {
+  .account-detail {
+    background-color: $bg-color;
+    border: 0.2rem solid $bg-color;
+    border-radius: 0.8rem;
+    padding: 0.6rem 1rem;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    cursor: pointer;
 
-    .account__neme--text {
-      font-size: $font-size-large;
-      text-align: start;
-    }
-    .btn-show-pamount {
-      display: grid;
-      place-content: center;
-      width: 3rem;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-    }
-  }
+    .account__name {
+      display: flex;
+      justify-content: space-between;
 
-  .account__description {
-    display: flex;
-    justify-content: space-between;
-
-    .account__info--left,
-    .account__info--right {
-      .account__amount,
-      .account__balance {
-        font-size: $font-size-medium;
-        text-align: end;
+      .account__neme--text {
+        font-size: $font-size-large;
+        text-align: start;
+      }
+      .btn-show-pamount {
+        display: grid;
+        place-content: center;
+        width: 3rem;
+        background: transparent;
+        border: none;
+        cursor: pointer;
       }
     }
-  }
-  &:hover {
-    background-color: rgba($hospital-green, 0.7);
+
+    .account__description {
+      display: flex;
+      justify-content: space-between;
+
+      .account__info--left,
+      .account__info--right {
+        .account__amount,
+        .account__balance {
+          font-size: $font-size-medium;
+          text-align: end;
+        }
+      }
+    }
+    &:hover {
+      background-color: rgba($bg-color, 0.7);
+    }
   }
 }
+
+.enabled {
+  @include format-account-detail($hospital-green);
+}
+
+.disabled {
+  @include format-account-detail($gray-light);
+}
+

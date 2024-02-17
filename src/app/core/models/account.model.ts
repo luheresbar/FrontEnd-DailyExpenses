@@ -6,7 +6,8 @@ export interface Account {
 }
 
 export interface SummaryAccountsDto {
-  accounts: Account[],
+  enabledAccounts: Account[],
+  disabledAccounts: Account[],
   totalAvailableMoney: number
 }
 
