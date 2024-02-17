@@ -1,1 +1,25 @@
-<p>account-detail works!</p>
+<div class="account-detail">
+  <div class="account__name">
+    <p class="account__neme--text">Cash</p>
+    <button
+      class="btn-show-pamount"
+      (click)="showAmount = !showAmount"
+      type="button"
+    >
+      <fa-icon [icon]="showAmount ? faEye : faEyeSlash"></fa-icon>
+    </button>
+  </div>
+  <app-horizontal-line></app-horizontal-line>
+  <div class="account__description">
+    <div class="account__info--left">
+      <p class="account__balance">Balance</p>
+    </div>
+    <div class="account__info--right">
+      @if (showAmount) {
+        <p class="account__amount">$1000000</p>
+      } @else {
+        <p class="account__amount">$***</p>
+        }
+    </div>
+  </div>
+</div>

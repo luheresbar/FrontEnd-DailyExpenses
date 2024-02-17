@@ -1,31 +1,14 @@
-<div class="transaction-layout">
+<div class="account-layout">
   <div class="headerbar">
     <app-headerbar></app-headerbar>
   </div>
-  <div class="transaction__search">
-    <div class="transaction__search--input">
-      <app-search-input></app-search-input>
-    </div>
+  <div class="account__total-balance">
+    <app-total-balance></app-total-balance>
   </div>
-    <div class="date-filter">
-      <app-date-filter></app-date-filter>
-    </div>
-    <div class="transaction-filter">
-      <h3 class="filter__subtitle">Transactions</h3>
-      <app-transaction-filter></app-transaction-filter>
-    </div>
-  <div class="account-filter">
-    <h3 class="filter__subtitle">Accounts</h3>
-    <div class="account-filter--wrapper">
-      <div>
-        <app-account-filter></app-account-filter>
-      </div>
-    </div>
-  </div>
-  <div class="transaction-content">
+  <div class="account-content">
     <ng-content></ng-content>
   </div>
-  <div class="transaction__floating-button">
+  <div class="account__floating-button">
     <app-floating-button
       (click)="changeStateOverlayFloatingMenu()"
       cdkOverlayOrigin

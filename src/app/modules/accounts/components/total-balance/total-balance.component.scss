@@ -1,0 +1,44 @@
+@import "/tokens/_colors";
+@import "/tokens/_typography";
+
+.balance-container {
+  width: 100%;
+  padding: 1.2rem;
+  .total-balance {
+    background-color: $text-input-border-active;
+    border: 0.2rem solid $text-input-border-active;
+    border-radius: 0.8rem;
+    padding: 0.6rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+
+    .subtitle {
+      display: flex;
+      justify-content: space-between;
+
+      .subtitle--text {
+        font-size: $font-size-large;
+        text-align: start;
+      }
+      .btn-show-amount {
+      display: grid;
+      place-content: center;
+      width: 3rem;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      }
+    }
+    .balance__amount {
+      .available-money {
+        font-size: $font-size-medium;
+        text-align: end;
+      }
+    }
+    &:hover {
+      background-color: rgba($text-input-border-active, 0.7);
+    }
+  }
+}

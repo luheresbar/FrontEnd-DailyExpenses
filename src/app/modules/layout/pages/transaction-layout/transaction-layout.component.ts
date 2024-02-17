@@ -15,8 +15,6 @@ import { FloatingButtonComponent } from '@shared/components/atoms/floating-butto
 import { FloatingMenuComponent } from '@shared/components/floating-menu/floating-menu.component';
 import { OverlayService } from '@services/overlay.service';
 import { DialogNewRegisterComponent } from '@shared/components/dialog-new-register/dialog-new-register.component';
-import { TransactionService } from '@services/transaction.service';
-import { __values } from 'tslib';
 
 @Component({
   selector: 'app-transaction-layout',
@@ -40,9 +38,6 @@ import { __values } from 'tslib';
   styleUrl: './transaction-layout.component.scss',
 })
 export class TransactionLayoutComponent {
-
-  @Input() showTransactionFilter: boolean = true;
-  @Input() showDateFilter: boolean = true;
 
   faPlus = faPlus;
   isOpenOverlayFloatingMenu$!: boolean;

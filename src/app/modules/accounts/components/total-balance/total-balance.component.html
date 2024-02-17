@@ -1,0 +1,22 @@
+<div class="balance-container">
+  <div class="total-balance">
+    <div class="subtitle">
+      <h2 class="subtitle--text">Total balance</h2>
+      <button
+        class="btn-show-amount"
+        (click)="showAmount = !showAmount"
+        type="button"
+      >
+        <fa-icon [icon]="showAmount ? faEye : faEyeSlash"></fa-icon>
+      </button>
+    </div>
+    <app-horizontal-line></app-horizontal-line>
+    <div class="balance__amount">
+      @if (showAmount) {
+      <p class="available-money">$1500000</p>
+      } @else {
+      <p class="available-money">$***</p>
+      }
+    </div>
+  </div>
+</div>

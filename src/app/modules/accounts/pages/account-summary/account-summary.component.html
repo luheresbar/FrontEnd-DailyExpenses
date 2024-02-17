@@ -1,8 +1,20 @@
-<app-transaction-layout
-  [showTransactionFilter]="showTransactionFilter"
-  [showDateFilter]="showDateFilter"
->
-  <div class="transaction-sumary">
-    <div></div>
+<app-account-layout
+  >
+
+  <h3 class="subtitle">Available</h3>
+  
+  <div class="account-summary">
+    <app-account-detail></app-account-detail>
+    <app-account-detail></app-account-detail>
+    <app-account-detail></app-account-detail>
   </div>
-</app-transaction-layout>
+  
+  
+  <h3 class="subtitle">Disabled</h3>
+  <div class="account-summary">
+    <app-account-detail></app-account-detail>
+    <app-account-detail></app-account-detail>
+    <app-account-detail></app-account-detail>
+  </div>
+
+</app-account-layout>

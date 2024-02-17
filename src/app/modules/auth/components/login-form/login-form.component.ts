@@ -4,7 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLinkWithHref } from '@angular/router';
 
 import { BtnComponent } from '@shared/components/atoms/btn/btn.component';
-import { faEye, faEyeSlash, faL } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RequestStatus } from '@models/request-status.model';
 import { AuthService } from '@services/auth.service';
@@ -25,18 +25,17 @@ import { FormValidationMessageComponent } from '@shared/components/atoms/form-va
   styleUrl: './login-form.component.scss',
 })
 export class LoginFormComponent {
-  form = this.formBuilder.nonNullable.group({
-    email: ['', [Validators.email, Validators.required]],
-    password: ['', [Validators.required]],
-  });
-
   faEye = faEye;
   faEyeSlash = faEyeSlash;
-
   showPassword: boolean = false;
   status: RequestStatus = 'init';
   unregisteresUser: boolean = false;
   invalidPassword: boolean = false;
+
+  form = this.formBuilder.nonNullable.group({
+    email: ['', [Validators.email, Validators.required]],
+    password: ['', [Validators.required]],
+  });
 
   constructor(
     private formBuilder: FormBuilder,

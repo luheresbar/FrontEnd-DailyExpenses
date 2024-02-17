@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/front-end-daily-expenses",
+    "public": "dist/front-end-daily-expenses/browser",
     "ignore": [
       "firebase.json",
       "**/.*",

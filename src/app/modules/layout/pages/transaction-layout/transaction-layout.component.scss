@@ -13,7 +13,6 @@
   .date-filter,
   .transaction-filter {
     width: 100%;
-    justify-self: center;
   }
 
   .headerbar {
@@ -83,8 +82,6 @@
       border-radius: 0.8rem;
       padding: 2rem;
       width: 100%;
-      justify-self: center;
-      align-self: center;
 
       .filter__subtitle {
         display: block;
@@ -101,8 +98,6 @@
       padding: 2rem;
       width: 100%;
       height: 100%;
-      justify-self: center;
-      align-self: center;
 
       .filter__subtitle {
         font-size: $font-size-medium;
