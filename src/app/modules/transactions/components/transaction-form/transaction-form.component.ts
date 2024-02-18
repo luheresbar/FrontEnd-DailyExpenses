@@ -5,10 +5,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { RequestStatus } from '@models/request-status.model';
-import {
-  TransactionDetail,
-  stateTransaction,
-} from '@models/transaction-detail.model';
+import { TransactionDetail } from '@models/transaction-detail.model';
 import { ExpenseService } from '@services/expense.service';
 import { BtnComponent } from '@shared/components/atoms/btn/btn.component';
 import { FormValidationMessageComponent } from '@shared/components/atoms/form-validation-message/form-validation-message.component';
@@ -20,6 +17,7 @@ import { IncomeService } from '@services/income.service';
 import { TransferService } from '@services/transfer.service';
 import { IncomeCategoryService } from '@services/income-category.service';
 import { CustomValidators } from '@utils/validators';
+import { stateProcess } from '@models/stateProcess.model';
 
 @Component({
   selector: 'app-transaction-form',
@@ -37,33 +35,35 @@ import { CustomValidators } from '@utils/validators';
 export class TransactionFormComponent {
   @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
   @Input() transactionDetail!: TransactionDetail;
-  statusCreateRegister: RequestStatus = 'init';
-  stateTransaction: stateTransaction = 'create';
+  statusRegister: RequestStatus = 'init';
+  stateTransaction: stateProcess = 'create';
   categories$: Category[] | null = null;
   accounts$: Account[] | null = null;
 
   formattedTransactionDetailDate: string = '';
   //Date
   now = new Date();
-  currentDate = new DatePipe('en-US').transform(
-    this.now,
-    'yyyy-MM-dd'
-  );
+  currentDate = new DatePipe('en-US').transform(this.now, 'yyyy-MM-dd');
 
-  form = this.formBuilder.nonNullable.group({
-    type: [''],
-    amount: ['', [Validators.required]],
-    sourceAccount: [''],
-    destinationAccount: [''],
-    category: [''],
-    description: [''],
-    date: [this.currentDate],
-  },
-  {
-    validators: [
-      CustomValidators.DifferentAccountsValidator('sourceAccount', 'destinationAccount'),
-    ],
-  });
+  form = this.formBuilder.nonNullable.group(
+    {
+      type: [''],
+      amount: ['', [Validators.required]],
+      sourceAccount: [''],
+      destinationAccount: [''],
+      category: [''],
+      description: [''],
+      date: [this.currentDate],
+    },
+    {
+      validators: [
+        CustomValidators.DifferentAccountsValidator(
+          'sourceAccount',
+          'destinationAccount'
+        ),
+      ],
+    }
+  );
 
   showRegister = false;
   showPassword = false;
@@ -77,7 +77,9 @@ export class TransactionFormComponent {
     private incomeCategoryService: IncomeCategoryService,
     private accountService: AccountService,
     private incomeService: IncomeService,
-    private transferService: TransferService
+    private transferService: TransferService,
+    private router: Router,
+
   ) {
     // this.currentDate = this.datePipe.transform(this.now, 'yyyy-MM-dd'); TODO(optimizar la gestion de la fecha)
   }
@@ -107,7 +109,7 @@ export class TransactionFormComponent {
 
   createNewRegiste() {
     if (this.form.valid) {
-      this.statusCreateRegister = 'loading';
+      this.statusRegister = 'loading';
 
       const {
         description,
@@ -120,18 +122,20 @@ export class TransactionFormComponent {
 
       let formattedDate: string | null = '';
 
-      if (this.transactionDetail.id === null || this.formattedTransactionDetailDate !== date) {
+      if (
+        this.transactionDetail.id === null ||
+        this.formattedTransactionDetailDate !== date
+      ) {
         if (date === this.currentDate) {
           formattedDate = new DatePipe('en-US').transform(
             this.now,
             'yyyy-MM-ddTHH:mm:ss.SSS'
           );
-          
         } else {
           formattedDate = new DatePipe('en-US').transform(
             date,
             'yyyy-MM-ddTHH:mm:ss.SSS'
-            );
+          );
         }
       } else if (this.formattedTransactionDetailDate === date) {
         formattedDate = this.transactionDetail.date;
@@ -152,89 +156,76 @@ export class TransactionFormComponent {
         if (this.transactionDetail.id === null) {
           this.expenseService.createExpense(transactionDto).subscribe({
             next: () => {
-              this.statusCreateRegister = 'success';
+              this.statusRegister = 'success';
               this.closeFormDialog();
-              // this.expensesComponent.
-              // this.router.navigate(['/expenses']);
+              // this.router.navigate(['/transactions/expenses']);
             },
             error: (error) => {
-              this.statusCreateRegister = 'failed';
+              this.statusRegister = 'failed';
               console.log(error);
             },
           });
         } else if (this.transactionDetail.date !== '') {
-
           this.expenseService.updateExpense(transactionDto).subscribe({
             next: () => {
-              this.statusCreateRegister = 'success';
+              this.statusRegister = 'success';
               this.closeFormDialog();
-              // this.newExpenseDialog.close();
-              // this.expensesComponent.
-              // this.router.navigate(['/expenses']);
+              // this.router.navigate(['/transactions/expenses']);
             },
             error: (error) => {
-              this.statusCreateRegister = 'failed';
+              this.statusRegister = 'failed';
               console.log(error);
             },
           });
         }
       } else if (this.transactionDetail.type === 'income') {
         if (this.transactionDetail.id === null) {
-
           this.incomeService.createIncome(transactionDto).subscribe({
             next: () => {
-              this.statusCreateRegister = 'success';
+              this.statusRegister = 'success';
               this.closeFormDialog();
-              // this.expensesComponent.
-              // this.router.navigate(['/expenses']);
+              // this.router.navigate(['/transactions/incomes']);
             },
             error: (error) => {
-              this.statusCreateRegister = 'failed';
+              this.statusRegister = 'failed';
               console.log(error);
             },
           });
         } else if (this.transactionDetail.date !== '') {
-
           this.incomeService.updateIncome(transactionDto).subscribe({
             next: () => {
-              this.statusCreateRegister = 'success';
+              this.statusRegister = 'success';
               this.closeFormDialog();
-              // this.newExpenseDialog.close();
-              // this.expensesComponent.
-              // this.router.navigate(['/expenses']);
+              // this.router.navigate(['/transactions/incomes']);
             },
             error: (error) => {
-              this.statusCreateRegister = 'failed';
+              this.statusRegister = 'failed';
               console.log(error);
             },
           });
         }
       } else if (this.transactionDetail.type === 'transfer') {
-
         if (this.transactionDetail.id === null) {
           this.transferService.createTransfer(transactionDto).subscribe({
             next: () => {
-              this.statusCreateRegister = 'success';
+              this.statusRegister = 'success';
               this.closeFormDialog();
-              // this.expensesComponent.
-              // this.router.navigate(['/expenses']);
+              // this.router.navigate(['/transactions/transfers']);
             },
             error: (error) => {
-              this.statusCreateRegister = 'failed';
+              this.statusRegister = 'failed';
               console.log(error);
             },
           });
         } else if (this.transactionDetail.date !== '') {
           this.transferService.updateTransfer(transactionDto).subscribe({
             next: () => {
-              this.statusCreateRegister = 'success';
+              this.statusRegister = 'success';
               this.closeFormDialog();
-              // this.newExpenseDialog.close();
-              // this.expensesComponent.
-              // this.router.navigate(['/expenses']);
+              // this.router.navigate(['/transactions/transfers']);
             },
             error: (error) => {
-              this.statusCreateRegister = 'failed';
+              this.statusRegister = 'failed';
               console.log(error);
             },
           });

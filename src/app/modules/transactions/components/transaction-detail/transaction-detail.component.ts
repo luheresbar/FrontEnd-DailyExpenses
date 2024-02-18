@@ -4,7 +4,7 @@ import { Component, Input, inject } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TransactionDetail } from '@models/transaction-detail.model';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { DialogNewRegisterComponent } from '@shared/components/dialog-new-register/dialog-new-register.component';
+import { DialogTransactionComponent } from '@shared/components/dialog-transaction/dialog-transaction.component';
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
 
 @Component({
@@ -43,7 +43,7 @@ export class TransactionDetailComponent {
   }
 
   openDialogViewTransaction() {
-    this.dialog.open(DialogNewRegisterComponent, {
+    this.dialog.open(DialogTransactionComponent, {
       minWidth: '300px',
       width: '100%',
       height: '100vh',

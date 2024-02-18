@@ -25,10 +25,10 @@ import { CommonModule } from '@angular/common';
     OverlayModule,
     CdkMenuModule
   ],
-  templateUrl: './dialog-new-register.component.html',
-  styleUrl: './dialog-new-register.component.scss'
+  templateUrl: './dialog-transaction.component.html',
+  styleUrl: './dialog-transaction.component.scss'
 })
-export class DialogNewRegisterComponent {
+export class DialogTransactionComponent {
 
   faArrowLeft = faArrowLeft;
   faEllipsisVertical = faEllipsisVertical;

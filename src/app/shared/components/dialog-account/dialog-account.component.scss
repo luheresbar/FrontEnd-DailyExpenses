@@ -20,7 +20,7 @@
       }
     }
     .user__nav:nth-child(2) {
-      margin-inline-end: 3rem;
+      margin-inline-end: 1rem;
     }
   }
 }
@@ -46,11 +46,6 @@
     min-width: 6.4rem;
     line-height: 3.6rem;
     padding: 0 1.6rem;
-
-    // display: flex;
-    // align-items: center;
-    // flex-direction: row;
-    // flex: 1;
   }
 
   .example-menu-item:hover {

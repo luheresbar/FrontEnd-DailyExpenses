@@ -14,4 +14,3 @@ export interface SummaryTransaction {
   totalTransactions: number
 }
 
-export type stateTransaction = 'create' | 'edit' | 'view';

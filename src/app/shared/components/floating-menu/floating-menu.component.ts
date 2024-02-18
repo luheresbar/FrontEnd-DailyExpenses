@@ -2,15 +2,16 @@ import { Component, Input, Output, signal } from '@angular/core';
 import {DialogModule, Dialog} from '@angular/cdk/dialog';
 
 import { BtnComponent } from '../atoms/btn/btn.component';
-import { DialogNewRegisterComponent } from '../dialog-new-register/dialog-new-register.component';
+import { DialogTransactionComponent } from '../dialog-transaction/dialog-transaction.component';
 import { OverlayService } from '@services/overlay.service';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
+import { DialogAccountComponent } from '../dialog-account/dialog-account.component';
 
 @Component({
   selector: 'app-floating-menu',
   standalone: true,
-  imports: [CommonModule, BtnComponent, DialogModule, DialogNewRegisterComponent, OverlayModule],
+  imports: [CommonModule, BtnComponent, DialogModule, DialogTransactionComponent, OverlayModule],
   templateUrl: './floating-menu.component.html',
   styleUrl: './floating-menu.component.scss'
 })
@@ -26,7 +27,7 @@ export class FloatingMenuComponent {
   ) {}
 
   openDialogTransaction() {
-    this.dialog.open(DialogNewRegisterComponent, {
+    this.dialog.open(DialogTransactionComponent, {
       minWidth: '300px',
       width: '100%',
       height: '100vh',
@@ -45,21 +46,12 @@ export class FloatingMenuComponent {
   }
 
   openDialogAccount() {
-    this.dialog.open(DialogNewRegisterComponent, {
+    this.dialog.open(DialogAccountComponent, {
       minWidth: '300px',
       width: '100%',
       height: '100vh',
       autoFocus: false,
-      data: {
-        type: this.transactionType,
-        id: null,
-        description: '',
-        date: '',
-        amount: 0,
-        category: '',
-        sourceAccountName: '',
-        destinationAccountName: '',
-      },
+      data: {},
     });
   }
 

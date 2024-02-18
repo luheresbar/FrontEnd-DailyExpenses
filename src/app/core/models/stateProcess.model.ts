@@ -1,0 +1,1 @@
+export type stateProcess = 'create' | 'edit' | 'view';

@@ -14,7 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FloatingButtonComponent } from '@shared/components/atoms/floating-button/floating-button.component';
 import { FloatingMenuComponent } from '@shared/components/floating-menu/floating-menu.component';
 import { OverlayService } from '@services/overlay.service';
-import { DialogNewRegisterComponent } from '@shared/components/dialog-new-register/dialog-new-register.component';
+import { DialogTransactionComponent } from '@shared/components/dialog-transaction/dialog-transaction.component';
 
 @Component({
   selector: 'app-transaction-layout',
@@ -32,7 +32,7 @@ import { DialogNewRegisterComponent } from '@shared/components/dialog-new-regist
     FloatingButtonComponent,
     OverlayModule,
     FloatingMenuComponent,
-    DialogNewRegisterComponent
+    DialogTransactionComponent
   ],
   templateUrl: './transaction-layout.component.html',
   styleUrl: './transaction-layout.component.scss',

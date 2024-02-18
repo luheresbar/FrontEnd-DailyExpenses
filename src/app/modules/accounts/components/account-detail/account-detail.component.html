@@ -1,15 +1,15 @@
 <div [ngClass]="getTransactionTypeClass()">
-  <div class="account-detail">
+  <div class="account-detail" (click)="openDialogViewTransaction()">
     <div class="account__name">
       <p class="account__neme--text">{{ accountDetail.accountName }}</p>
-      <button
+      <!-- <button
         class="btn-show-pamount"
         (click)="showAmount$ = !showAmount$"
         type="button"
         *ngIf="accountDetail.available === true"
       >
         <fa-icon [icon]="showAmount$ ? faEye : faEyeSlash"></fa-icon>
-      </button>
+      </button> -->
     </div>
     <app-horizontal-line *ngIf="accountDetail.available === true"></app-horizontal-line>
     <div class="account__description" *ngIf="accountDetail.available === true">

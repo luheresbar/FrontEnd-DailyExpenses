@@ -1,0 +1,17 @@
+<div class="dialog-new-register">
+  <div class="header">
+    <div (click)="close()" role="button" class="user__nav">
+      <fa-icon [icon]="faArrowLeft" class="icon"></fa-icon>
+    </div>
+    <div [cdkMenuTriggerFor]="menu" role="button" class="user__nav">
+      <fa-icon [icon]="faEllipsisVertical" class="icon"></fa-icon>
+    </div>
+  </div>
+  <app-account-form [accountDetail]="accountDetail" (closeDialog)="onCloseDialog()"></app-account-form>
+</div>
+
+<ng-template #menu>
+  <div class="example-menu" cdkMenu>
+    <button (click)="deleteRegister(); close()" class="example-menu-item" cdkMenuItem>Delete</button>
+  </div>
+</ng-template>

@@ -1,1 +1,77 @@
-<p>account-form works!</p>
+<div class="account-form">
+  <h1 class="form__register--title">
+    {{ capitalizeFirstLetter(stateProcess) }}
+    Account
+  </h1>
+  <form
+    class="form__account"
+    [formGroup]="form"
+    novalidate
+    (ngSubmit)="createNewRegiste()"
+  >
+
+    <div>
+      <div class="form__account-name">
+        <label class="form__label" for="account-name">Account name</label>
+        <input
+          class="input--text"
+          formControlName="accountName"
+          placeholder="Enter account-name"
+          type="text"
+          name="account-name"
+          id="account-name"
+        />
+      </div>
+    </div>
+
+    <div>
+      <div class="form__available-amount">
+        <label class="form__label" for="available-amount">Available money</label>
+        <input
+          class="input--text"
+          formControlName="availableMoney"
+          placeholder="Enter available-amount"
+          type="number"
+          name="available-amount"
+          id="available-amount"
+        />
+      </div>
+      <div *ngIf="form.controls.availableMoney.touched && form.controls.availableMoney.invalid">
+        <app-form-validation-message
+          class="form__validation-message"
+          *ngIf="form.controls.availableMoney.hasError('required')"
+        >
+          This field is mandatory
+        </app-form-validation-message>
+      </div>
+    </div>
+
+    <div class="form__btn" *ngIf="stateProcess === 'create'">
+      <app-btn
+        typeBtn="submit"
+        color="btn-primary"
+        [loading]="statusRegister === 'loading'"
+        >Create</app-btn
+      >
+    </div>
+
+    <div class="form__btn" *ngIf="stateProcess === 'edit'">
+      <app-btn
+        typeBtn="submit"
+        color="btn-primary"
+        [loading]="statusRegister === 'loading'"
+        >Save</app-btn
+      >
+    </div>
+
+    <div class="form__btn" *ngIf="stateProcess === 'view'">
+      <app-btn
+        typeBtn="button"
+        color="btn-secondary"
+        (click)="enableForm()"
+        [loading]="statusRegister === 'loading'"
+        >Edit</app-btn
+      >
+    </div>
+  </form>
+</div>

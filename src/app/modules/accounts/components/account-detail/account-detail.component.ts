@@ -1,3 +1,4 @@
+import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -6,6 +7,7 @@ import { faEye, faEyeSlash, faL } from '@fortawesome/free-solid-svg-icons';
 import { Account } from '@models/account.model';
 import { ShowAmountService } from '@services/show-amount.service';
 import { HorizontalLineComponent } from '@shared/components/atoms/horizontal-line/horizontal-line.component';
+import { DialogAccountComponent } from '@shared/components/dialog-account/dialog-account.component';
 
 @Component({
   selector: 'app-account-detail',
@@ -13,7 +15,8 @@ import { HorizontalLineComponent } from '@shared/components/atoms/horizontal-lin
   imports: [
     CommonModule,
     HorizontalLineComponent,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DialogModule
   ],
   templateUrl: './account-detail.component.html',
   styleUrl: './account-detail.component.scss'
@@ -28,7 +31,7 @@ export class AccountDetailComponent {
 
 
   constructor(
-    // private dialog: Dialog,
+    private dialog: Dialog,
     private showAmountServise: ShowAmountService,
 
     ) {
@@ -40,9 +43,9 @@ export class AccountDetailComponent {
     })
   }
 
-  changeVisibilityStatus() {
-    this.showAmountServise.changeVisibilityStatus();
-  }
+  // changeVisibilityStatus() {
+  //   this.showAmountServise.changeVisibilityStatus();
+  // }
 
   getTransactionTypeClass(): string {
     if (this.accountDetail.available) {
@@ -52,24 +55,21 @@ export class AccountDetailComponent {
     }
   }
 
+  openDialogViewTransaction() {
+    this.dialog.open(DialogAccountComponent, {
+      minWidth: '300px',
+      width: '100%',
+      height: '100vh',
+      autoFocus: false,
+      data: {
+        accountName: this.accountDetail.accountName,
+        userId: this.accountDetail.userId,
+        availableMoney: this.accountDetail.availableMoney,
+        available: this.accountDetail.available,
 
-  // openDialogViewTransaction() {
-  //   this.dialog.open(DialogNewRegisterComponent, {
-  //     minWidth: '300px',
-  //     width: '100%',
-  //     height: '100vh',
-  //     autoFocus: false,
-  //     data: {
-  //       type: this.transaction.type,
-  //       id: this.transaction.id,
-  //       description: this.transaction.description,
-  //       date: this.transaction.date,
-  //       amount: this.transaction.amount,
-  //       category: this.transaction.category,
-  //       sourceAccountName: this.transaction.sourceAccountName,
-  //       destinationAccountName: this.transaction.destinationAccountName,
-  //     },
-  //   });
-  // }
+      },
+    });
+  }
 
 }
+
