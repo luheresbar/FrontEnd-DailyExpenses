@@ -1,7 +1,7 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Account } from '@models/account.model';
+import { Account, UpdateAccountDto } from '@models/account.model';
 import { RequestStatus } from '@models/request-status.model';
 import { stateProcess } from '@models/stateProcess.model';
 import { AccountService } from '@services/account.service';
@@ -83,8 +83,15 @@ export class AccountFormComponent {
             },
           });
         } else if (Object.keys(this.accountDetail).length !== 0) {
-            console.log(account);
-            this.accountService.updateAccount(account).subscribe({
+          const accountDto: UpdateAccountDto = {
+            userId: this.accountDetail.userId,
+            accountName: this.accountDetail.accountName,
+            newAccountName: accountName,
+            availableMoney: expenseValue,
+            available: this.accountDetail.available
+          };
+          console.log(accountDto); //TODO (Eliminar linea)
+            this.accountService.updateAccount(accountDto).subscribe({
               next: () => {
                 this.statusRegister = 'success';
                 this.closeFormDialog();

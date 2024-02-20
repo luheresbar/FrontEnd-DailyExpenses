@@ -16,5 +16,10 @@ export interface AccountPK {
   accountName: string,
 }
 
+export interface UpdateAccountDto extends Account{
+  newAccountName: string,
+}
+
+
 
 // export interface AccountDTO extends Omit<Account, 'userId' | 'availableMoney' | 'available'> {}

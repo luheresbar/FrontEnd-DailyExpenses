@@ -10,7 +10,7 @@ import {
   faArrowLeft,
   faEllipsisVertical,
 } from '@fortawesome/free-solid-svg-icons';
-import { Account } from '@models/account.model';
+import { Account, AccountPK } from '@models/account.model';
 import { AccountService } from '@services/account.service';
 import { OverlayService } from '@services/overlay.service';
 import { AccountFormComponent } from '../../../modules/accounts/components/account-form/account-form.component';
@@ -57,5 +57,15 @@ export class DialogAccountComponent {
     this.close();
   }
 
-  deleteRegister() {}
+  deleteAccount() {
+    console.log(this.accountDetail);
+      
+      if(this.accountDetail !== null && this.accountDetail.accountName !== null ) {
+        const accountPK: AccountPK = {
+          userId: this.accountDetail.userId,
+          accountName: this.accountDetail.accountName
+        }
+          this.accountService.deleteAccount(accountPK).subscribe();
+      }
+  }
 }

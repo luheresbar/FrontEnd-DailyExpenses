@@ -57,7 +57,6 @@ export class DialogTransactionComponent {
     }
 
     deleteRegister() {
-      console.log(this.transactionDetail);
       
       if(this.transactionDetail.id !== null && this.transactionDetail.type !== null) {
         if(this.transactionDetail.type === 'expense') {

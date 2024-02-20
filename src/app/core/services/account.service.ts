@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
-import { Account, AccountPK, SummaryAccountsDto } from '@models/account.model';
+import { Account, AccountPK, SummaryAccountsDto, UpdateAccountDto } from '@models/account.model';
 import { BehaviorSubject, switchMap, tap } from 'rxjs';
 
 @Injectable({
@@ -52,7 +52,7 @@ export class AccountService {
       );
   }
 
-  updateAccount(account: Account) {
+  updateAccount(account: UpdateAccountDto) {
     return this.http
       .put<Account>(`${this.apiUrl}/accounts/update`, account, {
         context: checkToken(),
