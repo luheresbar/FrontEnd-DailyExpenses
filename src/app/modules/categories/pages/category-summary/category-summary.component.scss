@@ -1,0 +1,20 @@
+@import "/tokens/_colors";
+@import "/tokens/_typography";
+
+.account-container {
+  .enabledAccounts,
+  .disabledAccounts {
+    .subtitle {
+      font-size: $font-size-medium;
+    }
+    .account-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-block: 1rem;
+    }
+  }
+}
+.overhang {
+  height: 7.5rem;
+}

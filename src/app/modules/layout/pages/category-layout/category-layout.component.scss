@@ -1,0 +1,49 @@
+@import "/tokens/_colors";
+@import "/tokens/_typography";
+@import "/tokens/_spacing";
+
+.account-layout {
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  grid-template-columns: repeat(12, 1fr);
+  height: 100%;
+  width: 100%;
+
+  .headerbar {
+    grid-area: 1 / 1 / 2 / 13;
+    width: 100%;
+  }
+
+  .transaction-filter {
+    grid-area: 3 / 1 / 4 / 13;
+    box-shadow: 0px 3px 5px rgba($text-input-border-active, 0.5);
+    padding-block-end: 0.5rem;
+
+    .filter__subtitle {
+      display: none;
+    }
+  }
+
+  .account-content {
+    grid-area: 4 / 1 / 5 / 13;
+    height: 100%;
+    width: 100%;
+    padding: 0 1.2rem;
+    overflow-y: auto;
+
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+  }
+
+  .account__floating-button {
+    grid-area: 4 / 9 / 5 / 13;
+    align-self: end;
+    justify-self: end;
+    margin-block-end: 2rem;
+    margin-inline-end: 2rem;
+  }
+
+}
