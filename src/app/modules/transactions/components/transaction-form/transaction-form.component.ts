@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -28,7 +28,9 @@ import { stateProcess } from '@models/stateProcess.model';
     FormValidationMessageComponent,
     BtnComponent,
     DatePipe,
+    CurrencyPipe,
   ],
+  providers: [CurrencyPipe],
   templateUrl: './transaction-form.component.html',
   styleUrl: './transaction-form.component.scss',
 })
@@ -79,10 +81,8 @@ export class TransactionFormComponent {
     private incomeService: IncomeService,
     private transferService: TransferService,
     private router: Router,
-
-  ) {
-    // this.currentDate = this.datePipe.transform(this.now, 'yyyy-MM-dd'); TODO(optimizar la gestion de la fecha)
-  }
+    private currencyPipe: CurrencyPipe
+  ) {}
 
   ngOnInit() {
     if (this.transactionDetail.type === 'expense') {
@@ -105,6 +105,26 @@ export class TransactionFormComponent {
       this.fillForm();
       this.disableForm();
     }
+
+    this.form.valueChanges.subscribe((form) => {
+      if (form.amount && typeof form.amount === 'string') {
+        const formattedAmount = this.applyCurrencyFormatToAmount(form.amount);
+        this.form.controls.amount.setValue(formattedAmount, { emitEvent: false });
+      }
+    });
+  }
+
+  applyCurrencyFormatToAmount(amount: string) {
+    const numericAmount = parseFloat(amount.replace(/[^0-9.]/g, ''));
+    if (!isNaN(numericAmount)) {
+      return this.currencyPipe.transform(
+        numericAmount,
+        'COP',
+        '$',
+        '1.0-0'
+      ) || '';
+    }
+    return '';
   }
 
   createNewRegiste() {
@@ -140,12 +160,12 @@ export class TransactionFormComponent {
       } else if (this.formattedTransactionDetailDate === date) {
         formattedDate = this.transactionDetail.date;
       }
-      const expenseValue = parseFloat(amount);
+      const cleanedAmount = parseFloat(amount.replace(/\D/g, ''));
 
       const transactionDto: TransactionDetail = {
         type: this.transactionDetail.type,
         id: this.transactionDetail.id,
-        amount: expenseValue,
+        amount: cleanedAmount,
         description: description,
         date: formattedDate,
         sourceAccountName: sourceAccount,
@@ -166,6 +186,8 @@ export class TransactionFormComponent {
             },
           });
         } else if (this.transactionDetail.date !== '') {
+          console.log(transactionDto);
+
           this.expenseService.updateExpense(transactionDto).subscribe({
             next: () => {
               this.statusRegister = 'success';
@@ -244,9 +266,10 @@ export class TransactionFormComponent {
   }
 
   fillForm() {
-    let amountValue = this.transactionDetail.amount.toString();
-    this.form.controls.amount.setValue(amountValue);
-
+    const amountValue = this.transactionDetail.amount.toString();
+    const formattedAmount = this.applyCurrencyFormatToAmount(amountValue);
+    this.form.controls.amount.setValue(formattedAmount);
+    
     this.form.controls.sourceAccount.setValue(
       this.transactionDetail.sourceAccountName
     );
