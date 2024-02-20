@@ -3,7 +3,7 @@
     <div (click)="close()" role="button" class="user__nav">
       <fa-icon [icon]="faArrowLeft" class="icon"></fa-icon>
     </div>
-    <div [cdkMenuTriggerFor]="menu" role="button" class="user__nav">
+    <div *ngIf="showIconfaEllipsisVertical" [cdkMenuTriggerFor]="menu" role="button" class="user__nav">
       <fa-icon [icon]="faEllipsisVertical" class="icon"></fa-icon>
     </div>
   </div>
@@ -13,5 +13,7 @@
 <ng-template #menu>
   <div class="example-menu" cdkMenu>
     <button (click)="deleteAccount(); close()" class="example-menu-item" cdkMenuItem>Delete</button>
+    <button *ngIf="accountDetail.available === true" (click)="disableAccount(); close()" class="example-menu-item" cdkMenuItem>Disable</button>
+    <button *ngIf="accountDetail.available === false" (click)="enableAccount(); close()" class="example-menu-item" cdkMenuItem>Enable</button>
   </div>
 </ng-template>

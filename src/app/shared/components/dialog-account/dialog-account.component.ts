@@ -10,10 +10,11 @@ import {
   faArrowLeft,
   faEllipsisVertical,
 } from '@fortawesome/free-solid-svg-icons';
-import { Account, AccountPK } from '@models/account.model';
+import { Account, AccountPK, UpdateAccountDto } from '@models/account.model';
 import { AccountService } from '@services/account.service';
 import { OverlayService } from '@services/overlay.service';
 import { AccountFormComponent } from '../../../modules/accounts/components/account-form/account-form.component';
+import { RequestStatus } from '@models/request-status.model';
 
 @Component({
   selector: 'app-dialog-account',
@@ -34,6 +35,8 @@ export class DialogAccountComponent {
   faArrowLeft = faArrowLeft;
   faEllipsisVertical = faEllipsisVertical;
   accountDetail!: Account;
+  showIconfaEllipsisVertical: boolean = true;
+  status: RequestStatus = 'init';
 
   constructor(
     private dialogRef: DialogRef,
@@ -45,7 +48,9 @@ export class DialogAccountComponent {
   }
 
   ngOnInit() {
-    
+    if (Object.keys(this.accountDetail).length === 0) {
+      this.showIconfaEllipsisVertical = false;
+    }
   }
 
   close() {
@@ -59,13 +64,58 @@ export class DialogAccountComponent {
 
   deleteAccount() {
     console.log(this.accountDetail);
-      
-      if(this.accountDetail !== null && this.accountDetail.accountName !== null ) {
-        const accountPK: AccountPK = {
-          userId: this.accountDetail.userId,
-          accountName: this.accountDetail.accountName
-        }
-          this.accountService.deleteAccount(accountPK).subscribe();
-      }
+
+    if (
+      this.accountDetail !== null &&
+      this.accountDetail.accountName !== null
+    ) {
+      const accountPK: AccountPK = {
+        userId: this.accountDetail.userId,
+        accountName: this.accountDetail.accountName,
+      };
+      this.accountService.deleteAccount(accountPK).subscribe();
+    }
+  }
+
+  disableAccount() {
+    const accountDto: UpdateAccountDto = {
+      userId: this.accountDetail.userId,
+      accountName: this.accountDetail.accountName,
+      newAccountName: this.accountDetail.accountName,
+      availableMoney: this.accountDetail.availableMoney,
+      available: false,
+    };
+    console.log(accountDto); //TODO (Eliminar linea)
+    this.accountService.updateAccount(accountDto).subscribe({
+      next: () => {
+        this.status = 'success';
+        // this.closeFormDialog();
+      },
+      error: (error) => {
+        this.status = 'failed';
+        console.log(error);
+      },
+    });
+  }
+
+  enableAccount() {
+    const accountDto: UpdateAccountDto = {
+      userId: this.accountDetail.userId,
+      accountName: this.accountDetail.accountName,
+      newAccountName: this.accountDetail.accountName,
+      availableMoney: this.accountDetail.availableMoney,
+      available: true,
+    };
+    console.log(accountDto); //TODO (Eliminar linea)
+    this.accountService.updateAccount(accountDto).subscribe({
+      next: () => {
+        this.status = 'success';
+        // this.closeFormDialog();
+      },
+      error: (error) => {
+        this.status = 'failed';
+        console.log(error);
+      },
+    });
   }
 }
