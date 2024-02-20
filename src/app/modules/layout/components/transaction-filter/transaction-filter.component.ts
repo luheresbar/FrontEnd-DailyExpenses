@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLinkActive, RouterLinkWithHref } from '@angular/router';
 import { ExpenseService } from '@services/expense.service';
@@ -6,7 +7,11 @@ import { IncomeService } from '@services/income.service';
 @Component({
   selector: 'app-transaction-filter',
   standalone: true,
-  imports: [RouterLinkWithHref, RouterLinkActive],
+  imports: [
+    CommonModule,
+    RouterLinkWithHref, 
+    RouterLinkActive
+  ],
   templateUrl: './transaction-filter.component.html',
   styleUrl: './transaction-filter.component.scss',
 })

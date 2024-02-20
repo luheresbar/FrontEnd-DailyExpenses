@@ -18,7 +18,7 @@
       </div>
       <div class="account__info--right">
         @if (showAmount$) {
-        <p class="account__amount">{{ accountDetail.availableMoney }}</p>
+        <p class="account__amount">{{ accountDetail.availableMoney | currency:'COP':'$':'1.2-2'}} </p>
         } @else {
         <p class="account__amount">$***</p>
         }

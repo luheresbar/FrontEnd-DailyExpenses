@@ -16,7 +16,7 @@
     routerLinkActive="active"
   >
     <p class="filter__text">Expenses</p>
-    <p class="filter__text filter__text--expense"> {{ totalExpenses$ }} </p>
+    <p class="filter__text filter__text--expense"> {{ totalExpenses$ | currency:'COP':'$':'1.0-0' }} </p>
   </div>
   <div
     class="filter__item"
@@ -25,7 +25,7 @@
     routerLinkActive="active"
   >
     <p class="filter__text">Incomes</p>
-    <p class="filter__text filter__text--income"> {{ totalIncomes$ }} </p>
+    <p class="filter__text filter__text--income"> {{ totalIncomes$ | currency:'COP':'$':'1.0-0' }} </p>
   </div>
   <div
     class="filter__item"

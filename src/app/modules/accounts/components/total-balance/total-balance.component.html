@@ -13,7 +13,7 @@
     <app-horizontal-line></app-horizontal-line>
     <div class="balance__amount">
       @if (showAmount$) {
-      <p class="available-money"> {{ availableTotalMoney$ }} </p>
+      <p class="available-money"> {{ availableTotalMoney$ | currency:'COP':'$':'1.2-2' }} </p>
       } @else {
       <p class="available-money">$***</p>
       }

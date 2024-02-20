@@ -89,7 +89,6 @@ export class DialogAccountComponent {
     this.accountService.updateAccount(accountDto).subscribe({
       next: () => {
         this.status = 'success';
-        // this.closeFormDialog();
       },
       error: (error) => {
         this.status = 'failed';
@@ -110,7 +109,6 @@ export class DialogAccountComponent {
     this.accountService.updateAccount(accountDto).subscribe({
       next: () => {
         this.status = 'success';
-        // this.closeFormDialog();
       },
       error: (error) => {
         this.status = 'failed';

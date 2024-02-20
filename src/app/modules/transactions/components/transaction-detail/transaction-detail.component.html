@@ -5,7 +5,7 @@
       <p class="transfer__date"> {{ formattedTransactionDate }} </p>
     </div>
     <div class="transfer__info--right">
-      <p class="transfer__amount"> {{ transaction.amount }} </p>
+      <p class="transfer__amount"> {{ transaction.amount | currency:'COP':'$':'1.2-2' }} </p>
       <div class="transfer__accounts">
         <p class="transfer__account"> {{ transaction.sourceAccountName }} </p>
         <div class="icon" *ngIf="transaction.type == 'transfer' ">
