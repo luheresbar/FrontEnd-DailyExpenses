@@ -8,6 +8,7 @@ import { OverlayService } from '@services/overlay.service';
 import { HeaderbarComponent } from '../../components/headerbar/headerbar.component';
 import { FloatingButtonComponent } from '@shared/components/atoms/floating-button/floating-button.component';
 import { CategoryTypeFilterComponent } from '../../../categories/components/category-type-filter/category-type-filter.component';
+import { FloatingMenuComponent } from '@shared/components/floating-menu/floating-menu.component';
 
 
 @Component({
@@ -19,7 +20,8 @@ import { CategoryTypeFilterComponent } from '../../../categories/components/cate
     HeaderbarComponent,
     FloatingButtonComponent,
     OverlayModule,
-    CategoryTypeFilterComponent
+    CategoryTypeFilterComponent,
+    FloatingMenuComponent
   ],
   templateUrl: './category-layout.component.html',
   styleUrl: './category-layout.component.scss'

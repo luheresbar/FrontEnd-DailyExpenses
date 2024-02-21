@@ -63,8 +63,6 @@ export class DialogAccountComponent {
   }
 
   deleteAccount() {
-    console.log(this.accountDetail);
-
     if (
       this.accountDetail !== null &&
       this.accountDetail.accountName !== null

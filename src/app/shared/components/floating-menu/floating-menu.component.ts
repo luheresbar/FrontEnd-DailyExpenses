@@ -7,6 +7,7 @@ import { OverlayService } from '@services/overlay.service';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
 import { DialogAccountComponent } from '../dialog-account/dialog-account.component';
+import { DialogCategoryComponent } from '../dialog-category/dialog-category.component';
 
 @Component({
   selector: 'app-floating-menu',
@@ -44,6 +45,10 @@ export class FloatingMenuComponent {
       },
     });
   }
+  
+  assingTransactionType(type: string) {
+    this.transactionType = type;
+  }
 
   openDialogAccount() {
     this.dialog.open(DialogAccountComponent, {
@@ -55,9 +60,16 @@ export class FloatingMenuComponent {
     });
   }
 
-  assingTransactionType(type: string) {
-    this.transactionType = type;
+  openDialogCategory() {
+    this.dialog.open(DialogCategoryComponent, {
+      minWidth: '300px',
+      width: '100%',
+      height: '100vh',
+      autoFocus: false,
+      data: {},
+    });
   }
+
 
 
 

@@ -36,5 +36,24 @@
   </div>
 </div>
 
+<!--* Category section floating menu -->
+<div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'categories' ">
+  <p class="floating-menu__title">New Category</p>
+  <div class="floating-menu__btn">
+    <app-btn
+      (click)="openDialogCategory()"
+      color="btn-floating-menu"
+      >Expense category</app-btn
+    >
+  </div>
+  <div class="floating-menu__btn">
+    <app-btn
+      (click)="openDialogCategory()"
+      color="btn-floating-menu"
+      >Income Category</app-btn
+    >
+  </div>
+</div>
+
 
 

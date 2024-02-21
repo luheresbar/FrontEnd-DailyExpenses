@@ -25,12 +25,6 @@ export class AccountFormComponent {
   @Input() accountDetail!: Account;
   statusRegister: RequestStatus = 'init';
   stateProcess: stateProcess = 'create';
-  accounts$: Account[] | null = null;
-
-  formattedTransactionDetailDate: string = '';
-  //Date
-  now = new Date();
-  currentDate = new DatePipe('en-US').transform(this.now, 'yyyy-MM-dd');
 
   form = this.formBuilder.nonNullable.group({
     accountName: ['', [Validators.required]],
@@ -60,8 +54,7 @@ export class AccountFormComponent {
   createNewRegiste() {
       if (this.form.valid) {
         this.statusRegister = 'loading';
-        const { accountName: accountName, availableMoney: availableMoney } =
-          this.form.getRawValue();
+        const { accountName, availableMoney } = this.form.getRawValue();
         const expenseValue = parseFloat(availableMoney);
 
         const account: Account = {
