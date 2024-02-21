@@ -1,25 +1,25 @@
-<div class="account-form">
+<div class="category-form">
   <h1 class="form__register--title">
-    {{ capitalizeFirstLetter(stateProcess) }}
-    Account
+    {{ capitalizeFirstLetter(stateProcess) }} {{ capitalizeFirstLetter(categoryDetail.categoryType) }} 
+    Category
   </h1>
   <form
-    class="form__account"
+    class="form__category"
     [formGroup]="form"
     novalidate
     (ngSubmit)="createNewRegiste()"
   >
 
     <div>
-      <div class="form__account-name">
-        <label class="form__label" for="account-name">Account name</label>
+      <div class="form__category-name">
+        <label class="form__label" for="category-name">Category name</label>
         <input
           class="input--text"
-          formControlName="accountName"
-          placeholder="Enter account name"
+          formControlName="categoryName"
+          placeholder="Enter category name"
           type="text"
-          name="account-name"
-          id="account-name"
+          name="category-name"
+          id="category-name"
         />
       </div>
 

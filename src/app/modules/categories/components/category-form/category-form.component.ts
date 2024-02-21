@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Category } from '@models/category.model';
+import { Category, CategoryDto } from '@models/category.model';
 import { RequestStatus } from '@models/request-status.model';
 import { stateProcess } from '@models/stateProcess.model';
 import { AccountService } from '@services/account.service';
@@ -24,7 +24,7 @@ import { FormValidationMessageComponent } from '@shared/components/atoms/form-va
 })
 export class CategoryFormComponent {
 
-  @Input() categoryDetail!: Category;
+  @Input() categoryDetail!: CategoryDto;
   @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
   statusRegister: RequestStatus = 'init';
   stateProcess: stateProcess = 'create';
@@ -45,6 +45,8 @@ export class CategoryFormComponent {
   ) {}
 
   ngOnInit() {
+    console.log(this.categoryDetail);
+    
     if (Object.keys(this.categoryDetail).length === 0) {
       this.stateProcess = 'create';
     } else {

@@ -8,7 +8,7 @@ import {
   faArrowLeft,
   faEllipsisVertical,
 } from '@fortawesome/free-solid-svg-icons';
-import { Category } from '@models/category.model';
+import { CategoryDto } from '@models/category.model';
 import { RequestStatus } from '@models/request-status.model';
 import { ExpenseCategoryService } from '@services/expense-category.service';
 import { IncomeCategoryService } from '@services/income-category.service';
@@ -30,13 +30,13 @@ import { CategoryFormComponent } from '../../../modules/categories/components/ca
 export class DialogCategoryComponent {
   faArrowLeft = faArrowLeft;
   faEllipsisVertical = faEllipsisVertical;
-  categoryDetail!: Category;
+  categoryDetail!: CategoryDto;
   showIconfaEllipsisVertical: boolean = true;
   status: RequestStatus = 'init';
 
   constructor(
     private dialogRef: DialogRef,
-    @Inject(DIALOG_DATA) data: Category,
+    @Inject(DIALOG_DATA) data: CategoryDto,
     private overlayService: OverlayService,
     private expenseCategoryService: ExpenseCategoryService,
     private incomeCategoryService: IncomeCategoryService

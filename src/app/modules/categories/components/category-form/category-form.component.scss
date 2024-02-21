@@ -5,7 +5,7 @@
 @import "/atoms/_mixin-title";
 @import "/atoms/_mixin-link-redirection";
 
-.account-form {
+.category-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -17,7 +17,7 @@
     @include format-title-form;
   }
 
-  .form__account {
+  .form__category {
     width: 30rem;
 
     .input--text {
@@ -28,7 +28,7 @@
       @include format-label-form;
     }
 
-    .form__account-name,
+    .form__category-name,
     .form__available-amount {
       display: flex;
       flex-direction: column;

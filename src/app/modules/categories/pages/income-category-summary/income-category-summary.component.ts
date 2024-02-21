@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { CategoryLayoutComponent } from '../../../layout/pages/category-layout/category-layout.component';
 import { IncomeCategoryService } from '@services/income-category.service';
-import { Category } from '@models/category.model';
+import { CategoryDto } from '@models/category.model';
 import { CategoryDetailComponent } from '../../components/category-detail/category-detail.component';
 
 @Component({
@@ -18,7 +18,7 @@ import { CategoryDetailComponent } from '../../components/category-detail/catego
 })
 export class IncomeCategorySummaryComponent {
 
-  expenseCategories$: Category[] | null = null;
+  expenseCategories$: CategoryDto[] | null = null;
 
   constructor(
     private incomeCategoryService: IncomeCategoryService,

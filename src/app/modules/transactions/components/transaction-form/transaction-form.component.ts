@@ -11,7 +11,7 @@ import { BtnComponent } from '@shared/components/atoms/btn/btn.component';
 import { FormValidationMessageComponent } from '@shared/components/atoms/form-validation-message/form-validation-message.component';
 import { ExpenseCategoryService } from '@services/expense-category.service';
 import { AccountService } from '@services/account.service';
-import { Category } from '@models/category.model';
+import { CategoryDto } from '@models/category.model';
 import { Account } from '@models/account.model';
 import { IncomeService } from '@services/income.service';
 import { TransferService } from '@services/transfer.service';
@@ -39,7 +39,7 @@ export class TransactionFormComponent {
   @Input() transactionDetail!: TransactionDetail;
   statusRegister: RequestStatus = 'init';
   stateTransaction: stateProcess = 'create';
-  categories$: Category[] | null = null;
+  categories$: CategoryDto[] | null = null;
   accounts$: Account[] | null = null;
 
   formattedTransactionDetailDate: string = '';

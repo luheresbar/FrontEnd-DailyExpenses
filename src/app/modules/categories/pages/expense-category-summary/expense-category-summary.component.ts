@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { CategoryLayoutComponent } from '../../../layout/pages/category-layout/category-layout.component';
 import { CategoryDetailComponent } from '../../components/category-detail/category-detail.component';
 import { ExpenseCategoryService } from '@services/expense-category.service';
-import { Category } from '@models/category.model';
+import { CategoryDto } from '@models/category.model';
 
 @Component({
   selector: 'app-expense-category-summary',
@@ -18,7 +18,7 @@ import { Category } from '@models/category.model';
 })
 export class ExpenseCategorySummaryComponent {
 
-  expenseCategories$: Category[] | null = null;
+  expenseCategories$: CategoryDto[] | null = null;
 
   constructor(
     private expenseCategoryService: ExpenseCategoryService
