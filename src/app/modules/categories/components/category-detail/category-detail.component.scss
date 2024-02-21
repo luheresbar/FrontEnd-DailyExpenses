@@ -1,0 +1,32 @@
+@import "/tokens/_colors";
+@import "/tokens/_typography";
+
+
+.category-container {
+  .category-detail {
+    background-color: $hospital-green;
+    border: 0.2rem solid $hospital-green;
+    border-radius: 0.8rem;
+    padding: 0.6rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+
+    .category__name {
+      display: flex;
+      justify-content: space-between;
+
+      .category__neme--text {
+        font-size: $font-size-large;
+        text-align: start;
+      }
+    }
+
+    &:hover {
+      background-color: rgba($hospital-green, 0.7);
+    }
+  }
+}
+
+

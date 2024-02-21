@@ -1,9 +1,9 @@
-<div [ngClass]="getTransactionTypeClass()">
+<div [ngClass]="getAccountTypeClass()">
   <div class="account-detail" (click)="openDialogViewTransaction()">
     <div class="account__name">
       <p class="account__neme--text">{{ accountDetail.accountName }}</p>
       <!-- <button
-        class="btn-show-pamount"
+        class="btn-show-amount"
         (click)="showAmount$ = !showAmount$"
         type="button"
         *ngIf="accountDetail.available === true"

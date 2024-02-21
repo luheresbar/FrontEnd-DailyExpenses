@@ -3,8 +3,9 @@
   <div
     class="filter__item"
     role="button"
-    routerLink="/categories/expenses"
+    routerLink="/categories"
     routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact: true}"
   >
     <p class="filter__text">Expense categories</p>
   </div>

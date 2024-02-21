@@ -47,7 +47,7 @@ export class AccountDetailComponent {
   //   this.showAmountServise.changeVisibilityStatus();
   // }
 
-  getTransactionTypeClass(): string {
+  getAccountTypeClass(): string {
     if (this.accountDetail.available) {
         return 'enabled';
       } else {

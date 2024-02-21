@@ -1,1 +1,7 @@
-<p>income-category-summary works!</p>
+<app-category-layout>
+  <div class="category-summary">
+    @for (category of expenseCategories$; track $index) {
+      <app-category-detail [expenseCategoryDetail]="category"></app-category-detail>
+    }
+  </div>
+</app-category-layout>
