@@ -7,6 +7,7 @@ import { AccountService } from '@services/account.service';
 import { IncomeCategoryService } from '@services/income-category.service';
 import { ExpenseService } from '@services/expense.service';
 import { IncomeService } from '@services/income.service';
+import { CategoryDto } from '@models/category.model';
 
 @Component({
   selector: 'app-layout-main',
@@ -17,6 +18,7 @@ import { IncomeService } from '@services/income.service';
 })
 export class LayoutMainComponent {
 
+  enabledCategory: CategoryDto[] = [];
 
   constructor(
     private userService: UserService,

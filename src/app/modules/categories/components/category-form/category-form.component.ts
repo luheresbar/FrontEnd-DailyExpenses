@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Category, CategoryDto } from '@models/category.model';
+import { Category, CategoryDto, UpdateCategoryDto } from '@models/category.model';
 import { RequestStatus } from '@models/request-status.model';
 import { stateProcess } from '@models/stateProcess.model';
 import { AccountService } from '@services/account.service';
@@ -62,6 +62,7 @@ export class CategoryFormComponent {
       const category: Category = {
         userId: this.categoryDetail.userId,
         categoryName: categoryName,
+        available: this.categoryDetail.available
       };
       if (this.categoryDetail.categoryType === 'expense') {
         if (this.categoryDetail.userId === null) {
@@ -78,25 +79,25 @@ export class CategoryFormComponent {
                 console.log(error);
               },
             });
-        } else if (Object.keys(this.categoryDetail).length !== 0) {
-          // const accountDto: UpdateAccountDto = {
-          //   userId: this.categoryDetail.userId,
-          //   accountName: this.categoryDetail.accountName,
-          //   newAccountName: accountName,
-          //   availableMoney: expenseValue,
-          //   available: this.categoryDetail.available
-          // };
-          // console.log(accountDto); //TODO (Eliminar linea)
-          //   this.expenseCategoryService.updateAccount(accountDto).subscribe({
-          //     next: () => {
-          //       this.statusRegister = 'success';
-          //       this.closeFormDialog();
-          //     },
-          //     error: (error) => {
-          //       this.statusRegister = 'failed';
-          //       console.log(error);
-          //     },
-          //   });
+        } else if (this.categoryDetail.userId !== null) {
+          const updateCategoryDto: UpdateCategoryDto = {
+            userId: this.categoryDetail.userId,
+            categoryName: this.categoryDetail.categoryName,
+            newCategoryName: categoryName,
+            available: this.categoryDetail.available
+          };
+          console.log(updateCategoryDto); //TODO(Eliminar linea)
+          
+            this.expenseCategoryService.updateExpenseCategory(updateCategoryDto).subscribe({
+              next: () => {
+                this.statusRegister = 'success';
+                this.closeFormDialog();
+              },
+              error: (error) => {
+                this.statusRegister = 'failed';
+                console.log(error);
+              },
+            });
         }
       } else if (this.categoryDetail.categoryType === 'income') {
         if (this.categoryDetail.userId === null) {
@@ -113,25 +114,24 @@ export class CategoryFormComponent {
                 console.log(error);
               },
             });
-        } else if (Object.keys(this.categoryDetail).length !== 0) {
-          // const accountDto: UpdateAccountDto = {
-          //   userId: this.categoryDetail.userId,
-          //   accountName: this.categoryDetail.accountName,
-          //   newAccountName: accountName,
-          //   availableMoney: expenseValue,
-          //   available: this.categoryDetail.available
-          // };
-          // console.log(accountDto); //TODO (Eliminar linea)
-          //   this.expenseCategoryService.updateAccount(accountDto).subscribe({
-          //     next: () => {
-          //       this.statusRegister = 'success';
-          //       this.closeFormDialog();
-          //     },
-          //     error: (error) => {
-          //       this.statusRegister = 'failed';
-          //       console.log(error);
-          //     },
-          //   });
+        } else if (this.categoryDetail.userId !== null) {
+          const updateCategoryDto: UpdateCategoryDto = {
+            userId: this.categoryDetail.userId,
+            categoryName: this.categoryDetail.categoryName,
+            newCategoryName: categoryName,
+            available: this.categoryDetail.available
+          };
+          console.log(updateCategoryDto);
+            this.incomeCategoryService.updateIncomeCategory(updateCategoryDto).subscribe({
+              next: () => {
+                this.statusRegister = 'success';
+                this.closeFormDialog();
+              },
+              error: (error) => {
+                this.statusRegister = 'failed';
+                console.log(error);
+              },
+            });
         }
       }
 

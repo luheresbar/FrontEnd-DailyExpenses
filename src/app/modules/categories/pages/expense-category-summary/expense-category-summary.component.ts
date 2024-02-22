@@ -18,16 +18,24 @@ import { CategoryDto } from '@models/category.model';
 })
 export class ExpenseCategorySummaryComponent {
 
-  expenseCategories$: CategoryDto[] | null = null;
+  enabledExpenseCategories$: CategoryDto[] = [];
+  disabledExpenseCategories$: CategoryDto[] = [];
 
   constructor(
     private expenseCategoryService: ExpenseCategoryService
-  ) // private incomeCategoryService: IncomeCategoryService,
+  )
   {}
 
   ngOnInit() {
-    this.expenseCategoryService.categories$.subscribe((categories) => {
-      this.expenseCategories$ = categories;
+    this.expenseCategoryService.enabledCategories$.subscribe(categories => {
+      this.enabledExpenseCategories$ = categories;
     });
+    this.expenseCategoryService.disabledCategories$.subscribe(categories => {
+      this.disabledExpenseCategories$ = categories;
+    });
+
+    console.log(this.disabledExpenseCategories$);
+    console.log(this.enabledExpenseCategories$);
+    
   }
 }

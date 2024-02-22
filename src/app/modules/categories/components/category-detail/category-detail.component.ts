@@ -29,6 +29,7 @@ export class CategoryDetailComponent {
         categoryType: this.expenseCategoryDetail.categoryType,
         categoryName: this.expenseCategoryDetail.categoryName,
         userId: this.expenseCategoryDetail.userId,
+        available: this.expenseCategoryDetail.available,
       },
     });
   }

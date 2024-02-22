@@ -1,7 +1,33 @@
 <app-category-layout>
   <div class="category-summary">
-    @for (category of expenseCategories$; track $index) {
+    @for (category of enabledExpenseCategories$; track $index) {
       <app-category-detail [expenseCategoryDetail]="category"></app-category-detail>
     }
   </div>
+
+
+    <!-- <div class="category-summary">
+      <div class="enabledCategories" *ngIf="enabledAccounts$.length > 0">
+        <h3 class="subtitle">Available</h3>
+        <div class="account-summary">
+          @for (category of expenseCategories$; track $index) {
+            <app-category-detail [expenseCategoryDetail]="category"></app-category-detail>
+          }
+        </div>
+      </div>
+      <div class="disabledAccounts" *ngIf="disabledAccounts$.length > 0">
+        <h3 class="subtitle">Disabled</h3>
+        <div class="account-summary">
+          @for (enabledAccount of disabledAccounts$; track $index) {
+          <app-account-detail
+            [accountDetail]="enabledAccount"
+          ></app-account-detail>
+          }
+        </div>
+      </div>
+      <div class="overhang"></div>
+    </div> -->
+
+  
+
 </app-category-layout>

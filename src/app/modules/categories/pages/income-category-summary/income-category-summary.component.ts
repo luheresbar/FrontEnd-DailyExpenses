@@ -28,7 +28,9 @@ export class IncomeCategorySummaryComponent {
   ngOnInit() {
     this.incomeCategoryService.categories$.subscribe((categories) => {
       this.expenseCategories$ = categories;
+      console.log(this.expenseCategories$);
     });
+
   }
 
 }

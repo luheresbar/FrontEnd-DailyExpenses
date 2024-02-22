@@ -8,7 +8,11 @@ import {
   faArrowLeft,
   faEllipsisVertical,
 } from '@fortawesome/free-solid-svg-icons';
-import { Category, CategoryDto } from '@models/category.model';
+import {
+  Category,
+  CategoryDto,
+  UpdateCategoryDto,
+} from '@models/category.model';
 import { RequestStatus } from '@models/request-status.model';
 import { ExpenseCategoryService } from '@services/expense-category.service';
 import { IncomeCategoryService } from '@services/income-category.service';
@@ -59,7 +63,7 @@ export class DialogCategoryComponent {
     this.close();
   }
 
-  deleteAccount() {
+  deleteCategory() {
     if (
       this.categoryDetail !== null &&
       this.categoryDetail.categoryName !== null
@@ -75,6 +79,76 @@ export class DialogCategoryComponent {
       } else if (this.categoryDetail.categoryType === 'income') {
         this.incomeCategoryService.deleteIncomeCategory(categoryPK).subscribe();
       }
+    }
+  }
+
+  disableCategory() {
+    const updateCategoryDto: UpdateCategoryDto = {
+      userId: this.categoryDetail.userId,
+      categoryName: this.categoryDetail.categoryName,
+      newCategoryName: this.categoryDetail.categoryName,
+      available: false,
+    };
+    console.log(updateCategoryDto); //TODO (Eliminar linea)
+    if (this.categoryDetail.categoryType === 'expense') {
+      this.expenseCategoryService
+        .updateExpenseCategory(updateCategoryDto)
+        .subscribe({
+          next: () => {
+            this.status = 'success';
+          },
+          error: (error) => {
+            this.status = 'failed';
+            console.log(error);
+          },
+        });
+    } else if (this.categoryDetail.categoryType === 'income') {
+      this.incomeCategoryService
+        .updateIncomeCategory(updateCategoryDto)
+        .subscribe({
+          next: () => {
+            this.status = 'success';
+          },
+          error: (error) => {
+            this.status = 'failed';
+            console.log(error);
+          },
+        });
+    }
+  }
+
+  enableCategory() {
+    const updateCategoryDto: UpdateCategoryDto = {
+      userId: this.categoryDetail.userId,
+      categoryName: this.categoryDetail.categoryName,
+      newCategoryName: this.categoryDetail.categoryName,
+      available: true,
+    };
+    console.log(updateCategoryDto); //TODO (Eliminar linea)
+    if (this.categoryDetail.categoryType === 'expense') {
+      this.expenseCategoryService
+        .updateExpenseCategory(updateCategoryDto)
+        .subscribe({
+          next: () => {
+            this.status = 'success';
+          },
+          error: (error) => {
+            this.status = 'failed';
+            console.log(error);
+          },
+        });
+    } else if (this.categoryDetail.categoryType === 'income') {
+      this.incomeCategoryService
+        .updateIncomeCategory(updateCategoryDto)
+        .subscribe({
+          next: () => {
+            this.status = 'success';
+          },
+          error: (error) => {
+            this.status = 'failed';
+            console.log(error);
+          },
+        });
     }
   }
 }

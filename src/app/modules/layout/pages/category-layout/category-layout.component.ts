@@ -44,6 +44,7 @@ export class CategoryLayoutComponent {
     this.overlayService.isOpenOverlayFloatingMenu$.subscribe(value => {
       this.isOpenOverlayFloatingMenu$ = value;
     });
+
   }
 
   changeStateOverlayFloatingMenu() {

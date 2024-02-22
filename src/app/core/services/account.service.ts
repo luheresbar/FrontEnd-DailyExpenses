@@ -38,6 +38,7 @@ export class AccountService {
           this.enabledAccounts$.next(accounts.enabledAccounts);
           this.disabledAccounts$.next(accounts.disabledAccounts);
           this.money$.next(accounts.totalAvailableMoney);
+
         })
       );
   }

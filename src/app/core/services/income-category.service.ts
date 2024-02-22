@@ -34,6 +34,15 @@ export class IncomeCategoryService {
       .pipe(switchMap(() => this.getIncomeCategories()));
   }
 
+  updateIncomeCategory(category: Category) {
+    return this.http
+      .put<CategoryDto>(`${this.apiUrl}/income-categories/update`, category, {
+        context: checkToken(),
+      })
+      .pipe(switchMap(() => this.getIncomeCategories()));
+  }
+
+
   deleteIncomeCategory(category: Category) {
     return this.http
       .delete(`${this.apiUrl}/income-categories/delete`, {

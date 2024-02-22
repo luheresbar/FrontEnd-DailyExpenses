@@ -1,11 +1,18 @@
-export interface Category extends Omit<CategoryDto, 'categoryType'> {
-
-}
-
-export interface CategoryDto  {
-  categoryType: string,
+export interface Category {
   categoryName: string,
   userId: number | null,
-
+  available?: boolean
 }
-// export interface CategoryDTO extends Omit<Category, 'userId'> {}
+
+export interface CategoryDto extends Category {
+  categoryType: string,
+}
+
+export interface UpdateCategoryDto extends Omit<CategoryDto, 'categoryType'> {
+  newCategoryName: string
+}
+
+export interface SummaryCategoryDto {
+  enabledCategories: CategoryDto[],
+  disabledCategories: CategoryDto[],
+}

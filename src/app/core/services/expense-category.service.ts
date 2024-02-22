@@ -2,7 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
-import { Category, CategoryDto } from '@models/category.model';
+import {
+  Category,
+  CategoryDto,
+  SummaryCategoryDto,
+} from '@models/category.model';
 import { BehaviorSubject, switchMap, tap } from 'rxjs';
 
 @Injectable({
@@ -10,18 +14,20 @@ import { BehaviorSubject, switchMap, tap } from 'rxjs';
 })
 export class ExpenseCategoryService {
   private apiUrl = `${environment.API_URL}/api`;
-  categories$ = new BehaviorSubject<CategoryDto[]>([]);
+  enabledCategories$ = new BehaviorSubject<CategoryDto[]>([]);
+  disabledCategories$ = new BehaviorSubject<CategoryDto[]>([]);
 
   constructor(private http: HttpClient) {}
 
   getExpenseCategories() {
     return this.http
-      .get<CategoryDto[]>(`${this.apiUrl}/expense-categories`, {
+      .get<SummaryCategoryDto>(`${this.apiUrl}/expense-categories`, {
         context: checkToken(),
       })
       .pipe(
         tap((categories) => {
-          this.categories$.next(categories);
+          this.enabledCategories$.next(categories.enabledCategories);
+          this.disabledCategories$.next(categories.disabledCategories);
         })
       );
   }
@@ -34,14 +40,20 @@ export class ExpenseCategoryService {
       .pipe(switchMap(() => this.getExpenseCategories()));
   }
 
+  updateExpenseCategory(category: Category) {
+    return this.http
+      .put<CategoryDto>(`${this.apiUrl}/expense-categories/update`, category, {
+        context: checkToken(),
+      })
+      .pipe(switchMap(() => this.getExpenseCategories()));
+  }
+
   deleteExpenseCategory(category: Category) {
     return this.http
       .delete(`${this.apiUrl}/expense-categories/delete`, {
         context: checkToken(),
-        body: category
+        body: category,
       })
-      .pipe(
-        switchMap(() => this.getExpenseCategories()),
-      );
+      .pipe(switchMap(() => this.getExpenseCategories()));
   }
 }

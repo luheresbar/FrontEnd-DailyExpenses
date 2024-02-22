@@ -86,7 +86,7 @@ export class TransactionFormComponent {
 
   ngOnInit() {
     if (this.transactionDetail.type === 'expense') {
-      this.expenseCategoryService.categories$.subscribe((categories) => {
+      this.expenseCategoryService.enabledCategories$.subscribe((categories) => {
         this.categories$ = categories;
       });
     } else if (this.transactionDetail.type === 'income') {
