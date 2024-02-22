@@ -30,7 +30,7 @@ export class LayoutMainComponent {
     ngOnInit() {
       this.userService.getProfile().subscribe();
       this.expenseCategoryService.getExpenseCategories().subscribe();
-      this.incomeCategoryService.getExpenseCategories().subscribe();
+      this.incomeCategoryService.getIncomeCategories().subscribe();
       this.accountService.getAccounts().subscribe();
       this.expenseService.getExpenses().subscribe();
       this.incomeService.getIncomes().subscribe();

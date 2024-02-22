@@ -20,10 +20,9 @@ import { FormValidationMessageComponent } from '@shared/components/atoms/form-va
     BtnComponent,
   ],
   templateUrl: './category-form.component.html',
-  styleUrl: './category-form.component.scss'
+  styleUrl: './category-form.component.scss',
 })
 export class CategoryFormComponent {
-
   @Input() categoryDetail!: CategoryDto;
   @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
   statusRegister: RequestStatus = 'init';
@@ -41,42 +40,44 @@ export class CategoryFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private expenseCategoryService: ExpenseCategoryService,
-    private incomeCategoryService: IncomeCategoryService,
+    private incomeCategoryService: IncomeCategoryService
   ) {}
 
   ngOnInit() {
     console.log(this.categoryDetail);
-    
-    if (Object.keys(this.categoryDetail).length === 0) {
+
+    if (this.categoryDetail.userId === null) {
       this.stateProcess = 'create';
     } else {
-      
       this.fillForm();
       this.disableForm();
     }
   }
 
   createNewRegiste() {
-      if (this.form.valid) {
-        this.statusRegister = 'loading';
-        const { categoryName } = this.form.getRawValue();
+    if (this.form.valid) {
+      this.statusRegister = 'loading';
+      const { categoryName } = this.form.getRawValue();
 
-        const category: Category = {
-          userId: this.categoryDetail.userId,
-          categoryName: categoryName,
-        };
-        if (Object.keys(this.categoryDetail).length === 0) {
-          
-          // this.expenseCategoryService.createAccount(category).subscribe({
-          //   next: () => {
-          //     this.statusRegister = 'success';
-          //     this.closeFormDialog();
-          //   },
-          //   error: (error) => {
-          //     this.statusRegister = 'failed';
-          //     console.log(error);
-          //   },
-          // });
+      const category: Category = {
+        userId: this.categoryDetail.userId,
+        categoryName: categoryName,
+      };
+      if (this.categoryDetail.categoryType === 'expense') {
+        if (this.categoryDetail.userId === null) {
+
+          this.expenseCategoryService
+            .createExpenseCategory(category)
+            .subscribe({
+              next: () => {
+                this.statusRegister = 'success';
+                this.closeFormDialog();
+              },
+              error: (error) => {
+                this.statusRegister = 'failed';
+                console.log(error);
+              },
+            });
         } else if (Object.keys(this.categoryDetail).length !== 0) {
           // const accountDto: UpdateAccountDto = {
           //   userId: this.categoryDetail.userId,
@@ -96,11 +97,47 @@ export class CategoryFormComponent {
           //       console.log(error);
           //     },
           //   });
-          }
-      
-      } else {
-        this.form.markAllAsTouched();
+        }
+      } else if (this.categoryDetail.categoryType === 'income') {
+        if (this.categoryDetail.userId === null) {
+
+          this.incomeCategoryService
+            .createIncomeCategory(category)
+            .subscribe({
+              next: () => {
+                this.statusRegister = 'success';
+                this.closeFormDialog();
+              },
+              error: (error) => {
+                this.statusRegister = 'failed';
+                console.log(error);
+              },
+            });
+        } else if (Object.keys(this.categoryDetail).length !== 0) {
+          // const accountDto: UpdateAccountDto = {
+          //   userId: this.categoryDetail.userId,
+          //   accountName: this.categoryDetail.accountName,
+          //   newAccountName: accountName,
+          //   availableMoney: expenseValue,
+          //   available: this.categoryDetail.available
+          // };
+          // console.log(accountDto); //TODO (Eliminar linea)
+          //   this.expenseCategoryService.updateAccount(accountDto).subscribe({
+          //     next: () => {
+          //       this.statusRegister = 'success';
+          //       this.closeFormDialog();
+          //     },
+          //     error: (error) => {
+          //       this.statusRegister = 'failed';
+          //       console.log(error);
+          //     },
+          //   });
+        }
       }
+
+    } else {
+      this.form.markAllAsTouched();
+    }
   }
 
   fillForm() {
@@ -127,5 +164,3 @@ export class CategoryFormComponent {
     return word.charAt(0).toUpperCase() + word.slice(1);
   }
 }
-
-

@@ -1,14 +1,14 @@
 import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
-import {CdkMenuModule} from '@angular/cdk/menu';
+import { CdkMenuModule } from '@angular/cdk/menu';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faArrowLeft,
   faEllipsisVertical,
 } from '@fortawesome/free-solid-svg-icons';
-import { CategoryDto } from '@models/category.model';
+import { Category, CategoryDto } from '@models/category.model';
 import { RequestStatus } from '@models/request-status.model';
 import { ExpenseCategoryService } from '@services/expense-category.service';
 import { IncomeCategoryService } from '@services/income-category.service';
@@ -22,10 +22,10 @@ import { CategoryFormComponent } from '../../../modules/categories/components/ca
     CommonModule,
     FontAwesomeModule,
     CdkMenuModule,
-    CategoryFormComponent
+    CategoryFormComponent,
   ],
   templateUrl: './dialog-category.component.html',
-  styleUrl: './dialog-category.component.scss'
+  styleUrl: './dialog-category.component.scss',
 })
 export class DialogCategoryComponent {
   faArrowLeft = faArrowLeft;
@@ -45,7 +45,7 @@ export class DialogCategoryComponent {
   }
 
   ngOnInit() {
-    if (Object.keys(this.categoryDetail).length === 0) {
+    if (this.categoryDetail.userId === null) {
       this.showIconfaEllipsisVertical = false;
     }
   }
@@ -60,16 +60,21 @@ export class DialogCategoryComponent {
   }
 
   deleteAccount() {
-    // if (
-    //   this.categoryDetail !== null &&
-    //   this.categoryDetail.accountName !== null
-    // ) {
-    //   const accountPK: AccountPK = {
-    //     userId: this.categoryDetail.userId,
-    //     accountName: this.categoryDetail.accountName,
-    //   };
-    //   this.expenseCategoryService.deleteAccount(accountPK).subscribe();
-    // }
+    if (
+      this.categoryDetail !== null &&
+      this.categoryDetail.categoryName !== null
+    ) {
+      const categoryPK: Category = {
+        userId: this.categoryDetail.userId,
+        categoryName: this.categoryDetail.categoryName,
+      };
+      if (this.categoryDetail.categoryType === 'expense') {
+        this.expenseCategoryService
+          .deleteExpenseCategory(categoryPK)
+          .subscribe();
+      } else if (this.categoryDetail.categoryType === 'income') {
+        this.incomeCategoryService.deleteIncomeCategory(categoryPK).subscribe();
+      }
+    }
   }
-
 }

@@ -61,11 +61,9 @@ export class DialogTransactionComponent {
       if(this.transactionDetail.id !== null && this.transactionDetail.type !== null) {
         if(this.transactionDetail.type === 'expense') {
           this.expenseService.deleteExpense(this.transactionDetail.id).subscribe();
-        }
-        if(this.transactionDetail.type === 'income') {
+        } else if(this.transactionDetail.type === 'income') {
           this.incomeService.deleteIncome(this.transactionDetail.id).subscribe();
-        }
-        if(this.transactionDetail.type === 'transfer') {
+        }  else if(this.transactionDetail.type === 'transfer') {
           this.transferService.deleteTransfer(this.transactionDetail.id).subscribe();
         }
       }

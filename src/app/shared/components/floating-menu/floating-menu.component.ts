@@ -1,5 +1,5 @@
 import { Component, Input, Output, signal } from '@angular/core';
-import {DialogModule, Dialog} from '@angular/cdk/dialog';
+import { DialogModule, Dialog } from '@angular/cdk/dialog';
 
 import { BtnComponent } from '../atoms/btn/btn.component';
 import { DialogTransactionComponent } from '../dialog-transaction/dialog-transaction.component';
@@ -12,20 +12,24 @@ import { DialogCategoryComponent } from '../dialog-category/dialog-category.comp
 @Component({
   selector: 'app-floating-menu',
   standalone: true,
-  imports: [CommonModule, BtnComponent, DialogModule, DialogTransactionComponent, OverlayModule],
+  imports: [
+    CommonModule,
+    BtnComponent,
+    DialogModule,
+    DialogTransactionComponent,
+    OverlayModule,
+  ],
   templateUrl: './floating-menu.component.html',
-  styleUrl: './floating-menu.component.scss'
+  styleUrl: './floating-menu.component.scss',
 })
 export class FloatingMenuComponent {
-
   @Input() typeFloatingMenu: string = '';
 
   transactionType = '';
+  accountType = '';
+  
 
-  constructor(
-    private dialog: Dialog,
-    private overlayService: OverlayService,
-  ) {}
+  constructor(private dialog: Dialog, private overlayService: OverlayService) {}
 
   openDialogTransaction() {
     this.dialog.open(DialogTransactionComponent, {
@@ -45,7 +49,7 @@ export class FloatingMenuComponent {
       },
     });
   }
-  
+
   assingTransactionType(type: string) {
     this.transactionType = type;
   }
@@ -66,18 +70,19 @@ export class FloatingMenuComponent {
       width: '100%',
       height: '100vh',
       autoFocus: false,
-      data: {},
+      data: {
+        categoryType: this.accountType,
+        categoryName: '',
+        userId: null,
+      },
     });
   }
 
-
-
+  assingCategoryType(type: string) {
+    this.accountType = type;
+  }
 
   // closeOverlay() {
   //   this.overlayService.closeOverlayFloatingMenu();
   // }
-
-
 }
-
-
