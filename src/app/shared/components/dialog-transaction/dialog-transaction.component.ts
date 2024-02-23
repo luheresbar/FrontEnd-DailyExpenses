@@ -13,6 +13,7 @@ import { ExpenseService } from '@services/expense.service';
 import { IncomeService } from '@services/income.service';
 import { TransferService } from '@services/transfer.service';
 import { CommonModule } from '@angular/common';
+import { RequestStatus } from '@models/request-status.model';
 @Component({
   selector: 'app-dialog-new-register',
   standalone: true,
@@ -29,44 +30,59 @@ import { CommonModule } from '@angular/common';
   styleUrl: './dialog-transaction.component.scss'
 })
 export class DialogTransactionComponent {
-
   faArrowLeft = faArrowLeft;
   faEllipsisVertical = faEllipsisVertical;
   transactionDetail!: TransactionDetail;
+  status: RequestStatus = 'init';
 
   constructor(
     private dialogRef: DialogRef,
-    @Inject(DIALOG_DATA) data:TransactionDetail,
+    @Inject(DIALOG_DATA) data: TransactionDetail,
     private overlayService: OverlayService,
-
     private expenseService: ExpenseService,
     private incomeService: IncomeService,
-    private transferService: TransferService,
+    private transferService: TransferService
+  ) {
+    this.transactionDetail = data;
+  }
 
-    ) {
-      this.transactionDetail = data
-    }
-  
-    close() {
-      this.dialogRef.close();
-      this.overlayService.closeOverlayFloatingMenu();
-    }
+  close() {
+    this.dialogRef.close();
+    this.overlayService.closeOverlayFloatingMenu();
+  }
 
-    onCloseDialog() {
-      this.close();
-    }
+  onCloseDialog() {
+    this.close();
+  }
 
-    deleteRegister() {
-      
-      if(this.transactionDetail.id !== null && this.transactionDetail.type !== null) {
-        if(this.transactionDetail.type === 'expense') {
-          this.expenseService.deleteExpense(this.transactionDetail.id).subscribe();
-        } else if(this.transactionDetail.type === 'income') {
-          this.incomeService.deleteIncome(this.transactionDetail.id).subscribe();
-        }  else if(this.transactionDetail.type === 'transfer') {
-          this.transferService.deleteTransfer(this.transactionDetail.id).subscribe();
-        }
-      }
+  deleteTransaction(service: any) {
+    if (this.transactionDetail.id && this.transactionDetail.type) {
+      service.delete(this.transactionDetail.id).subscribe({
+        next: () => {
+          this.status = 'success';
+          this.close();
+        },
+        error: (error: any) => {
+          this.status = 'failed';
+          console.log(error);
+        },
+      });
     }
+  }
 
+  deleteRegister() {
+    switch (this.transactionDetail.type) {
+      case 'expense':
+        this.deleteTransaction(this.expenseService);
+        break;
+      case 'income':
+        this.deleteTransaction(this.incomeService);
+        break;
+      case 'transfer':
+        this.deleteTransaction(this.transferService);
+        break;
+      default:
+        break;
+    }
+  }
 }

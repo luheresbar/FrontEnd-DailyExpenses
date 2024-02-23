@@ -35,7 +35,7 @@ export class TransferService {
     )
   }
 
-  createTransfer(transfer: TransactionDetail) {
+  create(transfer: TransactionDetail) {
     return this.http
       .post<TransactionDetail>(`${this.apiUrl}/transfers/create`, transfer, {
         context: checkToken(),
@@ -47,7 +47,7 @@ export class TransferService {
       );
   }
 
-  updateTransfer(transfer: TransactionDetail) {
+  update(transfer: TransactionDetail) {
     return this.http
       .put<TransactionDetail>(`${this.apiUrl}/transfers/update`, transfer, {
         context: checkToken(),
@@ -59,7 +59,7 @@ export class TransferService {
       );
   }
 
-  deleteTransfer(transferId: number) {
+  delete(transferId: number) {
     return this.http
       .delete(`${this.apiUrl}/transfers/delete/${transferId}`, {
         context: checkToken(),

@@ -28,7 +28,7 @@ export class IncomeCategoryService {
       );
   }
 
-  createIncomeCategory(category: Category) {
+  createCategory(category: Category) {
     return this.http
       .post<CategoryDto>(`${this.apiUrl}/income-categories/create`, category, {
         context: checkToken(),
@@ -36,7 +36,7 @@ export class IncomeCategoryService {
       .pipe(switchMap(() => this.getIncomeCategories()));
   }
 
-  updateIncomeCategory(category: Category) {
+  updateCategory(category: Category) {
     return this.http
       .put<CategoryDto>(`${this.apiUrl}/income-categories/update`, category, {
         context: checkToken(),
@@ -45,7 +45,7 @@ export class IncomeCategoryService {
   }
 
 
-  deleteIncomeCategory(category: Category) {
+  deleteCategory(category: Category) {
     return this.http
       .delete(`${this.apiUrl}/income-categories/delete`, {
         context: checkToken(),

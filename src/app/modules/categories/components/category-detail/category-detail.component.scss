@@ -1,32 +1,48 @@
 @import "/tokens/_colors";
 @import "/tokens/_typography";
 
-
-.category-container {
-  .category-detail {
-    background-color: $hospital-green;
-    border: 0.2rem solid $hospital-green;
-    border-radius: 0.8rem;
-    padding: 0.6rem 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    cursor: pointer;
-
-    .category__name {
+@mixin categoryDetailStyle($color) {
+  .category-container {
+    .category-detail {
+      background-color: $color;
+      border: 0.2rem solid $color;
+      border-radius: 0.8rem;
+      padding: 0.6rem 1rem;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
+      cursor: pointer;
 
-      .category__neme--text {
-        font-size: $font-size-large;
-        text-align: start;
+      .category__name {
+        display: flex;
+        justify-content: space-between;
+
+        .category__neme--text {
+          font-size: $font-size-large;
+          text-align: start;
+        }
       }
-    }
 
-    &:hover {
-      background-color: rgba($hospital-green, 0.7);
+      &:hover {
+        background-color: rgba($color, 0.7);
+      }
     }
   }
 }
 
+.enabled {
+  @include categoryDetailStyle($hospital-green);
+}
 
+.disabled {
+  @include categoryDetailStyle($gray-light);
+  .category-container {
+    .category-detail {
+      .category__name {
+        .category__neme--text {
+          font-size: $font-size-medium;
+        }
+      }
+    }
+  }
+}

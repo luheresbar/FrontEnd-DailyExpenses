@@ -12,8 +12,8 @@
 
 <ng-template #menu>
   <div class="example-menu" cdkMenu>
-    <button (click)="deleteCategory(); close()" class="example-menu-item" cdkMenuItem>Delete</button>
-    <button *ngIf="categoryDetail.available === true" (click)="disableCategory(); close()" class="example-menu-item" cdkMenuItem>Disable</button>
-    <button *ngIf="categoryDetail.available === false" (click)="enableCategory(); close()" class="example-menu-item" cdkMenuItem>Enable</button>
+    <button (click)="deleteCategory()" class="example-menu-item" cdkMenuItem>Delete</button>
+    <button *ngIf="categoryDetail.available === true" (click)="disableCategory()" class="example-menu-item" cdkMenuItem>Disable</button>
+    <button *ngIf="categoryDetail.available === false" (click)="enableCategory()" class="example-menu-item" cdkMenuItem>Enable</button>
   </div>
 </ng-template>

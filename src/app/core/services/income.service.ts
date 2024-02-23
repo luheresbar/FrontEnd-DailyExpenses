@@ -37,7 +37,7 @@ export class IncomeService {
     ); 
   }
 
-  createIncome(income: TransactionDetail) {
+  create(income: TransactionDetail) {
     return this.http
       .post<TransactionDetail>(`${this.apiUrl}/incomes/create`, income, {
         context: checkToken(),
@@ -49,7 +49,7 @@ export class IncomeService {
       );
   }
 
-  updateIncome(income: TransactionDetail) {
+  update(income: TransactionDetail) {
     return this.http
       .put<TransactionDetail>(`${this.apiUrl}/incomes/update`, income, {
         context: checkToken(),
@@ -61,7 +61,7 @@ export class IncomeService {
       );
   }
 
-  deleteIncome(incomeId: number) {
+  delete(incomeId: number) {
     return this.http
       .delete(`${this.apiUrl}/incomes/delete/${incomeId}`, {
         context: checkToken(),

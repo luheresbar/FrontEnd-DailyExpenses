@@ -2,7 +2,6 @@ import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 
 import { RequestStatus } from '@models/request-status.model';
 import { TransactionDetail } from '@models/transaction-detail.model';
@@ -42,7 +41,7 @@ export class TransactionFormComponent {
   categories$: CategoryDto[] | null = null;
   accounts$: Account[] | null = null;
 
-  formattedTransactionDetailDate: string = '';
+  formattedTransactionDetailDate: string | null = '';
   //Date
   now = new Date();
   currentDate = new DatePipe('en-US').transform(this.now, 'yyyy-MM-dd');
@@ -80,7 +79,6 @@ export class TransactionFormComponent {
     private accountService: AccountService,
     private incomeService: IncomeService,
     private transferService: TransferService,
-    private router: Router,
     private currencyPipe: CurrencyPipe
   ) {}
 
@@ -109,7 +107,9 @@ export class TransactionFormComponent {
     this.form.valueChanges.subscribe((form) => {
       if (form.amount && typeof form.amount === 'string') {
         const formattedAmount = this.applyCurrencyFormatToAmount(form.amount);
-        this.form.controls.amount.setValue(formattedAmount, { emitEvent: false });
+        this.form.controls.amount.setValue(formattedAmount, {
+          emitEvent: false,
+        });
       }
     });
   }
@@ -117,17 +117,14 @@ export class TransactionFormComponent {
   applyCurrencyFormatToAmount(amount: string) {
     const numericAmount = parseFloat(amount.replace(/[^0-9.]/g, ''));
     if (!isNaN(numericAmount)) {
-      return this.currencyPipe.transform(
-        numericAmount,
-        'COP',
-        '$',
-        '1.0-0'
-      ) || '';
+      return (
+        this.currencyPipe.transform(numericAmount, 'COP', '$', '1.0-0') || ''
+      );
     }
     return '';
   }
 
-  createNewRegiste() {
+  createOrUpdateTransaction() {
     if (this.form.valid) {
       this.statusRegister = 'loading';
 
@@ -172,86 +169,21 @@ export class TransactionFormComponent {
         category: category,
         destinationAccountName: destinationAccount,
       };
-      if (this.transactionDetail.type === 'expense') {
-        if (this.transactionDetail.id === null) {
-          this.expenseService.createExpense(transactionDto).subscribe({
-            next: () => {
-              this.statusRegister = 'success';
-              this.closeFormDialog();
-              // this.router.navigate(['/transactions/expenses']);
-            },
-            error: (error) => {
-              this.statusRegister = 'failed';
-              console.log(error);
-            },
-          });
-        } else if (this.transactionDetail.date !== '') {
-          console.log(transactionDto);
 
-          this.expenseService.updateExpense(transactionDto).subscribe({
-            next: () => {
-              this.statusRegister = 'success';
-              this.closeFormDialog();
-              // this.router.navigate(['/transactions/expenses']);
-            },
-            error: (error) => {
-              this.statusRegister = 'failed';
-              console.log(error);
-            },
-          });
-        }
-      } else if (this.transactionDetail.type === 'income') {
-        if (this.transactionDetail.id === null) {
-          this.incomeService.createIncome(transactionDto).subscribe({
-            next: () => {
-              this.statusRegister = 'success';
-              this.closeFormDialog();
-              // this.router.navigate(['/transactions/incomes']);
-            },
-            error: (error) => {
-              this.statusRegister = 'failed';
-              console.log(error);
-            },
-          });
-        } else if (this.transactionDetail.date !== '') {
-          this.incomeService.updateIncome(transactionDto).subscribe({
-            next: () => {
-              this.statusRegister = 'success';
-              this.closeFormDialog();
-              // this.router.navigate(['/transactions/incomes']);
-            },
-            error: (error) => {
-              this.statusRegister = 'failed';
-              console.log(error);
-            },
-          });
-        }
-      } else if (this.transactionDetail.type === 'transfer') {
-        if (this.transactionDetail.id === null) {
-          this.transferService.createTransfer(transactionDto).subscribe({
-            next: () => {
-              this.statusRegister = 'success';
-              this.closeFormDialog();
-              // this.router.navigate(['/transactions/transfers']);
-            },
-            error: (error) => {
-              this.statusRegister = 'failed';
-              console.log(error);
-            },
-          });
-        } else if (this.transactionDetail.date !== '') {
-          this.transferService.updateTransfer(transactionDto).subscribe({
-            next: () => {
-              this.statusRegister = 'success';
-              this.closeFormDialog();
-              // this.router.navigate(['/transactions/transfers']);
-            },
-            error: (error) => {
-              this.statusRegister = 'failed';
-              console.log(error);
-            },
-          });
-        }
+      const service = this.getServiceByType(this.transactionDetail.type);
+
+      if (service) {
+        const method = this.transactionDetail.id ? 'update' : 'create';
+        service[method](transactionDto).subscribe({
+          next: () => {
+            this.statusRegister = 'success';
+            this.closeFormDialog();
+          },
+          error: (error) => {
+            this.statusRegister = 'failed';
+            console.log(error);
+          },
+        });
       }
     } else {
       this.form.markAllAsTouched();
@@ -260,65 +192,39 @@ export class TransactionFormComponent {
 
   fillFormDefault() {
     if (this.transactionDetail.type !== 'transfer') {
-      this.form.controls.sourceAccount.setValue('Cash');
-      this.form.controls.category.setValue('Others');
+      this.form.patchValue({
+        sourceAccount: 'Cash',
+        category: 'Others',
+      });
     }
   }
 
   fillForm() {
-    const amountValue = this.transactionDetail.amount.toString();
-    const formattedAmount = this.applyCurrencyFormatToAmount(amountValue);
-    this.form.controls.amount.setValue(formattedAmount);
-    
-    this.form.controls.sourceAccount.setValue(
-      this.transactionDetail.sourceAccountName
-    );
-    //TODO(configurar verificacion de cuentas deben ser diferentes source and destination)
-    this.form.controls.destinationAccount.setValue(
-      this.transactionDetail.destinationAccountName
-    );
-    this.form.controls.category.setValue(this.transactionDetail.category);
-    this.form.controls.description.setValue(this.transactionDetail.description);
-
-    //Date
-    if (this.transactionDetail.date != null) {
-      const dateReceived: string = this.transactionDetail.date;
-      const date: Date = new Date(dateReceived);
-
-      const year: number = date.getFullYear();
-      const month: number = date.getMonth() + 1; // Los meses comienzan desde 0, por lo que se suma 1
-      const day: number = date.getDate();
-
-      // Formatear el mes y el día a dos dígitos si es necesario
-      const formattedMonth: string =
-        month < 10 ? '0' + month : month.toString();
-      const formattedDay: string = day < 10 ? '0' + day : day.toString();
-
-      this.formattedTransactionDetailDate = `${year}-${formattedMonth}-${formattedDay}`;
-
+    const { amount, sourceAccountName, destinationAccountName, category, description, date } = this.transactionDetail;
+  
+    this.form.controls.amount.setValue(this.applyCurrencyFormatToAmount(amount.toString()));
+    this.form.controls.sourceAccount.setValue(sourceAccountName);
+    this.form.controls.destinationAccount.setValue(destinationAccountName);
+    this.form.controls.category.setValue(category);
+    this.form.controls.description.setValue(description);
+  
+    if (date) {
+      const dateRecived: Date = new Date(date);
+      this.formattedTransactionDetailDate = new DatePipe('en-US').transform(
+        dateRecived,
+        'yyyy-MM-dd'
+      );
       this.form.controls.date.setValue(this.formattedTransactionDetailDate);
     }
-  }
+    }
 
   enableForm() {
-    this.form.controls.amount.enable();
-    this.form.controls.sourceAccount.enable();
-    this.form.controls.destinationAccount.enable();
-    this.form.controls.category.enable();
-    this.form.controls.description.enable();
-    this.form.controls.date.enable();
-
+    this.form.enable();
     this.stateTransaction = 'edit';
   }
 
   disableForm() {
-    this.form.controls.amount.disable();
-    this.form.controls.sourceAccount.disable();
-    this.form.controls.destinationAccount.disable();
-    this.form.controls.category.disable();
-    this.form.controls.description.disable();
-    this.form.controls.date.disable();
-
+    this.form.disable();
     this.stateTransaction = 'view';
   }
 
@@ -328,5 +234,18 @@ export class TransactionFormComponent {
 
   capitalizeFirstLetter(word: string): string {
     return word.charAt(0).toUpperCase() + word.slice(1);
+  }
+
+  private getServiceByType(type: string) {
+    switch (type) {
+      case 'expense':
+        return this.expenseService;
+      case 'income':
+        return this.incomeService;
+      case 'transfer':
+        return this.transferService;
+      default:
+        return null;
+    }
   }
 }

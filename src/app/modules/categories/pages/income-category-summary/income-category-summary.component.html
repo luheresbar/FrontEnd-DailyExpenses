@@ -4,7 +4,7 @@
       <h3 class="subtitle">Available</h3>
       <div class="category-summary">
         @for (enabledCategory of enabledIncomeCategories$; track $index) {
-          <app-category-detail [expenseCategoryDetail]="enabledCategory"></app-category-detail>
+          <app-category-detail [categoryDetail]="enabledCategory"></app-category-detail>
         }
       </div>
     </div>
@@ -12,7 +12,7 @@
       <h3 class="subtitle">Disabled</h3>
       <div class="category-summary">
         @for (disabledCategory of disabledIncomeCategories$; track $index) {
-          <app-category-detail [expenseCategoryDetail]="disabledCategory"></app-category-detail>
+          <app-category-detail [categoryDetail]="disabledCategory"></app-category-detail>
         }
       </div>
     </div>

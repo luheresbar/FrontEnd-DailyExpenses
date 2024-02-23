@@ -1,7 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Category, CategoryDto, UpdateCategoryDto } from '@models/category.model';
+import {
+  Category,
+  CategoryDto,
+  UpdateCategoryDto,
+} from '@models/category.model';
 import { RequestStatus } from '@models/request-status.model';
 import { stateProcess } from '@models/stateProcess.model';
 import { AccountService } from '@services/account.service';
@@ -25,17 +29,13 @@ import { FormValidationMessageComponent } from '@shared/components/atoms/form-va
 export class CategoryFormComponent {
   @Input() categoryDetail!: CategoryDto;
   @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
-  statusRegister: RequestStatus = 'init';
-  stateProcess: stateProcess = 'create';
 
-  form = this.formBuilder.nonNullable.group({
+  stateProcess: stateProcess = 'create';
+  statusRegister: RequestStatus = 'init';
+
+    form = this.formBuilder.nonNullable.group({
     categoryName: ['', [Validators.required]],
   });
-
-  showRegister = false;
-  showPassword = false;
-  status: RequestStatus = 'init';
-  statusUser: RequestStatus = 'init';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,9 +44,7 @@ export class CategoryFormComponent {
   ) {}
 
   ngOnInit() {
-    console.log(this.categoryDetail);
-
-    if (this.categoryDetail.userId === null) {
+    if (!this.categoryDetail.userId) {
       this.stateProcess = 'create';
     } else {
       this.fillForm();
@@ -54,105 +52,52 @@ export class CategoryFormComponent {
     }
   }
 
-  createNewRegiste() {
+  createOrUpdateCategory() {
     if (this.form.valid) {
       this.statusRegister = 'loading';
       const { categoryName } = this.form.getRawValue();
-
       const category: Category = {
         userId: this.categoryDetail.userId,
         categoryName: categoryName,
-        available: this.categoryDetail.available
+        available: this.categoryDetail.available,
       };
-      if (this.categoryDetail.categoryType === 'expense') {
-        if (this.categoryDetail.userId === null) {
 
-          this.expenseCategoryService
-            .createExpenseCategory(category)
-            .subscribe({
-              next: () => {
-                this.statusRegister = 'success';
-                this.closeFormDialog();
-              },
-              error: (error) => {
-                this.statusRegister = 'failed';
-                console.log(error);
-              },
-            });
-        } else if (this.categoryDetail.userId !== null) {
-          const updateCategoryDto: UpdateCategoryDto = {
-            userId: this.categoryDetail.userId,
-            categoryName: this.categoryDetail.categoryName,
-            newCategoryName: categoryName,
-            available: this.categoryDetail.available
-          };
-          console.log(updateCategoryDto); //TODO(Eliminar linea)
-          
-            this.expenseCategoryService.updateExpenseCategory(updateCategoryDto).subscribe({
-              next: () => {
-                this.statusRegister = 'success';
-                this.closeFormDialog();
-              },
-              error: (error) => {
-                this.statusRegister = 'failed';
-                console.log(error);
-              },
-            });
-        }
-      } else if (this.categoryDetail.categoryType === 'income') {
-        if (this.categoryDetail.userId === null) {
+      const categoryService =
+        this.categoryDetail.categoryType === 'expense'
+          ? this.expenseCategoryService
+          : this.incomeCategoryService;
 
-          this.incomeCategoryService
-            .createIncomeCategory(category)
-            .subscribe({
-              next: () => {
-                this.statusRegister = 'success';
-                this.closeFormDialog();
-              },
-              error: (error) => {
-                this.statusRegister = 'failed';
-                console.log(error);
-              },
-            });
-        } else if (this.categoryDetail.userId !== null) {
-          const updateCategoryDto: UpdateCategoryDto = {
-            userId: this.categoryDetail.userId,
-            categoryName: this.categoryDetail.categoryName,
-            newCategoryName: categoryName,
-            available: this.categoryDetail.available
-          };
-          console.log(updateCategoryDto);
-            this.incomeCategoryService.updateIncomeCategory(updateCategoryDto).subscribe({
-              next: () => {
-                this.statusRegister = 'success';
-                this.closeFormDialog();
-              },
-              error: (error) => {
-                this.statusRegister = 'failed';
-                console.log(error);
-              },
-            });
-        }
-      }
+      const serviceMethod =
+        this.stateProcess === 'create' ? 'createCategory' : 'updateCategory';
 
+      categoryService[serviceMethod](category).subscribe({
+        next: () => {
+          this.statusRegister = 'success';
+          this.closeFormDialog();
+        },
+        error: (error) => {
+          this.statusRegister = 'failed';
+          console.log(error);
+        },
+      });
     } else {
       this.form.markAllAsTouched();
     }
   }
 
   fillForm() {
-    this.form.controls.categoryName.setValue(this.categoryDetail.categoryName);
+    this.form.patchValue({
+      categoryName: this.categoryDetail.categoryName,
+    });
   }
 
   enableForm() {
-    this.form.controls.categoryName.enable();
-
+    this.form.get('categoryName')?.enable();
     this.stateProcess = 'edit';
   }
 
   disableForm() {
-    this.form.controls.categoryName.disable();
-
+    this.form.get('categoryName')?.disable();
     this.stateProcess = 'view';
   }
 

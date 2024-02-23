@@ -12,8 +12,8 @@
 
 <ng-template #menu>
   <div class="example-menu" cdkMenu>
-    <button (click)="deleteAccount(); close()" class="example-menu-item" cdkMenuItem>Delete</button>
-    <button *ngIf="accountDetail.available === true" (click)="disableAccount(); close()" class="example-menu-item" cdkMenuItem>Disable</button>
-    <button *ngIf="accountDetail.available === false" (click)="enableAccount(); close()" class="example-menu-item" cdkMenuItem>Enable</button>
+    <button (click)="deleteAccount()" class="example-menu-item" cdkMenuItem>Delete</button>
+    <button *ngIf="accountDetail.available !== false" (click)="updateAccountAvailability(false)" class="example-menu-item" cdkMenuItem>Disable</button>
+    <button *ngIf="accountDetail.available !== true" (click)="updateAccountAvailability(true)" class="example-menu-item" cdkMenuItem>Enable</button>
   </div>
 </ng-template>

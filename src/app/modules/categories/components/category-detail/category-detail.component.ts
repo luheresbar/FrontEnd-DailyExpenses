@@ -13,7 +13,7 @@ import { DialogCategoryComponent } from '@shared/components/dialog-category/dial
   styleUrl: './category-detail.component.scss',
 })
 export class CategoryDetailComponent {
-  @Input() expenseCategoryDetail!: CategoryDto;
+  @Input() categoryDetail!: CategoryDto;
 
   constructor(private dialog: Dialog) {}
 
@@ -26,11 +26,22 @@ export class CategoryDetailComponent {
       height: '100vh',
       autoFocus: false,
       data: {
-        categoryType: this.expenseCategoryDetail.categoryType,
-        categoryName: this.expenseCategoryDetail.categoryName,
-        userId: this.expenseCategoryDetail.userId,
-        available: this.expenseCategoryDetail.available,
+        categoryType: this.categoryDetail.categoryType,
+        categoryName: this.categoryDetail.categoryName,
+        userId: this.categoryDetail.userId,
+        available: this.categoryDetail.available,
       },
     });
   }
+
+  getCategoryTypeClass(): string {
+    if (this.categoryDetail.available) {
+        return 'enabled';
+      } else {
+        return 'disabled';
+    }
+  }
+
 }
+
+

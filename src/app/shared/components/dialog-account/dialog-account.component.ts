@@ -35,7 +35,7 @@ export class DialogAccountComponent {
   faArrowLeft = faArrowLeft;
   faEllipsisVertical = faEllipsisVertical;
   accountDetail!: Account;
-  showIconfaEllipsisVertical: boolean = true;
+  showIconfaEllipsisVertical = true;
   status: RequestStatus = 'init';
 
   constructor(
@@ -45,10 +45,7 @@ export class DialogAccountComponent {
     private accountService: AccountService
   ) {
     this.accountDetail = data;
-  }
-
-  ngOnInit() {
-    if (Object.keys(this.accountDetail).length === 0) {
+    if (!Object.keys(this.accountDetail).length) {
       this.showIconfaEllipsisVertical = false;
     }
   }
@@ -63,50 +60,36 @@ export class DialogAccountComponent {
   }
 
   deleteAccount() {
-    if (
-      this.accountDetail !== null &&
-      this.accountDetail.accountName !== null
-    ) {
+    if (this.accountDetail && this.accountDetail.accountName) {
       const accountPK: AccountPK = {
         userId: this.accountDetail.userId,
         accountName: this.accountDetail.accountName,
       };
-      this.accountService.deleteAccount(accountPK).subscribe();
+      this.accountService.deleteAccount(accountPK).subscribe({
+        next: () => {
+          this.status = 'success';
+          this.close()
+        },
+        error: (error) => {
+          this.status = 'failed';
+          console.log(error);
+        },
+      });
     }
   }
 
-  disableAccount() {
+  updateAccountAvailability(available: boolean) {
     const accountDto: UpdateAccountDto = {
       userId: this.accountDetail.userId,
       accountName: this.accountDetail.accountName,
       newAccountName: this.accountDetail.accountName,
       availableMoney: this.accountDetail.availableMoney,
-      available: false,
+      available,
     };
-    console.log(accountDto); //TODO (Eliminar linea)
     this.accountService.updateAccount(accountDto).subscribe({
       next: () => {
         this.status = 'success';
-      },
-      error: (error) => {
-        this.status = 'failed';
-        console.log(error);
-      },
-    });
-  }
-
-  enableAccount() {
-    const accountDto: UpdateAccountDto = {
-      userId: this.accountDetail.userId,
-      accountName: this.accountDetail.accountName,
-      newAccountName: this.accountDetail.accountName,
-      availableMoney: this.accountDetail.availableMoney,
-      available: true,
-    };
-    console.log(accountDto); //TODO (Eliminar linea)
-    this.accountService.updateAccount(accountDto).subscribe({
-      next: () => {
-        this.status = 'success';
+        this.close()
       },
       error: (error) => {
         this.status = 'failed';

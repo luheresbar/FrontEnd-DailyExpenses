@@ -49,9 +49,7 @@ export class DialogCategoryComponent {
   }
 
   ngOnInit() {
-    if (this.categoryDetail.userId === null) {
-      this.showIconfaEllipsisVertical = false;
-    }
+    this.showIconfaEllipsisVertical = this.categoryDetail.userId !== null;
   }
 
   close() {
@@ -64,91 +62,56 @@ export class DialogCategoryComponent {
   }
 
   deleteCategory() {
-    if (
-      this.categoryDetail !== null &&
-      this.categoryDetail.categoryName !== null
-    ) {
+    if (this.categoryDetail && this.categoryDetail.categoryName) {
       const categoryPK: Category = {
         userId: this.categoryDetail.userId,
         categoryName: this.categoryDetail.categoryName,
       };
-      if (this.categoryDetail.categoryType === 'expense') {
-        this.expenseCategoryService
-          .deleteExpenseCategory(categoryPK)
-          .subscribe();
-      } else if (this.categoryDetail.categoryType === 'income') {
-        this.incomeCategoryService.deleteIncomeCategory(categoryPK).subscribe();
-      }
+      const categoryService = this.getCategoryService();
+      categoryService.deleteCategory(categoryPK).subscribe({
+        next: () => {
+          this.status = 'success';
+          this.close();
+        },
+        error: (error) => {
+          this.status = 'failed';
+          console.log(error);
+        },
+      });
     }
+  }
+
+  toggleCategoryAvailability(available: boolean) {
+    const updateCategoryDto: UpdateCategoryDto = {
+      userId: this.categoryDetail.userId,
+      categoryName: this.categoryDetail.categoryName,
+      newCategoryName: this.categoryDetail.categoryName,
+      available: available,
+    };
+    const categoryService = this.getCategoryService();
+    categoryService.updateCategory(updateCategoryDto).subscribe({
+      next: () => {
+        this.status = 'success';
+        this.close();
+      },
+      error: (error) => {
+        this.status = 'failed';
+        console.log(error);
+      },
+    });
   }
 
   disableCategory() {
-    const updateCategoryDto: UpdateCategoryDto = {
-      userId: this.categoryDetail.userId,
-      categoryName: this.categoryDetail.categoryName,
-      newCategoryName: this.categoryDetail.categoryName,
-      available: false,
-    };
-    console.log(updateCategoryDto); //TODO (Eliminar linea)
-    if (this.categoryDetail.categoryType === 'expense') {
-      this.expenseCategoryService
-        .updateExpenseCategory(updateCategoryDto)
-        .subscribe({
-          next: () => {
-            this.status = 'success';
-          },
-          error: (error) => {
-            this.status = 'failed';
-            console.log(error);
-          },
-        });
-    } else if (this.categoryDetail.categoryType === 'income') {
-      this.incomeCategoryService
-        .updateIncomeCategory(updateCategoryDto)
-        .subscribe({
-          next: () => {
-            this.status = 'success';
-          },
-          error: (error) => {
-            this.status = 'failed';
-            console.log(error);
-          },
-        });
-    }
+    this.toggleCategoryAvailability(false);
   }
 
   enableCategory() {
-    const updateCategoryDto: UpdateCategoryDto = {
-      userId: this.categoryDetail.userId,
-      categoryName: this.categoryDetail.categoryName,
-      newCategoryName: this.categoryDetail.categoryName,
-      available: true,
-    };
-    console.log(updateCategoryDto); //TODO (Eliminar linea)
-    if (this.categoryDetail.categoryType === 'expense') {
-      this.expenseCategoryService
-        .updateExpenseCategory(updateCategoryDto)
-        .subscribe({
-          next: () => {
-            this.status = 'success';
-          },
-          error: (error) => {
-            this.status = 'failed';
-            console.log(error);
-          },
-        });
-    } else if (this.categoryDetail.categoryType === 'income') {
-      this.incomeCategoryService
-        .updateIncomeCategory(updateCategoryDto)
-        .subscribe({
-          next: () => {
-            this.status = 'success';
-          },
-          error: (error) => {
-            this.status = 'failed';
-            console.log(error);
-          },
-        });
-    }
+    this.toggleCategoryAvailability(true);
+  }
+
+  private getCategoryService() {
+    return this.categoryDetail.categoryType === 'expense'
+      ? this.expenseCategoryService
+      : this.incomeCategoryService;
   }
 }

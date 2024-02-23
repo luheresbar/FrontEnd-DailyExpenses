@@ -38,7 +38,7 @@ export class ExpenseService {
     );
   }
 
-  createExpense(expense: TransactionDetail) {
+  create(expense: TransactionDetail) {
     return this.http
       .post<TransactionDetail>(`${this.apiUrl}/expenses/create`, expense, {
         context: checkToken(),
@@ -50,7 +50,7 @@ export class ExpenseService {
       );
   }
 
-  updateExpense(expense: TransactionDetail) {
+  update(expense: TransactionDetail) {
     return this.http
       .put<TransactionDetail>(`${this.apiUrl}/expenses/update`, expense, {
         context: checkToken(),
@@ -62,7 +62,7 @@ export class ExpenseService {
       );
   }
 
-  deleteExpense(expenseId: number) {
+  delete(expenseId: number) {
     return this.http
       .delete(`${this.apiUrl}/expenses/delete/${expenseId}`, {
         context: checkToken(),

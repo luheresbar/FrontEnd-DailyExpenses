@@ -32,7 +32,7 @@ export class ExpenseCategoryService {
       );
   }
 
-  createExpenseCategory(category: Category) {
+  createCategory(category: Category) {
     return this.http
       .post<CategoryDto>(`${this.apiUrl}/expense-categories/create`, category, {
         context: checkToken(),
@@ -40,7 +40,7 @@ export class ExpenseCategoryService {
       .pipe(switchMap(() => this.getExpenseCategories()));
   }
 
-  updateExpenseCategory(category: Category) {
+  updateCategory(category: Category) {
     return this.http
       .put<CategoryDto>(`${this.apiUrl}/expense-categories/update`, category, {
         context: checkToken(),
@@ -48,7 +48,7 @@ export class ExpenseCategoryService {
       .pipe(switchMap(() => this.getExpenseCategories()));
   }
 
-  deleteExpenseCategory(category: Category) {
+  deleteCategory(category: Category) {
     return this.http
       .delete(`${this.apiUrl}/expense-categories/delete`, {
         context: checkToken(),

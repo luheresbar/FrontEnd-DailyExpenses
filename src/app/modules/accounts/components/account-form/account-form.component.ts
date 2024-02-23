@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Account, UpdateAccountDto } from '@models/account.model';
@@ -16,7 +16,9 @@ import { FormValidationMessageComponent } from '@shared/components/atoms/form-va
     ReactiveFormsModule,
     FormValidationMessageComponent,
     BtnComponent,
+    CurrencyPipe,
   ],
+  providers: [CurrencyPipe],
   templateUrl: './account-form.component.html',
   styleUrl: './account-form.component.scss',
 })
@@ -38,73 +40,95 @@ export class AccountFormComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private accountService: AccountService
+    private accountService: AccountService,
+    private currencyPipe: CurrencyPipe
   ) {}
 
   ngOnInit() {
     if (Object.keys(this.accountDetail).length === 0) {
       this.stateProcess = 'create';
     } else {
-      
       this.fillForm();
       this.disableForm();
     }
+
+    this.form.valueChanges.subscribe((form) => {
+      if (form.availableMoney && typeof form.availableMoney === 'string') {
+        const formattedAmount = this.applyCurrencyFormatToAmount(form.availableMoney);
+        this.form.controls.availableMoney.setValue(formattedAmount, {
+          emitEvent: false,
+        });
+      }
+    });
+  }
+
+  applyCurrencyFormatToAmount(amount: string) {
+    const numericAmount = parseFloat(amount.replace(/[^0-9.]/g, ''));
+    if (!isNaN(numericAmount)) {
+      return (
+        this.currencyPipe.transform(numericAmount, 'COP', '$', '1.0-0') || ''
+      );
+    }
+    return '';
   }
 
   createNewRegiste() {
-      if (this.form.valid) {
-        this.statusRegister = 'loading';
-        const { accountName, availableMoney } = this.form.getRawValue();
-        const expenseValue = parseFloat(availableMoney);
+    if (this.form.valid) {
+      this.statusRegister = 'loading';
+      const { accountName, availableMoney } = this.form.getRawValue();
+      const amount = parseFloat(availableMoney);
 
-        const account: Account = {
+      const cleanedAmount = parseFloat(availableMoney.replace(/\D/g, ''));
+
+      const account: Account = {
+        userId: this.accountDetail.userId,
+        accountName: accountName,
+        availableMoney: cleanedAmount,
+        available: true,
+      };
+      if (Object.keys(this.accountDetail).length === 0) {
+        this.accountService.createAccount(account).subscribe({
+          next: () => {
+            this.statusRegister = 'success';
+            this.closeFormDialog();
+          },
+          error: (error) => {
+            this.statusRegister = 'failed';
+            console.log(error);
+          },
+        });
+      } else if (Object.keys(this.accountDetail).length !== 0) {
+        const accountDto: UpdateAccountDto = {
           userId: this.accountDetail.userId,
-          accountName:accountName,
-          availableMoney:expenseValue,
-          available: true
+          accountName: this.accountDetail.accountName,
+          newAccountName: accountName,
+          availableMoney: amount,
+          available: this.accountDetail.available,
         };
-        if (Object.keys(this.accountDetail).length === 0) {
-          
-          this.accountService.createAccount(account).subscribe({
-            next: () => {
-              this.statusRegister = 'success';
-              this.closeFormDialog();
-            },
-            error: (error) => {
-              this.statusRegister = 'failed';
-              console.log(error);
-            },
-          });
-        } else if (Object.keys(this.accountDetail).length !== 0) {
-          const accountDto: UpdateAccountDto = {
-            userId: this.accountDetail.userId,
-            accountName: this.accountDetail.accountName,
-            newAccountName: accountName,
-            availableMoney: expenseValue,
-            available: this.accountDetail.available
-          };
-          console.log(accountDto); //TODO (Eliminar linea)
-            this.accountService.updateAccount(accountDto).subscribe({
-              next: () => {
-                this.statusRegister = 'success';
-                this.closeFormDialog();
-              },
-              error: (error) => {
-                this.statusRegister = 'failed';
-                console.log(error);
-              },
-            });
-          }
-      
-      } else {
-        this.form.markAllAsTouched();
+        console.log(accountDto); //TODO (Eliminar linea)
+        this.accountService.updateAccount(accountDto).subscribe({
+          next: () => {
+            this.statusRegister = 'success';
+            this.closeFormDialog();
+          },
+          error: (error) => {
+            this.statusRegister = 'failed';
+            console.log(error);
+          },
+        });
       }
+    } else {
+      this.form.markAllAsTouched();
+    }
   }
 
   fillForm() {
-    this.form.controls.accountName.setValue(this.accountDetail.accountName);
-    let amountValue = this.accountDetail.availableMoney.toString();
-    this.form.controls.availableMoney.setValue(amountValue);
+    const { availableMoney, accountName } = this.accountDetail;
+    
+    this.form.controls.accountName.setValue(accountName);
+    this.form.controls.availableMoney.setValue(
+      this.applyCurrencyFormatToAmount(availableMoney.toString())
+    );
   }
 
   enableForm() {

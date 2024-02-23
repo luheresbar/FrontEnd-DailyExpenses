@@ -1,7 +1,9 @@
+<div [ngClass]="getCategoryTypeClass()">
 <div class="category-container" (click)="openDialogViewCategory()">
   <div class="category-detail">
     <div class="category__name">
-      <p class="category__neme--text"> {{ expenseCategoryDetail.categoryName }} </p>
+      <p class="category__neme--text"> {{ categoryDetail.categoryName }} </p>
     </div>
   </div>
+</div>
 </div>
