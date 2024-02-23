@@ -7,7 +7,7 @@ import { TransactionSummaryComponent } from './modules/transactions/pages/transa
 import { LayoutMainComponent } from './modules/layout/layout-main/layout-main.component';
 import { authGuard } from '@guards/auth.guard';
 import { redirectGuard } from '@guards/redirect.guard';
-import { UserProfileComponent } from './modules/user-profile/user-profile.component';
+import { UserProfileComponent } from './modules/user-profile/pages/user-profile.component';
 import { ExpenseSummaryComponent } from './modules/transactions/pages/expense-summary/expense-summary.component';
 import { IncomeSummaryComponent } from './modules/transactions/pages/income-summary/income-summary.component';
 import { TransferSummaryComponent } from './modules/transactions/pages/transfer-summary/transfer-summary.component';

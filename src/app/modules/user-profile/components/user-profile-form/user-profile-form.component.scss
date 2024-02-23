@@ -1,0 +1,42 @@
+@import "/tokens/_colors";
+@import "/tokens/_typography";
+@import "/atoms/_mixin-input-text";
+@import "/atoms/_mixin-label-form";
+@import "/atoms/_mixin-title";
+@import "/atoms/_mixin-link-redirection";
+
+.account-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+
+  .form__register--title {
+    @include format-title-form;
+  }
+
+  .form__account {
+    width: 30rem;
+
+    .input--text {
+      @include format-input-text;
+    }
+
+    .form__label {
+      @include format-label-form;
+    }
+
+    .form__account-name,
+    .form__available-amount {
+      display: flex;
+      flex-direction: column;
+      margin-block-start: 1.2rem;
+    }
+
+    .form__btn {
+      margin-block-start: 3rem;
+    }
+  }
+}

@@ -29,7 +29,9 @@ export class FloatingMenuComponent {
   accountType = '';
   
 
-  constructor(private dialog: Dialog, private overlayService: OverlayService) {}
+  constructor(
+    private dialog: Dialog, 
+    ) {}
 
   openDialogTransaction() {
     this.dialog.open(DialogTransactionComponent, {

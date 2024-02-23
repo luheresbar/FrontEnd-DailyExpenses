@@ -1,4 +1,4 @@
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Account, UpdateAccountDto } from '@models/account.model';
@@ -9,20 +9,18 @@ import { BtnComponent } from '@shared/components/atoms/btn/btn.component';
 import { FormValidationMessageComponent } from '@shared/components/atoms/form-validation-message/form-validation-message.component';
 
 @Component({
-  selector: 'app-account-form',
+  selector: 'app-user-profile-form',
   standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormValidationMessageComponent,
-    BtnComponent,
-    CurrencyPipe,
+    BtnComponent
   ],
-  providers: [CurrencyPipe],
-  templateUrl: './account-form.component.html',
-  styleUrl: './account-form.component.scss',
+  templateUrl: './user-profile-form.component.html',
+  styleUrl: './user-profile-form.component.scss'
 })
-export class AccountFormComponent {
+export class UserProfileFormComponent {
   @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
   @Input() accountDetail!: Account;
   statusRegister: RequestStatus = 'init';
@@ -41,7 +39,6 @@ export class AccountFormComponent {
   constructor(
     private formBuilder: FormBuilder,
     private accountService: AccountService,
-    private currencyPipe: CurrencyPipe
   ) {}
 
   ngOnInit() {
@@ -51,28 +48,10 @@ export class AccountFormComponent {
       this.fillForm();
       this.disableForm();
     }
-
-    this.form.valueChanges.subscribe((form) => {
-      if (form.availableMoney && typeof form.availableMoney === 'string') {
-        const formattedAmount = this.applyCurrencyFormatToAmount(form.availableMoney);
-        this.form.controls.availableMoney.setValue(formattedAmount, {
-          emitEvent: false,
-        });
-      }
-    });
   }
 
-  applyCurrencyFormatToAmount(amount: string) {
-    const numericAmount = parseFloat(amount.replace(/[^0-9.]/g, ''));
-    if (!isNaN(numericAmount)) {
-      return (
-        this.currencyPipe.transform(numericAmount, 'COP', '$', '1.0-0') || ''
-      );
-    }
-    return '';
-  }
 
-  createOrUpdateAccount() {
+  createNewRegiste() {
     if (this.form.valid) {
       this.statusRegister = 'loading';
       const { accountName, availableMoney } = this.form.getRawValue();
@@ -126,9 +105,6 @@ export class AccountFormComponent {
     const { availableMoney, accountName } = this.accountDetail;
     
     this.form.controls.accountName.setValue(accountName);
-    this.form.controls.availableMoney.setValue(
-      this.applyCurrencyFormatToAmount(availableMoney.toString())
-    );
   }
 
   enableForm() {

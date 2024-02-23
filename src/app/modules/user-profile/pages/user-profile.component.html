@@ -1,16 +1,18 @@
 <div class="user-profile">
-  <div routerLink="/transactions" role="button" class="user__out">
+  <div class="header">
+    <div class="user__out" routerLink="/transactions" role="button" >
       <fa-icon [icon]="faArrowLeft" class="icon"></fa-icon>
-  </div>
-  <div class="user__edit">
-    <fa-icon [icon]="faPenToSquare" class="icon"></fa-icon>
+    </div>
+    <div class="user__edit" role="button" (click)="openDialogUserProfile()">
+      <fa-icon [icon]="faPenToSquare" class="icon"></fa-icon>
+    </div>
   </div>
   <div class="user__information">
     <div class="user__avatar">
       <app-avatar></app-avatar>
     </div>
-    <p class="user__name"> {{ user$?.username }} </p>
-    <p class="user__email"> {{ user$?.email }} </p>
+    <p class="user__name">{{ user$?.username }}</p>
+    <p class="user__email">{{ user$?.email }}</p>
   </div>
   <div class="user__logout">
     <app-horizontal-line class="app-horizontal-line"></app-horizontal-line>

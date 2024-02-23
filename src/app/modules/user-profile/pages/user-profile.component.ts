@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { DialogModule, Dialog } from '@angular/cdk/dialog';
+
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
@@ -9,12 +11,21 @@ import { Router, RouterLinkWithHref } from '@angular/router';
 import { AuthService } from '@services/auth.service';
 import { UserResponse } from '@models/user.model';
 import { UserService } from '@services/user.service';
+import { DialogUserProfileComponent } from '@shared/components/dialog-user-profile/dialog-user-profile.component';
 
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [BtnComponent, AvatarComponent, HorizontalLineComponent, FontAwesomeModule, RouterLinkWithHref],
+  imports: [
+    BtnComponent, 
+    AvatarComponent, 
+    HorizontalLineComponent, 
+    FontAwesomeModule, 
+    RouterLinkWithHref, 
+    DialogModule,
+    DialogUserProfileComponent
+  ],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss'
 })
@@ -28,7 +39,9 @@ export class UserProfileComponent {
   constructor (
     private authService: AuthService,
     private router: Router,
-    private usersService: UserService
+    private usersService: UserService,
+    private dialog: Dialog, 
+
   ) {}
   
   ngOnInit() {
@@ -40,6 +53,14 @@ export class UserProfileComponent {
     this.router.navigate(['/auth/login'])
   }
 
-
+  openDialogUserProfile() {
+    this.dialog.open(DialogUserProfileComponent, {
+      minWidth: '300px',
+      width: '100%',
+      height: '100vh',
+      autoFocus: false,
+      data: {},
+    });
+  }
 
 }
