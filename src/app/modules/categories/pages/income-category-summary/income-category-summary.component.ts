@@ -18,7 +18,10 @@ import { CategoryDetailComponent } from '../../components/category-detail/catego
 })
 export class IncomeCategorySummaryComponent {
 
-  expenseCategories$: CategoryDto[] | null = null;
+  incomeCategories$: CategoryDto[] | null = null;
+
+  enabledIncomeCategories$: CategoryDto[] = [];
+  disabledIncomeCategories$: CategoryDto[] = [];
 
   constructor(
     private incomeCategoryService: IncomeCategoryService,
@@ -26,11 +29,16 @@ export class IncomeCategorySummaryComponent {
   {}
 
   ngOnInit() {
-    this.incomeCategoryService.categories$.subscribe((categories) => {
-      this.expenseCategories$ = categories;
-      console.log(this.expenseCategories$);
+    this.incomeCategoryService.enabledCategories$.subscribe(categories => {
+      this.enabledIncomeCategories$ = categories;
+    });
+    this.incomeCategoryService.disabledCategories$.subscribe(categories => {
+      this.disabledIncomeCategories$ = categories;
     });
 
+    console.log(this.disabledIncomeCategories$);
+    console.log(this.enabledIncomeCategories$);
+    
   }
 
 }

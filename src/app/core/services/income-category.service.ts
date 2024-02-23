@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
 import { checkToken } from '@interceptors/token.interceptor';
-import { Category, CategoryDto } from '@models/category.model';
+import { Category, CategoryDto, SummaryCategoryDto } from '@models/category.model';
 import { BehaviorSubject, switchMap, tap } from 'rxjs';
 
 @Injectable({
@@ -10,18 +10,20 @@ import { BehaviorSubject, switchMap, tap } from 'rxjs';
 })
 export class IncomeCategoryService {
   private apiUrl = `${environment.API_URL}/api`;
-  categories$ = new BehaviorSubject<CategoryDto[]>([]);
+  enabledCategories$ = new BehaviorSubject<CategoryDto[]>([]);
+  disabledCategories$ = new BehaviorSubject<CategoryDto[]>([]);
 
   constructor(private http: HttpClient) {}
 
   getIncomeCategories() {
     return this.http
-      .get<CategoryDto[]>(`${this.apiUrl}/income-categories`, {
+      .get<SummaryCategoryDto>(`${this.apiUrl}/income-categories`, {
         context: checkToken(),
       })
       .pipe(
         tap((categories) => {
-          this.categories$.next(categories);
+          this.enabledCategories$.next(categories.enabledCategories);
+          this.disabledCategories$.next(categories.disabledCategories);
         })
       );
   }

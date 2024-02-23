@@ -33,9 +33,6 @@ export class ExpenseCategorySummaryComponent {
     this.expenseCategoryService.disabledCategories$.subscribe(categories => {
       this.disabledExpenseCategories$ = categories;
     });
-
-    console.log(this.disabledExpenseCategories$);
-    console.log(this.enabledExpenseCategories$);
     
   }
 }

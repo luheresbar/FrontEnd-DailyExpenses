@@ -1,6 +1,6 @@
 <app-account-layout>
   <div class="account-container">
-    <div class="enabledAccounts" *ngIf="enabledAccounts$.length > 0">
+    <div class="enabled-accounts" *ngIf="enabledAccounts$.length > 0">
       <h3 class="subtitle">Available</h3>
       <div class="account-summary">
         @for (enabledAccount of enabledAccounts$; track $index) {
@@ -10,7 +10,7 @@
         }
       </div>
     </div>
-    <div class="disabledAccounts" *ngIf="disabledAccounts$.length > 0">
+    <div class="disabled-accounts" *ngIf="disabledAccounts$.length > 0">
       <h3 class="subtitle">Disabled</h3>
       <div class="account-summary">
         @for (enabledAccount of disabledAccounts$; track $index) {

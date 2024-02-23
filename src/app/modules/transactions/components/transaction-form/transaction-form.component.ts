@@ -90,7 +90,7 @@ export class TransactionFormComponent {
         this.categories$ = categories;
       });
     } else if (this.transactionDetail.type === 'income') {
-      this.incomeCategoryService.categories$.subscribe((categories) => {
+      this.incomeCategoryService.enabledCategories$.subscribe((categories) => {
         this.categories$ = categories;
       });
     }

@@ -1,7 +1,18 @@
-.category-summary {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+@import "/tokens/_typography";
+
+.category-container {
+  .enabled-categories,
+  .disabled-categories {
+    .subtitle {
+      font-size: $font-size-medium;
+    }
+    .category-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-block: 1rem;
+    }
+  }
 }
 .overhang {
   height: 7.5rem;

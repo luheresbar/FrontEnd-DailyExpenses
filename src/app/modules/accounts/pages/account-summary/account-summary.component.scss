@@ -1,9 +1,8 @@
-@import "/tokens/_colors";
 @import "/tokens/_typography";
 
 .account-container {
-  .enabledAccounts,
-  .disabledAccounts {
+  .enabled-accounts,
+  .disabled-accounts {
     .subtitle {
       font-size: $font-size-medium;
     }
