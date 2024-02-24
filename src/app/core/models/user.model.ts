@@ -21,3 +21,7 @@ export interface UpdatePasswordDto {
   currentPassword: string;
   newPassword: string;
 }
+
+export interface UserEmail {
+  email: string;
+}

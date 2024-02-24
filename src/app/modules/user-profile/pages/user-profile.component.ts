@@ -74,8 +74,6 @@ export class UserProfileComponent {
       height: '100vh',
       autoFocus: false,
       data: {
-        userId: this.user$?.userId,
-        username: this.user$?.username,
         email: this.user$?.email
       },
     });
