@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { environment } from '@environments/environment';
 import { TokenService } from '@services/token.service';
-import { RegisterUserDTO, User } from '../models/user.model';
+import { RegisterUserDTO, UserProfile } from '../models/user.model';
 import { switchMap, tap } from 'rxjs/operators';
 import { ResponseLogin } from '../models/auth.model';
 import { HttpClient } from '@angular/common/http';
@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   register(dto: RegisterUserDTO) {
-    return this.http.post<User>(`${this.apiUrl}/register`, dto);
+    return this.http.post<UserProfile>(`${this.apiUrl}/register`, dto);
   }
 
   registerAndLogin(dtoRegister: RegisterUserDTO) {

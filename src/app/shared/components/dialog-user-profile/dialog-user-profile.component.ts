@@ -13,6 +13,7 @@ import { RequestStatus } from '@models/request-status.model';
 import { AccountService } from '@services/account.service';
 import { OverlayService } from '@services/overlay.service';
 import { UserProfileFormComponent } from '../../../modules/user-profile/components/user-profile-form/user-profile-form.component';
+import { UpdateUserDto, UserProfile } from '@models/user.model';
 
 @Component({
   selector: 'app-dialog-user-profile',
@@ -22,7 +23,7 @@ import { UserProfileFormComponent } from '../../../modules/user-profile/componen
     FontAwesomeModule,
     CdkMenuModule,
     UserProfileFormComponent,
-    
+
 
   ],
   templateUrl: './dialog-user-profile.component.html',
@@ -32,20 +33,16 @@ export class DialogUserProfileComponent {
 
   faArrowLeft = faArrowLeft;
   faEllipsisVertical = faEllipsisVertical;
-  accountDetail!: Account;
-  showIconfaEllipsisVertical = true;
+  userDetail!: UpdateUserDto;
   status: RequestStatus = 'init';
 
   constructor(
     private dialogRef: DialogRef,
-    @Inject(DIALOG_DATA) data: Account,
+    @Inject(DIALOG_DATA) data: UpdateUserDto,
     private overlayService: OverlayService,
     private accountService: AccountService
   ) {
-    this.accountDetail = data;
-    if (!Object.keys(this.accountDetail).length) {
-      this.showIconfaEllipsisVertical = false;
-    }
+    this.userDetail = data;
   }
 
   close() {
@@ -57,42 +54,23 @@ export class DialogUserProfileComponent {
     this.close();
   }
 
-  deleteAccount() {
-    if (this.accountDetail && this.accountDetail.accountName) {
-      const accountPK: AccountPK = {
-        userId: this.accountDetail.userId,
-        accountName: this.accountDetail.accountName,
-      };
-      this.accountService.deleteAccount(accountPK).subscribe({
-        next: () => {
-          this.status = 'success';
-          this.close()
-        },
-        error: (error) => {
-          this.status = 'failed';
-          console.log(error);
-        },
-      });
-    }
+  deleteUserProfile() {
+    // if (this.accountDetail && this.accountDetail.accountName) {
+    //   const accountPK: AccountPK = {
+    //     userId: this.accountDetail.userId,
+    //     accountName: this.accountDetail.accountName,
+    //   };
+    //   this.accountService.deleteAccount(accountPK).subscribe({
+    //     next: () => {
+    //       this.status = 'success';
+    //       this.close()
+    //     },
+    //     error: (error) => {
+    //       this.status = 'failed';
+    //       console.log(error);
+    //     },
+    //   });
+    // }
   }
 
-  updateAccountAvailability(available: boolean) {
-    const accountDto: UpdateAccountDto = {
-      userId: this.accountDetail.userId,
-      accountName: this.accountDetail.accountName,
-      newAccountName: this.accountDetail.accountName,
-      availableMoney: this.accountDetail.availableMoney,
-      available,
-    };
-    this.accountService.updateAccount(accountDto).subscribe({
-      next: () => {
-        this.status = 'success';
-        this.close()
-      },
-      error: (error) => {
-        this.status = 'failed';
-        console.log(error);
-      },
-    });
-  }
 }

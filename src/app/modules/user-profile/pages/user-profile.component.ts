@@ -59,7 +59,11 @@ export class UserProfileComponent {
       width: '100%',
       height: '100vh',
       autoFocus: false,
-      data: {},
+      data: {
+        userId: this.user$?.userId,
+        username: this.user$?.username,
+        email: this.user$?.email
+      },
     });
   }
 

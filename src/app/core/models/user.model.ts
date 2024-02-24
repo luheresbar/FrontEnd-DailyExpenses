@@ -1,6 +1,6 @@
 import { RoleDto } from "./roleDto.model";
 
-export interface User {
+export interface UserProfile {
   userId: number;
   username: string;
   password: string;
@@ -9,8 +9,11 @@ export interface User {
   roles: RoleDto[];
 }
 
-export interface UserResponse extends Omit<User, 'password'> {}
+export interface UserResponse extends Omit<UserProfile, 'password'> {}
 
-export interface RegisterUserDTO extends Omit<User, 'registerDate' | 'userId' | 'roles'> {}
+export interface RegisterUserDTO extends Omit<UserProfile, 'registerDate' | 'userId' | 'roles'> {}
 
-export interface LoginUserDTO extends Omit<User, 'username' | 'registerDate' | 'userId' | 'roles' > {}
+export interface LoginUserDTO extends Omit<UserProfile, 'username' | 'registerDate' | 'userId' | 'roles' > {}
+
+export interface UpdateUserDto extends Omit<UserProfile, 'registerDate' | 'roles' > {
+}

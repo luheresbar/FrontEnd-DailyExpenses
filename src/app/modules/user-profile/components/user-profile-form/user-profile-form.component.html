@@ -1,77 +1,145 @@
-<div class="account-form">
-  <h1 class="form__register--title">
-    {{ capitalizeFirstLetter(stateProcess) }}
-    Account
-  </h1>
+
+<div class="user-form">
+  <h1 class="form__register--title">Edit Profile</h1>
   <form
-    class="form__account"
+    class="form__user"
     [formGroup]="form"
     novalidate
-    (ngSubmit)="createNewRegiste()"
+    (ngSubmit)="updateUserProfile()"
   >
-
     <div>
-      <div class="form__account-name">
-        <label class="form__label" for="account-name">Account name</label>
+      <div class="form__name">
+        <label class="form__label" for="name">Name</label>
         <input
           class="input--text"
-          formControlName="accountName"
-          placeholder="Enter account name"
+          formControlName="name"
+          placeholder="Enter name"
           type="text"
-          name="account-name"
-          id="account-name"
+          name="name"
+          id="name"
         />
       </div>
-      <!-- //TODO(Hacer capo obligatorio) -->
-    </div>
-
-    <div>
-      <div class="form__available-amount">
-        <label class="form__label" for="available-amount">Available money</label>
-        <input
-          class="input--text"
-          formControlName="availableMoney"
-          placeholder="Enter available amount"
-          type="text"
-          name="available-amount"
-          id="available-amount"
-        />
-      </div>
-      <div *ngIf="form.controls.availableMoney.touched && form.controls.availableMoney.invalid">
+      <div *ngIf="form.controls.name.touched && form.controls.name.invalid">
         <app-form-validation-message
           class="form__validation-message"
-          *ngIf="form.controls.availableMoney.hasError('required')"
+          *ngIf="form.controls.name.hasError('required')"
         >
           This field is mandatory
         </app-form-validation-message>
       </div>
     </div>
-
-    <div class="form__btn" *ngIf="stateProcess === 'create'">
-      <app-btn
-        typeBtn="submit"
-        color="btn-primary"
-        [loading]="statusRegister === 'loading'"
-        >Create</app-btn
-      >
+    <div>
+      <div class="form__email">
+        <label class="form__label" for="email">Email</label>
+        <input
+          class="input--text input__email"
+          formControlName="email"
+          placeholder="Enter email"
+          type="email"
+          name="email"
+          id="email"
+        />
+      </div>
+      <div *ngIf="form.controls.email.touched && form.controls.email.invalid">
+        <app-form-validation-message
+          class="form__validation-message"
+          *ngIf="form.controls.email.hasError('required')"
+        >
+          This field is mandatory
+        </app-form-validation-message>
+        <app-form-validation-message
+          class="form__validation-message"
+          *ngIf="form.controls.email.hasError('email')"
+        >
+          This field should be a email
+        </app-form-validation-message>
+      </div>
     </div>
+    <div *ngIf="emailChanged">
+      <div class="form__password">
+        <label class="form__label" for="password">Password</label>
+        <input
+          class="input--text"
+          formControlName="password"
+          placeholder="Enter password"
+          [type]="showPassword ? 'text' : 'password'"
+          id="password"
+        />
+        <button
+          class="btn-show-password"
+          (click)="showPassword = !showPassword"
+          type="button"
+        >
+          <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
+        </button>
+      </div>
+      <div
+        *ngIf="form.controls.password.touched && form.controls.password.invalid"
+      >
+        <app-form-validation-message
+          class="form__validation-message"
+          *ngIf="form.controls.password.hasError('required')"
+        >
+          This field is mandatory
+        </app-form-validation-message>
+        <!-- <span>// TODO (Configurar validaciones de nivel se seguridad de contraseña)</span> -->
+        <app-form-validation-message
+          class="form__validation-message"
+          *ngIf="form.controls.password.hasError('minlength')"
+        >
+          This field should be greater than 6 characters
+        </app-form-validation-message>
+      </div>
+    </div>
+    <!-- <div>
+      <div class="form__password">
+        <label class="form__label" for="confirmPassword">Password</label>
+        <input
+          class="input--text"
+          formControlName="confirmPassword"
+          placeholder="Confirm password"
+          [type]="showConfirmPassword ? 'text' : 'password'"
+          id="confirmPassword"
+        />
+        <button
+          class="btn-show-password"
+          (click)="showConfirmPassword = !showConfirmPassword"
+          type="button"
+        >
+          <fa-icon [icon]="showConfirmPassword ? faEye : faEyeSlash"></fa-icon>
+        </button>
+      </div>
 
-    <div class="form__btn" *ngIf="stateProcess === 'edit'">
+      <div
+        *ngIf="
+          form.controls.confirmPassword.touched &&
+          form.controls.confirmPassword.invalid
+        "
+      >
+        <app-form-validation-message
+          *ngIf="form.controls.confirmPassword.hasError('required')"
+        >
+          This field is mandatory
+        </app-form-validation-message>
+        <app-form-validation-message
+          *ngIf="form.controls.confirmPassword.hasError('minlength')"
+        >
+          This field should be greater than 6 characters
+        </app-form-validation-message>
+      </div>
+    </div>
+    <div *ngIf="form.controls.confirmPassword.touched">
+      <app-form-validation-message *ngIf="form.hasError('mismatch')">
+        The password are not the same
+      </app-form-validation-message>
+    </div> -->
+
+    <div class="form__btn">
       <app-btn
         typeBtn="submit"
         color="btn-primary"
-        [loading]="statusRegister === 'loading'"
+        [loading]="status === 'loading'"
         >Save</app-btn
-      >
-    </div>
-
-    <div class="form__btn" *ngIf="stateProcess === 'view'">
-      <app-btn
-        typeBtn="button"
-        color="btn-secondary"
-        (click)="enableForm()"
-        [loading]="statusRegister === 'loading'"
-        >Edit</app-btn
       >
     </div>
   </form>

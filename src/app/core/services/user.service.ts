@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
-import { User, UserResponse } from '@models/user.model';
-import { BehaviorSubject, tap } from 'rxjs';
+import { UpdateUserDto, UserProfile, UserResponse } from '@models/user.model';
+import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { TokenService } from './token.service';
 import { checkToken } from '@interceptors/token.interceptor';
 
@@ -21,7 +21,7 @@ export class UserService {
   ) { }
 
   getAll() {
-    return this.http.get<User>(`${this.apiUrl}/users`)
+    return this.http.get<UserProfile>(`${this.apiUrl}/users`)
   }
 
   getProfile() {
@@ -35,7 +35,17 @@ export class UserService {
     )
   }
 
-  getDataUser() {
-    return this.user$.getValue();
+  // getDataUser() {
+  //   return this.user$.getValue();
+  // }
+
+  update(user: UpdateUserDto) {
+    return this.http
+      .put<UserResponse>(`${this.apiUrl}/users/update`, user, { context: checkToken() })
+      .pipe(
+        switchMap(() => this.getProfile()),
+      );
   }
+
+
 }

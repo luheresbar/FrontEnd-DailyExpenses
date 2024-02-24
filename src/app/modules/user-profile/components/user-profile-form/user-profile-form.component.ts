@@ -1,12 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Account, UpdateAccountDto } from '@models/account.model';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { RequestStatus } from '@models/request-status.model';
-import { stateProcess } from '@models/stateProcess.model';
+import {
+  RegisterUserDTO,
+  UpdateUserDto,
+  UserProfile,
+} from '@models/user.model';
 import { AccountService } from '@services/account.service';
+import { UserService } from '@services/user.service';
 import { BtnComponent } from '@shared/components/atoms/btn/btn.component';
 import { FormValidationMessageComponent } from '@shared/components/atoms/form-validation-message/form-validation-message.component';
+import { CustomValidators } from '@utils/validators';
 
 @Component({
   selector: 'app-user-profile-form',
@@ -15,117 +23,86 @@ import { FormValidationMessageComponent } from '@shared/components/atoms/form-va
     CommonModule,
     ReactiveFormsModule,
     FormValidationMessageComponent,
-    BtnComponent
+    BtnComponent,
+    FontAwesomeModule,
   ],
   templateUrl: './user-profile-form.component.html',
-  styleUrl: './user-profile-form.component.scss'
+  styleUrl: './user-profile-form.component.scss',
 })
 export class UserProfileFormComponent {
   @Output() closeDialog: EventEmitter<void> = new EventEmitter<void>();
-  @Input() accountDetail!: Account;
-  statusRegister: RequestStatus = 'init';
-  stateProcess: stateProcess = 'create';
-
-  form = this.formBuilder.nonNullable.group({
-    accountName: ['', [Validators.required]],
-    availableMoney: [''],
-  });
-
+  @Input() userDetail!: UpdateUserDto;
+  status: RequestStatus = 'init';
+  faEye = faEye;
+  faEyeSlash = faEyeSlash;
+  showPasswordFiel: boolean = true;
+  emailChanged: boolean = false;
   showRegister = false;
   showPassword = false;
-  status: RequestStatus = 'init';
-  statusUser: RequestStatus = 'init';
+
+  form = this.formBuilder.nonNullable.group(
+    {
+      name: ['', [Validators.required]],
+      email: ['', [Validators.email, Validators.required]],
+      password: [''],
+    },
+  );
 
   constructor(
     private formBuilder: FormBuilder,
-    private accountService: AccountService,
+    private userService: UserService,
   ) {}
 
   ngOnInit() {
-    if (Object.keys(this.accountDetail).length === 0) {
-      this.stateProcess = 'create';
-    } else {
-      this.fillForm();
-      this.disableForm();
-    }
+    this.fillForm();
+
+    this.form.get('email')?.valueChanges.subscribe((newValue) => {
+      const originalEmail = this.userDetail.email;
+      if (newValue !== originalEmail) {
+        this.emailChanged = true;
+      } else {
+        this.emailChanged = false;
+      }
+    });
   }
 
-
-  createNewRegiste() {
+  updateUserProfile() {
+    //TODO (es necesario que segun los errores que se envien del backend, se mueste un mensaje apropiado al usuario, ejm si el correo ya existe, entonces indicarlo)
     if (this.form.valid) {
-      this.statusRegister = 'loading';
-      const { accountName, availableMoney } = this.form.getRawValue();
-      const amount = parseFloat(availableMoney);
-
-      const cleanedAmount = parseFloat(availableMoney.replace(/\D/g, ''));
-
-      const account: Account = {
-        userId: this.accountDetail.userId,
-        accountName: accountName,
-        availableMoney: cleanedAmount,
-        available: true,
+      this.status = 'loading';
+      const { name, email, password } = this.form.getRawValue();
+      
+      const updateDto: UpdateUserDto = {
+        userId: this.userDetail.userId,
+        username: name,
+        email: email,
+        password: password,
       };
-      if (Object.keys(this.accountDetail).length === 0) {
-        this.accountService.createAccount(account).subscribe({
-          next: () => {
-            this.statusRegister = 'success';
-            this.closeFormDialog();
-          },
-          error: (error) => {
-            this.statusRegister = 'failed';
-            console.log(error);
-          },
-        });
-      } else if (Object.keys(this.accountDetail).length !== 0) {
-        const accountDto: UpdateAccountDto = {
-          userId: this.accountDetail.userId,
-          accountName: this.accountDetail.accountName,
-          newAccountName: accountName,
-          availableMoney: amount,
-          available: this.accountDetail.available,
-        };
-        console.log(accountDto); //TODO (Eliminar linea)
-        this.accountService.updateAccount(accountDto).subscribe({
-          next: () => {
-            this.statusRegister = 'success';
-            this.closeFormDialog();
-          },
-          error: (error) => {
-            this.statusRegister = 'failed';
-            console.log(error);
-          },
-        });
-      }
+      console.log(updateDto);
+      
+      this.userService.update(updateDto).subscribe({
+        next: () => {
+          this.status = 'success';
+          this.closeFormDialog();
+        },
+        error: (error) => {
+          this.status = 'failed';
+          console.log(error);
+        },
+      });
     } else {
       this.form.markAllAsTouched();
     }
   }
 
   fillForm() {
-    const { availableMoney, accountName } = this.accountDetail;
-    
-    this.form.controls.accountName.setValue(accountName);
-  }
+    const { username, email } = this.userDetail;
 
-  enableForm() {
-    this.form.controls.availableMoney.enable();
-    this.form.controls.accountName.enable();
-
-    this.stateProcess = 'edit';
-  }
-
-  disableForm() {
-    this.form.controls.availableMoney.disable();
-    this.form.controls.accountName.disable();
-
-    this.stateProcess = 'view';
+    this.form.controls.name.setValue(username);
+    this.form.controls.email.setValue(email);
   }
 
   closeFormDialog() {
     this.closeDialog.emit();
-  }
-
-  capitalizeFirstLetter(word: string): string {
-    return word.charAt(0).toUpperCase() + word.slice(1);
   }
 }
