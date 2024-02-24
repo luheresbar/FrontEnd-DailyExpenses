@@ -1,11 +1,11 @@
 <div class="user-profile">
   <div class="header">
-    <div class="user__out" routerLink="/transactions" role="button" >
+    <div class="user__out" routerLink="/transactions" role="button">
       <fa-icon [icon]="faArrowLeft" class="icon"></fa-icon>
     </div>
-    <div class="user__edit" role="button" (click)="openDialogUserProfile()">
+    <!-- <div class="user__edit" role="button" >
       <fa-icon [icon]="faPenToSquare" class="icon"></fa-icon>
-    </div>
+    </div> -->
   </div>
   <div class="user__information">
     <div class="user__avatar">
@@ -14,8 +14,20 @@
     <p class="user__name">{{ user$?.username }}</p>
     <p class="user__email">{{ user$?.email }}</p>
   </div>
+  <div class="user__settings">
+    <app-horizontal-line class="horizontal-line"></app-horizontal-line>
+    <div class="user__option-settings">
+      <div class="user__option" role="button" (click)="openDialogUserProfile()">
+        <p class="text">Edit Profile</p>
+      </div>
+      <div class="user__option" role="button" (click)="openDialogChangePassword()">
+        <p class="text">Change password</p>
+      </div>
+    </div>
+
+  </div>
   <div class="user__logout">
-    <app-horizontal-line class="app-horizontal-line"></app-horizontal-line>
+    <app-horizontal-line class="horizontal-line"></app-horizontal-line>
     <div class="user__logout--btn">
       <app-btn color="btn-logout" (click)="logout()">Log out</app-btn>
     </div>

@@ -40,7 +40,6 @@ export class DialogUserProfileComponent {
     private dialogRef: DialogRef,
     @Inject(DIALOG_DATA) data: UpdateUserDto,
     private overlayService: OverlayService,
-    private accountService: AccountService
   ) {
     this.userDetail = data;
   }

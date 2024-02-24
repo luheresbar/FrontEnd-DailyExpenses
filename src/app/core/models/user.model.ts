@@ -17,3 +17,7 @@ export interface LoginUserDTO extends Omit<UserProfile, 'username' | 'registerDa
 
 export interface UpdateUserDto extends Omit<UserProfile, 'registerDate' | 'roles' > {
 }
+export interface UpdatePasswordDto {
+  currentPassword: string;
+  newPassword: string;
+}

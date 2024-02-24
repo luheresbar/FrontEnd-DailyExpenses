@@ -12,6 +12,7 @@ import { AuthService } from '@services/auth.service';
 import { UserResponse } from '@models/user.model';
 import { UserService } from '@services/user.service';
 import { DialogUserProfileComponent } from '@shared/components/dialog-user-profile/dialog-user-profile.component';
+import { DialogChangePasswordComponent } from '@shared/components/dialog-change-password/dialog-change-password.component';
 
 
 @Component({
@@ -55,6 +56,19 @@ export class UserProfileComponent {
 
   openDialogUserProfile() {
     this.dialog.open(DialogUserProfileComponent, {
+      minWidth: '300px',
+      width: '100%',
+      height: '100vh',
+      autoFocus: false,
+      data: {
+        userId: this.user$?.userId,
+        username: this.user$?.username,
+        email: this.user$?.email
+      },
+    });
+  }
+  openDialogChangePassword() {
+    this.dialog.open(DialogChangePasswordComponent, {
       minWidth: '300px',
       width: '100%',
       height: '100vh',

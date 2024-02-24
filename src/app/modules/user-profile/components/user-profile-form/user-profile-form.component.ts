@@ -35,9 +35,8 @@ export class UserProfileFormComponent {
   status: RequestStatus = 'init';
   faEye = faEye;
   faEyeSlash = faEyeSlash;
-  showPasswordFiel: boolean = true;
+
   emailChanged: boolean = false;
-  showRegister = false;
   showPassword = false;
 
   form = this.formBuilder.nonNullable.group(

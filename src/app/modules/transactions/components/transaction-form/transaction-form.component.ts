@@ -58,7 +58,7 @@ export class TransactionFormComponent {
     },
     {
       validators: [
-        CustomValidators.DifferentAccountsValidator(
+        CustomValidators.MismatchValidator(
           'sourceAccount',
           'destinationAccount'
         ),

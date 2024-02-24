@@ -85,7 +85,7 @@
       <div *ngIf="form.controls.sourceAccount.touched">
         <app-form-validation-message
           class="form__validation-message"
-          *ngIf="form.hasError('sameAccount')"
+          *ngIf="form.hasError('match')"
           class="font-medium text-red-500 text-xs mt-1 ml-1"
         >
           The accounts are the same

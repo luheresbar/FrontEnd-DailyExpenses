@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
-import { UpdateUserDto, UserProfile, UserResponse } from '@models/user.model';
+import { UpdatePasswordDto, UpdateUserDto, UserProfile, UserResponse } from '@models/user.model';
 import { BehaviorSubject, switchMap, tap } from 'rxjs';
 import { TokenService } from './token.service';
 import { checkToken } from '@interceptors/token.interceptor';
@@ -45,6 +45,11 @@ export class UserService {
       .pipe(
         switchMap(() => this.getProfile()),
       );
+  }
+
+  updatePassword(updatePasswordDto: UpdatePasswordDto) {
+    return this.http
+      .put<UserResponse>(`${this.apiUrl}/users/update-password`, updatePasswordDto, { context: checkToken() })
   }
 
 
