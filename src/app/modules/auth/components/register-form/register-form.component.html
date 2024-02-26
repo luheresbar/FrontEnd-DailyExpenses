@@ -181,10 +181,11 @@
           class="input-check"
           formControlName="termsAndConditions"
           type="checkbox"
+          id="terms"
         />
         <!-- //TODO (configurar autorizacion para registrarae solo si está marcada la aceptacion de terminos y condiciones) -->
-        <span class="input-check"
-          >I have read and agree to the website terms and conditions.</span
+        <label for="terms" class="input-check"
+          >I have read and agree to the website terms and conditions.</label
         >
       </div>
       <div *ngIf="form.controls.termsAndConditions.touched && form.controls.termsAndConditions.invalid">
