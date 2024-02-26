@@ -9,7 +9,6 @@
     novalidate
     (ngSubmit)="createOrUpdateAccount()"
   >
-
     <div>
       <div class="form__account-name">
         <label class="form__label" for="account-name">Account name</label>
@@ -22,12 +21,25 @@
           id="account-name"
         />
       </div>
-      <!-- //TODO(Hacer capo obligatorio) -->
+      <div
+        *ngIf="
+          form.controls.accountName.touched && form.controls.accountName.invalid
+        "
+      >
+        <app-form-validation-message
+          class="form__validation-message"
+          *ngIf="form.controls.accountName.hasError('required')"
+        >
+          This field is mandatory
+        </app-form-validation-message>
+      </div>
     </div>
 
     <div>
       <div class="form__available-amount">
-        <label class="form__label" for="available-amount">Available money</label>
+        <label class="form__label" for="available-amount"
+          >Available money</label
+        >
         <input
           class="input--text"
           formControlName="availableMoney"
@@ -36,14 +48,6 @@
           name="available-amount"
           id="available-amount"
         />
-      </div>
-      <div *ngIf="form.controls.availableMoney.touched && form.controls.availableMoney.invalid">
-        <app-form-validation-message
-          class="form__validation-message"
-          *ngIf="form.controls.availableMoney.hasError('required')"
-        >
-          This field is mandatory
-        </app-form-validation-message>
       </div>
     </div>
 

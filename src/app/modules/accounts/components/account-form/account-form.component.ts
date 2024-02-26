@@ -45,6 +45,8 @@ export class AccountFormComponent {
   ) {}
 
   ngOnInit() {
+    console.log(this.accountDetail); // TODO(Eliminar)
+    
     if (Object.keys(this.accountDetail).length === 0) {
       this.stateProcess = 'create';
     } else {
@@ -102,7 +104,7 @@ export class AccountFormComponent {
           userId: this.accountDetail.userId,
           accountName: this.accountDetail.accountName,
           newAccountName: accountName,
-          availableMoney: amount,
+          availableMoney: cleanedAmount,
           available: this.accountDetail.available,
         };
         console.log(accountDto); //TODO (Eliminar linea)

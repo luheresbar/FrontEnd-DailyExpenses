@@ -35,7 +35,6 @@
     align-self: end;
     height: 80%;
 
-
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -62,21 +61,23 @@
 
     .horizontal-line {
       width: 95%;
-
     }
     .user__option-settings {
       width: 30rem;
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1rem;
+      margin-block-start: 1rem;
       .user__option {
         cursor: pointer;
+        height: 3.2rem;
+        display: flex;
+        align-items: center;
         .text {
-
+          font-size: $font-size-medium;
         }
       }
     }
-
   }
 
   .user__logout {
