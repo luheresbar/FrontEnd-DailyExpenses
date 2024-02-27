@@ -7,12 +7,16 @@
   display: flex;
   justify-content: space-evenly;
 
-  .date__arrow {
+  .btn-date__arrow {
     display: grid;
     place-content: center;
     margin: 0 6%;
     width: 4rem;
     height: 4rem;
+    border-radius: 50%;
+    border-color: transparent;
+    background-color: transparent;
+    cursor: pointer;
 
     .date__arrow--image {
       width: 2rem;

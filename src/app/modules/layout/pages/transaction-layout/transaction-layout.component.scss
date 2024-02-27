@@ -26,6 +26,7 @@
     grid-area: 3 / 1 / 4 / 13;
     box-shadow: 0px 3px 5px rgba($text-input-border-active, 0.5);
     padding-block-end: 0.5rem;
+    z-index: 1;
 
     .filter__subtitle {
       display: none;

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
 
 import { HeaderbarComponent } from '../../components/headerbar/headerbar.component';
@@ -15,6 +15,7 @@ import { FloatingButtonComponent } from '@shared/components/atoms/floating-butto
 import { FloatingMenuComponent } from '@shared/components/floating-menu/floating-menu.component';
 import { OverlayService } from '@services/overlay.service';
 import { DialogTransactionComponent } from '@shared/components/dialog-transaction/dialog-transaction.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-transaction-layout',
@@ -42,6 +43,9 @@ export class TransactionLayoutComponent {
   faPlus = faPlus;
   isOpenOverlayFloatingMenu$!: boolean;
   typeFloatingMenu: string = 'transactions';
+  currentDate: string | null = null;
+  nextDate: string | null = null;
+
 
   constructor(
     private overlayService: OverlayService,
@@ -51,11 +55,21 @@ export class TransactionLayoutComponent {
     this.overlayService.isOpenOverlayFloatingMenu$.subscribe(value => {
       this.isOpenOverlayFloatingMenu$ = value;
     });
+
+
   }
 
   changeStateOverlayFloatingMenu() {
     this.overlayService.changeStateOverlayFloatingMenu();
   }
   
+  onCurrentDateChange(currentDate: string | null) {
+    this.currentDate = currentDate;
+  }
+
+  onNextDateChange(nextDate: string | null) {
+    this.nextDate = nextDate;
+  }
+
 
 }
