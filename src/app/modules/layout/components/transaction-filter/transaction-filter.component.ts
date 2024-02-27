@@ -27,8 +27,6 @@ export class TransactionFilterComponent {
 
   ngOnInit() {
     
-    
-
     this.expenseService.totalExpenses$.subscribe(value => {
       this.totalExpenses$ = value;
     })

@@ -1,8 +1,7 @@
 import { CommonModule, DatePipe } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DateFilterService } from '@services/date-filter.service';
-import { TransactionService } from '@services/transaction.service';
 
 @Component({
   selector: 'app-date-filter',
@@ -12,41 +11,21 @@ import { TransactionService } from '@services/transaction.service';
   styleUrl: './date-filter.component.scss',
 })
 export class DateFilterComponent {
-  currentDate: string = "";
-  currentDate$: string = "";
-  nextDate$: string = "";
+  currentDate: string = '';
 
-  constructor(
-    private dateFilterService: DateFilterService,
-    private transactionService: TransactionService,
-
-    ) {
-  }
+  constructor(private dateFilterService: DateFilterService) {}
 
   ngOnInit() {
-    this.dateFilterService. currentDateFormatted$.subscribe(date => {
-      this.currentDate = new DatePipe('en-US').transform(
-        date,
-        'yyyy-MM')!;
-    })
-
-    this.dateFilterService. currentDateFormatted$.subscribe(date => {
-      this.currentDate$ = date;
-    })
-    this.dateFilterService.nextDateFormatted$.subscribe(date => {
-      this.nextDate$ = date;
-    })
-
+    this.dateFilterService.currentDateFormatted$.subscribe((date) => {
+      this.currentDate = new DatePipe('en-US').transform(date, 'yyyy-MM')!;
+    });
   }
-  
+
   advanceMonth() {
     this.dateFilterService.advanceMonth();
-    this.transactionService.getAll(this.currentDate$, this.nextDate$).subscribe();
-
   }
-  
+
   previousMonth() {
     this.dateFilterService.previousMonth();
-    this.transactionService.getAll(this.currentDate$, this.nextDate$).subscribe();
   }
 }

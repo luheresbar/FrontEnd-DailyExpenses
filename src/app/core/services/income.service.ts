@@ -22,10 +22,11 @@ export class IncomeService {
     private transactionService: TransactionService,
   ) {}
 
-  getIncomes(account_name?: string) {
+  getIncomes(current_date?: string, next_date?: string) {
     const url = new URL(`${this.apiUrl}/incomes`)
-    if (account_name) {
-      url.searchParams.set('account_name', account_name);
+    if (current_date && next_date) {
+      url.searchParams.set('current_date', current_date);
+      url.searchParams.set('next_date', next_date);
     }
     return this.http
     .get<SummaryTransaction>(url.toString(), { context: checkToken() })

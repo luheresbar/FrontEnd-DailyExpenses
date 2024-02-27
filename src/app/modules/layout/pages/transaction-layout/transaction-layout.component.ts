@@ -55,8 +55,6 @@ export class TransactionLayoutComponent {
     this.overlayService.isOpenOverlayFloatingMenu$.subscribe(value => {
       this.isOpenOverlayFloatingMenu$ = value;
     });
-
-
   }
 
   changeStateOverlayFloatingMenu() {
@@ -70,6 +68,5 @@ export class TransactionLayoutComponent {
   onNextDateChange(nextDate: string | null) {
     this.nextDate = nextDate;
   }
-
 
 }

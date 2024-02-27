@@ -8,6 +8,8 @@ import { IncomeCategoryService } from '@services/income-category.service';
 import { ExpenseService } from '@services/expense.service';
 import { IncomeService } from '@services/income.service';
 import { CategoryDto } from '@models/category.model';
+import { DateFilterService } from '@services/date-filter.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-layout-main',
@@ -19,8 +21,12 @@ import { CategoryDto } from '@models/category.model';
 export class LayoutMainComponent {
 
   enabledCategory: CategoryDto[] = [];
+  currentDate$: string = "";
+  nextDate$: string = "";
+  currentDateChangeSubscription: Subscription | undefined;
 
   constructor(
+    private dateFilterService: DateFilterService,
     private userService: UserService,
     private expenseCategoryService: ExpenseCategoryService,
     private incomeCategoryService: IncomeCategoryService,
@@ -30,12 +36,25 @@ export class LayoutMainComponent {
   ) {}
   
     ngOnInit() {
+
+      this.dateFilterService.currentDateFormatted$.subscribe(date => {
+        this.currentDate$ = date;
+      });
+      
+      this.dateFilterService.nextDateFormatted$.subscribe(date => {
+        this.nextDate$ = date;
+      });
+
       this.userService.getProfile().subscribe();
       this.expenseCategoryService.getExpenseCategories().subscribe();
       this.incomeCategoryService.getIncomeCategories().subscribe();
       this.accountService.getAccounts().subscribe();
-      this.expenseService.getExpenses().subscribe();
-      this.incomeService.getIncomes().subscribe();
+      this.expenseService.getExpenses(this.currentDate$, this.nextDate$).subscribe();
+      this.incomeService.getIncomes(this.currentDate$, this.nextDate$).subscribe();
+    }
+
+    ngOnDestroy() {
+      this.currentDateChangeSubscription?.unsubscribe();
     }
 
 }

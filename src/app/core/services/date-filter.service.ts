@@ -9,6 +9,8 @@ export class DateFilterService {
   currentDateFormatted$ = new BehaviorSubject<string>("");
   nextDateFormatted$ = new BehaviorSubject<string>("");
 
+  currentDateChanged$ = new BehaviorSubject<void>(undefined);
+
   constructor() {
     this.currentDateFormatted$.next(this.getCurrentDate());
     this.nextDateFormatted$.next(this.getNextDate());
@@ -43,6 +45,7 @@ export class DateFilterService {
           'yyyy-MM-ddTHH:mm:ss.SSS')!
       );
     }
+
     const nextDateString = this.nextDateFormatted$.value;
     if (nextDateString != null) {
       const [year, month] = nextDateString.split('-').map(Number);
@@ -53,7 +56,9 @@ export class DateFilterService {
           'yyyy-MM-ddTHH:mm:ss.SSS')!
       );
     }
+    this.currentDateChanged$.next();
   }
+  
   previousMonth() {
     const currentDateString = this.currentDateFormatted$.value;
     if (currentDateString != null) {
@@ -75,5 +80,6 @@ export class DateFilterService {
           'yyyy-MM-ddTHH:mm:ss.SSS')!
       );
     }
+    this.currentDateChanged$.next();
   }
 }

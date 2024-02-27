@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { TransactionDetail } from '@models/transaction-detail.model';
 import { IncomeService } from '@services/income.service';
+import { Subscription } from 'rxjs';
 import { TransactionLayoutComponent } from '../../../layout/pages/transaction-layout/transaction-layout.component';
 import { TransactionDetailComponent } from '../../components/transaction-detail/transaction-detail.component';
+import { DateFilterService } from '@services/date-filter.service';
 
 @Component({
   selector: 'app-income-summary',
@@ -12,20 +14,46 @@ import { TransactionDetailComponent } from '../../components/transaction-detail/
   templateUrl: './income-summary.component.html',
   styleUrl: './income-summary.component.scss'
 })
-export class IncomeSummaryComponent {
+export class IncomeSummaryComponent implements OnDestroy {
 
   incomes$: TransactionDetail[] = [];
+  currentDate$: string = "";
+  nextDate$: string = "";
+  currentDateChangeSubscription: Subscription | undefined;
 
   constructor(
     private incomeService: IncomeService,
+    private dateFilterService: DateFilterService,
 
   ) {}
 
   ngOnInit() {
-    this.incomeService.getIncomes().subscribe();
-    this.incomeService.incomes$.subscribe(incomes => {
-      this.incomes$ = incomes;
+ 
+    this.dateFilterService.currentDateFormatted$.subscribe(date => {
+      this.currentDate$ = date;
+    });
+    
+    this.dateFilterService.nextDateFormatted$.subscribe(date => {
+      this.nextDate$ = date;
+    });
+    
+    this.currentDateChangeSubscription = this.dateFilterService.currentDateChanged$.subscribe(() => {
+      this.updateIncomes();
     });
   }
 
+  ngOnDestroy() {
+    this.currentDateChangeSubscription?.unsubscribe();
+  }
+
+  updateIncomes() {
+    
+    this.incomeService.getIncomes(this.currentDate$, this.nextDate$).subscribe(incomes => {
+      this.incomes$ = incomes.transactionDetails;
+      console.log(incomes);
+      
+    });
+    
+    console.log("Holaaaaaaaaaaaaaaaaaaaaa");
+  }
 }
