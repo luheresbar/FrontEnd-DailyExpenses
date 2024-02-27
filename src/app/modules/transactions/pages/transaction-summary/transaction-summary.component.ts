@@ -19,8 +19,8 @@ import { DateFilterService } from '@services/date-filter.service';
 export class TransactionSummaryComponent {
 
   transactions$: TransactionDetail[] = [];
-  currentDate: string | null = null;
-  nextDate: string | null = null;
+  currentDate$: string = "";
+  nextDate$: string = "";
 
   constructor(
     private transactionService: TransactionService,
@@ -29,18 +29,22 @@ export class TransactionSummaryComponent {
   ) {}
   
   ngOnInit() {
-    this.transactionService.getAll().subscribe();
+    this.dateFilterService. currentDateFormatted$.subscribe(date => {
+      this.currentDate$ = date;
+    })
+    this.dateFilterService.nextDateFormatted$.subscribe(date => {
+      this.nextDate$ = date;
+    })
+
+    this.transactionService.getAll(this.currentDate$, this.nextDate$).subscribe();
     
     this.transactionService.transactions$.subscribe(transactions => {
       this.transactions$ = transactions;
     });
 
-    this.dateFilterService.currentDate$.subscribe(date => {
-      this.currentDate = date;
-    })
-    this.dateFilterService.nextDate$.subscribe(date => {
-      this.nextDate = date;
-    })
+    console.log(this.currentDate$);
+    console.log(this.nextDate$);
+    
     
   }
 

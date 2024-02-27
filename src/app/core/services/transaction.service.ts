@@ -18,14 +18,19 @@ export class TransactionService {
     private http: HttpClient,
   ) { }
 
-  getAll() {
-    return this.http.get<TransactionDetail[]>(`${this.apiUrl}/transactions`, { context: checkToken() })
+  getAll(current_date?: string, next_date?: string) {
+    const url = new URL(`${this.apiUrl}/transactions`)
+    if (current_date && next_date) {
+      url.searchParams.set('current_date', current_date);
+      url.searchParams.set('next_date', next_date);
+    }
+    return this.http
+    .get<TransactionDetail[]>(url.toString(), { context: checkToken() })
     .pipe(
       tap(transactions => {
         this.transactions$.next(transactions)
       })
     )
   }
-
 
 }
