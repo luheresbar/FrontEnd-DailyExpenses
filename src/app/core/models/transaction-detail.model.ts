@@ -11,6 +11,7 @@ export interface TransactionDetail {
 
 export interface SummaryTransaction {
   transactionDetails: TransactionDetail[],
-  totalTransactions: number
+  totalExpense: number,
+  totalIncome: number
 }
 

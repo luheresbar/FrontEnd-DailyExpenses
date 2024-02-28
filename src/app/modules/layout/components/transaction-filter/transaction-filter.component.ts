@@ -28,10 +28,18 @@ export class TransactionFilterComponent {
   ngOnInit() {
     
     this.expenseService.totalExpenses$.subscribe(value => {
-      this.totalExpenses$ = value;
+      if (value != null) {
+        this.totalExpenses$ = value;
+      } else {
+        this.totalExpenses$ = 0.0;
+      }
     })
     this.incomeService.totalIncomes$.subscribe(value => {
+      if (value != null) {
       this.totalIncomes$ = value;
+    } else {
+      this.totalIncomes$ = 0.0;
+    }
     })
   }
 

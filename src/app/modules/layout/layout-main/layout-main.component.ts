@@ -37,20 +37,20 @@ export class LayoutMainComponent {
   
     ngOnInit() {
 
-      this.dateFilterService.currentDateFormatted$.subscribe(date => {
-        this.currentDate$ = date;
-      });
+      // this.dateFilterService.currentDateFormatted$.subscribe(date => {
+      //   this.currentDate$ = date;
+      // });
       
-      this.dateFilterService.nextDateFormatted$.subscribe(date => {
-        this.nextDate$ = date;
-      });
+      // this.dateFilterService.nextDateFormatted$.subscribe(date => {
+      //   this.nextDate$ = date;
+      // });
 
       this.userService.getProfile().subscribe();
       this.expenseCategoryService.getExpenseCategories().subscribe();
       this.incomeCategoryService.getIncomeCategories().subscribe();
       this.accountService.getAccounts().subscribe();
-      this.expenseService.getExpenses(this.currentDate$, this.nextDate$).subscribe();
-      this.incomeService.getIncomes(this.currentDate$, this.nextDate$).subscribe();
+      // this.expenseService.getMonthlyExpenseTotal(this.currentDate$, this.nextDate$).subscribe();
+      // this.incomeService.getMonthlyIncomeTotal(this.currentDate$, this.nextDate$).subscribe();
     }
 
     ngOnDestroy() {

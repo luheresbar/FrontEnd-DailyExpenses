@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ExpenseService } from '@services/expense.service';
 import { DateFilterService } from '@services/date-filter.service';
 import { Subscription } from 'rxjs';
+import { IncomeService } from '@services/income.service';
 
 @Component({
   selector: 'app-expense-summary',
@@ -19,13 +20,13 @@ export class ExpenseSummaryComponent {
   expenses$: TransactionDetail[] = [];
   currentDate$: string = "";
   nextDate$: string = "";
-  currentDateChangeSubscription: Subscription | undefined;
+  currentDateChangeSubscription$: Subscription | undefined;
 
 
   constructor(
     private expenseService: ExpenseService,
     private dateFilterService: DateFilterService,
-
+    private incomeService: IncomeService,
 
   ) {}
 
@@ -39,18 +40,19 @@ export class ExpenseSummaryComponent {
       this.nextDate$ = date;
     });
     
-    this.currentDateChangeSubscription = this.dateFilterService.currentDateChanged$.subscribe(() => {
+    this.currentDateChangeSubscription$ = this.dateFilterService.currentDateChanged$.subscribe(() => {
       this.updateExpenses();
     });
   }
 
   ngOnDestroy() {
-    this.currentDateChangeSubscription?.unsubscribe();
+    this.currentDateChangeSubscription$?.unsubscribe();
   }
 
   updateExpenses() {
     this.expenseService.getExpenses(this.currentDate$, this.nextDate$).subscribe(expenses => {
       this.expenses$ = expenses.transactionDetails;
     });
+    this.incomeService.getMonthlyIncomeTotal(this.currentDate$, this.nextDate$).subscribe();
   }
 }
