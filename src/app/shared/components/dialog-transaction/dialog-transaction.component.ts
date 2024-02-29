@@ -12,8 +12,10 @@ import { OverlayService } from '@services/overlay.service';
 import { ExpenseService } from '@services/expense.service';
 import { IncomeService } from '@services/income.service';
 import { TransferService } from '@services/transfer.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { RequestStatus } from '@models/request-status.model';
+import { DateFilterService } from '@services/date-filter.service';
+import { TransactionService } from '@services/transaction.service';
 @Component({
   selector: 'app-dialog-new-register',
   standalone: true,
@@ -41,7 +43,11 @@ export class DialogTransactionComponent {
     private overlayService: OverlayService,
     private expenseService: ExpenseService,
     private incomeService: IncomeService,
-    private transferService: TransferService
+    private transferService: TransferService,
+    private location: Location,
+    private dateFilterService: DateFilterService,
+    private transactionService: TransactionService,
+
   ) {
     this.transactionDetail = data;
   }
@@ -60,6 +66,7 @@ export class DialogTransactionComponent {
       service.delete(this.transactionDetail.id).subscribe({
         next: () => {
           this.status = 'success';
+          this.updateTransactionData()
           this.close();
         },
         error: (error: any) => {
@@ -67,6 +74,16 @@ export class DialogTransactionComponent {
           console.log(error);
         },
       });
+    }
+  }
+
+  private updateTransactionData() {
+    const currentUrl = this.location.path();
+    if (currentUrl === '/transactions') {
+      this.transactionService
+        .getAll(this.dateFilterService.currentDateFormatted$.value,
+          this.dateFilterService.nextDateFormatted$.value)
+        .subscribe();
     }
   }
 

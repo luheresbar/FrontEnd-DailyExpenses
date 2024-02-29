@@ -52,9 +52,6 @@ export class TransactionFormComponent {
   showPassword = false;
   status: RequestStatus = 'init';
   statusUser: RequestStatus = 'init';
-  // Parametros para actualizar la lista de transactios
-  currentDate$: string = '';
-  nextDate$: string = '';
 
   form = this.formBuilder.nonNullable.group(
     {
@@ -111,14 +108,6 @@ export class TransactionFormComponent {
       this.fillForm();
       this.disableForm();
     }
-
-    this.dateFilterService.currentDateFormatted$.subscribe((date) => {
-      this.currentDate$ = date;
-    });
-
-    this.dateFilterService.nextDateFormatted$.subscribe((date) => {
-      this.nextDate$ = date;
-    });
 
     this.form.valueChanges.subscribe((form) => {
       if (form.amount && typeof form.amount === 'string') {
@@ -196,7 +185,7 @@ export class TransactionFormComponent {
         service[method](transactionDto).subscribe({
           next: () => {
             this.statusRegister = 'success';
-            this.updateTransactionData()
+            this.updateTransactionData();
             this.closeFormDialog();
           },
           error: (error) => {
@@ -213,9 +202,11 @@ export class TransactionFormComponent {
   private updateTransactionData() {
     const currentUrl = this.location.path();
     if (currentUrl === '/transactions') {
-      console.log(currentUrl);
       this.transactionService
-        .getAll(this.currentDate$, this.nextDate$)
+        .getAll(
+          this.dateFilterService.currentDateFormatted$.value,
+          this.dateFilterService.nextDateFormatted$.value
+        )
         .subscribe();
     }
   }
