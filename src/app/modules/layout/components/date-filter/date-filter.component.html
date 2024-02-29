@@ -1,11 +1,20 @@
 <div class="filter-date">
   <button class="btn-date__arrow" (click)="previousMonth()">
-    <img class="date__arrow--image" src="/assets/icons/left-arrow.png" alt="">
+    <img class="date__arrow--image" src="/assets/icons/left-arrow.png" alt="" />
   </button>
   <div class="date">
-    <input class="input--date" type="month" id="fecha" name="fecha" [(ngModel)]="currentDate">
+    <input
+    class="input--date"
+    type="month"
+    [value]="currentDate"
+    (input)="onDateChange($event)"
+    />
   </div>
   <button class="btn-date__arrow" (click)="advanceMonth()">
-    <img class="date__arrow--image" src="/assets/icons/right-arrow.png" alt="">
+    <img
+      class="date__arrow--image"
+      src="/assets/icons/right-arrow.png"
+      alt=""
+    />
   </button>
 </div>

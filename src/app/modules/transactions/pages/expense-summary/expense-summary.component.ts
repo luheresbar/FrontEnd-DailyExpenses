@@ -39,8 +39,13 @@ export class ExpenseSummaryComponent {
     this.dateFilterService.nextDateFormatted$.subscribe(date => {
       this.nextDate$ = date;
     });
+
+    this.expenseService.expenses$.subscribe(expenses => {
+      this.expenses$ = expenses;
+    })
     
     this.currentDateChangeSubscription$ = this.dateFilterService.currentDateChanged$.subscribe(() => {
+      this.expenses$ = [];
       this.updateExpenses();
     });
   }
@@ -50,9 +55,7 @@ export class ExpenseSummaryComponent {
   }
 
   updateExpenses() {
-    this.expenseService.getExpenses(this.currentDate$, this.nextDate$).subscribe(expenses => {
-      this.expenses$ = expenses.transactionDetails;
-    });
+    this.expenseService.getExpenses(this.currentDate$, this.nextDate$).subscribe();
     this.incomeService.getMonthlyIncomeTotal(this.currentDate$, this.nextDate$).subscribe();
   }
 }

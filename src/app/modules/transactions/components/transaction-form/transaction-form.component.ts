@@ -1,4 +1,4 @@
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { CommonModule, CurrencyPipe, Location } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -17,6 +17,8 @@ import { TransferService } from '@services/transfer.service';
 import { IncomeCategoryService } from '@services/income-category.service';
 import { CustomValidators } from '@utils/validators';
 import { stateProcess } from '@models/stateProcess.model';
+import { TransactionService } from '@services/transaction.service';
+import { DateFilterService } from '@services/date-filter.service';
 
 @Component({
   selector: 'app-transaction-form',
@@ -46,6 +48,14 @@ export class TransactionFormComponent {
   now = new Date();
   currentDate = new DatePipe('en-US').transform(this.now, 'yyyy-MM-dd');
 
+  showRegister = false;
+  showPassword = false;
+  status: RequestStatus = 'init';
+  statusUser: RequestStatus = 'init';
+  // Parametros para actualizar la lista de transactios
+  currentDate$: string = '';
+  nextDate$: string = '';
+
   form = this.formBuilder.nonNullable.group(
     {
       type: [''],
@@ -66,20 +76,18 @@ export class TransactionFormComponent {
     }
   );
 
-  showRegister = false;
-  showPassword = false;
-  status: RequestStatus = 'init';
-  statusUser: RequestStatus = 'init';
-
   constructor(
     private formBuilder: FormBuilder,
     private expenseService: ExpenseService,
     private expenseCategoryService: ExpenseCategoryService,
     private incomeCategoryService: IncomeCategoryService,
     private accountService: AccountService,
+    private transactionService: TransactionService,
     private incomeService: IncomeService,
     private transferService: TransferService,
-    private currencyPipe: CurrencyPipe
+    private currencyPipe: CurrencyPipe,
+    private location: Location,
+    private dateFilterService: DateFilterService
   ) {}
 
   ngOnInit() {
@@ -104,6 +112,14 @@ export class TransactionFormComponent {
       this.disableForm();
     }
 
+    this.dateFilterService.currentDateFormatted$.subscribe((date) => {
+      this.currentDate$ = date;
+    });
+
+    this.dateFilterService.nextDateFormatted$.subscribe((date) => {
+      this.nextDate$ = date;
+    });
+
     this.form.valueChanges.subscribe((form) => {
       if (form.amount && typeof form.amount === 'string') {
         const formattedAmount = this.applyCurrencyFormatToAmount(form.amount);
@@ -114,7 +130,7 @@ export class TransactionFormComponent {
     });
   }
 
-  applyCurrencyFormatToAmount(amount: string) {
+  private applyCurrencyFormatToAmount(amount: string) {
     const numericAmount = parseFloat(amount.replace(/[^0-9.]/g, ''));
     if (!isNaN(numericAmount)) {
       return (
@@ -122,6 +138,14 @@ export class TransactionFormComponent {
       );
     }
     return '';
+  }
+
+  private formatDateToDateTime(date: Date | string | null): string {
+    return new DatePipe('en-US').transform(date, 'yyyy-MM-ddTHH:mm:ss.SSS')!;
+  }
+
+  private formatDateToYearMonth(date: Date | string): string {
+    return new DatePipe('en-US').transform(date, 'yyyy-MM-dd')!;
   }
 
   createOrUpdateTransaction() {
@@ -144,15 +168,10 @@ export class TransactionFormComponent {
         this.formattedTransactionDetailDate !== date
       ) {
         if (date === this.currentDate) {
-          formattedDate = new DatePipe('en-US').transform(
-            this.now,
-            'yyyy-MM-ddTHH:mm:ss.SSS'
-          );
+          formattedDate = this.formatDateToDateTime(this.now);
         } else {
-          formattedDate = new DatePipe('en-US').transform(
-            date,
-            'yyyy-MM-ddTHH:mm:ss.SSS'
-          );
+          formattedDate = this.formatDateToDateTime(date);
+          console.log(formattedDate); //TODO (Eliminar)
         }
       } else if (this.formattedTransactionDetailDate === date) {
         formattedDate = this.transactionDetail.date;
@@ -177,6 +196,7 @@ export class TransactionFormComponent {
         service[method](transactionDto).subscribe({
           next: () => {
             this.statusRegister = 'success';
+            this.updateTransactionData()
             this.closeFormDialog();
           },
           error: (error) => {
@@ -190,6 +210,16 @@ export class TransactionFormComponent {
     }
   }
 
+  private updateTransactionData() {
+    const currentUrl = this.location.path();
+    if (currentUrl === '/transactions') {
+      console.log(currentUrl);
+      this.transactionService
+        .getAll(this.currentDate$, this.nextDate$)
+        .subscribe();
+    }
+  }
+
   fillFormDefault() {
     if (this.transactionDetail.type !== 'transfer') {
       this.form.patchValue({
@@ -200,23 +230,30 @@ export class TransactionFormComponent {
   }
 
   fillForm() {
-    const { amount, sourceAccountName, destinationAccountName, category, description, date } = this.transactionDetail;
-  
-    this.form.controls.amount.setValue(this.applyCurrencyFormatToAmount(amount.toString()));
+    const {
+      amount,
+      sourceAccountName,
+      destinationAccountName,
+      category,
+      description,
+      date,
+    } = this.transactionDetail;
+
+    this.form.controls.amount.setValue(
+      this.applyCurrencyFormatToAmount(amount.toString())
+    );
     this.form.controls.sourceAccount.setValue(sourceAccountName);
     this.form.controls.destinationAccount.setValue(destinationAccountName);
     this.form.controls.category.setValue(category);
     this.form.controls.description.setValue(description);
-  
+
     if (date) {
       const dateRecived: Date = new Date(date);
-      this.formattedTransactionDetailDate = new DatePipe('en-US').transform(
-        dateRecived,
-        'yyyy-MM-dd'
-      );
+      this.formattedTransactionDetailDate =
+        this.formatDateToYearMonth(dateRecived);
       this.form.controls.date.setValue(this.formattedTransactionDetailDate);
     }
-    }
+  }
 
   enableForm() {
     this.form.enable();

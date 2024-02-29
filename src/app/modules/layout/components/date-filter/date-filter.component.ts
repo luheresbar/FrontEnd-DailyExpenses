@@ -1,12 +1,11 @@
 import { CommonModule, DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { DateFilterService } from '@services/date-filter.service';
 
 @Component({
   selector: 'app-date-filter',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule],
   templateUrl: './date-filter.component.html',
   styleUrl: './date-filter.component.scss',
 })
@@ -19,6 +18,12 @@ export class DateFilterComponent {
     this.dateFilterService.currentDateFormatted$.subscribe((date) => {
       this.currentDate = new DatePipe('en-US').transform(date, 'yyyy-MM')!;
     });
+  }
+
+  onDateChange(event: any) {
+    const value = event.target.value;
+
+    this.dateFilterService.setCurrentDate(value);
   }
 
   advanceMonth() {

@@ -33,7 +33,7 @@ export class CategoryFormComponent {
   stateProcess: stateProcess = 'create';
   statusRegister: RequestStatus = 'init';
 
-    form = this.formBuilder.nonNullable.group({
+  form = this.formBuilder.nonNullable.group({
     categoryName: ['', [Validators.required]],
   });
 
@@ -56,11 +56,22 @@ export class CategoryFormComponent {
     if (this.form.valid) {
       this.statusRegister = 'loading';
       const { categoryName } = this.form.getRawValue();
-      const category: Category = {
-        userId: this.categoryDetail.userId,
-        categoryName: categoryName,
-        available: this.categoryDetail.available,
-      };
+      let category!: Category | UpdateCategoryDto;
+
+      if (this.stateProcess === 'create') {
+        category = {
+          userId: this.categoryDetail.userId,
+          categoryName: categoryName,
+          available: this.categoryDetail.available
+        };
+      } else {
+        category = {
+          userId: this.categoryDetail.userId,
+          categoryName: this.categoryDetail.categoryName,
+          newCategoryName: categoryName,
+          available: this.categoryDetail.available
+        };
+      }
 
       const categoryService =
         this.categoryDetail.categoryType === 'expense'

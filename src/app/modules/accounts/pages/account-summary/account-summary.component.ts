@@ -31,6 +31,9 @@ export class AccountSummaryComponent {
   ) {}
 
   ngOnInit() {
+
+    this.accountService.getAccounts().subscribe();
+
     this.accountService.enabledAccounts$.subscribe( accounts => {
       this.enabledAccounts$ = accounts;
     });

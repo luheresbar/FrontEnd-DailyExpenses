@@ -42,8 +42,13 @@ export class TransferSummaryComponent implements OnDestroy {
       this.nextDate$ = date;
     });
 
+    this.transferService.transfers$.subscribe((transfers) => {
+      this.transfers$ = transfers;
+    })
+
     this.currentDateChangeSubscription$ =
       this.dateFilterService.currentDateChanged$.subscribe(() => {
+        this.transfers$ = [];
         this.updateTransfer();
       });
   }
@@ -55,9 +60,7 @@ export class TransferSummaryComponent implements OnDestroy {
   updateTransfer() {
     this.transferService
       .getTransfers(this.currentDate$, this.nextDate$)
-      .subscribe((transfers) => {
-        this.transfers$ = transfers.transactionDetails;
-      });
+      .subscribe();
     this.expenseService.getMonthlyExpenseTotal(this.currentDate$, this.nextDate$)
       .subscribe();
     this.incomeService.getMonthlyIncomeTotal(this.currentDate$, this.nextDate$)

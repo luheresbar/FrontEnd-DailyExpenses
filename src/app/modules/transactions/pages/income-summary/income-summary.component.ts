@@ -38,8 +38,13 @@ export class IncomeSummaryComponent implements OnDestroy {
     this.dateFilterService.nextDateFormatted$.subscribe(date => {
       this.nextDate$ = date;
     });
+
+    this.incomeService.incomes$.subscribe(incomes => {
+      this.incomes$ = incomes;
+    })
     
     this.currentDateChangeSubscription$ = this.dateFilterService.currentDateChanged$.subscribe(() => {
+      this.incomes$ = [];
       this.updateIncomes();
     });
   }
@@ -49,9 +54,7 @@ export class IncomeSummaryComponent implements OnDestroy {
   }
 
   updateIncomes() {
-    this.incomeService.getIncomes(this.currentDate$, this.nextDate$).subscribe(incomes => {
-      this.incomes$ = incomes.transactionDetails;
-    });
+    this.incomeService.getIncomes(this.currentDate$, this.nextDate$).subscribe();
     this.expenseService.getMonthlyExpenseTotal(this.currentDate$, this.nextDate$).subscribe();
   }
 }

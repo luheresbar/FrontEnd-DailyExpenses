@@ -17,6 +17,7 @@ export class TransactionService {
   constructor(private http: HttpClient) {}
 
   getAll(current_date?: string, next_date?: string) {
+    
     const url = new URL(`${this.apiUrl}/transactions`);
     if (current_date && next_date) {
       url.searchParams.set('current_date', current_date);

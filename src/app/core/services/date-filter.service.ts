@@ -6,8 +6,8 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class DateFilterService {
-  currentDateFormatted$ = new BehaviorSubject<string>("");
-  nextDateFormatted$ = new BehaviorSubject<string>("");
+  currentDateFormatted$ = new BehaviorSubject<string>('');
+  nextDateFormatted$ = new BehaviorSubject<string>('');
 
   currentDateChanged$ = new BehaviorSubject<void>(undefined);
 
@@ -18,68 +18,60 @@ export class DateFilterService {
 
   ngOnInit() {}
 
+  private formatDateToDateTime(date: Date | string): string {
+    return new DatePipe('en-US').transform(date, 'yyyy-MM-ddTHH:mm:ss.SSS')!;
+  }
+
+  private getNextMonthDateTime(): string {
+    const currentDateFormatted = this.currentDateFormatted$.value;
+    const nextMonthDate = new Date(currentDateFormatted);
+    nextMonthDate.setMonth(nextMonthDate.getMonth() + 1);
+    return this.formatDateToDateTime(nextMonthDate);
+  }
+
+  private getPreviousMonthDateTime(): string {
+    const currentDateFormatted = this.currentDateFormatted$.value;
+    const previousMonthDate = new Date(currentDateFormatted);
+    previousMonthDate.setMonth(previousMonthDate.getMonth() - 1);
+    return this.formatDateToDateTime(previousMonthDate);
+  }
+
   getCurrentDate(): string {
     const today = new Date();
     today.setDate(1);
     today.setHours(0, 0, 0, 0);
 
-    return new DatePipe('en-US').transform(today, 'yyyy-MM-ddTHH:mm:ss.SSS')!;
+    return this.formatDateToDateTime(today);
   }
 
   getNextDate(): string {
-    const today = new Date();
-    const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
-    return new DatePipe('en-US').transform(
-      nextMonth,
-      'yyyy-MM-ddTHH:mm:ss.SSS')!;
+    return this.getNextMonthDateTime();
+  }
+
+  setCurrentDate(date: string) {
+    const newCurrentMonthDate = this.formatDateToDateTime(date);
+    this.currentDateFormatted$.next(newCurrentMonthDate);
+    const newNextMonthDate = this.getNextMonthDateTime();
+    this.nextDateFormatted$.next(newNextMonthDate);
+    
+    this.currentDateChanged$.next();
   }
 
   advanceMonth() {
-    const currentDateString = this.currentDateFormatted$.value;
-    if (currentDateString != null) {
-      const [year, month] = currentDateString.split('-').map(Number);
-      const nextMonthDate = new Date(year, month + 0);
-      this.currentDateFormatted$.next(
-        new DatePipe('en-US').transform(
-          nextMonthDate,
-          'yyyy-MM-ddTHH:mm:ss.SSS')!
-      );
-    }
+    const newCurrentMonthDate = this.getNextMonthDateTime();
+    this.currentDateFormatted$.next(newCurrentMonthDate);
+    const newNextMonthDate = this.getNextMonthDateTime();
+    this.nextDateFormatted$.next(newNextMonthDate);
 
-    const nextDateString = this.nextDateFormatted$.value;
-    if (nextDateString != null) {
-      const [year, month] = nextDateString.split('-').map(Number);
-      const nextMonthDate = new Date(year, month + 0);
-      this.nextDateFormatted$.next(
-        new DatePipe('en-US').transform(
-          nextMonthDate,
-          'yyyy-MM-ddTHH:mm:ss.SSS')!
-      );
-    }
     this.currentDateChanged$.next();
   }
-  
+
   previousMonth() {
-    const currentDateString = this.currentDateFormatted$.value;
-    if (currentDateString != null) {
-      const [year, month] = currentDateString.split('-').map(Number);
-      const prevMonthDate = new Date(year, month - 2);
-      this.currentDateFormatted$.next(
-        new DatePipe('en-US').transform(
-          prevMonthDate,
-          'yyyy-MM-ddTHH:mm:ss.SSS')!
-      );
-    }
-    const nextDateString = this.nextDateFormatted$.value;
-    if (nextDateString != null) {
-      const [year, month] = nextDateString.split('-').map(Number);
-      const prevMonthDate = new Date(year, month - 2);
-      this.nextDateFormatted$.next(
-        new DatePipe('en-US').transform(
-          prevMonthDate,
-          'yyyy-MM-ddTHH:mm:ss.SSS')!
-      );
-    }
+    const newCurrentMonthDate = this.getPreviousMonthDateTime();
+    this.currentDateFormatted$.next(newCurrentMonthDate);
+    const newNextMonthDate = this.getNextMonthDateTime();
+    this.nextDateFormatted$.next(newNextMonthDate);
+
     this.currentDateChanged$.next();
   }
 }

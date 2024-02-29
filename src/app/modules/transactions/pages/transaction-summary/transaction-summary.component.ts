@@ -47,8 +47,13 @@ export class TransactionSummaryComponent implements OnDestroy {
       this.nextDate$ = date;
     });
 
+    this.transactionService.transactions$.subscribe(transactions => {
+      this.transactions$ = transactions;
+    })
+
     this.currentDateChangeSubscription$ =
-      this.dateFilterService.currentDateChanged$.subscribe(() => {
+    this.dateFilterService.currentDateChanged$.subscribe(() => {
+      this.transactions$ = [];
         this.updateTransactions();
       });
 
@@ -69,9 +74,6 @@ export class TransactionSummaryComponent implements OnDestroy {
 
   updateTransactions() {
     this.transactionService
-      .getAll(this.currentDate$, this.nextDate$)
-      .subscribe((transactions) => {
-        this.transactions$ = transactions.transactionDetails;
-      });
+      .getAll(this.currentDate$, this.nextDate$).subscribe();
   }
 }
