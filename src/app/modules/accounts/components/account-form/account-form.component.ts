@@ -45,8 +45,6 @@ export class AccountFormComponent {
   ) {}
 
   ngOnInit() {
-    console.log(this.accountDetail); // TODO(Eliminar)
-    
     if (Object.keys(this.accountDetail).length === 0) {
       this.stateProcess = 'create';
     } else {
@@ -107,7 +105,6 @@ export class AccountFormComponent {
           availableMoney: cleanedAmount,
           available: this.accountDetail.available,
         };
-        console.log(accountDto); //TODO (Eliminar linea)
         this.accountService.updateAccount(accountDto).subscribe({
           next: () => {
             this.statusRegister = 'success';

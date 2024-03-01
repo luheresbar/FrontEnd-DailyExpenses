@@ -73,8 +73,6 @@ export class ChangePasswordFormComponent {
         newPassword: newPassword,
       };
       const email: string = this.email.email;
-      console.log(email); //TODO (Eliminar)
-      console.log(dto); //TODO (Eliminar)
       
       this.userService.updatePassword(dto).subscribe({
         next: () => {

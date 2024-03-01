@@ -160,7 +160,6 @@ export class TransactionFormComponent {
           formattedDate = this.formatDateToDateTime(this.now);
         } else {
           formattedDate = this.formatDateToDateTime(date);
-          console.log(formattedDate); //TODO (Eliminar)
         }
       } else if (this.formattedTransactionDetailDate === date) {
         formattedDate = this.transactionDetail.date;

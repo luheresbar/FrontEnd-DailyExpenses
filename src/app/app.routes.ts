@@ -46,7 +46,7 @@ export const routes: Routes = [
         component: AccountSummaryComponent,
       },
       {
-        path: 'categories',
+        path: 'categories/expenses',
         canActivate: [ authGuard ],
         component: ExpenseCategorySummaryComponent,
       },
