@@ -30,7 +30,7 @@ import { DialogChangePasswordComponent } from '@shared/components/dialog-change-
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.scss'
 })
-export class UserProfileComponent {
+export default class UserProfileComponent {
 
   user$: UserResponse | null = null;
 

@@ -1,11 +1,15 @@
 <app-transaction-layout>
   <div class="transaction-summary">
-    <div *ngFor="let transaction of transactions$">
-      <app-transaction-detail
+    @for (transaction of transactions$; track transaction.id) {
+      <div>
+        <app-transaction-detail
         [transaction]="transaction"
-      ></app-transaction-detail>
-      <!-- //TODO (Implementar virtual scroll CDK) -->
-    </div>
+        ></app-transaction-detail>
+        <!-- //TODO (Implementar virtual scroll CDK) -->
+      </div>
+    } @empty {
+      <p>Empty list</p>
+    }
   </div>
   <div class="overhang"></div>
 </app-transaction-layout>

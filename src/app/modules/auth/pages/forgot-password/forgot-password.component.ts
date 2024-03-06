@@ -12,7 +12,7 @@ import { RouterLinkWithHref } from '@angular/router';
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss'
 })
-export class ForgotPasswordComponent {
+export default class ForgotPasswordComponent {
 
   showSocialMedia: boolean = false;
 

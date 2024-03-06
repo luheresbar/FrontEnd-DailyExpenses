@@ -16,7 +16,7 @@ import { AccountService } from '@services/account.service';
   templateUrl: './account-summary.component.html',
   styleUrl: './account-summary.component.scss'
 })
-export class AccountSummaryComponent {
+export default class AccountSummaryComponent {
 
   showTransactionFilter: boolean = false;
   showDateFilter: boolean = false;

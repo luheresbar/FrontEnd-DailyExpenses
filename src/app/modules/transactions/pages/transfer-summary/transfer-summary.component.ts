@@ -20,7 +20,7 @@ import { IncomeService } from '@services/income.service';
   templateUrl: './transfer-summary.component.html',
   styleUrl: './transfer-summary.component.scss',
 })
-export class TransferSummaryComponent implements OnDestroy {
+export default class TransferSummaryComponent implements OnDestroy {
   transfers$: TransactionDetail[] = [];
   currentDate$: string = '';
   nextDate$: string = '';

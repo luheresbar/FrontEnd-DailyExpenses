@@ -25,6 +25,6 @@ import { RegisterFormComponent } from '../../components/register-form/register-f
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent {
+export default class RegisterComponent {
 
 }

@@ -15,7 +15,7 @@ import { IncomeService } from '@services/income.service';
   templateUrl: './expense-summary.component.html',
   styleUrl: './expense-summary.component.scss'
 })
-export class ExpenseSummaryComponent {
+export default class ExpenseSummaryComponent {
 
   expenses$: TransactionDetail[] = [];
   currentDate$: string = "";

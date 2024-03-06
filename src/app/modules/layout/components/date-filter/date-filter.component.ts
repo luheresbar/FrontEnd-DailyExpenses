@@ -19,10 +19,10 @@ export class DateFilterComponent {
       this.currentDate = new DatePipe('en-US').transform(date, 'yyyy-MM')!;
     });
   }
-
-  onDateChange(event: any) {
-    const value = event.target.value;
-
+  
+  onDateChange(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const value = input.value;
     this.dateFilterService.setCurrentDate(value);
   }
 

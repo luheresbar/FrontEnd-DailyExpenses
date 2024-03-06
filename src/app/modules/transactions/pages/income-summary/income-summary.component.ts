@@ -15,7 +15,7 @@ import { ExpenseService } from '@services/expense.service';
   templateUrl: './income-summary.component.html',
   styleUrl: './income-summary.component.scss'
 })
-export class IncomeSummaryComponent implements OnDestroy {
+export default class IncomeSummaryComponent implements OnDestroy {
 
   incomes$: TransactionDetail[] = [];
   currentDate$: string = "";

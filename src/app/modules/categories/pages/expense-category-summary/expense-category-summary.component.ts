@@ -16,7 +16,7 @@ import { CategoryDto } from '@models/category.model';
   templateUrl: './expense-category-summary.component.html',
   styleUrl: './expense-category-summary.component.scss',
 })
-export class ExpenseCategorySummaryComponent {
+export default class ExpenseCategorySummaryComponent {
 
   enabledExpenseCategories$: CategoryDto[] = [];
   disabledExpenseCategories$: CategoryDto[] = [];

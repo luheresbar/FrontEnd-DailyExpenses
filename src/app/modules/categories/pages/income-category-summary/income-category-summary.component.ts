@@ -12,7 +12,7 @@ import { CategoryDetailComponent } from '../../components/category-detail/catego
   templateUrl: './income-category-summary.component.html',
   styleUrl: './income-category-summary.component.scss',
 })
-export class IncomeCategorySummaryComponent {
+export default class IncomeCategorySummaryComponent {
   incomeCategories$: CategoryDto[] | null = null;
 
   enabledIncomeCategories$: CategoryDto[] = [];

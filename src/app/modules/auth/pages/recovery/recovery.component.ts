@@ -12,7 +12,7 @@ import { RecoveryFormComponent } from '../../components/recovery-form/recovery-f
   templateUrl: './recovery.component.html',
   styleUrl: './recovery.component.scss'
 })
-export class RecoveryComponent {
+export default class RecoveryComponent {
 
   showSocialMedia: boolean = false;
 

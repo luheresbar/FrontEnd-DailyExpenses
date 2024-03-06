@@ -17,7 +17,7 @@ import { RouterLinkWithHref } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export default class LoginComponent {
 
   @Input() routerLink: string = "";
 

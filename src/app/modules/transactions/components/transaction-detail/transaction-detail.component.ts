@@ -17,7 +17,6 @@ import { Dialog, DialogModule } from '@angular/cdk/dialog';
 export class TransactionDetailComponent {
   @Input() transaction!: TransactionDetail;
   faArrowRight = faArrowRight;
-  formattedTransactionDate: string | null = '';
 
   constructor(
     private dialog: Dialog,
@@ -25,10 +24,6 @@ export class TransactionDetailComponent {
     ) {
   }
   
-  ngOnInit() {
-    this.formatDate();
-  }
-
   getTransactionTypeClass(): string {
     switch (this.transaction.type) {
       case 'income':
@@ -61,15 +56,4 @@ export class TransactionDetailComponent {
     });
   }
 
-  formatDate() {
-    if (this.transaction.date != null) {
-
-      const dateReceived: string = this.transaction.date;
-      const date: Date = new Date(dateReceived);
-
-      this.formattedTransactionDate = new DatePipe('en-US').transform(
-        date,'EEE, dd'
-      );
-    }
-  }
 }
