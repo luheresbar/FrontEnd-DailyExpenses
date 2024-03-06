@@ -80,7 +80,9 @@ export default class UserProfileComponent {
   }
 
   goToBack() {
+
     this.location.back();
   }
+
 
 }
