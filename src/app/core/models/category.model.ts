@@ -1,6 +1,8 @@
+import { UserProfile } from "./user.model"
+
 export interface Category {
+  userId: UserProfile['userId'],
   categoryName: string,
-  userId: number | null,
   available?: boolean
 }
 

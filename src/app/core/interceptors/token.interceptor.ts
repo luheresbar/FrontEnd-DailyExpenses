@@ -47,6 +47,7 @@ function addToken(req: HttpRequest<unknown>, next: HttpHandlerFn) {
   }
   return next(req);
 }
+
 function updateAccessTokenAndRefreshToken(
   req: HttpRequest<unknown>,
   next: HttpHandlerFn

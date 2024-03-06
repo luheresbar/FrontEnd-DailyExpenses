@@ -1,5 +1,7 @@
+import { UserProfile } from "./user.model";
+
 export interface RoleDto {
   role: string,
-  userId: number,
+  userId: UserProfile['userId'],
   grantedDate: string;
 }

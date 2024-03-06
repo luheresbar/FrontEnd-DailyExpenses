@@ -13,15 +13,14 @@ export interface UserResponse extends Omit<UserProfile, 'password'> {}
 
 export interface RegisterUserDTO extends Omit<UserProfile, 'registerDate' | 'userId' | 'roles'> {}
 
-export interface LoginUserDTO extends Omit<UserProfile, 'username' | 'registerDate' | 'userId' | 'roles' > {}
+export interface LoginUserDTO extends Pick<UserProfile, 'email' | 'password' > {}
 
 export interface UpdateUserDto extends Omit<UserProfile, 'registerDate' | 'roles' > {
 }
 export interface UpdatePasswordDto {
-  currentPassword: string;
-  newPassword: string;
+  currentPassword: UserProfile['password'];
+  newPassword:  UserProfile['password'];
 }
 
-export interface UserEmail {
-  email: string;
+export interface UserEmail extends Pick<UserProfile, 'email'> {
 }

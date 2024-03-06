@@ -1,6 +1,8 @@
+import { UserProfile } from "./user.model";
+
 export interface TransactionDetail {
   type: string;
-  id: number | null;
+  id: UserProfile['userId'];
   description: string;
   date: string | null;
   amount: number;

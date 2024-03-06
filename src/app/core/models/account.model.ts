@@ -1,5 +1,7 @@
+import { UserProfile } from "./user.model"
+
 export interface Account {
-  userId: number | null,
+  userId: UserProfile['userId'],
   accountName: string,
   availableMoney: number,
   available: boolean
@@ -11,9 +13,7 @@ export interface SummaryAccountsDto {
   totalAvailableMoney: number
 }
 
-export interface AccountPK {
-  userId: number | null,
-  accountName: string,
+export interface AccountPK extends Pick<Account, 'userId' | 'accountName'> {
 }
 
 export interface UpdateAccountDto extends Account{
