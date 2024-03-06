@@ -3,13 +3,11 @@ import { Injectable } from '@angular/core';
 
 import { environment } from '@environments/environment';
 import { BehaviorSubject, switchMap, tap } from 'rxjs';
-import { AccountService } from './account.service';
 import { checkToken } from '@interceptors/token.interceptor';
 import {
   SummaryTransaction,
   TransactionDetail,
 } from '@models/transaction-detail.model';
-import { TransactionService } from './transaction.service';
 import { DateFilterService } from './date-filter.service';
 
 @Injectable({

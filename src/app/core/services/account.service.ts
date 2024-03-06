@@ -43,7 +43,7 @@ export class AccountService {
       );
   }
 
-  createAccount(account: Account) {
+  create(account: Account) {
     return this.http
       .post<Account>(`${this.apiUrl}/accounts/create`, account, {
         context: checkToken(),
@@ -53,7 +53,7 @@ export class AccountService {
       );
   }
 
-  updateAccount(account: UpdateAccountDto) {
+  update(account: UpdateAccountDto) {
     return this.http
       .put<Account>(`${this.apiUrl}/accounts/update`, account, {
         context: checkToken(),
@@ -63,7 +63,7 @@ export class AccountService {
       );
   }
 
-  deleteAccount(accountPK: AccountPK) {
+  delete(accountPK: AccountPK) {
     return this.http
       .delete(`${this.apiUrl}/accounts/delete`, {
         context: checkToken(),

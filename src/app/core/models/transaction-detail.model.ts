@@ -11,6 +11,7 @@ export interface TransactionDetail {
   destinationAccountName: string;
 }
 
+
 export interface SummaryTransaction {
   transactionDetails: TransactionDetail[],
   totalExpense: number,

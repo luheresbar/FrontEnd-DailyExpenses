@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DialogModule, Dialog } from '@angular/cdk/dialog';
-
+import { Location } from '@angular/common';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faArrowLeft, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
@@ -13,7 +13,6 @@ import { UserResponse } from '@models/user.model';
 import { UserService } from '@services/user.service';
 import { DialogUserProfileComponent } from '@shared/components/dialog-user-profile/dialog-user-profile.component';
 import { DialogChangePasswordComponent } from '@shared/components/dialog-change-password/dialog-change-password.component';
-
 
 @Component({
   selector: 'app-user-profile',
@@ -42,6 +41,7 @@ export default class UserProfileComponent {
     private router: Router,
     private usersService: UserService,
     private dialog: Dialog, 
+    private location: Location,
 
   ) {}
   
@@ -77,6 +77,10 @@ export default class UserProfileComponent {
         email: this.user$?.email
       },
     });
+  }
+
+  goToBack() {
+    this.location.back();
   }
 
 }

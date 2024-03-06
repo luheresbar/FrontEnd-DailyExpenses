@@ -65,7 +65,7 @@ export class DialogAccountComponent {
         userId: this.accountDetail.userId,
         accountName: this.accountDetail.accountName,
       };
-      this.accountService.deleteAccount(accountPK).subscribe({
+      this.accountService.delete(accountPK).subscribe({
         next: () => {
           this.status = 'success';
           this.close()
@@ -86,7 +86,7 @@ export class DialogAccountComponent {
       availableMoney: this.accountDetail.availableMoney,
       available,
     };
-    this.accountService.updateAccount(accountDto).subscribe({
+    this.accountService.update(accountDto).subscribe({
       next: () => {
         this.status = 'success';
         this.close()

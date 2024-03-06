@@ -6,6 +6,11 @@ import { redirectGuard } from '@guards/redirect.guard';
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: '/transactions',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
     component: LayoutMainComponent,
     children: [
       {

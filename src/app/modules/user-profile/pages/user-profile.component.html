@@ -1,11 +1,8 @@
 <div class="user-profile">
   <div class="header">
-    <div class="user__out" routerLink="/transactions" role="button">
+    <div class="user__out" (click)="goToBack()" role="button">
       <fa-icon [icon]="faArrowLeft" class="icon"></fa-icon>
     </div>
-    <!-- <div class="user__edit" role="button" >
-      <fa-icon [icon]="faPenToSquare" class="icon"></fa-icon>
-    </div> -->
   </div>
   <div class="user__information">
     <div class="user__avatar">

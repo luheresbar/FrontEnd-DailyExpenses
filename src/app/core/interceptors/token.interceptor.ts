@@ -2,7 +2,6 @@ import {
   HttpContext,
   HttpContextToken,
   HttpEvent,
-  HttpHandler,
   HttpHandlerFn,
   HttpInterceptorFn,
   HttpRequest,

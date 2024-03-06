@@ -87,7 +87,7 @@ export class AccountFormComponent {
         available: true,
       };
       if (Object.keys(this.accountDetail).length === 0) {
-        this.accountService.createAccount(account).subscribe({
+        this.accountService.create(account).subscribe({
           next: () => {
             this.statusRegister = 'success';
             this.closeFormDialog();
@@ -105,7 +105,7 @@ export class AccountFormComponent {
           availableMoney: cleanedAmount,
           available: this.accountDetail.available,
         };
-        this.accountService.updateAccount(accountDto).subscribe({
+        this.accountService.update(accountDto).subscribe({
           next: () => {
             this.statusRegister = 'success';
             this.closeFormDialog();
