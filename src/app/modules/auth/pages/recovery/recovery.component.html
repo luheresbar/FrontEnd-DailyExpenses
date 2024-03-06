@@ -1,3 +1,5 @@
+@defer (on viewport) {
+
 <app-auth-container [showSocialMedia]="showSocialMedia">
   <app-recovery-form></app-recovery-form>
   <ng-container class="login-register-content">
@@ -5,3 +7,11 @@
     <a routerLink="/auth/login" class="link__redirect">Log In</a>
   </ng-container>
 </app-auth-container>
+
+} @placeholder {
+<span>Loading...</span>
+} @loading(minimum 1s) {
+<span>Loading...</span>
+} @error {
+<div>Error loading the page.</div>
+}

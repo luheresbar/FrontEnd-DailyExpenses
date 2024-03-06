@@ -1,11 +1,20 @@
+@defer (on viewport) {
 
-  <app-auth-container>
-    <app-register-form></app-register-form>
-    <ng-container class="social-media-content">
-      Social Media Signup
-    </ng-container>
-    <ng-container class="login-register-content">
-      <p class="register__text-question">Already have an account?</p>
-      <a routerLink="/auth/login" class="link__redirect">Sign In</a>
-    </ng-container>
-  </app-auth-container>
+<app-auth-container>
+  <app-register-form></app-register-form>
+  <ng-container class="social-media-content">
+    Social Media Signup
+  </ng-container>
+  <ng-container class="login-register-content">
+    <p class="register__text-question">Already have an account?</p>
+    <a routerLink="/auth/login" class="link__redirect">Sign In</a>
+  </ng-container>
+</app-auth-container>
+
+} @placeholder {
+<span>Loading...</span>
+} @loading(minimum 1s) {
+<span>Loading...</span>
+} @error {
+<div>Error loading the page.</div>
+}
