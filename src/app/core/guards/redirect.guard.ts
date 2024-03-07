@@ -10,6 +10,7 @@ export const redirectGuard: CanActivateFn = (route, state) => {
   const isValidToken = tokenService.isValidRefreshToken();
   if (isValidToken) {
     router.navigate(['/transactions']);
+    return false;
   }
   return true;
 };

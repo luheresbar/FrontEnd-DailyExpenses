@@ -8,23 +8,29 @@ import { SocialMediaComponent } from '../../components/social-media/social-media
 import { FooterComponent } from '../../components/footer/footer.component';
 import { AuthContainerComponent } from '../../components/auth-container/auth-container.component';
 import { RegisterFormComponent } from '../../components/register-form/register-form.component';
+import { OnExit } from '@guards/exit.guard';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
-    CommonModule, 
-    BackgroundComponent, 
-    HeaderComponent, 
-    SocialMediaComponent, 
-    FooterComponent, 
-    AuthContainerComponent, 
+    CommonModule,
+    BackgroundComponent,
+    HeaderComponent,
+    SocialMediaComponent,
+    FooterComponent,
+    AuthContainerComponent,
     RegisterFormComponent,
-    RouterLinkWithHref
+    RouterLinkWithHref,
   ],
   templateUrl: './register.component.html',
-  styleUrl: './register.component.scss'
+  styleUrl: './register.component.scss',
 })
-export default class RegisterComponent {
-
+export default class RegisterComponent implements OnExit {
+  
+  onExit() {
+    const rta = confirm('Are you sure you want to exit?');
+    return rta;
+  }
 }

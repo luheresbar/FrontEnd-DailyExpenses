@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { LayoutMainComponent } from './modules/layout/layout-main/layout-main.component';
 import { authGuard } from '@guards/auth.guard';
 import { redirectGuard } from '@guards/redirect.guard';
+import { adminGuard } from '@guards/admin.guard';
 
 export const routes: Routes = [
   {
@@ -56,23 +57,9 @@ export const routes: Routes = [
     loadComponent: () => import('./modules/user-profile/pages/user-profile.component')
   },
   {
-    path: 'auth/login',
+    path: 'auth',
+    loadChildren: () => import('./modules/auth/auth.routes').then(m => m.AUTH_ROUTES),
     canActivate: [redirectGuard],
-    loadComponent: () => import('./modules/auth/pages/login/login.component')
-  },
-  {
-    path: 'auth/register',
-    canActivate: [ redirectGuard ],
-    loadComponent: () => import('./modules/auth/pages/register/register.component')
-  },
-  {
-    path: 'auth/recovery',
-    canActivate: [ redirectGuard ],
-    loadComponent: () => import('./modules/auth/pages/recovery/recovery.component')
-  },
-  {
-    path: 'auth/forgot-password',
-    canActivate: [ redirectGuard ],
-    loadComponent: () => import('./modules/auth/pages/forgot-password/forgot-password.component')
-  },
+  }
+
 ];
