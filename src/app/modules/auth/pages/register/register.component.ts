@@ -33,4 +33,7 @@ export default class RegisterComponent implements OnExit {
     const rta = confirm('Are you sure you want to exit?');
     return rta;
   }
+
+  
+
 }

@@ -68,6 +68,12 @@
         >
           This field is mandatory
         </app-form-validation-message>
+        <app-form-validation-message
+          class="form__validation-message"
+          *ngIf="form.controls.name.hasError('pattern')"
+        >
+          Please enter a valid name (only letters and spaces allowed)
+        </app-form-validation-message>
       </div>
     </div>
     <div>
@@ -175,7 +181,7 @@
         The password are not the same
       </app-form-validation-message>
     </div> -->
-    <div> 
+    <div>
       <div class="accept-terms">
         <input
           class="input-check"
@@ -188,8 +194,15 @@
           >I have read and agree to the website terms and conditions.</label
         >
       </div>
-      <div *ngIf="form.controls.termsAndConditions.touched && form.controls.termsAndConditions.invalid">
-        <app-form-validation-message *ngIf="form.controls.termsAndConditions.hasError('required')">
+      <div
+        *ngIf="
+          form.controls.termsAndConditions.touched &&
+          form.controls.termsAndConditions.invalid
+        "
+      >
+        <app-form-validation-message
+          *ngIf="form.controls.termsAndConditions.hasError('required')"
+        >
           You must accept the terms and conditions to proceed
         </app-form-validation-message>
       </div>

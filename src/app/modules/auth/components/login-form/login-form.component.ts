@@ -44,7 +44,7 @@ export class LoginFormComponent {
     private route: ActivatedRoute
   ) {
     this.route.queryParamMap.subscribe((params) => {
-      const email = params.get('email');
+      const email = params.get('email')?.toLocaleLowerCase();
       if (email) {
         this.form.controls.email.setValue(email);
       }
@@ -55,13 +55,14 @@ export class LoginFormComponent {
     if (this.form.valid) {
       this.status = 'loading';
       const { email, password } = this.form.getRawValue();
+      const lowercaseEmail = email.toLowerCase();
 
       // Verificar si el correo electrónico está disponible
-      this.authService.isAvailable(email).subscribe({
+      this.authService.isAvailable(lowercaseEmail).subscribe({
         next: (response) => {
           if (!response.isAvailable) {
             // El correo electrónico está disponible, intentar iniciar sesión
-            this.authService.login(email, password).subscribe({
+            this.authService.login(lowercaseEmail, password).subscribe({
               next: () => {
                 this.status = 'success';
                 this.router.navigate(['/transactions']);
@@ -83,7 +84,7 @@ export class LoginFormComponent {
         },
         error: (availabilityError) => {
           this.status = 'failed';
-          console.log(availabilityError);
+          console.log(availabilityError);  
         },
       });
     } else {

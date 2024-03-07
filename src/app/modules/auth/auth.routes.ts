@@ -8,7 +8,7 @@ export const AUTH_ROUTES: Routes = [
   },
   {
     path: 'register',
-    canDeactivate: [ exitGuard ],
+    // canDeactivate:ch [ exitGuard ], //TODO(CanDeactive)
     loadComponent: () => import('./pages/register/register.component'),
   },
   {

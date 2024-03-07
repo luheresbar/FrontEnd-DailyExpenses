@@ -109,9 +109,9 @@ export class TransactionFormComponent {
       this.disableForm();
     }
 
-    this.form.valueChanges.subscribe((form) => {
-      if (form.amount && typeof form.amount === 'string') {
-        const formattedAmount = this.applyCurrencyFormatToAmount(form.amount);
+    this.form.get('amount')?.valueChanges.subscribe((amount) => {
+      if (amount && typeof amount === 'string') {
+        const formattedAmount = this.applyCurrencyFormatToAmount(amount);
         this.form.controls.amount.setValue(formattedAmount, {
           emitEvent: false,
         });

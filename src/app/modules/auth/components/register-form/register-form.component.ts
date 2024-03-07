@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  ReactiveFormsModule,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -26,14 +32,16 @@ import { RegisterUserDTO } from '@models/user.model';
   styleUrl: './register-form.component.scss',
 })
 export class RegisterFormComponent {
-
   formUser = this.formBuilder.nonNullable.group({
     email: ['', [Validators.email, Validators.required]],
   });
 
   form = this.formBuilder.nonNullable.group(
     {
-      name: ['', [Validators.required]],
+      name: [
+        '',
+        [Validators.required, Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/)],
+      ],
       email: ['', [Validators.email, Validators.required]],
       password: ['', [Validators.minLength(6), Validators.required]],
       // confirmPassword: ['', [Validators.required]],
@@ -62,14 +70,18 @@ export class RegisterFormComponent {
     private authService: AuthService
   ) {}
 
+  ngOnInit() {
+  }
+
   doRegister() {
     //TODO (es necesario que segun los errores que se envien del backend, se mueste un mensaje apropiado al usuario, ejm si el correo ya existe, entonces indicarlo)
     if (this.form.valid) {
       this.status = 'loading';
       const { name, email, password } = this.form.getRawValue();
+      const lowercaseEmail = email.toLowerCase();
       const dto: RegisterUserDTO = {
         username: name,
-        email: email,
+        email: lowercaseEmail,
         password: password,
       };
       this.authService.registerAndLogin(dto).subscribe({
@@ -91,12 +103,13 @@ export class RegisterFormComponent {
     if (this.formUser.valid) {
       this.statusUser = 'loading';
       const { email } = this.formUser.getRawValue();
-      this.authService.isAvailable(email).subscribe({
+      const lowercaseEmail = email.toLowerCase();
+      this.authService.isAvailable(lowercaseEmail).subscribe({
         next: (rta) => {
           this.statusUser = 'success';
           if (rta.isAvailable) {
             this.showRegister = true;
-            this.form.controls.email.setValue(email);
+            this.form.controls.email.setValue(lowercaseEmail);
           } else {
             this.router.navigate(['/auth/login'], {
               //TODO (Configurar un aviso que indique al usuario que el correo ingresado ya tiene una cuenta registrada)
