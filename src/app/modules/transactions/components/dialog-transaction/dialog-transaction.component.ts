@@ -3,7 +3,7 @@ import {CdkMenuModule} from '@angular/cdk/menu';
 import {DIALOG_DATA, DialogModule, DialogRef} from '@angular/cdk/dialog';
 import { OverlayModule } from '@angular/cdk/overlay';
 
-import { TransactionFormComponent } from '../../../modules/transactions/components/transaction-form/transaction-form.component';
+import { TransactionFormComponent } from '../transaction-form/transaction-form.component';
 import { faArrowLeft, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ActivatedRoute, Router, RouterLinkWithHref } from '@angular/router';

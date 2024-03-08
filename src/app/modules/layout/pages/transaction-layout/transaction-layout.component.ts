@@ -14,7 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FloatingButtonComponent } from '@shared/components/atoms/floating-button/floating-button.component';
 import { FloatingMenuComponent } from '@shared/components/floating-menu/floating-menu.component';
 import { OverlayService } from '@services/overlay.service';
-import { DialogTransactionComponent } from '@shared/components/dialog-transaction/dialog-transaction.component';
+import { DialogTransactionComponent } from '../../../transactions/components/dialog-transaction/dialog-transaction.component';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({

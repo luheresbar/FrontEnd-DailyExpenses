@@ -2,12 +2,12 @@ import { Component, Input, Output, signal } from '@angular/core';
 import { DialogModule, Dialog } from '@angular/cdk/dialog';
 
 import { BtnComponent } from '../atoms/btn/btn.component';
-import { DialogTransactionComponent } from '../dialog-transaction/dialog-transaction.component';
+import { DialogTransactionComponent } from '../../../modules/transactions/components/dialog-transaction/dialog-transaction.component';
 import { OverlayService } from '@services/overlay.service';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { CommonModule } from '@angular/common';
-import { DialogAccountComponent } from '../dialog-account/dialog-account.component';
-import { DialogCategoryComponent } from '../dialog-category/dialog-category.component';
+import { DialogAccountComponent } from '../../../modules/accounts/components/dialog-account/dialog-account.component';
+import { DialogCategoryComponent } from '../../../modules/categories/components/dialog-category/dialog-category.component';
 
 @Component({
   selector: 'app-floating-menu',

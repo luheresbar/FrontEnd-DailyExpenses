@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CategoryDto } from '@models/category.model';
 import { HorizontalLineComponent } from '@shared/components/atoms/horizontal-line/horizontal-line.component';
-import { DialogCategoryComponent } from '@shared/components/dialog-category/dialog-category.component';
+import { DialogCategoryComponent } from '../dialog-category/dialog-category.component';
 
 @Component({
   selector: 'app-category-detail',

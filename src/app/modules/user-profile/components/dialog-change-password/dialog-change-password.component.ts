@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
-import { ChangePasswordFormComponent } from '../../../modules/user-profile/components/change-password-form/change-password-form.component';
+import { ChangePasswordFormComponent } from '../change-password-form/change-password-form.component';
 import {
   faArrowLeft,
   faEllipsisVertical,

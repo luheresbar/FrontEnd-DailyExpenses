@@ -11,8 +11,8 @@ import { Router, RouterLinkWithHref } from '@angular/router';
 import { AuthService } from '@services/auth.service';
 import { UserResponse } from '@models/user.model';
 import { UserService } from '@services/user.service';
-import { DialogUserProfileComponent } from '@shared/components/dialog-user-profile/dialog-user-profile.component';
-import { DialogChangePasswordComponent } from '@shared/components/dialog-change-password/dialog-change-password.component';
+import { DialogUserProfileComponent } from '../components/dialog-user-profile/dialog-user-profile.component';
+import { DialogChangePasswordComponent } from '../components/dialog-change-password/dialog-change-password.component';
 
 @Component({
   selector: 'app-user-profile',

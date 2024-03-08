@@ -17,7 +17,7 @@ import { RequestStatus } from '@models/request-status.model';
 import { ExpenseCategoryService } from '@services/expense-category.service';
 import { IncomeCategoryService } from '@services/income-category.service';
 import { OverlayService } from '@services/overlay.service';
-import { CategoryFormComponent } from '../../../modules/categories/components/category-form/category-form.component';
+import { CategoryFormComponent } from '../category-form/category-form.component';
 
 @Component({
   selector: 'app-dialog-category',

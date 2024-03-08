@@ -12,7 +12,7 @@ import { Account, AccountPK, UpdateAccountDto } from '@models/account.model';
 import { RequestStatus } from '@models/request-status.model';
 import { AccountService } from '@services/account.service';
 import { OverlayService } from '@services/overlay.service';
-import { UserProfileFormComponent } from '../../../modules/user-profile/components/user-profile-form/user-profile-form.component';
+import { UserProfileFormComponent } from '../user-profile-form/user-profile-form.component';
 import { UpdateUserDto, UserProfile } from '@models/user.model';
 import { UserService } from '@services/user.service';
 import { privateDecrypt } from 'crypto';

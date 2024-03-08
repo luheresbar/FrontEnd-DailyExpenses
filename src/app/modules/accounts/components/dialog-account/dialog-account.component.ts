@@ -13,7 +13,7 @@ import {
 import { Account, AccountPK, UpdateAccountDto } from '@models/account.model';
 import { AccountService } from '@services/account.service';
 import { OverlayService } from '@services/overlay.service';
-import { AccountFormComponent } from '../../../modules/accounts/components/account-form/account-form.component';
+import { AccountFormComponent } from '../account-form/account-form.component';
 import { RequestStatus } from '@models/request-status.model';
 
 @Component({

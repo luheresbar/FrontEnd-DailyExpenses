@@ -7,7 +7,7 @@ import { faEye, faEyeSlash, faL } from '@fortawesome/free-solid-svg-icons';
 import { Account } from '@models/account.model';
 import { ShowAmountService } from '@services/show-amount.service';
 import { HorizontalLineComponent } from '@shared/components/atoms/horizontal-line/horizontal-line.component';
-import { DialogAccountComponent } from '@shared/components/dialog-account/dialog-account.component';
+import { DialogAccountComponent } from '../dialog-account/dialog-account.component';
 
 @Component({
   selector: 'app-account-detail',

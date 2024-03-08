@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { TransactionDetail } from '@models/transaction-detail.model';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { DialogTransactionComponent } from '@shared/components/dialog-transaction/dialog-transaction.component';
+import { DialogTransactionComponent } from '../dialog-transaction/dialog-transaction.component';
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 
