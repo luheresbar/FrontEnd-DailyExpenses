@@ -59,15 +59,15 @@ export class TransactionDetailComponent {
     });
   }
 
-  addParamsToUrl() {
-    const transactionType = `edit_${this.transaction.type}_id`;
-    const transactionId = this.transaction.id;
+  // addParamsToUrl() {
+  //   const transactionType = `edit_${this.transaction.type}_id`;
+  //   const transactionId = this.transaction.id;
 
-    this.router.navigate([], {
-      relativeTo: this.activatedRoute,
-      queryParams: { [transactionType]: transactionId },
-      queryParamsHandling: 'merge'
-    });
-  }
+  //   this.router.navigate([], {
+  //     relativeTo: this.activatedRoute,
+  //     queryParams: { [transactionType]: transactionId },
+  //     queryParamsHandling: 'merge'
+  //   });
+  // }
 
 }

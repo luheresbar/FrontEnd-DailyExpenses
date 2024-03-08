@@ -105,10 +105,10 @@ export class DialogTransactionComponent {
     }
   }
 
-  removeParamsFromUrl() {
-    const currentUrl = this.router.url;
-    const baseUrl = currentUrl.split('?')[0];
+  // removeParamsFromUrl() {
+  //   const currentUrl = this.router.url;
+  //   const baseUrl = currentUrl.split('?')[0];
   
-    this.router.navigateByUrl(baseUrl);
-  }
+  //   this.router.navigateByUrl(baseUrl);
+  // }
 }

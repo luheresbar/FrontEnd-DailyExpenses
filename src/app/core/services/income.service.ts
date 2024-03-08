@@ -34,6 +34,7 @@ export class IncomeService {
       .get<SummaryTransaction>(url.toString(), { context: checkToken() })
       .pipe(
         tap((incomes) => {
+          
           this.incomes$.next(incomes.transactionDetails);
           this.totalIncomes$.next(incomes.totalIncome);
         })
