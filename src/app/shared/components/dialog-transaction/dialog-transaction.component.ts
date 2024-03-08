@@ -6,7 +6,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { TransactionFormComponent } from '../../../modules/transactions/components/transaction-form/transaction-form.component';
 import { faArrowLeft, faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { RouterLinkWithHref } from '@angular/router';
+import { ActivatedRoute, Router, RouterLinkWithHref } from '@angular/router';
 import { TransactionDetail } from '@models/transaction-detail.model';
 import { OverlayService } from '@services/overlay.service';
 import { ExpenseService } from '@services/expense.service';
@@ -47,18 +47,20 @@ export class DialogTransactionComponent {
     private location: Location,
     private dateFilterService: DateFilterService,
     private transactionService: TransactionService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
 
   ) {
     this.transactionDetail = data;
   }
 
-  close() {
+  closeDialog() {
     this.dialogRef.close();
     this.overlayService.closeOverlayFloatingMenu();
   }
 
   onCloseDialog() {
-    this.close();
+    this.closeDialog();
   }
 
   deleteTransaction(service: any) {
@@ -67,7 +69,7 @@ export class DialogTransactionComponent {
         next: () => {
           this.status = 'success';
           this.updateTransactionData()
-          this.close();
+          this.closeDialog();
         },
         error: (error: any) => {
           this.status = 'failed';
@@ -101,5 +103,12 @@ export class DialogTransactionComponent {
       default:
         break;
     }
+  }
+
+  removeParamsFromUrl() {
+    const currentUrl = this.router.url;
+    const baseUrl = currentUrl.split('?')[0];
+  
+    this.router.navigateByUrl(baseUrl);
   }
 }

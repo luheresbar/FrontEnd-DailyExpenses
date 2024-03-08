@@ -6,6 +6,7 @@ import { TransactionDetail } from '@models/transaction-detail.model';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { DialogTransactionComponent } from '@shared/components/dialog-transaction/dialog-transaction.component';
 import { Dialog, DialogModule } from '@angular/cdk/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-transaction-detail',
@@ -20,6 +21,8 @@ export class TransactionDetailComponent {
 
   constructor(
     private dialog: Dialog,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
 
     ) {
   }
@@ -53,6 +56,17 @@ export class TransactionDetailComponent {
         sourceAccountName: this.transaction.sourceAccountName,
         destinationAccountName: this.transaction.destinationAccountName,
       },
+    });
+  }
+
+  addParamsToUrl() {
+    const transactionType = `edit_${this.transaction.type}_id`;
+    const transactionId = this.transaction.id;
+
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: { [transactionType]: transactionId },
+      queryParamsHandling: 'merge'
     });
   }
 

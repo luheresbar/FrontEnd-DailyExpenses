@@ -19,6 +19,7 @@ import { CustomValidators } from '@utils/validators';
 import { stateProcess } from '@models/stateProcess.model';
 import { TransactionService } from '@services/transaction.service';
 import { DateFilterService } from '@services/date-filter.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-transaction-form',
@@ -55,8 +56,7 @@ export class TransactionFormComponent {
 
   form = this.formBuilder.nonNullable.group(
     {
-      type: [''],
-      amount: ['', [Validators.required]],
+      amount: ['', Validators.required],
       sourceAccount: [''],
       destinationAccount: [''],
       category: [''],
@@ -84,7 +84,9 @@ export class TransactionFormComponent {
     private transferService: TransferService,
     private currencyPipe: CurrencyPipe,
     private location: Location,
-    private dateFilterService: DateFilterService
+    private dateFilterService: DateFilterService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
   ) {}
 
   ngOnInit() {
@@ -104,9 +106,17 @@ export class TransactionFormComponent {
     if (this.transactionDetail.id === null) {
       this.stateTransaction = 'create';
       this.fillFormDefault();
+      const transactionType = this.transactionDetail.type;
+
+      this.router.navigate([], {
+        relativeTo: this.activatedRoute,
+        queryParams: { new: transactionType },
+        queryParamsHandling: 'merge'
+      });
     } else {
       this.fillForm();
       this.disableForm();
+
     }
 
     this.form.get('amount')?.valueChanges.subscribe((amount) => {
@@ -198,7 +208,7 @@ export class TransactionFormComponent {
     }
   }
 
-  private updateTransactionData() {
+  updateTransactionData() {
     const currentUrl = this.location.path();
     if (currentUrl === '/transactions') {
       this.transactionService
@@ -255,7 +265,7 @@ export class TransactionFormComponent {
     this.stateTransaction = 'view';
   }
 
-  closeFormDialog() {
+  private closeFormDialog() {
     this.closeDialog.emit();
   }
 

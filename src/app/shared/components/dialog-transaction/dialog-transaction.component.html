@@ -1,6 +1,6 @@
 <div class="dialog-new-register">
   <div class="header">
-    <div (click)="close()" role="button" class="user__nav">
+    <div (click)="closeDialog(); removeParamsFromUrl()" role="button" class="user__nav">
       <fa-icon [icon]="faArrowLeft" class="icon"></fa-icon>
     </div>
     <div *ngIf="transactionDetail.id !== null" [cdkMenuTriggerFor]="menu" role="button" class="user__nav">

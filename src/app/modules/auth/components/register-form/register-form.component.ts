@@ -32,28 +32,6 @@ import { RegisterUserDTO } from '@models/user.model';
   styleUrl: './register-form.component.scss',
 })
 export class RegisterFormComponent {
-  formUser = this.formBuilder.nonNullable.group({
-    email: ['', [Validators.email, Validators.required]],
-  });
-
-  form = this.formBuilder.nonNullable.group(
-    {
-      name: [
-        '',
-        [Validators.required, Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+$/)],
-      ],
-      email: ['', [Validators.email, Validators.required]],
-      password: ['', [Validators.minLength(6), Validators.required]],
-      // confirmPassword: ['', [Validators.required]],
-      termsAndConditions: [false, [Validators.requiredTrue]],
-    },
-    {
-      validators: [
-        CustomValidators.MatchValidator('password', 'confirmPassword'),
-      ],
-    }
-    //TODO (Configurar el requerimiento de letra mayuscula y minuscula y al menos un caracter especial, junto a una liste de indicaicones de lo que debe tener la contraseña)
-  );
 
   faEye = faEye;
   faEyeSlash = faEyeSlash;
@@ -64,14 +42,39 @@ export class RegisterFormComponent {
   status: RequestStatus = 'init';
   statusUser: RequestStatus = 'init';
 
+  formUser = this.formBuilder.nonNullable.group({
+    email: ['', [Validators.email, Validators.required]],
+  });
+
+  form = this.formBuilder.nonNullable.group(
+    {
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s']+$/u),
+        ],
+      ],
+      email: ['', [Validators.email, Validators.required]],
+      password: ['', [Validators.minLength(6), Validators.required]],
+      // confirmPassword: ['', [Validators.required]],
+      termsAndConditions: [false, Validators.requiredTrue],
+    },
+    {
+      validators: [
+        // CustomValidators.MatchValidator('password', 'confirmPassword'),
+      ],
+    }
+    //TODO (Configurar el requerimiento de letra mayuscula y minuscula y al menos un caracter especial, junto a una liste de indicaicones de lo que debe tener la contraseña)
+  );
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService
   ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   doRegister() {
     //TODO (es necesario que segun los errores que se envien del backend, se mueste un mensaje apropiado al usuario, ejm si el correo ya existe, entonces indicarlo)
