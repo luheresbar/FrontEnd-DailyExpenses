@@ -47,13 +47,8 @@
           <!-- <span>//TODO (Configurar un option de selected accoun por defecto)</span> -->
           <option
             *ngFor="let account of accounts$"
-            [value]="account.accountName"
-            [selected]="
-              transactionDetail.id === null &&
-              transactionDetail.type !== 'transfer'
-                ? account.accountName === 'Cash'
-                : account.accountName === transactionDetail.sourceAccountName
-            "
+            [ngValue]="account.accountName"
+
           >
             {{ account.accountName }}
           </option>
@@ -76,7 +71,7 @@
           <!-- <span>//TODO (Configurar un option de selected accoun por defecto)</span> -->
           <option
             *ngFor="let account of accounts$"
-            [value]="account.accountName"
+            [ngValue]="account.accountName"
           >
             {{ account.accountName }}
           </option>
@@ -104,12 +99,7 @@
         >
           <option
             *ngFor="let category of categories$"
-            [value]="category.categoryName"
-            [selected]="
-              transactionDetail.id === null
-                ? category.categoryName === 'Others'
-                : category.categoryName === transactionDetail.category
-            "
+            [ngValue]="category.categoryName"
           >
             {{ category.categoryName }}
           </option>

@@ -107,12 +107,6 @@ export class TransactionFormComponent {
       this.stateTransaction = 'create';
       this.fillFormDefault();
       const transactionType = this.transactionDetail.type;
-
-      this.router.navigate([], {
-        relativeTo: this.activatedRoute,
-        queryParams: { new: transactionType },
-        queryParamsHandling: 'merge'
-      });
     } else {
       this.fillForm();
       this.disableForm();
