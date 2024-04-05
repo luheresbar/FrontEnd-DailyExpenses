@@ -117,31 +117,31 @@
       }
     }
 
-    .date-filter {
-      grid-area: 1 / 2 / 3 / 5;
-      justify-self: start;
-      align-self: center;
-      width: 100%;
-    }
+    // .date-filter {
+    //   grid-area: 1 / 2 / 3 / 5;
+    //   justify-self: start;
+    //   align-self: center;
+    //   width: 100%;
+    // }
 
-    .transaction__search {
-      grid-area: 1 / 1 / 3 / 13;
-      display: block;
-      height: 50%;
-      width: 95%;
-      background-color: $text-input-border-active;
-      border-radius: 0.8rem;
-      align-self: center;
-      justify-self: center;
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      .transaction__search--input {
-        grid-area: 1 / 6 / 3 / 12;
-        align-self: center;
-        justify-self: center;
-        width: 90%;
-      }
-    }
+    // .transaction__search {
+    //   grid-area: 1 / 1 / 3 / 13;
+    //   display: block;
+    //   height: 50%;
+    //   width: 95%;
+    //   background-color: $text-input-border-active;
+    //   border-radius: 0.8rem;
+    //   align-self: center;
+    //   justify-self: center;
+    //   display: grid;
+    //   grid-template-columns: repeat(12, 1fr);
+    //   .transaction__search--input {
+    //     grid-area: 1 / 6 / 3 / 12;
+    //     align-self: center;
+    //     justify-self: center;
+    //     width: 90%;
+    //   }
+    // }
 
     .transaction-content {
       grid-area: 3 / 6 / 13 / 12;

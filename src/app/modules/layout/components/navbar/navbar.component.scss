@@ -86,124 +86,125 @@
 
 @media (min-width: $breakpoint-medium) {
   .navbar {
-    display: grid;
-    justify-items: center;
-    grid-template-rows: repeat(12, 1fr);
-    background-color: $text-input-border-active;
-    padding: 1rem 0.5rem 1rem 0.5rem;
-    height: 100%;
+    
+    // display: grid;
+    // justify-items: center;
+    // grid-template-rows: repeat(12, 1fr);
+    // background-color: $text-input-border-active;
+    // padding: 1rem 0.5rem 1rem 0.5rem;
+    // height: 100%;
 
-    .navbar__logo {
-      display: flex;
-      justify-content: space-evenly;
-      grid-area: 1 / 1 / 2 / 2;
-      cursor: pointer;
-      width: 100%;
-      .navbar__logo--component {
-        display: grid;
-        place-content: center;
-        width: 5rem;
-      }
-      .navbar__logo--name {
-        display: flex;
-        align-items: center;
-        font-size: $font-size-extra-large;
-      }
-    }
+    // .navbar__logo {
+    //   display: flex;
+    //   justify-content: space-evenly;
+    //   grid-area: 1 / 1 / 2 / 2;
+    //   cursor: pointer;
+    //   width: 100%;
+    //   .navbar__logo--component {
+    //     display: grid;
+    //     place-content: center;
+    //     width: 5rem;
+    //   }
+    //   .navbar__logo--name {
+    //     display: flex;
+    //     align-items: center;
+    //     font-size: $font-size-extra-large;
+    //   }
+    // }
 
-    .navbar__avatar {
-      display: flex;
-      flex-direction: column;
-      grid-area: 2 / 1 / 5 / 2;
-      width: 98%;
-      height: 85%;
-      align-items: center;
-      justify-content: center;
-      border-radius: 0.8rem;
-      background-color: $primary-action;
-      margin-block-start: 1rem;
-      .navbar__avatar--component {
-        width: 40%;
-      }
-      .navbar__username {
-        font-size: $font-size-between;
-        text-align: center;
-        margin-block-end: 0.5rem;
-      }
-      .navbar__user--email {
-        font-size: $font-size-small;
-        text-align: center;
-      }
-    }
+    // .navbar__avatar {
+    //   display: flex;
+    //   flex-direction: column;
+    //   grid-area: 2 / 1 / 5 / 2;
+    //   width: 98%;
+    //   height: 85%;
+    //   align-items: center;
+    //   justify-content: center;
+    //   border-radius: 0.8rem;
+    //   background-color: $primary-action;
+    //   margin-block-start: 1rem;
+    //   .navbar__avatar--component {
+    //     width: 40%;
+    //   }
+    //   .navbar__username {
+    //     font-size: $font-size-between;
+    //     text-align: center;
+    //     margin-block-end: 0.5rem;
+    //   }
+    //   .navbar__user--email {
+    //     font-size: $font-size-small;
+    //     text-align: center;
+    //   }
+    // }
 
-    .navbar__sections {
-      grid-area: 5 / 1 / 9 / 2;
-      flex-direction: column;
-      justify-content: start;
+    // .navbar__sections {
+    //   grid-area: 5 / 1 / 9 / 2;
+    //   flex-direction: column;
+    //   justify-content: start;
 
-      .navbar__item {
-        background-color: $text-input-border-active;
-        border: 0.1rem solid $primary-action;
-        height: 4rem;
-        width: 98%;
+    //   .navbar__item {
+    //     background-color: $text-input-border-active;
+    //     border: 0.1rem solid $primary-action;
+    //     height: 4rem;
+    //     width: 98%;
 
-        .navbar__text {
-          color: $text-color-dark;
-        }
+    //     .navbar__text {
+    //       color: $text-color-dark;
+    //     }
 
-        &:hover,
-        &.active {
-          background-color: $primary-action;
-          .navbar__text {
-            color: $white;
-          }
-        }
-      }
+    //     &:hover,
+    //     &.active {
+    //       background-color: $primary-action;
+    //       .navbar__text {
+    //         color: $white;
+    //       }
+    //     }
+    //   }
 
-      .navbar__home {
-        display: none;
-      }
+    //   .navbar__home {
+    //     display: none;
+    //   }
 
-      .navbar__item.navbar__item--transactions {
-        display: grid;
-      }
-    }
+    //   .navbar__item.navbar__item--transactions {
+    //     display: grid;
+    //   }
+    // }
 
-    .navbar-search-input {
-      display: none;
-      width: 100%;
-      align-self: center;
-      justify-self: center;
-    }
+    // .navbar-search-input {
+    //   display: none;
+    //   width: 100%;
+    //   align-self: center;
+    //   justify-self: center;
+    // }
 
-    .navbar__notification {
-      display: grid;
-      justify-self: end;
-      align-self: center;
-      padding: 0.5rem;
-      border: 0.1rem solid transparent;
+    // .navbar__notification {
+    //   display: grid;
+    //   justify-self: end;
+    //   align-self: center;
+    //   padding: 0.5rem;
+    //   border: 0.1rem solid transparent;
 
-      .navbar__bell {
-        display: none;
-        background-color: transparent;
-        border: none;
-        color: $text-color-gray;
-        font-size: 2rem;
-      }
-      &:hover {
-        border: 0.1rem solid $white;
-        border-radius: 50%;
-        .navbar__bell {
-          color: $white;
-        }
-      }
-    }
-    .navbar__footer {
-      grid-area: 12 / 1 / 13 / 2;
-      width: 100%;
-      align-self: end;
-      padding-block-end: 1rem;
-      color: $white;
-    }
+    //   .navbar__bell {
+    //     display: none;
+    //     background-color: transparent;
+    //     border: none;
+    //     color: $text-color-gray;
+    //     font-size: 2rem;
+    //   }
+    //   &:hover {
+    //     border: 0.1rem solid $white;
+    //     border-radius: 50%;
+    //     .navbar__bell {
+    //       color: $white;
+    //     }
+    //   }
+    // }
+    // .navbar__footer {
+    //   grid-area: 12 / 1 / 13 / 2;
+    //   width: 100%;
+    //   align-self: end;
+    //   padding-block-end: 1rem;
+    //   color: $white;
+    // }
   }
 }
