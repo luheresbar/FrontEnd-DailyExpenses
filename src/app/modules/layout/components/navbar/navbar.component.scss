@@ -3,9 +3,10 @@
 @import "/tokens/_spacing";
 
 .navbar {
-  background-color: white;
   height: 6rem;
   padding: 1rem 0.5rem 1rem 0.5rem;
+  max-width: 50rem;
+  margin: 0 auto;
 
   .navbar__logo {
     display: none;
@@ -26,49 +27,49 @@
         width: 26%;
         height: 100%;
         border-radius: 0.8rem;
-        border: 0.1rem solid $primary-action;
+        border: 0.1rem solid $platinum;
         cursor: pointer;
 
         .navbar__text {
           text-align: center;
           font-size: $font-size-between;
           font-weight: $font-weight-bold;
-          color: $text-color-primary;
+          color: $text-color-white;
         }
 
         &:hover,
         &.active {
-          background-color: $primary-action;
+          background-color: $platinum;
           .navbar__text {
-            color: $white;
+            color: $midnightBlue;
           }
         }
       }
 
-      .navbar__item.navbar__item--transactions {
-        display: none;
-      }
+      // .navbar__item.navbar__item--transactions {
+      //   // display: none;
+      // }
       .navbar__item.navbar__item--reports {
         display: none;
       }
 
-      .navbar__home {
-        display: grid;
-        place-content: center;
-        width: 4rem;
-        height: 100%;
-        background-image: url("/assets/icons/home.png");
-        background-size: cover;
-        background-repeat: no-repeat;
-        border: 0.15rem solid $primary-action;
-        border-radius: 50%;
-        cursor: pointer;
+      // .navbar__home {
+      //   display: grid;
+      //   place-content: center;
+      //   width: 4rem;
+      //   height: 100%;
+      //   background-image: url("/assets/icons/home.png");
+      //   background-size: cover;
+      //   background-repeat: no-repeat;
+      //   border: 0.15rem solid $primary-action;
+      //   border-radius: 50%;
+      //   cursor: pointer;
 
-        &:hover,
-        &.active {
-          background-image: url("/assets/icons/home-hover.png");
-        }
-      }
+      //   &:hover,
+      //   &.active {
+      //     background-image: url("/assets/icons/home-hover.png");
+      //   }
+      // }
     }
   }
 
@@ -141,7 +142,7 @@
           width: 15rem;
 
           .navbar__text {
-            color: $white;
+            color: $text-color-white;
             font-size: $font-size-medium;
             font-weight: $font-weight-medium;
           }

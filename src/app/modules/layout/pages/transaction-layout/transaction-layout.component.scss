@@ -9,24 +9,41 @@
   height: 100%;
   width: 100%;
 
-  .headerbar,
-  .tansaction__date-filter,
-  .transaction-filter {
-    width: 100%;
+  // .headerbar,
+  // .tansaction__date-filter,
+  // .transaction-filter {
+  //   // max;
+  // }
+
+  .transaction__header--background {
+    grid-area: 1 / 1 / 4 / 13;
+    background-color: $midnightBlue;
+    border-bottom: 1px solid $primary-action;
+    box-shadow: 0px 3px 5px rgba($text-input-border-active, 0.5);
+    
   }
 
   .headerbar {
     grid-area: 1 / 1 / 2 / 13;
+    margin-block-start: 1rem;
+    width: 100%;
+    max-width: 50rem;
+    margin: 0 auto;
   }
 
   .tansaction__date-filter {
     grid-area: 2 / 1 / 3 / 13;
+    width: 100%;
+    max-width: 50rem;
+    margin: 0 auto;
   }
   .transaction-filter {
     grid-area: 3 / 1 / 4 / 13;
-    box-shadow: 0px 3px 5px rgba($text-input-border-active, 0.5);
     padding-block-end: 0.5rem;
     z-index: 1;
+    width: 100%;
+    max-width: 50rem;
+    margin: 0 auto;
   }
   .transaction-content {
     grid-area: 4 / 1 / 5 / 13;
@@ -66,6 +83,10 @@
     border-radius: 0.8rem;
     height: 100%;
     width: 100%;
+
+    .transaction__header--background {
+      display: none;
+    }
 
     .headerbar {
       display: none;
@@ -107,10 +128,10 @@
       padding: 1.5rem 3rem;
     }
     .transaction__floating-button {
-      grid-area: 11 / 7 / 12 / 10;
-      align-self: start;
+      grid-area: 10 / 7 / 12 / 10;
+      align-self: end;
       justify-self: center;
-      margin-block-end: 3rem;
+      margin-block-end: 2.5rem;
       margin-inline-end: 0rem;
     }
   }
