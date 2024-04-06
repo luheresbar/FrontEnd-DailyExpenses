@@ -1,5 +1,6 @@
 @import "/tokens/_colors";
 @import "/atoms/_mixin-input-text";
+@import "/tokens/_spacing";
 
 .input-search {
   position: relative;
@@ -19,5 +20,11 @@
     .faMagnifyingGlass--img {
       width: 2rem;
     }
+  }
+}
+
+@media (min-width: $breakpoint-medium) {
+  .input-search {
+    width: 18rem;
   }
 }

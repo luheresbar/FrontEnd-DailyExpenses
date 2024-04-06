@@ -43,16 +43,14 @@
   }
 
   .transaction__floating-button {
-    grid-area: 4 / 9 / 5 / 13;
+    grid-area: 4 / 11 / 5 / 13;
     align-self: end;
     justify-self: end;
     margin-block-end: 2rem;
     margin-inline-end: 2rem;
+    width: 100%;
   }
 
-  // .account-filter {
-  //   display: none;
-  // }
   .transaction__search {
     display: none;
   }
@@ -62,13 +60,9 @@
 }
 
 @media (min-width: $breakpoint-medium) {
-  .transaction__floating-button {
-    display: none;
-  }
-
   .transaction-layout {
     grid-template-rows: repeat(12, 1fr);
-    background-color: $white;
+    background-color: transparent;
     border-radius: 0.8rem;
     height: 100%;
     width: 100%;
@@ -78,45 +72,18 @@
     }
 
     .transaction-filter {
-      grid-area: 3 / 2 / 8 / 5;
+      grid-area: 4 / 2 / 9 / 5;
       box-shadow: none;
-      // border: 0.1rem solid rgb(192, 192, 192);
       border-radius: 0.8rem;
-      // padding: 2rem;
-      width: 100%;
+      margin-block-start: 2rem;
     }
 
-    // .account-filter {
-    //   grid-area: 8 / 2 / 12 / 5;
-    //   display: block;
-    //   border: 0.1rem solid rgb(192, 192, 192);
-    //   border-radius: 0.8rem;
-    //   padding: 2rem;
-    //   width: 100%;
-    //   height: 100%;
-
-    //   .filter__subtitle {
-    //     font-size: $font-size-medium;
-    //     margin-block-end: 1.5rem;
-    //   }
-    //   .account-filter--wrapper {
-    //     overflow-y: auto;
-    //     height: 83%;
-    //     border-radius: 0.8rem;
-    //     padding-block: 0.1rem;
-
-    //     scrollbar-width: none;
-    //     &::-webkit-scrollbar {
-    //       display: none;
-    //     }
-    //   }
-    // }
-
     .tansaction__date-filter {
-      grid-area: 1 / 2 / 3 / 5;
+      grid-area: 3 / 2 / 4 / 5;
       justify-self: start;
-      align-self: center;
+      align-self: start;
       width: 100%;
+      margin-block-start: 2rem;
     }
 
     .transaction__filter-title {
@@ -125,33 +92,26 @@
       margin-block-end: 0.5rem;
     }
 
-    // .transaction__search {
-    //   grid-area: 1 / 1 / 3 / 13;
-    //   display: block;
-    //   height: 50%;
-    //   width: 95%;
-    //   background-color: $text-input-border-active;
-    //   border-radius: 0.8rem;
-    //   align-self: center;
-    //   justify-self: center;
-    //   display: grid;
-    //   grid-template-columns: repeat(12, 1fr);
-    //   .transaction__search--input {
-    //     grid-area: 1 / 6 / 3 / 12;
-    //     align-self: center;
-    //     justify-self: center;
-    //     width: 90%;
-    //   }
-    // }
+    .transaction__search {
+      grid-area: 2 / 2 / 3 / 5;
+      display: block;
+    }
 
-    // .transaction-content {
-    //   grid-area: 3 / 6 / 13 / 12;
-    //   max-width: 55rem;
-    //   // height: 95%;
-    //   justify-self: center;
-    //   border-radius: 0.8rem;
-    //   border: 0.1rem solid $primary-action;
-    //   padding: 0 3rem;
-    // }
+    .transaction-content {
+      grid-area: 2 / 5 / 12 / 12;
+      max-width: 55rem;
+      justify-self: center;
+      border-radius: 0.8rem;
+      box-shadow: 0px -3px 5px rgba($OpalBlue, 0.5),
+        0px 3px 5px rgba($OpalBlue, 0.5);
+      padding: 1.5rem 3rem;
+    }
+    .transaction__floating-button {
+      grid-area: 11 / 7 / 12 / 10;
+      align-self: start;
+      justify-self: center;
+      margin-block-end: 3rem;
+      margin-inline-end: 0rem;
+    }
   }
 }

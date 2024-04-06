@@ -2,11 +2,10 @@
   <div class="headerbar">
     <app-headerbar></app-headerbar>
   </div>
-  <!-- <div class="transaction__search">
-    <div class="transaction__search--input">
-      <app-search-input></app-search-input>
-    </div>
-  </div> -->
+  <div class="transaction__search">
+    <h3 class="transaction__filter-title">Search</h3>
+    <app-search-input></app-search-input>
+  </div>
   <div class="tansaction__date-filter">
     <h3 class="transaction__filter-title">Date</h3>
     <app-date-filter></app-date-filter>
@@ -15,13 +14,6 @@
     <h3 class="transaction__filter-title">Accounts</h3>
     <app-transaction-filter></app-transaction-filter>
   </div>
-  <!-- <div class="account-filter">
-    <div class="account-filter--wrapper">
-      <div>
-        <app-account-filter></app-account-filter>
-      </div>
-    </div>
-  </div> -->
   <div class="transaction-content">
     <ng-content></ng-content>
   </div>

@@ -1,8 +1,8 @@
-
 @import "/tokens/_colors";
 @import "/tokens/_typography";
+@import "/tokens/_spacing";
 
-.button--circular {
+.button--new {
   display: grid;
   place-content: center;
   width: 5rem;
@@ -12,5 +12,15 @@
   font-size: $font-size-extra-large;
   cursor: pointer;
   border: none;
+}
+
+.button__primary {
+  display: none;
+}
+
+@media (min-width: $breakpoint-medium) {
+  .button--new {
+    display: none;
+  }
 
 }
