@@ -4,7 +4,7 @@
 
 .navbar {
   height: 6rem;
-  padding: 1rem 0.5rem 1rem 0.5rem;
+  padding: 1rem 0.5rem;
   max-width: 50rem;
   margin: 0 auto;
 
@@ -15,7 +15,8 @@
     height: 100%;
     .navbar__sections {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-between;
+      padding-inline: 0.5rem;
       align-items: center;
       gap: 0.5rem;
       height: 100%;
@@ -24,7 +25,9 @@
       .navbar__item {
         display: grid;
         place-content: center;
-        width: 26%;
+        // width: 26%;
+        min-width: 10rem;
+        width: 14rem;
         height: 100%;
         border-radius: 0.8rem;
         border: 0.1rem solid $platinum;
