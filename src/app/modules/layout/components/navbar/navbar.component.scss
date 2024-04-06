@@ -100,7 +100,6 @@
     padding-inline-end: 4rem;
     margin: 0 auto;
 
-
     background-color: transparent;
     // padding: 1rem 0.5rem 1rem 0.5rem;
 
@@ -108,7 +107,6 @@
       grid-area: 1 / 1 / 2 / 6;
       width: 100%;
       display: flex;
-
 
       .navbar__logo {
         display: flex;
@@ -137,20 +135,22 @@
         justify-content: end;
 
         .navbar__item {
-          background-color: $MidnightBlue;
-          border: 0.1rem solid $primary-action;
+          background-color: $midnightBlue;
+          border: none;
           height: 4rem;
           width: 15rem;
 
           .navbar__text {
             color: $white;
+            font-size: $font-size-medium;
+            font-weight: $font-weight-medium;
           }
 
           &:hover,
           &.active {
-            background-color: $OpalBlue;
+            background-color: $gunmetal;
             .navbar__text {
-              color: $text-color-dark;
+              color: $text-color-white;
             }
           }
         }

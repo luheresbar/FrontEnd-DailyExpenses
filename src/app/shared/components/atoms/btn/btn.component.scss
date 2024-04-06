@@ -5,7 +5,8 @@
 .btn-primary,
 .btn-secondary,
 .btn-logout,
-.btn-floating-menu {
+.btn-floating-menu,
+.btn-new-element {
   width: 100%;
   cursor: pointer;
   border: none;
@@ -56,4 +57,14 @@
   border: none;
   height: 4rem;
 
+}
+
+.btn-new-element {
+  background-color: $midnightBlue;
+  color: $white;
+
+  &:hover {
+    background-color: $gunmetal;
+    // color: $dark;
+  }
 }

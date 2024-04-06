@@ -15,7 +15,8 @@
     height: 90%;
     width: 26%;
     border-radius: 0.8rem;
-    border: 0.1rem solid $primary-action;
+    background-color: $platinum;
+    border: 0.1rem solid rgba($gunmetal, 0.3);
     cursor: pointer;
 
     .filter__text {
@@ -35,9 +36,8 @@
 
     &:hover,
     &.active {
-      background-color: $gray-light;
-      .filter__text {
-      }
+      background-color: rgba($opalBlue, 0.4);
+      border: 0.1rem solid $midnightBlue;
     }
   }
 
@@ -53,7 +53,8 @@
     height: auto;
     gap: 0.5rem;
     background-color: transparent;
-    .filter__item, .filter__item.filter__item--all {
+    .filter__item,
+    .filter__item.filter__item--all {
       align-items: center;
       justify-content: center;
       height: 4rem;
@@ -66,18 +67,17 @@
 
         &.filter__text--expense {
           color: $text-color-red;
+          font-size: $font-size-medium;
         }
 
         &.filter__text--income {
           color: $text-color-green;
+          font-size: $font-size-medium;
         }
       }
 
       &:hover,
       &.active {
-        background-color: $gray-light;
-        .filter__text {
-        }
       }
     }
   }

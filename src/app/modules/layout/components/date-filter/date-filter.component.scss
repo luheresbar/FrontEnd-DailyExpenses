@@ -23,7 +23,7 @@
     }
 
     &:hover {
-      border: 0.1rem solid $primary-action;
+      border: 0.1rem solid $midnightBlue;
       border-radius: 50%;
     }
   }
@@ -33,7 +33,7 @@
     .input--date {
       @include format-input-text;
       font-weight: $font-weight-bold;
-      border: 0.1rem solid $primary-action;
+      border: 0.1rem solid rgba($gunmetal, 0.3);
     }
   }
 }
