@@ -137,20 +137,20 @@
         justify-content: end;
 
         .navbar__item {
-          background-color: $text-input-border-active;
+          background-color: $MidnightBlue;
           border: 0.1rem solid $primary-action;
           height: 4rem;
           width: 15rem;
 
           .navbar__text {
-            color: $text-color-dark;
+            color: $white;
           }
 
           &:hover,
           &.active {
-            background-color: $primary-action;
+            background-color: $OpalBlue;
             .navbar__text {
-              color: $white;
+              color: $text-color-dark;
             }
           }
         }

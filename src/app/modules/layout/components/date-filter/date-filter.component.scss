@@ -40,8 +40,14 @@
 
 @media (min-width: $breakpoint-medium) {
   .filter-date {
-    .date__arrow {
+    justify-content: start;
+    .btn-date__arrow {
       display: none;
+    }
+    .date {
+      .input--date {
+        width: 100%;
+      }
     }
   }
 }

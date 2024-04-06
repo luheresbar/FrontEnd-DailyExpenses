@@ -49,14 +49,14 @@
 @media (min-width: $breakpoint-medium) {
   .transaction-filter {
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     height: auto;
     gap: 0.5rem;
     .filter__item, .filter__item.filter__item--all {
       align-items: center;
       justify-content: center;
       height: 4rem;
-      width: 100%;
+      width: 18rem;
       .filter__text {
         text-align: center;
         font-size: $font-size-between;
