@@ -10,59 +10,64 @@
   .navbar__logo {
     display: none;
   }
-
-  .navbar__sections {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    gap: 0.5rem;
+  .navbar__logo--sections {
     height: 100%;
-    width: 100%;
-
-    .navbar__item {
-      display: grid;
-      place-content: center;
-      width: 26%;
+    .navbar__sections {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      gap: 0.5rem;
       height: 100%;
-      border-radius: 0.8rem;
-      border: 0.1rem solid $primary-action;
-      cursor: pointer;
+      width: 100%;
 
-      .navbar__text {
-        text-align: center;
-        font-size: $font-size-between;
-        font-weight: $font-weight-bold;
-        color: $text-color-primary;
-      }
+      .navbar__item {
+        display: grid;
+        place-content: center;
+        width: 26%;
+        height: 100%;
+        border-radius: 0.8rem;
+        border: 0.1rem solid $primary-action;
+        cursor: pointer;
 
-      &:hover,
-      &.active {
-        background-color: $primary-action;
         .navbar__text {
-          color: $white;
+          text-align: center;
+          font-size: $font-size-between;
+          font-weight: $font-weight-bold;
+          color: $text-color-primary;
+        }
+
+        &:hover,
+        &.active {
+          background-color: $primary-action;
+          .navbar__text {
+            color: $white;
+          }
         }
       }
-    }
 
-    .navbar__item.navbar__item--transactions {
-      display: none;
-    }
+      .navbar__item.navbar__item--transactions {
+        display: none;
+      }
+      .navbar__item.navbar__item--reports {
+        display: none;
+      }
 
-    .navbar__home {
-      display: grid;
-      place-content: center;
-      width: 4rem;
-      height: 100%;
-      background-image: url("/assets/icons/home.png");
-      background-size: cover;
-      background-repeat: no-repeat;
-      border: 0.15rem solid $primary-action;
-      border-radius: 50%;
-      cursor: pointer;
+      .navbar__home {
+        display: grid;
+        place-content: center;
+        width: 4rem;
+        height: 100%;
+        background-image: url("/assets/icons/home.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        border: 0.15rem solid $primary-action;
+        border-radius: 50%;
+        cursor: pointer;
 
-      &:hover,
-      &.active {
-        background-image: url("/assets/icons/home-hover.png");
+        &:hover,
+        &.active {
+          background-image: url("/assets/icons/home-hover.png");
+        }
       }
     }
   }
@@ -86,89 +91,86 @@
 
 @media (min-width: $breakpoint-medium) {
   .navbar {
-    
-    // display: grid;
-    // justify-items: center;
-    // grid-template-rows: repeat(12, 1fr);
-    // background-color: $text-input-border-active;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(12, 1fr);
+    max-width: $breakpoint-large;
+    height: 100%;
+    padding-inline-start: 3rem;
+    padding-inline-end: 4rem;
+    margin: 0 auto;
+
+
+    background-color: transparent;
     // padding: 1rem 0.5rem 1rem 0.5rem;
-    // height: 100%;
 
-    // .navbar__logo {
-    //   display: flex;
-    //   justify-content: space-evenly;
-    //   grid-area: 1 / 1 / 2 / 2;
-    //   cursor: pointer;
-    //   width: 100%;
-    //   .navbar__logo--component {
-    //     display: grid;
-    //     place-content: center;
-    //     width: 5rem;
-    //   }
-    //   .navbar__logo--name {
-    //     display: flex;
-    //     align-items: center;
-    //     font-size: $font-size-extra-large;
-    //   }
-    // }
+    .navbar__logo--sections {
+      grid-area: 1 / 1 / 2 / 6;
+      width: 100%;
+      display: flex;
 
-    // .navbar__avatar {
-    //   display: flex;
-    //   flex-direction: column;
-    //   grid-area: 2 / 1 / 5 / 2;
-    //   width: 98%;
-    //   height: 85%;
-    //   align-items: center;
-    //   justify-content: center;
-    //   border-radius: 0.8rem;
-    //   background-color: $primary-action;
-    //   margin-block-start: 1rem;
-    //   .navbar__avatar--component {
-    //     width: 40%;
-    //   }
-    //   .navbar__username {
-    //     font-size: $font-size-between;
-    //     text-align: center;
-    //     margin-block-end: 0.5rem;
-    //   }
-    //   .navbar__user--email {
-    //     font-size: $font-size-small;
-    //     text-align: center;
-    //   }
-    // }
 
-    // .navbar__sections {
-    //   grid-area: 5 / 1 / 9 / 2;
-    //   flex-direction: column;
-    //   justify-content: start;
+      .navbar__logo {
+        display: flex;
+        justify-content: space-evenly;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        .navbar__logo--component {
+          display: grid;
+          place-content: center;
+          width: 5rem;
+          min-width: 5rem;
+        }
+        .navbar__logo--name {
+          display: flex;
+          align-items: center;
+          font-size: $font-size-large;
+          color: $white;
+          margin-inline-start: 0.5rem;
+          width: 10rem;
+        }
+      }
 
-    //   .navbar__item {
-    //     background-color: $text-input-border-active;
-    //     border: 0.1rem solid $primary-action;
-    //     height: 4rem;
-    //     width: 98%;
+      .navbar__sections {
+        max-width: 40rem;
+        justify-content: end;
 
-    //     .navbar__text {
-    //       color: $text-color-dark;
-    //     }
+        .navbar__item {
+          background-color: $text-input-border-active;
+          border: 0.1rem solid $primary-action;
+          height: 4rem;
+          width: 15rem;
 
-    //     &:hover,
-    //     &.active {
-    //       background-color: $primary-action;
-    //       .navbar__text {
-    //         color: $white;
-    //       }
-    //     }
-    //   }
+          .navbar__text {
+            color: $text-color-dark;
+          }
 
-    //   .navbar__home {
-    //     display: none;
-    //   }
+          &:hover,
+          &.active {
+            background-color: $primary-action;
+            .navbar__text {
+              color: $white;
+            }
+          }
+        }
 
-    //   .navbar__item.navbar__item--transactions {
-    //     display: grid;
-    //   }
-    // }
+        .navbar__home {
+          display: none;
+        }
+
+        .navbar__item.navbar__item--transactions {
+          display: grid;
+        }
+      }
+    }
+
+    .navbar__avatar {
+      grid-area: 1 / 12 / 2 / 13;
+      display: grid;
+      place-content: center;
+      width: 5rem;
+    }
 
     // .navbar-search-input {
     //   display: none;

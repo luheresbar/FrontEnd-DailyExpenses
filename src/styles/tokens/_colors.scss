@@ -1,20 +1,22 @@
-
 //  ·██████╗·██████╗·██╗······██████╗·██████╗·
 //  ██╔════╝██╔═══██╗██║·····██╔═══██╗██╔══██╗
 //  ██║·····██║···██║██║·····██║···██║██████╔╝
 //  ██║·····██║···██║██║·····██║···██║██╔══██╗
 //  ╚██████╗╚██████╔╝███████╗╚██████╔╝██║··██║
-//  ·╚═════╝·╚═════╝·╚══════╝·╚═════╝·╚═╝··╚═╝   
+//  ·╚═════╝·╚═════╝·╚══════╝·╚═════╝·╚═╝··╚═╝
 
 // Color Palette
+$MidnightBlue: #222831;
+$Gunmetal: #31363f;
+$OpalBlue: #76abae;
+$Platinum: #eeeeee;
 
 // General Colors
-$white: #FFFFFF;
-$black: #1C1D21;
+$white: #ffffff;
+$black: #1c1d21;
 $dark: #232830;
 $gray-light: #a7a7a7;
-$very-light-gray: #FAFBFC;
-
+$very-light-gray: #fafbfc;
 
 //Input Colors
 $text-input-field: #efefef;
@@ -24,18 +26,17 @@ $text-input-border-active: #519af9;
 // Text Colors
 $text-color-dark: #232830;
 $text-color-gray: #6e6e6e;
-$text-color-primary: #0559D3;  
+$text-color-primary: #0559d3;
 $text-color-red: #ff2a2a;
-$text-color-green: #019601; 
+$text-color-green: #019601;
 
 // Action Colors
-$primary-action: #0559D3;
-$primary-action-hover: #2481FC;
-$primary-action-focus: #2481FC;
-$secondary-action: #8F97A2;
+$primary-action: #0559d3;
+$primary-action-hover: #2481fc;
+$primary-action-focus: #2481fc;
+$secondary-action: #8f97a2;
 
 $warning-action: #ff2a2a;
-
 
 // State transaction Colors
 $income-detail: #bfffe1;

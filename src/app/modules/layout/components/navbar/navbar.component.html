@@ -1,65 +1,63 @@
 <div class="navbar">
-  <div class="navbar__logo">
-    <div class="navbar__logo--component">
-      <app-logo></app-logo>
+  <div class="navbar__logo--sections">
+    <div class="navbar__logo">
+      <div class="navbar__logo--component">
+        <app-logo></app-logo>
+      </div>
+      <p class="navbar__logo--name" *ngIf="showAditionalContent">
+        Daily Expenses
+      </p>
     </div>
-    <p class="navbar__logo--name" *ngIf="showAditionalContent">
-      Daily Expenses
-    </p>
+    <div class="navbar__sections">
+      <div
+        class="navbar__home"
+        role="button"
+        routerLink="/transactions"
+        routerLinkActive="active"
+      ></div>
+      <div
+        class="navbar__item navbar__item--transactions"
+        routerLink="/transactions"
+        routerLinkActive="active"
+      >
+        <p class="navbar__text">Transactions</p>
+      </div>
+      <div
+        routerLink="/reports"
+        routerLinkActive="active"
+        class="navbar__item navbar__item--reports"
+        role="button"
+      >
+        <p class="navbar__text">Reports</p>
+      </div>
+      <div
+        routerLink="/categories/expenses"
+        routerLinkActive="active"
+        class="navbar__item"
+        role="button"
+      >
+        <p class="navbar__text">Categories</p>
+      </div>
+      <div
+        class="navbar__item"
+        role="button"
+        routerLink="/accounts"
+        routerLinkActive="active"
+      >
+        <p class="navbar__text">Accounts</p>
+      </div>
+    </div>
   </div>
-  <div class="navbar__sections">
-    <div
-      class="navbar__home"
-      role="button"
-      routerLink="/transactions"
-      routerLinkActive="active"
-    ></div>
-    <div class="navbar__item navbar__item--transactions">
-      <p class="navbar__text">Transactions</p>
-    </div>
-    <div
-      routerLink="/reports"
-      routerLinkActive="active"
-      class="navbar__item"
-      role="button"
-    >
-      <p class="navbar__text">Reports</p>
-    </div>
-    <div
-      routerLink="/categories/expenses"
-      routerLinkActive="active"
-      class="navbar__item"
-      role="button"
-    >
-      <p class="navbar__text">Categories</p>
-    </div>
-    <div
-      class="navbar__item"
-      role="button"
-      routerLink="/accounts"
-      routerLinkActive="active"
-    >
-      <p class="navbar__text">Accounts</p>
-    </div>
-  </div>
-  <div class="navbar-search-input">
+  <!-- <div class="navbar-search-input">
     <app-search-input></app-search-input>
-  </div>
+  </div> -->
   <div class="navbar__notification">
     <button class="navbar__bell">
       <fa-icon [icon]="faBell"></fa-icon>
     </button>
   </div>
   <div class="navbar__avatar">
-    <div class="navbar__avatar--component">
-      <app-avatar></app-avatar>
-    </div>
-    <p class="navbar__username" *ngIf="showAditionalContent">
-      {{ user$?.username }}
-    </p>
-    <p class="navbar__user--email" *ngIf="showAditionalContent">
-      {{ user$?.email }}
-    </p>
+    <app-avatar></app-avatar>
   </div>
   <div class="navbar__footer" *ngIf="showAditionalContent">
     <app-footer></app-footer>
