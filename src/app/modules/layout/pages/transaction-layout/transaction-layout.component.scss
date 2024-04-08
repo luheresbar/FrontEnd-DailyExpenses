@@ -8,12 +8,7 @@
   grid-template-columns: repeat(12, 1fr);
   height: 100%;
   width: 100%;
-
-  // .headerbar,
-  // .tansaction__date-filter,
-  // .transaction-filter {
-  //   // max;
-  // }
+  background-color: rgba($opalBlue, 0.15);
 
   .transaction__header--background {
     grid-area: 1 / 1 / 4 / 13;

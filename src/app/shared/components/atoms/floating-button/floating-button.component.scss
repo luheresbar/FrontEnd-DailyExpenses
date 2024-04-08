@@ -8,10 +8,13 @@
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
-  background-color: red;
-  font-size: $font-size-extra-large;
+  background-color: $midnightBlue;
+  color: $white;
+  font-size: 3rem;
   cursor: pointer;
   border: none;
+  box-shadow: 0 0 5px 3px rgba($text-input-border-active, 0.5);
+  padding: 0.2rem 0 0 0.1rem;
 }
 
 .button__primary {
@@ -27,5 +30,4 @@
     display: block;
     width: 100%;
   }
-
 }

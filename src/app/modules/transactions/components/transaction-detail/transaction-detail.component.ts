@@ -16,6 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './transaction-detail.component.scss',
 })
 export class TransactionDetailComponent {
+  
   @Input() transaction!: TransactionDetail;
   faArrowRight = faArrowRight;
 

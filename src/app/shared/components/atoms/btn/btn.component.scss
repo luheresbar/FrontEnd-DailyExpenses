@@ -62,6 +62,8 @@
 .btn-new-element {
   background-color: $midnightBlue;
   color: $white;
+  box-shadow: 0 0 8px 1px rgba($text-input-border-active, 0.5);
+
 
   &:hover {
     background-color: $gunmetal;
