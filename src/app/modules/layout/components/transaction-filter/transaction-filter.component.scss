@@ -16,29 +16,33 @@
     height: 90%;
     width: 26%;
     border-radius: 0.8rem;
-    background-color: $platinum;
-    border: 0.1rem solid rgba($gunmetal, 0.3);
+    background-color: $midnightBlue;
+    border: 0.1rem solid $platinum;
     cursor: pointer;
 
     .filter__text {
       text-align: center;
       font-size: $font-size-between;
       font-weight: $font-weight-bold;
-      color: $text-color-dark;
-
-      &.filter__text--expense {
-        color: $text-color-red;
-      }
-
-      &.filter__text--income {
-        color: $text-color-green;
-      }
+      color: $text-color-white;
     }
 
     &:hover,
     &.active {
-      background-color: rgba($opalBlue, 0.4);
-      border: 0.1rem solid $midnightBlue;
+      background-color: $platinum;
+      .filter__text {
+        color: $midnightBlue;
+
+        &.filter__text--expense {
+          color: $text-color-red;
+          font-size: $font-size-medium;
+        }
+
+        &.filter__text--income {
+          color: $text-color-green; 
+          font-size: $font-size-medium;
+        }
+      }
     }
   }
 
@@ -60,6 +64,8 @@
       justify-content: center;
       height: 4rem;
       width: 18rem;
+      background-color: $platinum;
+      border: 0.1rem solid rgba($gunmetal, 0.3);
       .filter__text {
         text-align: center;
         font-size: $font-size-between;
@@ -79,6 +85,8 @@
 
       &:hover,
       &.active {
+        background-color: rgba($opalBlue, 0.4);
+        border: 0.1rem solid $midnightBlue;
       }
     }
   }
