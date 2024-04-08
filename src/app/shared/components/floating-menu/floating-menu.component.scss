@@ -5,12 +5,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: center;
   width: 20rem;
-  gap: 2rem;
-  background-color: $text-input-border-active;
+  gap: 0.5rem;
+  background-color: $midnightBlue;
   border-radius: 0.8rem;
-  padding: 3rem 1rem 2rem 1rem;
+  padding: 3rem 2rem;
   margin-block-end: 1.5rem;
+  // margin-inline-end: 1rem;
+  color: $text-color-white;
   .floating-menu__title {
     text-align: center;
     font-size: $font-size-large;
@@ -19,5 +22,28 @@
   .floating-menu__btn {
     border: none;
     background-color: transparent;
+    width: 100%;
+    cursor: pointer;
+    
+    .btn-floating-menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 0.8rem;
+      padding: 1rem 1rem;
+
+      .floating-menu__option {
+        color: $text-color-white;
+        font-size: $font-size-large;
+        margin-inline-end: 2rem;
+      }
+      .floating-menu__icon {
+        width: 3rem;
+      }
+
+      &:hover {
+        background-color: rgba($opalBlue, 0.4);
+      }
+    }
   }
 }

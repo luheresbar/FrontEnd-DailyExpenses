@@ -1,59 +1,79 @@
 <!--* Transaction section floating menu -->
-<div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'transactions' ">
+<div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'transactions'">
   <p class="floating-menu__title">New Register</p>
   <div class="floating-menu__btn">
-    <app-btn
+    <div
       (click)="assingTransactionType('transfer'); openDialogTransaction()"
-      color="btn-floating-menu"
-      >Transfer</app-btn
+      role="button"
+      class="btn-floating-menu"
     >
+      <p class="floating-menu__option">Transfer</p>
+      <img
+        class="floating-menu__icon"
+        src="assets/icons/transfer-icon.svg"
+        alt="transfer-icon"
+      />
+    </div>
   </div>
   <div class="floating-menu__btn">
-    <app-btn
+    <div
       (click)="assingTransactionType('income'); openDialogTransaction()"
-      color="btn-floating-menu"
-      >Income</app-btn
+      role="button"
+      class="btn-floating-menu"
     >
+      <p class="floating-menu__option">Income</p>
+      <img
+        class="floating-menu__icon"
+        src="assets/icons/income-icon.svg"
+        alt="income-icon"
+      />
+    </div>
   </div>
   <div class="floating-menu__btn">
-    <app-btn
+    <div
       (click)="assingTransactionType('expense'); openDialogTransaction()"
-      color="btn-floating-menu"
-      >Expense</app-btn
+      role="button"
+      class="btn-floating-menu"
     >
+      <p class="floating-menu__option">Expense</p>
+      <img
+        class="floating-menu__icon"
+        src="assets/icons/expense-icon.svg"
+        alt="expense-icon"
+      />
+    </div>
   </div>
 </div>
 
 <!--* Account section floating menu -->
-<div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'accounts' ">
+<div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'accounts'">
   <p class="floating-menu__title">New Account</p>
   <div class="floating-menu__btn">
-    <app-btn
-      (click)="openDialogAccount()"
-      color="btn-floating-menu"
-      >Create</app-btn
-    >
+    <div (click)="openDialogAccount()" role="button" class="btn-floating-menu">
+      Create
+    </div>
   </div>
 </div>
 
 <!--* Category section floating menu -->
-<div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'categories' ">
+<div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'categories'">
   <p class="floating-menu__title">New Category</p>
   <div class="floating-menu__btn">
-    <app-btn
+    <div
       (click)="assingCategoryType('expense'); openDialogCategory()"
-      color="btn-floating-menu"
-      >Expense category</app-btn
+      role="button"
+      class="btn-floating-menu"
     >
+      Expense category
+    </div>
   </div>
   <div class="floating-menu__btn">
-    <app-btn
+    <div
       (click)="assingCategoryType('income'); openDialogCategory()"
-      color="btn-floating-menu"
-      >Income Category</app-btn
+      role="button"
+      class="btn-floating-menu"
     >
+      Income Category
+    </div>
   </div>
 </div>
-
-
-

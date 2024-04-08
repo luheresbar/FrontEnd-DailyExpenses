@@ -1,5 +1,5 @@
 <div class="transaction-layout">
-  <div class="transaction__header--background" ></div>
+  <div class="transaction__header--background"></div>
   <div class="headerbar">
     <app-headerbar></app-headerbar>
   </div>
@@ -19,15 +19,15 @@
     <ng-content></ng-content>
   </div>
   <div class="transaction__floating-button">
-    <app-floating-button
-    class="floating-button"
-      (click)="changeStateOverlayFloatingMenu()"
-      cdkOverlayOrigin
-      #OverlayFloatingMenu="cdkOverlayOrigin"
-      type="button"
-      aria-expanded="false"
-      aria-haspopup="true"
-    ></app-floating-button>
+      <app-floating-button
+        class="floating-button"
+        (click)="changeStateOverlayFloatingMenu()"
+        cdkOverlayOrigin
+        #OverlayFloatingMenu="cdkOverlayOrigin"
+        type="button"
+        aria-expanded="false"
+        aria-haspopup="true"
+      ></app-floating-button>
   </div>
 </div>
 
