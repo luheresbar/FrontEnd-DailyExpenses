@@ -4,13 +4,14 @@
 @mixin format-transaction-detail($bg-color) {
   .transfer-detail {
     background-color: $bg-color;
-    border: 0.2rem solid $bg-color;
+    border: 0.1rem solid $bg-color;
     border-radius: 0.8rem;
-    padding: 0.7rem 1.5rem;
+    padding: 0.6rem 1.5rem;
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    transition: padding 0.2s ease; 
+    transition: padding 0.2s ease, margin 0.2s ease;
+    margin-block: 0.5rem;
 
     .transfer__info--left,
     .transfer__info--right {
@@ -59,7 +60,8 @@
       background-color: rgba($bg-color, 0.7);
       border: 0.1rem solid $midnightBlue;
       padding: 1rem 1.5rem;
-      transition: padding 0.2s ease;
+      transition: padding 0.2s ease, margin 0.2s ease;
+      margin-block: 0.3rem;
     }
   }
 }

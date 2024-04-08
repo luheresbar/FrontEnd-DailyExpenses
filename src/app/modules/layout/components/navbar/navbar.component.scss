@@ -173,35 +173,40 @@
       width: 5rem;
     }
 
-    // .navbar-search-input {
-    //   display: none;
-    //   width: 100%;
-    //   align-self: center;
-    //   justify-self: center;
-    // }
+    .navbar__notification {
+      grid-area: 1 / 11 / 2 / 12;
+      display: grid;
+      justify-self: end;
+      align-self: center;
+      padding: 0.2rem;
+      border: 0.1rem solid transparent;
+      width: auto;
+      cursor: pointer;
 
-    // .navbar__notification {
-    //   display: grid;
-    //   justify-self: end;
-    //   align-self: center;
-    //   padding: 0.5rem;
-    //   border: 0.1rem solid transparent;
-
-    //   .navbar__bell {
-    //     display: none;
-    //     background-color: transparent;
-    //     border: none;
-    //     color: $text-color-gray;
-    //     font-size: 2rem;
-    //   }
-    //   &:hover {
-    //     border: 0.1rem solid $white;
-    //     border-radius: 50%;
-    //     .navbar__bell {
-    //       color: $white;
-    //     }
-    //   }
-    // }
+      .navbar__bell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-inline-start: 0.18rem;
+        background-color: transparent;
+        border: none;
+        color: $opalBlue;
+        font-size: 1.8rem;
+        height: 2.1rem;
+        width: 2rem;
+        cursor: pointer;
+      }
+      &:hover {
+        border: 0.1rem solid $white;
+        border-radius: 50%;
+        .navbar__bell {
+          color: $white;
+          font-size: 1.4rem;
+          padding-inline-start: 0.1rem;
+          padding-block-start: 0.05rem;
+        }
+      }
+    }
     // .navbar__footer {
     //   grid-area: 12 / 1 / 13 / 2;
     //   width: 100%;
