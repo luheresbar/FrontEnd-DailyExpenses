@@ -45,16 +45,6 @@
   </div>
 </div>
 
-<!--* Account section floating menu -->
-<div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'accounts'">
-  <p class="floating-menu__title">New Account</p>
-  <div class="floating-menu__btn">
-    <div (click)="openDialogAccount()" role="button" class="btn-floating-menu">
-      Create
-    </div>
-  </div>
-</div>
-
 <!--* Category section floating menu -->
 <div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'categories'">
   <p class="floating-menu__title">New Category</p>
@@ -64,12 +54,12 @@
       role="button"
       class="btn-floating-menu"
     >
-    <p class="floating-menu__option">Income</p>
-    <img
-      class="floating-menu__icon"
-      src="assets/icons/income-category-icon.svg"
-      alt="transfer-icon"
-    />
+      <p class="floating-menu__option">Income</p>
+      <img
+        class="floating-menu__icon"
+        src="assets/icons/income-category-icon.svg"
+        alt="income-icon"
+      />
     </div>
   </div>
   <div class="floating-menu__btn">
@@ -78,12 +68,27 @@
       role="button"
       class="btn-floating-menu"
     >
-    <p class="floating-menu__option">Expense</p>
-    <img
-      class="floating-menu__icon"
-      src="assets/icons/expense-category-icon.svg"
-      alt="transfer-icon"
-    />
+      <p class="floating-menu__option">Expense</p>
+      <img
+        class="floating-menu__icon"
+        src="assets/icons/expense-category-icon.svg"
+        alt="expense-icon"
+      />
+    </div>
+  </div>
+</div>
+
+<!--* Account section floating menu -->
+<div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'accounts'">
+  <p class="floating-menu__title">New Account</p>
+  <div class="floating-menu__btn">
+    <div (click)="openDialogAccount()" role="button" class="btn-floating-menu">
+      <p class="floating-menu__option">Create</p>
+      <img
+        class="floating-menu__icon"
+        src="assets/icons/bank-icon.svg"
+        alt="bank-icon"
+      />
     </div>
   </div>
 </div>

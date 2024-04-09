@@ -44,7 +44,6 @@ export class NavbarComponent {
   isCategoriesActive: boolean = false;
 
   constructor(
-    private authService: AuthService,
     private usersService: UserService,
     private location: Location,
     private router: Router
