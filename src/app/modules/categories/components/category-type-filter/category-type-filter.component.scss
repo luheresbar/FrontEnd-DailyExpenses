@@ -2,7 +2,7 @@
 @import "/tokens/_colors";
 @import "/tokens/_spacing";
 
-.transaction-filter {
+.category-filter {
   display: flex;
   background-color: white;
   height: 4.5rem;
@@ -50,37 +50,30 @@
 }
 
 @media (min-width: $breakpoint-medium) {
-  .transaction-filter {
+  .category-filter {
     flex-direction: column;
-    align-items: center;
+    align-items: start;
     height: auto;
-    gap: 0.5rem;
+    gap: 1rem;
     .filter__item,
     .filter__item.filter__item--all {
       align-items: center;
       justify-content: center;
       height: 4rem;
-      width: 100%;
+      width: 18rem;
+      background-color: $platinum;
+      border: 0.1rem solid rgba($gunmetal, 0.3);
       .filter__text {
         text-align: center;
         font-size: $font-size-between;
         font-weight: $font-weight-bold;
         color: $text-color-dark;
-
-        &.filter__text--expense {
-          color: $text-color-red;
-        }
-
-        &.filter__text--income {
-          color: $text-color-green;
-        }
       }
 
       &:hover,
       &.active {
-        background-color: $gray-light;
-        .filter__text {
-        }
+        background-color: rgba($opalBlue, 0.4);
+        border: 0.1rem solid $midnightBlue;
       }
     }
   }

@@ -4,6 +4,7 @@
     <app-headerbar></app-headerbar>
   </div>
   <div class="category-filter">
+    <h3 class="filter__subtitle">Category filter</h3>
     <app-category-type-filter></app-category-type-filter>
   </div>
   <div class="category-content">
@@ -11,6 +12,7 @@
   </div>
   <div class="category__floating-button">
     <app-floating-button
+      class="floating-button"
       (click)="changeStateOverlayFloatingMenu()"
       cdkOverlayOrigin
       #OverlayFloatingMenu="cdkOverlayOrigin"
@@ -30,6 +32,8 @@
   (detach)="isOpenOverlayFloatingMenu$ = false"
 >
   <div>
-    <app-floating-menu [typeFloatingMenu]="typeFloatingMenu"></app-floating-menu>
+    <app-floating-menu
+      [typeFloatingMenu]="typeFloatingMenu"
+    ></app-floating-menu>
   </div>
 </ng-template>
