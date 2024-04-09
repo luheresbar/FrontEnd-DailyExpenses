@@ -8,6 +8,7 @@
   height: 4.5rem;
   justify-content: space-evenly;
   align-items: center;
+  background-color: transparent;
 
   .filter__item {
     display: grid;
@@ -15,14 +16,15 @@
     height: 90%;
     width: 26%;
     border-radius: 0.8rem;
-    border: 0.1rem solid $primary-action;
+    border: 0.1rem solid $platinum;
     cursor: pointer;
+    padding-inline: 1.5rem;
 
     .filter__text {
       text-align: center;
       font-size: $font-size-between;
       font-weight: $font-weight-bold;
-      color: $text-color-dark;
+      color: $text-color-white;
 
       &.filter__text--expense {
         color: $text-color-red;
@@ -35,8 +37,9 @@
 
     &:hover,
     &.active {
-      background-color: $gray-light;
+      background-color: $platinum;
       .filter__text {
+        color: $midnightBlue;
       }
     }
   }
@@ -52,7 +55,8 @@
     align-items: center;
     height: auto;
     gap: 0.5rem;
-    .filter__item, .filter__item.filter__item--all {
+    .filter__item,
+    .filter__item.filter__item--all {
       align-items: center;
       justify-content: center;
       height: 4rem;

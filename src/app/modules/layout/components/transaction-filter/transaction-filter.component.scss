@@ -8,7 +8,7 @@
   height: 4.5rem;
   justify-content: space-evenly;
   align-items: center;
-  background-color: $midnightBlue;
+  background-color: transparent;
 
   .filter__item {
     display: grid;
@@ -16,7 +16,6 @@
     height: 90%;
     width: 26%;
     border-radius: 0.8rem;
-    background-color: $midnightBlue;
     border: 0.1rem solid $platinum;
     cursor: pointer;
 
@@ -39,7 +38,7 @@
         }
 
         &.filter__text--income {
-          color: $text-color-green; 
+          color: $text-color-green;
           font-size: $font-size-medium;
         }
       }

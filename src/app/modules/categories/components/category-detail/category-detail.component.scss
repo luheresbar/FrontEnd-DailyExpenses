@@ -5,13 +5,14 @@
   .category-container {
     .category-detail {
       background-color: $color;
-      border: 0.2rem solid $color;
+      border: 0.1rem solid $color;
       border-radius: 0.8rem;
-      padding: 0.6rem 1rem;
+      padding: 0.6rem 1.5rem;
       display: flex;
-      flex-direction: column;
       justify-content: space-between;
       cursor: pointer;
+      transition: padding 0.2s ease, margin 0.2s ease;
+      margin-block: 0.5rem;
 
       .category__name {
         display: flex;
@@ -25,13 +26,17 @@
 
       &:hover {
         background-color: rgba($color, 0.7);
+        border: 0.1rem solid $midnightBlue;
+        padding: 1rem 1.5rem;
+        transition: padding 0.2s ease, margin 0.2s ease;
+        margin-block: 0.3rem;
       }
     }
   }
 }
 
 .enabled {
-  @include categoryDetailStyle($hospital-green);
+  @include categoryDetailStyle($opalBlue);
 }
 
 .disabled {

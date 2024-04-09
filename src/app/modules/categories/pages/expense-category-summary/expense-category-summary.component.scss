@@ -5,12 +5,12 @@
   .disabled-categories {
     .subtitle {
       font-size: $font-size-medium;
+      margin-block-start: 2rem;
     }
     .category-summary {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      margin-block: 1rem;
+      margin-block: 0.5rem;
     }
   }
 }

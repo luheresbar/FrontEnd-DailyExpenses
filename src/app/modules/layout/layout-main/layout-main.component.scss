@@ -16,6 +16,7 @@
     grid-template-columns: repeat(12, 1fr);
     height: calc(100vh - 6rem);
     width: 100%;
+    background-color: rgba($opalBlue, 0.15);
 
     .router-outlet {
       grid-area: 1 / 1 / 2 / 13;

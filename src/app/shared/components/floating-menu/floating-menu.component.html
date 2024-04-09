@@ -35,11 +35,11 @@
       role="button"
       class="btn-floating-menu"
     >
-      <p class="floating-menu__option">Expense</p>
+      <p class="floating-menu__option">Transfer</p>
       <img
         class="floating-menu__icon"
-        src="assets/icons/expense-icon.svg"
-        alt="expense-icon"
+        src="assets/icons/transfer-icon.svg"
+        alt="transfer-icon"
       />
     </div>
   </div>
@@ -60,20 +60,30 @@
   <p class="floating-menu__title">New Category</p>
   <div class="floating-menu__btn">
     <div
-      (click)="assingCategoryType('expense'); openDialogCategory()"
-      role="button"
-      class="btn-floating-menu"
-    >
-      Expense category
-    </div>
-  </div>
-  <div class="floating-menu__btn">
-    <div
       (click)="assingCategoryType('income'); openDialogCategory()"
       role="button"
       class="btn-floating-menu"
     >
-      Income Category
+    <p class="floating-menu__option">Income</p>
+    <img
+      class="floating-menu__icon"
+      src="assets/icons/income-category-icon.svg"
+      alt="transfer-icon"
+    />
+    </div>
+  </div>
+  <div class="floating-menu__btn">
+    <div
+      (click)="assingCategoryType('expense'); openDialogCategory()"
+      role="button"
+      class="btn-floating-menu"
+    >
+    <p class="floating-menu__option">Expense</p>
+    <img
+      class="floating-menu__icon"
+      src="assets/icons/expense-category-icon.svg"
+      alt="transfer-icon"
+    />
     </div>
   </div>
 </div>
