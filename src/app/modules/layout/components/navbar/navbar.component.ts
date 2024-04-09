@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, HostListener } from '@angular/core';
 
 import { LogoComponent } from '../../../../shared/components/atoms/logo/logo.component';
@@ -10,7 +10,13 @@ import { FooterComponent } from '../../../auth/components/footer/footer.componen
 import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
 import { UserResponse } from '@models/user.model';
-import { RouterLinkActive, RouterLinkWithHref } from '@angular/router';
+import {
+  NavigationEnd,
+  Router,
+  RouterLinkActive,
+  RouterLinkWithHref,
+} from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -23,7 +29,7 @@ import { RouterLinkActive, RouterLinkWithHref } from '@angular/router';
     FontAwesomeModule,
     FooterComponent,
     RouterLinkWithHref,
-    RouterLinkActive
+    RouterLinkActive,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
@@ -35,13 +41,29 @@ export class NavbarComponent {
   faBell = faBell;
   showAditionalContent: boolean = true;
 
+  isCategoriesActive: boolean = false;
+
   constructor(
     private authService: AuthService,
-    private usersService: UserService
+    private usersService: UserService,
+    private location: Location,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.usersService.user$.subscribe((user) => (this.user$ = user));
+
+    this.checkCurrentUrl();
+
+    this.router.events
+      .pipe(
+        filter(
+          (event): event is NavigationEnd => event instanceof NavigationEnd
+        )
+      )
+      .subscribe((event: NavigationEnd) => {
+        this.checkCurrentUrl();
+      });
   }
 
   setActiveButton(button: string) {
@@ -51,5 +73,10 @@ export class NavbarComponent {
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.showAditionalContent = (event.target as Window).innerWidth > 768;
+  }
+
+  checkCurrentUrl() {
+    const currentUrl = this.location.path();
+    this.isCategoriesActive = currentUrl.startsWith('/categories');
   }
 }

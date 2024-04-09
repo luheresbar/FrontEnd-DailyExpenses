@@ -26,10 +26,11 @@
         <p class="navbar__text">Reports</p>
       </div>
       <div
-        routerLink="/categories/expenses"
-        routerLinkActive="active"
+        div
         class="navbar__item"
+        [ngClass]="{ active: isCategoriesActive }"
         role="button"
+        routerLink="/categories/expenses"
       >
         <p class="navbar__text">Categories</p>
       </div>
