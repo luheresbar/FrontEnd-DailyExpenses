@@ -65,3 +65,53 @@
     }
   }
 }
+
+@media (min-width: $breakpoint-medium) {
+  .account-layout {
+    grid-template-rows: repeat(12, 1fr);
+    background-color: transparent;
+    border-radius: 0.8rem;
+    height: 100%;
+    width: 100%;
+
+    .account__header--background,
+    .headerbar {
+      display: none;
+    }
+    .account__total-balance {
+      grid-area: 2 / 2 / 6 / 5;
+
+      box-shadow: none;
+      border-radius: 0.8rem;
+      margin-block-start: 2rem;
+
+      .filter__subtitle {
+        display: block;
+        font-size: $font-size-medium;
+        margin-block-end: 1rem;
+      }
+    }
+
+    .account-content {
+      grid-area: 2 / 5 / 12 / 12;
+      max-width: 55rem;
+      justify-self: center;
+      border-radius: 0.8rem;
+      box-shadow: 0px -3px 5px rgba($opalBlue, 0.5),
+        0px 3px 5px rgba($opalBlue, 0.5);
+      padding: 1.5rem 3rem;
+    }
+
+    .account__floating-button {
+      grid-area: 10 / 7 / 12 / 10;
+      padding-block: 2rem;
+      padding-inline: 0rem;
+      width: 20rem;
+
+      .floating-button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}

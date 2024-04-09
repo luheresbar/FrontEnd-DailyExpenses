@@ -4,6 +4,7 @@
     <app-headerbar></app-headerbar>
   </div>
   <div class="account__total-balance">
+    <h3 class="filter__subtitle">Balance</h3>
     <app-total-balance></app-total-balance>
   </div>
   <div class="account-content">
@@ -11,6 +12,7 @@
   </div>
   <div class="account__floating-button">
     <app-floating-button
+      class="floating-button"
       (click)="changeStateOverlayFloatingMenu()"
       cdkOverlayOrigin
       #OverlayFloatingMenu="cdkOverlayOrigin"
@@ -30,6 +32,8 @@
   (detach)="isOpenOverlayFloatingMenu$ = false"
 >
   <div>
-    <app-floating-menu [typeFloatingMenu]="typeFloatingMenu"></app-floating-menu>
+    <app-floating-menu
+      [typeFloatingMenu]="typeFloatingMenu"
+    ></app-floating-menu>
   </div>
 </ng-template>
