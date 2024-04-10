@@ -10,17 +10,16 @@
   <div class="account-content">
     <ng-content></ng-content>
   </div>
-  <div class="account__floating-button">
-    <app-floating-button
-      class="floating-button"
-      (click)="changeStateOverlayFloatingMenu()"
-      cdkOverlayOrigin
-      #OverlayFloatingMenu="cdkOverlayOrigin"
-      type="button"
-      aria-expanded="false"
-      aria-haspopup="true"
-    >New Account</app-floating-button>
-  </div>
+  <app-floating-button
+    class="floating-button"
+    (click)="changeStateOverlayFloatingMenu()"
+    cdkOverlayOrigin
+    #OverlayFloatingMenu="cdkOverlayOrigin"
+    type="button"
+    aria-expanded="false"
+    aria-haspopup="true"
+    >New Account</app-floating-button
+  >
 </div>
 
 <ng-template

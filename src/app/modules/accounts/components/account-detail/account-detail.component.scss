@@ -3,17 +3,21 @@
 
 .enabled {
   .account-detail {
-    background-color: $hospital-green;
-    border: 0.1rem solid $hospital-green;
+    background-color: $opalBlue;
+    border: 0.1rem solid $opalBlue;
     border-radius: 0.8rem;
-    padding: 0.6rem 1.5rem;
+    padding: 1rem 1.5rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     cursor: pointer;
     transition: padding 0.2s ease, margin 0.2s ease;
     margin-block: 0.5rem;
+    color: $midnightBlue;
 
+    // .horizontal-line {
+    //   border: $black;
+    // }
     .account__name {
       display: flex;
       justify-content: space-between;
@@ -46,9 +50,9 @@
       }
     }
     &:hover {
-      background-color: rgba($hospital-green, 0.7);
+      background-color: rgba($opalBlue, 0.7);
       border: 0.1rem solid $midnightBlue;
-      padding: 1rem 1.5rem;
+      padding: 1.4rem 1.5rem;
       transition: padding 0.2s ease, margin 0.2s ease;
       margin-block: 0.3rem;
     }

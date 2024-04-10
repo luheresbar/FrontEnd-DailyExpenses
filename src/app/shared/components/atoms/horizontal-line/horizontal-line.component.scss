@@ -5,12 +5,12 @@
   margin-block: 1rem;
   flex: 1;
   height: 0.05rem;
-  background-color: $gray-light;
+  background-color: $black;
+
 }
 
 @media (min-width: $breakpoint-medium) {
   .horizontal-line {
     margin-block: 1rem;
-    // background-color: $white;
   }
 }

@@ -30,6 +30,9 @@
     max-width: 50rem;
     margin: 0 auto;
     justify-self: center;
+    .filter__subtitle {
+      display: none;
+    }
   }
 
   .account-content {
@@ -46,23 +49,24 @@
       display: none;
     }
   }
+  .floating-button {
+    bottom: 7rem;
+    right: 3rem;
+    // grid-area: 3 / 1 / 4 / 13;
+    // align-self: end;
+    // padding-block-end: 2rem;
+    // padding-inline-end: 2rem;
+    // // width: 100%;
+    // // max-width: 48rem;
+    // // margin: 0 auto;
 
-  .account__floating-button {
-    grid-area: 3 / 1 / 4 / 13;
-    align-self: end;
-    padding-block-end: 2rem;
-    padding-inline-end: 2rem;
-    width: 100%;
-    max-width: 48rem;
-    margin: 0 auto;
+    // display: flex;
+    // justify-content: end;
 
-    display: flex;
-    justify-content: end;
-
-    .floating-button {
-      display: flex;
-      justify-content: end;
-    }
+    // .floating-button {
+    //   display: flex;
+    //   justify-content: end;
+    // }
   }
 }
 
@@ -101,7 +105,6 @@
         0px 3px 5px rgba($opalBlue, 0.5);
       padding: 1.5rem 3rem;
     }
-
     .account__floating-button {
       grid-area: 10 / 7 / 12 / 10;
       padding-block: 2rem;
