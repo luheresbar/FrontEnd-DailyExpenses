@@ -8,9 +8,9 @@
     <app-category-type-filter></app-category-type-filter>
   </div>
   <div class="category-content">
-    <ng-content></ng-content>
-  </div>
-  <div class="category__floating-button">
+    <div class="content">
+      <ng-content></ng-content>
+    </div>
     <app-floating-button
       class="floating-button"
       (click)="changeStateOverlayFloatingMenu()"
@@ -19,7 +19,8 @@
       type="button"
       aria-expanded="false"
       aria-haspopup="true"
-    >New Category</app-floating-button>
+      >New Category</app-floating-button
+    >
   </div>
 </div>
 

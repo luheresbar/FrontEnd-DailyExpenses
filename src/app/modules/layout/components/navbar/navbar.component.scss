@@ -105,9 +105,11 @@
     background-color: transparent;
 
     .navbar__logo--sections {
-      grid-area: 1 / 1 / 2 / 6;
-      width: 100%;
+      grid-area: 1 / 1 / 2 / 10;
+      justify-self: start;
+      // width: 100%;
       display: flex;
+      // justify-content: start;
 
       .navbar__logo {
         display: flex;

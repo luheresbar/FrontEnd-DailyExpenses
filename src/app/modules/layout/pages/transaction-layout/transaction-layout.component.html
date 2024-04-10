@@ -16,18 +16,19 @@
     <app-transaction-filter></app-transaction-filter>
   </div>
   <div class="transaction-content">
-    <ng-content></ng-content>
-  </div>
-  <div class="transaction__floating-button">
-      <app-floating-button
-        class="floating-button"
-        (click)="changeStateOverlayFloatingMenu()"
-        cdkOverlayOrigin
-        #OverlayFloatingMenu="cdkOverlayOrigin"
-        type="button"
-        aria-expanded="false"
-        aria-haspopup="true"
-      >New Transaction</app-floating-button>
+    <div class="content">
+      <ng-content></ng-content>
+    </div>
+    <app-floating-button
+      class="floating-button"
+      (click)="changeStateOverlayFloatingMenu()"
+      cdkOverlayOrigin
+      #OverlayFloatingMenu="cdkOverlayOrigin"
+      type="button"
+      aria-expanded="false"
+      aria-haspopup="true"
+      >New Transaction</app-floating-button
+    >
   </div>
 </div>
 

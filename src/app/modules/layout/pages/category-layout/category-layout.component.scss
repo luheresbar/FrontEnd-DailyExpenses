@@ -38,41 +38,31 @@
 
   .category-content {
     grid-area: 3 / 1 / 4 / 13;
-    height: 100%;
+    display: grid;
+    padding: 0 1.2rem;
+    height: calc(100vh - 10.7rem - 6rem);
     width: 100%;
     max-width: 50rem;
     margin: 0 auto;
-    padding: 1rem 1.2rem;
-    overflow-y: auto;
+    position: relative;
 
-    scrollbar-width: none;
-    &::-webkit-scrollbar {
-      display: none;
+    .content {
+      overflow-y: auto;
+      scrollbar-width: none;
     }
-  }
-
-  .category__floating-button {
-    grid-area: 3 / 1 / 4 / 13;
-    align-self: end;
-    padding-block-end: 2rem;
-    padding-inline-end: 2rem;
-    width: 100%;
-    max-width: 48rem;
-    margin: 0 auto;
-
-    display: flex;
-    justify-content: end;
 
     .floating-button {
-      display: flex;
-      justify-content: end;
+      grid-area: 1/ 1 / 1 / 1;
+      position: absolute;
+      right: 1.5rem;
+      bottom: 1.5rem;
     }
   }
 }
 
 @media (min-width: $breakpoint-medium) {
   .category-layout {
-    grid-template-rows: repeat(12, 1fr);
+    grid-template-rows: repeat(18, 1fr);
     background-color: transparent;
     border-radius: 0.8rem;
     height: 100%;
@@ -84,10 +74,9 @@
     }
 
     .category-filter {
-      grid-area: 2 / 2 / 6 / 5;
+      grid-area: 2 / 2 / 18 / 5;
       box-shadow: none;
       border-radius: 0.8rem;
-      margin-block-start: 2rem;
       .filter__subtitle {
         display: block;
         font-size: $font-size-medium;
@@ -96,24 +85,19 @@
     }
 
     .category-content {
-      grid-area: 2 / 5 / 12 / 12;
+      grid-area: 2 / 5 / 18 / 12;
       max-width: 55rem;
+      height: 100%;
       justify-self: center;
       border-radius: 0.8rem;
       box-shadow: 0px -3px 5px rgba($opalBlue, 0.5),
         0px 3px 5px rgba($opalBlue, 0.5);
       padding: 1.5rem 3rem;
-    }
-
-    .category__floating-button {
-      grid-area: 10 / 7 / 12 / 10;
-      padding-block: 2rem;
-      padding-inline: 0rem;
-      width: 20rem;
 
       .floating-button {
-        width: 100%;
-        justify-content: center;
+        width: 20rem;
+        left: 50%;
+        transform: translateX(-50%);
       }
     }
   }
