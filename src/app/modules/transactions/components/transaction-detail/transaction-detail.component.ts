@@ -43,9 +43,9 @@ export class TransactionDetailComponent {
 
   openDialogViewTransaction() {
     this.dialog.open(DialogTransactionComponent, {
-      minWidth: '300px',
-      width: '100%',
-      height: '100vh',
+      // minWidth: '300px',
+      width: 'auto',
+      // height: '100vh',
       autoFocus: false,
       data: {
         type: this.transaction.type,

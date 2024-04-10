@@ -4,6 +4,7 @@
 @import "/atoms/_mixin-label-form";
 @import "/atoms/_mixin-title";
 @import "/atoms/_mixin-link-redirection";
+@import "/tokens/_spacing";
 
 .transaction-form {
   display: flex;
@@ -40,6 +41,14 @@
 
     .form__btn {
       margin-block-start: 3rem;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-medium) {
+  .transaction-form {
+    .form__transaction {
+      width: 32rem;
     }
   }
 }

@@ -3,15 +3,25 @@
     <div (click)="closeDialog()" role="button" class="user__nav">
       <fa-icon [icon]="faArrowLeft" class="icon"></fa-icon>
     </div>
-    <div *ngIf="transactionDetail.id !== null" [cdkMenuTriggerFor]="menu" role="button" class="user__nav">
+    <div
+      *ngIf="transactionDetail.id !== null"
+      [cdkMenuTriggerFor]="menu"
+      role="button"
+      class="user__nav"
+    >
       <fa-icon [icon]="faEllipsisVertical" class="icon"></fa-icon>
     </div>
   </div>
-  <app-transaction-form [transactionDetail]="transactionDetail" (closeDialog)="onCloseDialog()"></app-transaction-form>
+  <div class="dialog__transaction--form">
+    <app-transaction-form
+      [transactionDetail]="transactionDetail"
+      (closeDialog)="onCloseDialog()"
+    ></app-transaction-form>
+  </div>
 </div>
 
 <ng-template #menu>
   <div class="dialog-menu" cdkMenu>
-  <button (click)="deleteRegister()" class="dialog-menu-item">Delete</button>
-</div>
+    <button (click)="deleteRegister()" class="dialog-menu-item">Delete</button>
+  </div>
 </ng-template>

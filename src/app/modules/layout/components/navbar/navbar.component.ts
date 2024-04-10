@@ -5,7 +5,7 @@ import { LogoComponent } from '../../../../shared/components/atoms/logo/logo.com
 import { AvatarComponent } from '../../../../shared/components/atoms/avatar/avatar.component';
 import { SearchInputComponent } from '../../../../shared/components/atoms/search-input/search-input.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faBell, faL } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faClose } from '@fortawesome/free-solid-svg-icons';
 import { FooterComponent } from '../../../auth/components/footer/footer.component';
 import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
@@ -35,13 +35,14 @@ import { filter } from 'rxjs';
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-  user$: UserResponse | null = null;
-
-  activeButton: string = 'transactions';
   faBell = faBell;
-  showAditionalContent: boolean = true;
+  
 
+  user$: UserResponse | null = null;
+  activeButton: string = 'transactions';
+  showAditionalContent: boolean = true;
   isCategoriesActive: boolean = false;
+ 
 
   constructor(
     private usersService: UserService,
