@@ -24,19 +24,21 @@
     margin: 0 auto;
   }
 
+  .transaction__sidebar {
+    grid-area: 2 / 1 / 4 / 13;
+
   .tansaction__date-filter {
-    grid-area: 2 / 1 / 3 / 13;
     width: 100%;
     max-width: 50rem;
     margin: 0 auto;
   }
   .transaction-filter {
-    grid-area: 3 / 1 / 4 / 13;
     padding-block-end: 0.5rem;
     z-index: 1;
     width: 100%;
     max-width: 50rem;
     margin: 0 auto;
+  }
   }
   .transaction-content {
     grid-area: 4 / 1 / 5 / 13;
@@ -82,24 +84,28 @@
       display: none;
     }
 
-    .transaction__search {
-      grid-area: 2 / 2 / 4 / 5;
-      display: block;
-    }
+    .transaction__sidebar {
+      grid-area: 2 / 2 / 18 / 5;
 
-    .tansaction__date-filter {
-      grid-area: 4 / 2 / 7 / 5;
-      justify-self: start;
-      align-self: start;
-      width: 100%;
-      margin-block-start: 2rem;
-    }
+      .transaction__search {
+        // grid-area: 2 / 2 / 4 / 5;
+        display: block;
+      }
 
-    .transaction-filter {
-      grid-area: 7 / 2 / 19 / 5;
-      box-shadow: none;
-      border-radius: 0.8rem;
-      margin-block-start: 2rem;
+      .tansaction__date-filter {
+        // grid-area: 4 / 2 / 7 / 5;
+        justify-self: start;
+        align-self: start;
+        width: 100%;
+        margin-block-start: 2rem;
+      }
+
+      .transaction-filter {
+        // grid-area: 7 / 2 / 19 / 5;
+        box-shadow: none;
+        border-radius: 0.8rem;
+        margin-block-start: 2rem;
+      }
     }
 
     .transaction__filter-title {
