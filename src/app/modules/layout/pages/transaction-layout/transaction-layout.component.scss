@@ -53,6 +53,7 @@
     .content {
       overflow-y: auto;
       scrollbar-width: none;
+      padding-block-start: 0.5rem;
     }
 
     .floating-button {
@@ -88,12 +89,10 @@
       grid-area: 2 / 2 / 18 / 5;
 
       .transaction__search {
-        // grid-area: 2 / 2 / 4 / 5;
         display: block;
       }
 
       .tansaction__date-filter {
-        // grid-area: 4 / 2 / 7 / 5;
         justify-self: start;
         align-self: start;
         width: 100%;
@@ -101,7 +100,6 @@
       }
 
       .transaction-filter {
-        // grid-area: 7 / 2 / 19 / 5;
         box-shadow: none;
         border-radius: 0.8rem;
         margin-block-start: 2rem;
@@ -122,7 +120,11 @@
       border-radius: 0.8rem;
       box-shadow: 0px -3px 5px rgba($opalBlue, 0.5),
         0px 3px 5px rgba($opalBlue, 0.5);
-      padding: 1.5rem 3rem;
+      padding: 2.5rem 3rem;
+
+      .content {
+        padding-block-start: 0;
+      }
 
       .floating-button {
         width: 20rem;

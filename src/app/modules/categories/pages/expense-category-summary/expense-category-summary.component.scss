@@ -1,3 +1,4 @@
+@import "/tokens/_spacing";
 @import "/tokens/_typography";
 
 .category-container {
@@ -16,4 +17,14 @@
 }
 .overhang {
   height: 7.5rem;
+}
+
+@media (min-width: $breakpoint-medium) {
+  .category-container {
+    .enabled-categories {
+      .subtitle {
+        margin-block-start: 0rem;
+      }
+    }
+  }
 }

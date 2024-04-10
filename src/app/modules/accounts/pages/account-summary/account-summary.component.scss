@@ -1,4 +1,5 @@
 @import "/tokens/_typography";
+@import "/tokens/_spacing";
 
 .account-container {
   .enabled-accounts,
@@ -6,7 +7,6 @@
     .subtitle {
       font-size: $font-size-medium;
       margin-block-start: 1rem;
-
     }
     .account-summary {
       display: flex;
@@ -17,4 +17,14 @@
 }
 .overhang {
   height: 7.5rem;
+}
+
+@media (min-width: $breakpoint-medium) {
+  .account-container {
+    .enabled-accounts {
+      .subtitle {
+        margin-block-start: 0rem;
+      }
+    }
+  }
 }
