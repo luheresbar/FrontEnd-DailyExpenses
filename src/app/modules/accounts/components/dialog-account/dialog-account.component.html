@@ -7,13 +7,15 @@
       <fa-icon [icon]="faEllipsisVertical" class="icon"></fa-icon>
     </div>
   </div>
-  <app-account-form [accountDetail]="accountDetail" (closeDialog)="onCloseDialog()"></app-account-form>
+  <div class="dialog__account--form">
+    <app-account-form [accountDetail]="accountDetail" (closeDialog)="onCloseDialog()"></app-account-form>
+  </div>
 </div>
 
 <ng-template #menu>
-  <div class="example-menu" cdkMenu>
-    <button (click)="deleteAccount()" class="example-menu-item" cdkMenuItem>Delete</button>
-    <button *ngIf="accountDetail.available !== false" (click)="updateAccountAvailability(false)" class="example-menu-item" cdkMenuItem>Disable</button>
-    <button *ngIf="accountDetail.available !== true" (click)="updateAccountAvailability(true)" class="example-menu-item" cdkMenuItem>Enable</button>
+  <div class="dialog-menu" cdkMenu>
+    <button (click)="deleteAccount()" class="dialog-menu-item" cdkMenuItem>Delete</button>
+    <button *ngIf="accountDetail.available !== false" (click)="updateAccountAvailability(false)" class="dialog-menu-item" cdkMenuItem>Disable</button>
+    <button *ngIf="accountDetail.available !== true" (click)="updateAccountAvailability(true)" class="dialog-menu-item" cdkMenuItem>Enable</button>
   </div>
 </ng-template>

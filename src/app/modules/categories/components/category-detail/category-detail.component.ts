@@ -21,9 +21,7 @@ export class CategoryDetailComponent {
 
   openDialogViewCategory() {
     this.dialog.open(DialogCategoryComponent, {
-      minWidth: '300px',
-      width: '100%',
-      height: '100vh',
+      width: 'auto',
       autoFocus: false,
       data: {
         categoryType: this.categoryDetail.categoryType,

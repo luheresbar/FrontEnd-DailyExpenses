@@ -57,9 +57,7 @@ export class AccountDetailComponent {
 
   openDialogViewTransaction() {
     this.dialog.open(DialogAccountComponent, {
-      minWidth: '300px',
-      width: '100%',
-      height: '100vh',
+      width: 'auto',
       autoFocus: false,
       data: {
         accountName: this.accountDetail.accountName,
