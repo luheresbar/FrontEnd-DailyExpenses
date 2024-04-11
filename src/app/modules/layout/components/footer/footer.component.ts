@@ -5,8 +5,13 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss'
+  styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
+  currentYear: number;
 
+  constructor() {
+    const currentDate = new Date();
+    this.currentYear = currentDate.getFullYear();
+  }
 }
