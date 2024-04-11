@@ -17,6 +17,7 @@ import {
   RouterLinkWithHref,
 } from '@angular/router';
 import { filter } from 'rxjs';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-navbar',
@@ -30,24 +31,26 @@ import { filter } from 'rxjs';
     FooterComponent,
     RouterLinkWithHref,
     RouterLinkActive,
+    OverlayModule,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
   faBell = faBell;
-  
+  faClose = faClose;
 
   user$: UserResponse | null = null;
   activeButton: string = 'transactions';
   showAditionalContent: boolean = true;
   isCategoriesActive: boolean = false;
- 
+  isOpenOverlayMenu = false;
 
   constructor(
     private usersService: UserService,
     private location: Location,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -78,5 +81,10 @@ export class NavbarComponent {
   checkCurrentUrl() {
     const currentUrl = this.location.path();
     this.isCategoriesActive = currentUrl.startsWith('/categories');
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

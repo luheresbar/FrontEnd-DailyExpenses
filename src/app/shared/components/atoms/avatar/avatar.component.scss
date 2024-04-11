@@ -1,4 +1,6 @@
 @import "/tokens/_colors";
+@import "/tokens/_typography";
+@import "/tokens/_spacing";
 
 .avatar-profile {
   display: grid;
@@ -7,11 +9,15 @@
   border: 0.2rem solid transparent;
   background-color: transparent;
   cursor: pointer;
-  .avatar__icon {
+
+  &__icon {
     width: 100%;
   }
-  &:hover, &.active {
+
+  &:hover,
+  &.active {
     border: 0.2rem solid $platinum;
     border-radius: 50%;
   }
 }
+

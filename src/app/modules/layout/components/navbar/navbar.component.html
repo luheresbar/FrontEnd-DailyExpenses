@@ -50,9 +50,101 @@
     </button>
   </div>
   <div class="navbar__avatar">
-    <app-avatar></app-avatar>
+    <app-avatar
+      class="avatar-profile"
+      [class.active]="isOpenOverlayMenu === true"
+      (click)="isOpenOverlayMenu = !isOpenOverlayMenu"
+      cdkOverlayOrigin
+      #menuOverlay="cdkOverlayOrigin"
+      type="button"
+      id="user-menu-button"
+      aria-expanded="false"
+      aria-haspopup="true"
+    ></app-avatar>
   </div>
   <div class="navbar__footer" *ngIf="showAditionalContent">
     <app-footer></app-footer>
   </div>
 </div>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="menuOverlay"
+  [cdkConnectedOverlayOpen]="isOpenOverlayMenu"
+  [cdkConnectedOverlayHasBackdrop]="true"
+  (backdropClick)="isOpenOverlayMenu = false"
+  (detach)="isOpenOverlayMenu = false"
+>
+  <div
+    class="avatar-menu__container"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="user-menu-button"
+    tabindex="-1"
+  >
+    <div class="avatar-menu__title">
+      <span class="title">Account</span>
+      <button
+        (click)="isOpenOverlayMenu = !isOpenOverlayMenu"
+        class="avatar-menu__title__close-button"
+      >
+        <fa-icon class="close-icon" [icon]="faClose"></fa-icon>
+      </button>
+    </div>
+    <div class="avatar-menu__profile-info">
+      <img
+        class="avatar-menu__profile-info__avatar"
+        src="/assets/icons/user.png"
+        alt=""
+      />
+      <div class="avatar-menu__profile-info__details">
+        <div class="avatar-menu__profile-info__details__username">
+          Luis H. Espinosa
+        </div>
+        <!-- Aquí deberías añadir el nombre de usuario y correo si lo deseas -->
+        <div class="avatar-menu__profile-info__details__email">
+          luheresbargmail.com
+        </div>
+      </div>
+    </div>
+    <ul class="avatar-menu__item settings">
+      <li class="avatar-menu__item list">
+        <a
+          href="#"
+          class="avatar-menu__item__link"
+          role="menuitem"
+          tabindex="-1"
+          id="user-menu-item-0"
+        >
+          Edit Profile
+        </a>
+      </li>
+      <li class="avatar-menu__item list">
+        <a
+          href="#"
+          class="avatar-menu__item__link"
+          role="menuitem"
+          tabindex="-1"
+          id="user-menu-item-1"
+        >
+          Change password
+        </a>
+      </li>
+    </ul>
+    <ul class="avatar-menu__item logout">
+      <li class="avatar-menu__item list">
+        <a
+          href="#"
+          class="avatar-menu__item__link"
+          role="menuitem"
+          tabindex="-1"
+          id="user-menu-item-2"
+          (click)="logout()"
+        >
+          Log Out
+        </a>
+      </li>
+    </ul>
+  </div>
+</ng-template>
+

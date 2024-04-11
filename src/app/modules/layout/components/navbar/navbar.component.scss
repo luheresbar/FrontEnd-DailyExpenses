@@ -92,6 +92,12 @@
   }
 }
 
+.avatar-menu {
+  &__container {
+    display: none;
+  }
+}
+
 @media (min-width: $breakpoint-medium) {
   .navbar {
     display: grid;
@@ -214,5 +220,115 @@
     //   padding-block-end: 1rem;
     //   color: $white;
     // }
+  }
+
+  .avatar-menu {
+    &__container {
+      display: grid;
+      position: absolute;
+      right: -5rem;
+      margin-top: 0.8rem;
+      width: 30rem;
+      border-radius: 0.8rem;
+      background-color: $white;
+      padding: 0.8rem 1.2rem;
+      box-shadow: 0px -3px 5px rgba($opalBlue, 0.5),
+        0px 3px 5px rgba($opalBlue, 0.5);
+
+      &:focus {
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+      }
+    }
+
+    &__title {
+      padding: 0.8rem 1.6rem;
+      text-align: center;
+      position: relative;
+
+      .title {
+        display: block;
+        color: $text-color-dark;
+        font-size: $font-size-medium;
+        font-weight: $font-weight-bold;
+      }
+
+      &__close-button {
+        display: block;
+        background-color: transparent;
+        border: none;
+        position: absolute;
+        top: 1rem;
+        right: 1.2rem;
+        cursor: pointer;
+
+        .close-icon {
+          font-size: $font-size-medium;
+          font-weight: $font-weight-light;
+          color: $gunmetal;
+        }
+      }
+    }
+
+    &__profile-info {
+      padding: 1.2rem 1.6rem;
+      display: flex;
+      align-items: center;
+      margin-block-start: 0.5rem;
+      border-top: 1px solid $opalBlue;
+
+      &__avatar {
+        width: 4rem;
+        border-radius: 50%;
+      }
+
+      &__details {
+        width: 100%;
+        margin-inline-start: 1rem;
+
+        &__username {
+          font-size: $font-size-medium;
+          font-weight: $font-weight-medium;
+        }
+
+        &__email {
+          font-size: $font-size-between;
+          font-weight: $font-weight-light;
+        }
+      }
+    }
+
+    &__item {
+      padding: 0.4rem 0 0.4rem 0;
+
+      &.settings {
+        border-top: 1px solid $opalBlue;
+      }
+
+      &.logout {
+        border-top: 1px solid $opalBlue;
+      }
+
+      &.list {
+        height: 3.6rem;
+        margin-block: 0.5rem;
+        list-style: none;
+
+        &:hover {
+          background-color: rgba($opalBlue, 0.4);
+          border-radius: 0.8rem;
+        }
+      }
+
+      &__link {
+        display: block;
+        padding: 0.8rem 1.6rem;
+        font-size: $font-size-between;
+        font-weight: $font-weight-light;
+        line-height: 1.25rem;
+        color: $text-color-dark;
+        text-decoration: none;
+      }
+    }
   }
 }
