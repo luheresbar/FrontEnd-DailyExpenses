@@ -109,42 +109,30 @@
     </div>
     <ul class="avatar-menu__item settings">
       <li class="avatar-menu__item list">
-        <a
-          href="#"
+        <div
           class="avatar-menu__item__link"
-          role="menuitem"
-          tabindex="-1"
-          id="user-menu-item-0"
+          role="button"
+          (click)="openDialogUserProfile(); isOpenOverlayMenu = !isOpenOverlayMenu"
         >
           Edit Profile
-        </a>
+        </div>
       </li>
       <li class="avatar-menu__item list">
-        <a
-          href="#"
+        <div
           class="avatar-menu__item__link"
-          role="menuitem"
-          tabindex="-1"
-          id="user-menu-item-1"
+          role="button"
+          (click)="openDialogChangePassword(); isOpenOverlayMenu = !isOpenOverlayMenu"
         >
           Change password
-        </a>
+        </div>
       </li>
     </ul>
     <ul class="avatar-menu__item logout">
       <li class="avatar-menu__item list">
-        <a
-          href="#"
-          class="avatar-menu__item__link"
-          role="menuitem"
-          tabindex="-1"
-          id="user-menu-item-2"
-          (click)="logout()"
-        >
+        <div class="avatar-menu__item__link" role="button" (click)="logout(); isOpenOverlayMenu = !isOpenOverlayMenu">
           Log Out
-        </a>
+        </div>
       </li>
     </ul>
   </div>
 </ng-template>
-

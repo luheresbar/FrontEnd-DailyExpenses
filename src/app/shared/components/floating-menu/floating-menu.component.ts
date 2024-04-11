@@ -31,13 +31,12 @@ export class FloatingMenuComponent {
 
   constructor(
     private dialog: Dialog, 
+    private overlayService: OverlayService,
     ) {}
 
   openDialogTransaction() {
     this.dialog.open(DialogTransactionComponent, {
-      minWidth: '300px',
-      width: '100%',
-      height: '100vh',
+      width: 'auto',
       autoFocus: false,
       data: {
         type: this.transactionType,
@@ -58,9 +57,7 @@ export class FloatingMenuComponent {
 
   openDialogAccount() {
     this.dialog.open(DialogAccountComponent, {
-      minWidth: '300px',
-      width: '100%',
-      height: '100vh',
+      width: 'auto',
       autoFocus: false,
       data: {},
     });
@@ -68,9 +65,7 @@ export class FloatingMenuComponent {
 
   openDialogCategory() {
     this.dialog.open(DialogCategoryComponent, {
-      minWidth: '300px',
-      width: '100%',
-      height: '100vh',
+      width: 'auto',
       autoFocus: false,
       data: {
         categoryType: this.accountType,
@@ -84,7 +79,7 @@ export class FloatingMenuComponent {
     this.accountType = type;
   }
 
-  // closeOverlay() {
-  //   this.overlayService.closeOverlayFloatingMenu();
-  // }
+  closeOverlay() {
+    this.overlayService.closeOverlayFloatingMenu();
+  }
 }

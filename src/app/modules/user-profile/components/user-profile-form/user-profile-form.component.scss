@@ -4,6 +4,7 @@
 @import "/atoms/_mixin-label-form";
 @import "/atoms/_mixin-title";
 @import "/atoms/_mixin-link-redirection";
+@import "/tokens/_spacing";
 
 .user-form {
   display: flex;
@@ -75,6 +76,14 @@
 
     .form__btn {
       margin-block-start: 3rem;
+    }
+  }
+}
+
+@media (min-width: $breakpoint-medium) {
+  .user-form {
+    .form__user {
+      width: 32rem;
     }
   }
 }

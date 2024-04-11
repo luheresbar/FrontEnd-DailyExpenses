@@ -18,6 +18,9 @@ import {
 } from '@angular/router';
 import { filter } from 'rxjs';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { DialogUserProfileComponent } from '../../../user-profile/components/dialog-user-profile/dialog-user-profile.component';
+import { Dialog } from '@angular/cdk/dialog';
+import { DialogChangePasswordComponent } from '../../../user-profile/components/dialog-change-password/dialog-change-password.component';
 
 @Component({
   selector: 'app-navbar',
@@ -32,6 +35,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
     RouterLinkWithHref,
     RouterLinkActive,
     OverlayModule,
+    DialogUserProfileComponent,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
@@ -49,6 +53,7 @@ export class NavbarComponent {
   constructor(
     private usersService: UserService,
     private location: Location,
+    private dialog: Dialog, 
     private router: Router,
     private authService: AuthService
   ) {}
@@ -83,8 +88,34 @@ export class NavbarComponent {
     this.isCategoriesActive = currentUrl.startsWith('/categories');
   }
 
+
   logout() {
     this.authService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
+  }
+
+  openDialogUserProfile() {
+    this.dialog.open(DialogUserProfileComponent, {
+      width: 'auto',
+      autoFocus: false,
+      data: {
+        userId: this.user$?.userId,
+        username: this.user$?.username,
+        email: this.user$?.email,
+      },
+    });
+  }
+  openDialogChangePassword() {
+    this.dialog.open(DialogChangePasswordComponent, {
+      width: 'auto',
+      autoFocus: false,
+      data: {
+        email: this.user$?.email,
+      },
+    });
+  }
+
+  goToBack() {
+    this.location.back();
   }
 }

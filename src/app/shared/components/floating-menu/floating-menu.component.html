@@ -3,7 +3,7 @@
   <p class="floating-menu__title">New Register</p>
   <div class="floating-menu__btn">
     <div
-      (click)="assingTransactionType('transfer'); openDialogTransaction()"
+      (click)="assingTransactionType('transfer'); openDialogTransaction(); closeOverlay()"
       role="button"
       class="btn-floating-menu"
     >
@@ -17,7 +17,7 @@
   </div>
   <div class="floating-menu__btn">
     <div
-      (click)="assingTransactionType('income'); openDialogTransaction()"
+      (click)="assingTransactionType('income'); openDialogTransaction(); closeOverlay()"
       role="button"
       class="btn-floating-menu"
     >
@@ -31,7 +31,7 @@
   </div>
   <div class="floating-menu__btn">
     <div
-      (click)="assingTransactionType('expense'); openDialogTransaction()"
+      (click)="assingTransactionType('expense'); openDialogTransaction(); closeOverlay()"
       role="button"
       class="btn-floating-menu"
     >
@@ -50,7 +50,7 @@
   <p class="floating-menu__title">New Category</p>
   <div class="floating-menu__btn">
     <div
-      (click)="assingCategoryType('income'); openDialogCategory()"
+      (click)="assingCategoryType('income'); openDialogCategory(); closeOverlay()"
       role="button"
       class="btn-floating-menu"
     >
@@ -64,7 +64,7 @@
   </div>
   <div class="floating-menu__btn">
     <div
-      (click)="assingCategoryType('expense'); openDialogCategory()"
+      (click)="assingCategoryType('expense'); openDialogCategory(); closeOverlay()"
       role="button"
       class="btn-floating-menu"
     >
@@ -82,7 +82,7 @@
 <div class="overlay-floating-menu" *ngIf="typeFloatingMenu === 'accounts'">
   <p class="floating-menu__title">New Account</p>
   <div class="floating-menu__btn">
-    <div (click)="openDialogAccount()" role="button" class="btn-floating-menu">
+    <div (click)="openDialogAccount(); closeOverlay()" role="button" class="btn-floating-menu">
       <p class="floating-menu__option">Create</p>
       <img
         class="floating-menu__icon"
