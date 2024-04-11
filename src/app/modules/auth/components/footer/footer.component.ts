@@ -4,13 +4,13 @@ import { HorizontalLineComponent } from '@shared/components/atoms/horizontal-lin
 
 
 @Component({
-  selector: 'app-footer',
+  selector: 'app-footer-auth',
   standalone: true,
   imports: [RouterLinkWithHref, HorizontalLineComponent],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss'
 })
-export class FooterComponent {
+export class FooterAuthComponent {
 
   @Input() routerLink:string = "";
 

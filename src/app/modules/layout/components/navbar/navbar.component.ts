@@ -10,7 +10,7 @@ import {
   faClose,
   faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
-import { FooterComponent } from '../../../auth/components/footer/footer.component';
+import { FooterAuthComponent } from '../../../auth/components/footer/footer.component';
 import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
 import { UserResponse } from '@models/user.model';
@@ -35,7 +35,7 @@ import { DialogChangePasswordComponent } from '../../../user-profile/components/
     AvatarComponent,
     SearchInputComponent,
     FontAwesomeModule,
-    FooterComponent,
+    FooterAuthComponent,
     RouterLinkWithHref,
     RouterLinkActive,
     OverlayModule,

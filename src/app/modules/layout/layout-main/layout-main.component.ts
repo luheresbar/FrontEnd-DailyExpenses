@@ -10,11 +10,12 @@ import { IncomeService } from '@services/income.service';
 import { CategoryDto } from '@models/category.model';
 import { DateFilterService } from '@services/date-filter.service';
 import { Subscription } from 'rxjs';
+import { FooterComponent } from '../components/footer/footer.component';
 
 @Component({
   selector: 'app-layout-main',
   standalone: true,
-  imports: [NavbarComponent, RouterOutlet],
+  imports: [NavbarComponent, RouterOutlet, FooterComponent],
   templateUrl: './layout-main.component.html',
   styleUrl: './layout-main.component.scss',
 })
