@@ -48,30 +48,9 @@
         }
       }
 
-      // .navbar__item.navbar__item--transactions {
-      //   // display: none;
-      // }
       .navbar__item.navbar__item--reports {
         display: none;
       }
-
-      // .navbar__home {
-      //   display: grid;
-      //   place-content: center;
-      //   width: 4rem;
-      //   height: 100%;
-      //   background-image: url("/assets/icons/home.png");
-      //   background-size: cover;
-      //   background-repeat: no-repeat;
-      //   border: 0.15rem solid $primary-action;
-      //   border-radius: 50%;
-      //   cursor: pointer;
-
-      //   &:hover,
-      //   &.active {
-      //     background-image: url("/assets/icons/home-hover.png");
-      //   }
-      // }
     }
   }
 
@@ -79,7 +58,7 @@
     display: none;
   }
 
-  .navbar__notification {
+  .navbar__info {
     display: none;
   }
 
@@ -179,7 +158,7 @@
       width: 5rem;
     }
 
-    .navbar__notification {
+    .navbar__info {
       grid-area: 1 / 11 / 2 / 12;
       display: grid;
       justify-self: end;
@@ -189,7 +168,7 @@
       width: auto;
       cursor: pointer;
 
-      .navbar__bell {
+      .navbar__info-icon {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -205,21 +184,14 @@
       &:hover {
         border: 0.1rem solid $white;
         border-radius: 50%;
-        .navbar__bell {
+        .navbar__info-icon {
           color: $white;
-          font-size: 1.4rem;
-          padding-inline-start: 0.1rem;
-          padding-block-start: 0.05rem;
+          font-size: 1.7rem;
+          padding-inline-end: 0.1rem;
+          padding-block-start: 0.2rem;
         }
       }
     }
-    // .navbar__footer {
-    //   grid-area: 12 / 1 / 13 / 2;
-    //   width: 100%;
-    //   align-self: end;
-    //   padding-block-end: 1rem;
-    //   color: $white;
-    // }
   }
 
   .avatar-menu {
@@ -299,7 +271,6 @@
     }
 
     &__item {
-      // padding: 0.4rem 0 0.4rem 0;
 
       &.settings {
         border-top: 1px solid $opalBlue;

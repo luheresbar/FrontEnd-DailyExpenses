@@ -27,6 +27,7 @@
       @include format-input-text;
       font-weight: $font-weight-bold;
       border: 0.1rem solid rgba($gunmetal, 0.3);
+      cursor: pointer;
     }
   }
 }

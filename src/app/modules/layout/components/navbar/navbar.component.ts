@@ -5,7 +5,11 @@ import { LogoComponent } from '../../../../shared/components/atoms/logo/logo.com
 import { AvatarComponent } from '../../../../shared/components/atoms/avatar/avatar.component';
 import { SearchInputComponent } from '../../../../shared/components/atoms/search-input/search-input.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faBell, faClose } from '@fortawesome/free-solid-svg-icons';
+import {
+  faBell,
+  faClose,
+  faInfoCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { FooterComponent } from '../../../auth/components/footer/footer.component';
 import { AuthService } from '@services/auth.service';
 import { UserService } from '@services/user.service';
@@ -43,6 +47,7 @@ import { DialogChangePasswordComponent } from '../../../user-profile/components/
 export class NavbarComponent {
   faBell = faBell;
   faClose = faClose;
+  faInfoCircle = faInfoCircle;
 
   user$: UserResponse | null = null;
   activeButton: string = 'transactions';
@@ -53,7 +58,7 @@ export class NavbarComponent {
   constructor(
     private usersService: UserService,
     private location: Location,
-    private dialog: Dialog, 
+    private dialog: Dialog,
     private router: Router,
     private authService: AuthService
   ) {}
@@ -87,7 +92,6 @@ export class NavbarComponent {
     const currentUrl = this.location.path();
     this.isCategoriesActive = currentUrl.startsWith('/categories');
   }
-
 
   logout() {
     this.authService.logout();

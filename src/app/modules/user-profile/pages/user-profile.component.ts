@@ -56,9 +56,7 @@ export default class UserProfileComponent {
 
   openDialogUserProfile() {
     this.dialog.open(DialogUserProfileComponent, {
-      minWidth: '300px',
-      width: '100%',
-      height: '100vh',
+      width: 'auto',
       autoFocus: false,
       data: {
         userId: this.user$?.userId,
@@ -69,9 +67,7 @@ export default class UserProfileComponent {
   }
   openDialogChangePassword() {
     this.dialog.open(DialogChangePasswordComponent, {
-      minWidth: '300px',
-      width: '100%',
-      height: '100vh',
+      width: 'auto',
       autoFocus: false,
       data: {
         email: this.user$?.email
