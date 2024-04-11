@@ -160,7 +160,6 @@
       display: grid;
       justify-self: end;
       align-self: center;
-      padding: 0.2rem;
       border: 0.1rem solid transparent;
       width: auto;
       cursor: pointer;
@@ -174,18 +173,12 @@
         border: none;
         color: $opalBlue;
         font-size: 1.8rem;
-        height: 2.1rem;
         width: 2rem;
         cursor: pointer;
       }
       &:hover {
-        border: 0.1rem solid $white;
-        border-radius: 50%;
         .navbar__info-icon {
           color: $white;
-          font-size: 1.7rem;
-          padding-inline-end: 0.1rem;
-          padding-block-start: 0.2rem;
         }
       }
     }
