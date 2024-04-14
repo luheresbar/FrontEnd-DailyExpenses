@@ -2,80 +2,87 @@
 @import "/tokens/_colors";
 @import "/tokens/_spacing";
 
-.navbar {
-  display: grid;
-  justify-items: center;
-  grid-template-columns: repeat(12, 1fr);
-  max-width: $breakpoint-large;
-  height: 100%;
-  padding: 0rem 4rem 0rem 3rem;
-  margin: 0 auto;
-  color: $text-color-white;
-  font-size: $font-size-small;
+.footer {
+  display: none;
+}
 
-  .navbar__legal {
-    grid-area: 1 / 1 / 2 / 5;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-    &--info {
-      .link {
-        width: auto;
-        &:hover {
+
+@media (min-width: $breakpoint-medium) {
+  .footer {
+    display: grid;
+    justify-items: center;
+    grid-template-columns: repeat(12, 1fr);
+    max-width: $breakpoint-large;
+    height: 100%;
+    padding: 0rem 4rem 0rem 3rem;
+    margin: 0 auto;
+    color: $text-color-white;
+    font-size: $font-size-small;
+
+    .footer__legal {
+      grid-area: 1 / 1 / 2 / 5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+      &--info {
+        .link {
+          width: auto;
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+
+    .footer__tecnologies {
+      grid-area: 1 / 5 / 2 / 9;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+
+      &--icons {
+        display: flex;
+        gap: 2rem;
+
+        .tecnologies--icon {
+          display: flex;
+          align-items: end;
+
+          .icon {
+            color: $text-color-white;
+            width: 2rem;
+          }
+        }
+      }
+    }
+
+    .footer__social-media {
+      grid-area: 1 / 9 / 2 / 13;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+
+      &--icons {
+        display: flex;
+        align-items: end;
+        gap: 2rem;
+        &--button {
+          background-color: transparent;
+          border: none;
+          display: flex;
+          align-items: end;
           cursor: pointer;
-          text-decoration: underline;
-        }
-      }
-    }
-  }
 
-  .navbar__tecnologies {
-    grid-area: 1 / 5 / 2 / 9;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-
-    &--icons {
-      display: flex;
-      gap: 2rem;
-
-      .tecnologies--icon {
-        display: flex;
-        align-items: end;
-
-        .icon {
-          color: $text-color-white;
-          width: 2rem;
-        }
-      }
-    }
-  }
-
-  .navbar__social-media {
-    grid-area: 1 / 9 / 2 / 13;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-
-    &--icons {
-      display: flex;
-      align-items: end;
-      gap: 2rem;
-      &--button {
-        background-color: transparent;
-        border: none;
-        display: flex;
-        align-items: end;
-        cursor: pointer;
-
-        .icon {
-          color: $text-color-white;
-          width: 2rem;
+          .icon {
+            color: $text-color-white;
+            width: 2rem;
+          }
         }
       }
     }
